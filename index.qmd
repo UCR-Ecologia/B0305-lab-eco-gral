@@ -1,31 +1,31 @@
 ---
-title: "MY COURSE CODE - MY COURSE NAME"
+title: "B0305 - LABORATORIO DE ECOLOGÍA GENERAL"
 format:
   html:
     include-before-body: helpers/remove-nav.html
     include-after-body: helpers/remove-title.html
 ---
 
-# 📑 Course Brief
+# 📑 Resumen del Curso
 
-**Focus:** the focus of this course is to learn stuff
+**Enfoque:** Métodos de campo y laboratorio para la ecología general
 
-**How:** hands-on learning
+**Cómo:** Aprendizaje práctico
 
-# 🎯 Learning Objectives
+# 🎯 Objetivos de Aprendizaje
 
-- You will discover how to do X
-- Distinguish X from **X**
-- Practice how to put things _in italic_
-- Discover how to highlight `code` inline
-- Proceed to learn stuff
-
+- Entender y aplicar el Método Científico Deductivo
+- Entender y aplicar los principios de diseño experimental en ecología
+- Entender y aplicar los principios para recolectar y analizar datos ecológicos
+- Entender y aplicar los principios de la redacción científica
+- Aprender los conceptos básicos de análisis de datos y pruebas estadísticas
 
 -----------------
 
-**Select Academic Year/Term:**
+**Selecciona Año/Periodo Académico:**
 
-<a href="2023/index.qmd">
-    <button class="button-61">2022/23</button>
+
+<a href="2025/index.qmd">
+    <button class="button-61">2025</button>
 </a>
 

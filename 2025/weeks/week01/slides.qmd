@@ -1,10 +1,10 @@
 ---
-subtitle: "MY_COURSE_CODE -- MY_COURSE_NAME"
+subtitle: "B0305 -- Lab Eco Gral"
 title: "<font style='font-size:1em;'>🗓️ Week 01<br/> Introduction</font>"
 author: Prof. [Octopian](#)
-institute: '[University of Octopus Studies](#)'
-date: 14 March 2023
-date-meta: 14 March 2023
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
 date-format: "DD MMM YYYY"
 toc: true
 toc-depth: 1
@@ -20,7 +20,7 @@ format:
     preview-links: auto
     logo: /figures/icons/course_favicon.png
     css: /css/styles_slides.css
-    footer: 'MY_COURSE_CODE -- MY_COURSE_NAME'
+    footer: 'B0305 -- Lab Eco Gral'
 ---
 
 # Who are we
