@@ -1,26 +1,15 @@
 ---
 title: "B0305 - LABORATORIO DE ECOLOGÍA GENERAL"
+toc: true
+toc-depth: 4
 format:
   html:
-    include-before-body: helpers/remove-nav.html
-    include-after-body: helpers/remove-title.html
+    toc-title: "En esta pagina"
+    # include-before-body: helpers/remove-nav.html
+    # include-after-body: helpers/remove-title.html
 ---
 
-# 📑 Resumen del Curso
-
-**Enfoque:** Métodos de campo y laboratorio para la ecología general
-
-**Cómo:** Aprendizaje práctico
-
-# 🎯 Objetivos de Aprendizaje
-
-- Entender y aplicar el Método Científico Deductivo
-- Entender y aplicar los principios de diseño experimental en ecología
-- Entender y aplicar los principios para recolectar y analizar datos ecológicos
-- Entender y aplicar los principios de la redacción científica
-- Aprender los conceptos básicos de análisis de datos y pruebas estadísticas
-
------------------
+# 📑 Laboratorio de Ecología General 
 
 **Selecciona Año/Periodo Académico:**
 
@@ -28,4 +17,403 @@ format:
 <a href="2025/index.qmd">
     <button class="button-61">2025</button>
 </a>
+
+
+## Introduccion
+
+La ecología es una ciencia integradora de una amplia gama de ramas de la
+biología. Definida originalmente por Ernest Haeckel (1834-1919) como el estudio de
+las interacciones entre los organismos y el ambiente, la definición de ecología se
+amplía en la actualidad a estudiar cómo esas interacciones afectan la distribución y
+la abundancia de las especies y el funcionamiento del ecosistema.
+
+Esta definición implica una variedad de procesos por estudiar. El ambiente de
+un organismo contempla desde lo más obvio como las características físicas del
+entorno y de otros organismos, hasta lo no tan obvio como el ambiente celular o
+genético en el que tienen su desarrollo. Las interacciones, definidas como el
+intercambio de materia y energía o la interferencia en esta transferencia, pueden
+darse a diferentes escalas, como por ejemplo entre organismos, entre organismos y
+ambientes (dentro de ecosistemas) o entre ecosistemas. Los ecosistemas a su vez
+pueden delimitarse según nuestro interés, desde el ecosistema dentro del intestino
+de un animal hasta incluso todo nuestro planeta. Esto nos lleva a una inmensa
+cantidad de mecanismos y procesos que pueden ser estudiados dentro del campo de
+la ecología y que son necesarios para entender el funcionamiento de los ecosistemas.
+Así, en la ecología se pueden estudiar los organismos a nivel de individuo, población
+y comunidad, su asociación con el ambiente y su participación (función) dentro del
+ecosistema.
+
+El desarrollo de la ecología se realiza principalmente mediante el método
+científico llamado hipotético-deductivo. Esto involucra la observación de patrones en
+la naturaleza, la formulación de hipótesis que expliquen estas observaciones, la
+formulación de predicciones que se basen en el cumplimiento de las hipótesis, el
+diseño de experimentos que permitan probar las hipótesis con el análisis de los
+datos generados por los experimentos. Finalmente, si los resultados concuerdan con
+las predicciones se deduce que hay un apoyo a no rechazar la hipótesis propuesta.
+
+Estos pasos implican que las personas estudiantes de la ecología serán
+capaces de diseñar experimentos que no sean ambiguos y pongan a prueba las
+hipótesis previamente generadas. Además, deberán desarrollar destrezas para la
+toma de datos de campo y de laboratorio, y tener conocimiento de técnicas
+estadísticas para analizar los datos y de lo que previamente se ha publicado sobre el
+tema que se está estudiando. Como toda ciencia, la ecología avanza si nuestros
+resultados son divulgados, por ende parte del conocimiento que deberán tener las
+personas estudiantes será saber transmitir sus resultados y explicaciones por
+manuscritos y exposiciones orales.
+
+### Descripción y objetivos del curso
+
+El Laboratorio de Ecología General complementa la teoría con prácticas en el campo
+y el laboratorio. Al finalizar el curso de laboratorio de Ecología General se espera que
+la persona estudiante sea capaz de realizar las actividades mencionadas a
+continuación:
+
+### Objetivo general
+
+Desarrollar habilidades para plantear, diseñar y ejecutar investigaciones de campo y
+laboratorio en ecología tropical, con énfasis en la prueba de hipótesis por medio del
+método científico. Ser capaz de realizar investigaciones que lleven a la práctica
+conceptos teóricos aprendidos en el curso de teoría.
+
+### Objetivos específicos
+
+1. Formular hipótesis biológicas y predicciones para el estudio de un patrón
+observado en la naturaleza o leído en la literatura.
+2. Plantear investigaciones en campo y laboratorio mediante la aplicación del
+diseño experimental y la prueba de hipótesis ecológicas.
+3. Realizar análisis estadísticos y redactar informes científicos.
+
+### Conocimientos
+
+* Hipótesis y predicciones
+* Componentes básicos de un diseño experimental
+* Pruebas estadísticas básicas
+* Principios de operación de equipo básico de investigación ecológica
+* Formato y secciones de un artículo científico
+* Buscar, comprender, analizar y citar correctamente la literatura científica
+
+### Habilidades
+
+* Capacidad de observación científica
+* Formular hipótesis biológicas y predicciones para el estudio de un patrón observado en la naturaleza o leído en la literatura
+* Planteamiento, diseño experimental y ejecución de investigaciones en campo y laboratorio para poner a prueba hipótesis ecológicas
+* Uso de equipo básico de investigación ecológica
+* Habilidades básicas de muestreo ecológico: p.ej. cuadrantes, transectos, muestreo aleatorio vs. sistemático
+* Manejo, depuración y control de calidad de datos ecológicos
+* Análisis estadístico: saber cuándo y por qué usar t de student, Chi-cuadrado, ANOVA, ANCOVA, regresión lineal y correlación
+* Uso de R para manipulación y graficación de datos y análisis estadístico
+* Análisis e interpretación de resultados científicos para generar nuevo conocimiento
+* Redacción de manuscritos científicos
+* Dar presentaciones orales
+* Realizar revisión de literatura
+
+### Aptitudes
+
+* Habilidad de trabajar en equipo y colaborar
+* Ética científica (qué constituye el plagio y cómo evitarlo)
+* Ética en la recolección y manejo de datos
+* Compromiso y dedicación para cumplir metas y completar la recolecta de datos
+* Curiosidad científica
+* Evaluación y reducción del riesgo durante el trabajo campo
+
+## Metodología
+
+Durante el curso se harán dos prácticas de laboratorio, dos prácticas durante giras, y
+un trabajo práctico de investigación en parejas a lo largo de todo el semestre. Los
+estudiantes entregarán cinco informes escritos. Adicionalmente, para las dos
+prácticas de gira y el trabajo de investigación en parejas deben de realizar una
+presentación oral. Todas las actividades del curso son de asistencia obligatoria. Solo
+se pueden justificar dos ausencias a clases, prácticas o giras en conjunto, siguiendo
+los criterios del Artículo 24 del Reglamento del Régimen Académico Estudiantil, si se
+falta una tercera vez se pierde el curso.
+
+### Prácticas de laboratorio y de gira
+
+Todas las prácticas de laboratorio y gira se planean en conjunto entre las
+personas estudiantes, docentes y asistentes del curso en el aula. Los datos se
+recolectan en la siguiente semana ya sea en el campus o en las giras, y luego se
+dedica una sesión adicional en el aula a ayudar a los grupos con el análisis
+estadístico. Cada grupo de estudiantes tendrá 5-6 integrantes. Para cada práctica de
+laboratorio y gira las personas estudiantes contarán con lecturas de referencia que
+deben estudiar antes de la sesión de planeamiento. En cada práctica los y las
+estudiantes deben participar en el planeamiento, la toma y el análisis de los datos,
+mientra que el informe escrito se realiza de forma individual. Las presentaciones
+orales para las prácticas de giras y el trabajo en parejas deben durar 12 minutos
+más 5 minutos de preguntas. Un máximo de dos personas presentan y las demás
+contestan preguntas. Hay un formulario para establecer el grado de participación,
+que deben entregar firmado junto al informe (ver sección de Evaluación).
+
+Si el o la estudiante se ausenta de algún laboratorio sin la debida justificación,
+no podrá presentar el informe de la práctica correspondiente. El informe se hace de
+acuerdo al formato solicitado en el curso (ver abajo) y deberán de subirlo al entorno
+del curso en Mediación Virtual, al inicio de la clase en la fecha de entrega según el
+cronograma; la puntualidad en la entrega de los manuscritos es estricta, no se
+aceptan manuscritos después de la fecha establecida.
+
+En todas las giras y las prácticas se deben respetar y acatar las normas
+establecidas en el Reglamento Universitario y de las instalaciones donde se realiza la
+gira (ver infografía al final de este documento). Durante las giras y las prácticas de
+campo los estudiantes deben seguir las normas de seguridad para trabajo en el
+campo que se les indique. Las fechas y los destinos de las giras se encuentran en el
+cronograma.
+
+### Investigación en parejas
+
+Como parte del curso las personas estudiantes deben realizar un trabajo práctico de
+investigación en parejas. En este trabajo las y los estudiantes deben poner en
+práctica todos los pasos del método científico con un problema o pregunta ecológica.
+No se permitirán trabajos cortos, deben ser de tres o más visitas de campo,
+dependiendo de la naturaleza del proyecto. En la segunda semana los y las
+estudiantes deben presentar su idea mediante una introducción escrita. Esta
+introducción deberá llevar el siguiente formato: título del proyecto, observación de
+campo o de la literatura que motiva la investigación, pregunta de investigación,
+hipótesis, predicciones, y bibliografía. En la introducción los estudiantes deberán
+incluir una breve revisión de la literatura que sirva para justificar las hipótesis que
+quieren probar y sus predicciones. En la semana 6 las personas estudiantes deberán
+entregar materiales, métodos y bibliografía. Los materiales y métodos deberán
+incluir una descripción del sitio de estudio, del diseño experimental (diseño de
+muestreo) y de los materiales que usarán para ello, las posibles pruebas estadísticas,
+un cronograma que incluya las fechas de recolección y análisis de datos, y un
+desglose de costos.
+
+En los siguientes dos meses los estudiantes deben llevar a cabo la
+recolección de datos. Se les solicitarán dos informes de avances, uno en la semana
+10 y otro en la 13. En el último mes (noviembre) deben concluir con la toma de
+datos y entrar en el análisis de los datos y preparar el manuscrito y la presentación
+oral. El documento deberá llevar el formato de manuscrito científico según el
+formato que se les entregue en el curso. Los estudiantes deben presentar los
+resultados en forma oral al final del curso. La presentación de los trabajos orales se
+realizará según la fecha indicada en el cronograma en un mini-simposio abierto al
+público. Todas las personas estudiantes deberán presentarse a la hora establecida.
+Para cada trabajo las y los estudiantes tienen un tiempo de 12 minutos de
+presentación y 5 minutos para aclarar preguntas del público
+
+## Evaluación
+
+El curso se aprueba con una nota igual o superior a 7.0. Las personas
+estudiantes con nota de 6.0 o 6.5 tienen derecho a hacer una prueba de ampliación.
+Si la nota es menor a 6.0 es insuficiente y no tiene derecho a prueba de ampliación,
+según el redondeo establecido en el artículo 25 del Reglamento de Régimen
+Académico Estudiantil. La evaluación del curso se hará de la siguiente forma:
+
+| Evaluación           | Valor (%) | Informe escrito | Presentación oral |
+|----------------------|-----------|------------------|--------------------|
+| Informe 1            | 10        | 10               |                    |
+| Informe 2            | 20        | 15               | 5                  |
+| Informe 3            | 20        | 20               |                    |
+| Informe 4            | 20        | 15               | 5                  |
+| Trabajo en parejas   | 30        | 20               | 10                 |
+| **Total**            | **100**   | **80**           | **20**             |
+
+---
+
+Todos los informes escritos se evalúan de acuerdo al siguiente esquema, y se
+brindarán rúbricas de evaluación más detalladas para estandarizar la revisión por
+parte de asistentes y profesores.
+
+| Sección                           | Valor (%) |
+|----------------------------------|-----------|
+| Título, resumen y palabras clave | 10        |
+| Introducción                     | 10        |
+| Hipótesis y predicciones         | 10        |
+| Materiales y métodos             | 20        |
+| Resultados                       | 25        |
+| Discusión                        | 15        |
+| Referencias                      | 10        |
+| **Total**                        | **100**   |
+
+
+--- 
+
+Las presentaciones orales se evalúan de acuerdo a estos criterios y también se
+brindará una rúbrica detallada de calificación
+
+| Sección                             | Valor (%) |
+|------------------------------------|-----------|
+| Introducción                       | 25        |
+| Métodos y resultados               | 25        |
+| Discusión                          | 20        |
+| Calidad general de la presentación | 30        |
+| **Total**                          | **100**   |
+
+---
+
+La persona docente debe entregar al alumnado las evaluaciones calificadas y todo
+documento o material sujeto a evaluación, a más tardar diez días hábiles después de
+haberse efectuado las evaluaciones y haber recibido los documentos (Artículo 22 del
+Reglamento de Régimen Académico Estudiantil). El período de tiempo razonable
+para guardar los trabajos y exámenes de los estudiantes posterior a la conclusión del
+ciclo lectivo es de seis meses, concluido este tiempo se pueden eliminar. Si la
+persona estudiante no está de acuerdo con la nota asignada en alguno de los rubros
+calificados, debe comunicarlo a la coordinadora del curso en un plazo no mayor de
+tres días hábiles posteriores a la devolución de esta. La coordinadora atenderá con
+cuidado y prontitud la petición, para lo cual tendrá un plazo no mayor a cinco días
+hábiles (Artículo 22 del Reglamento de Régimen Académico Estudiantil).
+
+
+## Chronograma del curso
+
+  <table class="syllabus">
+    <thead>
+      <tr>
+        <th>Sem.</th>
+        <th>Fecha</th>
+        <th>Práctica</th>
+        <th>Tema</th>
+        <th>Sesión</th>
+        <th>Entregas / Giras</th>
+        <th>Trabajo Final</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd">
+        <td>1</td>
+        <td>15/8</td>
+        <td>1</td>
+        <td>Organismos y ambiente</td>
+        <td>Pregunta</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>2</td>
+        <td>23/8</td>
+        <td>1</td>
+        <td>Métodos</td>
+        <td>Observación, pregunta e hipótesis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>3</td>
+        <td>30/8</td>
+        <td>1</td>
+        <td></td>
+        <td>Recolecta datos</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>4</td>
+        <td>6/9</td>
+        <td>1</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>5</td>
+        <td>13/9</td>
+        <td>2</td>
+        <td>Poblaciones</td>
+        <td>Pregunta</td>
+        <td>Informe 1</td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>6</td>
+        <td>20/9</td>
+        <td>2</td>
+        <td></td>
+        <td>Métodos / recolecta de datos</td>
+        <td>Gira 1: Métodos</td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>7</td>
+        <td>27/9</td>
+        <td>2</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>8</td>
+        <td>4/10</td>
+        <td>3</td>
+        <td>Interacciones</td>
+        <td>Pregunta / Métodos</td>
+        <td>Informe 2</td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>9</td>
+        <td>11/10</td>
+        <td>3</td>
+        <td></td>
+        <td>Setup de experimento</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>10</td>
+        <td>18/10</td>
+        <td>3</td>
+        <td></td>
+        <td>Recolecta de datos</td>
+        <td></td>
+        <td>Avance 1</td>
+      </tr>
+      <tr class="odd">
+        <td>11</td>
+        <td>25/10</td>
+        <td>3</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>12</td>
+        <td>1/11</td>
+        <td>4</td>
+        <td>Ecosistemas</td>
+        <td>Pregunta</td>
+        <td>Informe 3</td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>13</td>
+        <td>8/11</td>
+        <td>4</td>
+        <td></td>
+        <td>Métodos / Recolecta de datos</td>
+        <td>Gira 2</td>
+        <td>Avance 2 (Datos)</td>
+      </tr>
+      <tr class="even">
+        <td>14</td>
+        <td>15/11</td>
+        <td>4</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>15</td>
+        <td>22/11</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Informe 4</td>
+        <td>Informe escrito</td>
+      </tr>
+      <tr class="even">
+        <td>16</td>
+        <td>29/11</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Presentaciones orales</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+-----------------
+
+
 

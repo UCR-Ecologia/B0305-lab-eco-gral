@@ -1,5 +1,5 @@
 ---
-title: "B0305 -- Lab Eco Gral"
+title: "B0305 -- LAB ECO GRAL"
 subtitle: "Año académico: 2025"
 format: html
 ---
@@ -15,7 +15,7 @@ format: html
 # 🧑🏻‍🏫 Nuestro equipo
 
 ::: {.panel-tabset}
-## Course Convenors
+## Profesores
 
 
 ![](/figures/people/gerardo.jpeg){fig-align="left" fig-alt="Foto de Dr. Avalos" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
@@ -37,7 +37,7 @@ UCR <br/>
 📧 [MI_CORREO](mailto:teofiln@gmail.com)
 
 
-## Teaching Staff
+## Asistentes
 
 ![](/figures/people/ta_octopunian.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
 **[TA_NAME](#)** <br/>

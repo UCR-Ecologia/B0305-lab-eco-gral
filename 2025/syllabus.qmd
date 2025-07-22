@@ -1,0 +1,167 @@
+---
+title: "B0305 -- LAB ECO GRAL"
+subtitle: "Año académico: 2025"
+format: html
+---
+
+<h2>Cronograma</h2>
+
+  <table class="syllabus">
+    <thead>
+      <tr>
+        <th>Sem.</th>
+        <th>Fecha</th>
+        <th>Práctica</th>
+        <th>Tema</th>
+        <th>Sesión</th>
+        <th>Entregas / Giras</th>
+        <th>Trabajo Final</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd">
+        <td>1</td>
+        <td>15/8</td>
+        <td>1</td>
+        <td>Organismos y ambiente</td>
+        <td>Pregunta</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>2</td>
+        <td>23/8</td>
+        <td>1</td>
+        <td>Métodos</td>
+        <td>Observación, pregunta e hipótesis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>3</td>
+        <td>30/8</td>
+        <td>1</td>
+        <td></td>
+        <td>Recolecta datos</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>4</td>
+        <td>6/9</td>
+        <td>1</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>5</td>
+        <td>13/9</td>
+        <td>2</td>
+        <td>Poblaciones</td>
+        <td>Pregunta</td>
+        <td>Informe 1</td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>6</td>
+        <td>20/9</td>
+        <td>2</td>
+        <td></td>
+        <td>Métodos / recolecta de datos</td>
+        <td>Gira 1: Métodos</td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>7</td>
+        <td>27/9</td>
+        <td>2</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>8</td>
+        <td>4/10</td>
+        <td>3</td>
+        <td>Interacciones</td>
+        <td>Pregunta / Métodos</td>
+        <td>Informe 2</td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>9</td>
+        <td>11/10</td>
+        <td>3</td>
+        <td></td>
+        <td>Setup de experimento</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>10</td>
+        <td>18/10</td>
+        <td>3</td>
+        <td></td>
+        <td>Recolecta de datos</td>
+        <td></td>
+        <td>Avance 1</td>
+      </tr>
+      <tr class="odd">
+        <td>11</td>
+        <td>25/10</td>
+        <td>3</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="even">
+        <td>12</td>
+        <td>1/11</td>
+        <td>4</td>
+        <td>Ecosistemas</td>
+        <td>Pregunta</td>
+        <td>Informe 3</td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>13</td>
+        <td>8/11</td>
+        <td>4</td>
+        <td></td>
+        <td>Métodos / Recolecta de datos</td>
+        <td>Gira 2</td>
+        <td>Avance 2 (Datos)</td>
+      </tr>
+      <tr class="even">
+        <td>14</td>
+        <td>15/11</td>
+        <td>4</td>
+        <td></td>
+        <td>Análisis</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="odd">
+        <td>15</td>
+        <td>22/11</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Informe 4</td>
+        <td>Informe escrito</td>
+      </tr>
+      <tr class="even">
+        <td>16</td>
+        <td>29/11</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Presentaciones orales</td>
+      </tr>
+    </tbody>
+  </table>

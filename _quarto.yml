@@ -22,32 +22,22 @@ website:
   sidebar:
     style: docked
     contents:
-      - href: 2025/index.qmd
+      - href: index.qmd
         text: "🏠 Home"
-      # - href: 2025/syllabus.qmd
-      #   text: "📓 Syllabus"
-      # - href: 2025/communication.qmd
-      #   text: "📟 Communication"
-      # - href: 2025/assignments.qmd
-      #   text: "✍️ Assignments"
-      #   contents:
-      #     - href: 2025/assignments/assignment01.qmd
-      #       text: "📝 Assignment 01"
-      #     - href: 2025/assignments/assignment02.qmd
-      #       text: "📝 Assignment 02"
-      #     - href: 2025/assignments/group_project.qmd
-      #       text: "👥 Group Project"
-      - section: "🗓️ Weeks"
+      - section: "2025"
         contents:
-         - href: 2025/weeks/week01/page.qmd
-           text: Week 01
-           contents:
-             - href: 2025/weeks/week01/page.qmd
-               text: 👨‍🏫 Lecture Material
-            #  - href: 2025/weeks/week01/lab.qmd
-            #    text: 💻 Lab Roadmap
-            #  - href: 2025/weeks/week01/appendix.qmd
-            #    text: 🔖 Appendix
+          - href: 2025/index.qmd
+            text: "�‍🏫 Equipo docente"
+          - href: 2025/syllabus.qmd
+            text: "� Syllabus"
+          - section: "🗓️ Semanas"
+            contents:
+              - href: 2025/weeks/week01/page.qmd
+                text: "Semana 01: Material de clase"
+              # - href: 2025/weeks/week01/lab.qmd
+              #   text: "💻 Lab Roadmap"
+              # - href: 2025/weeks/week01/appendix.qmd
+              #   text: "🔖 Appendix"
 
   navbar:
     background: primary
