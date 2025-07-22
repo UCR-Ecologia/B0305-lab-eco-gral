@@ -12,7 +12,7 @@ format: html
 
 :::
 
-# 🧑🏻‍🏫 Nuestro equipo
+# 🧑🏻‍🏫 Equipo docente
 
 ::: {.panel-tabset}
 ## Profesores

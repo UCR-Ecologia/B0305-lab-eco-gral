@@ -27,9 +27,9 @@ website:
       - section: "2025"
         contents:
           - href: 2025/index.qmd
-            text: "�‍🏫 Equipo docente"
+            text: "‍🏫 Equipo docente"
           - href: 2025/syllabus.qmd
-            text: "� Syllabus"
+            text: "📑 Syllabus"
           - section: "🗓️ Semanas"
             contents:
               - href: 2025/weeks/week01/page.qmd
