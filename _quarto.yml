@@ -29,7 +29,13 @@ website:
           - href: 2025/index.qmd
             text: "‍🏫 Equipo docente"
           - href: 2025/syllabus.qmd
-            text: "📑 Syllabus"
+            text: "📑 Cronograma"
+          - href: 2025/methodology.qmd
+            text: "📚 Metodología"
+          - href: 2025/assessment.qmd
+            text: "📊 Evaluación"
+          - href: 2025/references.qmd
+            text: "📚 Referencias"
           - section: "🗓️ Semanas"
             contents:
               - href: 2025/weeks/week01/page.qmd

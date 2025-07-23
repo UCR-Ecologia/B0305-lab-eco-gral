@@ -1,0 +1,76 @@
+---
+title: "B0305 -- LAB ECO GRAL"
+subtitle: "Año académico: 2025"
+format: html
+---
+
+
+# Evaluación
+
+## Evaluación global
+
+El curso se aprueba con una nota igual o superior a 7.0. Las personas
+estudiantes con nota de 6.0 o 6.5 tienen derecho a hacer una prueba de ampliación.
+Si la nota es menor a 6.0 es insuficiente y no tiene derecho a prueba de ampliación,
+según el redondeo establecido en el artículo 25 del Reglamento de Régimen
+Académico Estudiantil. La evaluación del curso se hará de la siguiente forma:
+
+| Evaluación           | Valor (%) | Informe escrito | Presentación oral |
+|----------------------|-----------|------------------|--------------------|
+| Informe 1            | 10        | 10               |                    |
+| Informe 2            | 20        | 15               | 5                  |
+| Informe 3            | 20        | 20               |                    |
+| Informe 4            | 20        | 15               | 5                  |
+| Trabajo en parejas   | 30        | 20               | 10                 |
+| **Total**            | **100**   | **80**           | **20**             |
+
+---
+
+## Informes escritos
+
+Todos los informes escritos se evalúan de acuerdo al siguiente esquema, y se
+brindarán rúbricas de evaluación más detalladas para estandarizar la revisión por
+parte de asistentes y profesores.
+
+| Sección                           | Valor (%) |
+|----------------------------------|-----------|
+| Título, resumen y palabras clave | 10        |
+| Introducción                     | 10        |
+| Hipótesis y predicciones         | 10        |
+| Materiales y métodos             | 20        |
+| Resultados                       | 25        |
+| Discusión                        | 15        |
+| Referencias                      | 10        |
+| **Total**                        | **100**   |
+
+
+--- 
+
+## Presentaciones orales
+
+Las presentaciones orales se evalúan de acuerdo a estos criterios y también se
+brindará una rúbrica detallada de calificación
+
+| Sección                             | Valor (%) |
+|------------------------------------|-----------|
+| Introducción                       | 25        |
+| Métodos y resultados               | 25        |
+| Discusión                          | 20        |
+| Calidad general de la presentación | 30        |
+| **Total**                          | **100**   |
+
+---
+
+## Entrega de evaluaciónes
+
+La persona docente debe entregar al alumnado las evaluaciones calificadas y todo
+documento o material sujeto a evaluación, a más tardar diez días hábiles después de
+haberse efectuado las evaluaciones y haber recibido los documentos (Artículo 22 del
+Reglamento de Régimen Académico Estudiantil). El período de tiempo razonable
+para guardar los trabajos y exámenes de los estudiantes posterior a la conclusión del
+ciclo lectivo es de seis meses, concluido este tiempo se pueden eliminar. Si la
+persona estudiante no está de acuerdo con la nota asignada en alguno de los rubros
+calificados, debe comunicarlo a la coordinadora del curso en un plazo no mayor de
+tres días hábiles posteriores a la devolución de esta. La coordinadora atenderá con
+cuidado y prontitud la petición, para lo cual tendrá un plazo no mayor a cinco días
+hábiles (Artículo 22 del Reglamento de Régimen Académico Estudiantil).
