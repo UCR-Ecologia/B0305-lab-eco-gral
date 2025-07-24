@@ -40,27 +40,27 @@ UCR <br/>
 ## Asistentes
 
 ![](/figures/people/ta_octopunian.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**[TA_NAME](#)** <br/>
+**Kenlly Pérez** <br/>
+Murciélagos <br> 
+📧 [EMAIL](mailto:)
+
+![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**Kenneth Barrantes** <br/>
+Plantas <br> 
+📧 [EMAIL](mailto:)
+
+![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**Daniel Espitia** <br/>
+Herpetofauna <br> 
+📧 [EMAIL](mailto:)
+
+![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**TA_NAME** <br/>
 PhD Candidate at PLACE <br> 
 📧 [EMAIL](mailto:)
 
 ![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**[TA_NAME](#)** <br/>
-PhD Candidate at PLACE <br> 
-📧 [EMAIL](mailto:)
-
-![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**[TA_NAME](#)** <br/>
-PhD Candidate at PLACE <br> 
-📧 [EMAIL](mailto:)
-
-![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**[TA_NAME](#)** <br/>
-PhD Candidate at PLACE <br> 
-📧 [EMAIL](mailto:)
-
-![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**[TA_NAME](#)** <br/>
+**TA_NAME** <br/>
 PhD Candidate at PLACE <br> 
 📧 [EMAIL](mailto:)
 
