@@ -686,8 +686,8 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <h2>Hipótesis alternativa (HA)</h2>
 <ul>
 <li class="fragment">Una vez que establecemos la hipótesis estadística nula, debemos definir una o más alternativas a la hipótesis nula</li>
-<li class="fragment">H A : “diferencia observada en niveles promedio de GC entre grupos son demasiado grandes para ser causados por variación aleatoria entre individuos”</li>
-<li class="fragment">Ojo! La H A no dice nada de carros! Solo se enfoca en el patrón presente en los datos. Podemos inferir mecanismos a partir del patrón, pero esto es un paso aparte</li>
+<li class="fragment">HA : “diferencia observada en niveles promedio de GC entre grupos son demasiado grandes para ser causados por variación aleatoria entre individuos”</li>
+<li class="fragment">Ojo! La HA no dice nada de carros! Solo se enfoca en el patrón presente en los datos. Podemos inferir mecanismos a partir del patrón, pero esto es un paso aparte</li>
 <li class="fragment">La prueba estadística solo nos dice si el patrón es probable o no</li>
 </ul>
 </section>
@@ -1075,7 +1075,7 @@ Prof.&nbsp;G. Avalos y T. Nakov
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
+          var filterRegex = new RegExp("https:\/\/ucr-ecologia\.github\.io\/B0305-lab-eco-gral\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

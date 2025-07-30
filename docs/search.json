@@ -207,7 +207,7 @@
     "href": "2025/weeks/week01/slides.html#hipótesis-alternativa-ha",
     "title": " Introducción",
     "section": "Hipótesis alternativa (HA)",
-    "text": "Hipótesis alternativa (HA)\n\nUna vez que establecemos la hipótesis estadística nula, debemos definir una o más alternativas a la hipótesis nula\nH A : “diferencia observada en niveles promedio de GC entre grupos son demasiado grandes para ser causados por variación aleatoria entre individuos”\nOjo! La H A no dice nada de carros! Solo se enfoca en el patrón presente en los datos. Podemos inferir mecanismos a partir del patrón, pero esto es un paso aparte\nLa prueba estadística solo nos dice si el patrón es probable o no"
+    "text": "Hipótesis alternativa (HA)\n\nUna vez que establecemos la hipótesis estadística nula, debemos definir una o más alternativas a la hipótesis nula\nHA : “diferencia observada en niveles promedio de GC entre grupos son demasiado grandes para ser causados por variación aleatoria entre individuos”\nOjo! La HA no dice nada de carros! Solo se enfoca en el patrón presente en los datos. Podemos inferir mecanismos a partir del patrón, pero esto es un paso aparte\nLa prueba estadística solo nos dice si el patrón es probable o no"
   },
   {
     "objectID": "2025/weeks/week01/slides.html#y-el-mecanismo-causal",
