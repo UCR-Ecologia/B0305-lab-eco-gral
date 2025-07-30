@@ -9,6 +9,7 @@ project:
 
 website:
   title: "B0305 Lab Eco Gral 2025"
+  site-url: "https://ucr-ecologia.github.io/B0305-lab-eco-gral/"
   page-navigation: true
   reader-mode: true
   open-graph: true
