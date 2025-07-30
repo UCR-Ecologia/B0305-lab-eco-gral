@@ -425,9 +425,9 @@
   {
     "objectID": "2025/weeks/week01/page.html",
     "href": "2025/weeks/week01/page.html",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
+    "title": "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave",
     "section": "",
-    "text": "In this first week, we will cover what you can expect to learn from this course and the course logistics: all you need to know about the structure of the lectures, classes, assessments, and how we will interact throughout this course.",
+    "text": "En la primera semana, presentaremos el curso y discutiremos conceptos fundamentales sobre los métodos científicos inductivo y deductivo, definición de hipótesis y predicciones, diseño experimental y prueba de hipótesis.",
     "crumbs": [
       "2025",
       "🗓️ Semanas",
@@ -435,11 +435,11 @@
     ]
   },
   {
-    "objectID": "2025/weeks/week01/page.html#lecture-slides",
-    "href": "2025/weeks/week01/page.html#lecture-slides",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "👨‍🏫 Lecture Slides",
-    "text": "👨‍🏫 Lecture Slides\nEither click on the slide area below or click here to view it in fullscreen. Use your keypad to navigate the slides.\n\n\n\n\n🎥 Looking for lecture recordings? You can only find those on Moodle.",
+    "objectID": "2025/weeks/week01/page.html#diapositivas-de-la-clase",
+    "href": "2025/weeks/week01/page.html#diapositivas-de-la-clase",
+    "title": "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave",
+    "section": "👨‍🏫 Diapositivas de la Clase",
+    "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
     "crumbs": [
       "2025",
       "🗓️ Semanas",
@@ -447,35 +447,11 @@
     ]
   },
   {
-    "objectID": "2025/weeks/week01/page.html#coursework",
-    "href": "2025/weeks/week01/page.html#coursework",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "✍️ Coursework",
-    "text": "✍️ Coursework\n🚧 Come back after the lecture to read the coursework instructions for the week 🚧",
-    "crumbs": [
-      "2025",
-      "🗓️ Semanas",
-      "Semana 01: Material de clase"
-    ]
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html#recommended-reading",
-    "href": "2025/weeks/week01/page.html#recommended-reading",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "📚 Recommended Reading",
-    "text": "📚 Recommended Reading\n\nCheck the end of slides for the list of references cited in the lecture.",
-    "crumbs": [
-      "2025",
-      "🗓️ Semanas",
-      "Semana 01: Material de clase"
-    ]
-  },
-  {
-    "objectID": "2025/weeks/week01/page.html#communication",
-    "href": "2025/weeks/week01/page.html#communication",
-    "title": "🗓️ Week 01 - Introduction, Context & Key Concepts",
-    "section": "📟 Communication",
-    "text": "📟 Communication\n\nIf you feel like it, introduce yourself in the #introductions channel on Slack",
+    "objectID": "2025/weeks/week01/page.html#lecturas-recomendadas",
+    "href": "2025/weeks/week01/page.html#lecturas-recomendadas",
+    "title": "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave",
+    "section": "📚 Lecturas Recomendadas",
+    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
     "crumbs": [
       "2025",
       "🗓️ Semanas",
