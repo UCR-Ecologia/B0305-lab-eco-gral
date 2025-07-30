@@ -1,7 +1,7 @@
 project:
   type: "website"
   title: ""
-  output-dir: docs
+  output-dir: _site
   render:
     - "index.qmd"
     - "2025/*.qmd"
