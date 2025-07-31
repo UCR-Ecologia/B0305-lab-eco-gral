@@ -17,11 +17,11 @@ ecology (Vol. 4, pp. 25-51). Boston: WCB McGraw-Hill.
 
 * Crawley, M. J. (2007) The R Book. John Wiley.
 
-* Farji-Brenner, A. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. Asociación Argentina de Ecología. <a href="references/Farji-Brenner-2003.pdf" target="_blank">PDF</a>
+* Farji-Brenner, A. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. Asociación Argentina de Ecología. <a href="refs/Farji-Brenner-2003.pdf" target="_blank">PDF</a>
 
-* Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1, pp. 1-640). Sunderland: Sinauer Associates. Chapter 4: Framing and testing hypotheses. <a href="references/Gotelli-2004-cap-4.pdf" target="_blank">PDF</a>
+* Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1, pp. 1-640). Sunderland: Sinauer Associates. Chapter 4: Framing and testing hypotheses. <a href="refs/Gotelli-2004-cap-4.pdf" target="_blank">PDF</a>
 
-* Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1, pp. 1-640). Sunderland: Sinauer Associates. Chapter 6: Designing Successful Field Studies. <a href="references/Gotelli-2004-cap-6.pdf" target="_blank">PDF</a>
+* Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1, pp. 1-640). Sunderland: Sinauer Associates. Chapter 6: Designing Successful Field Studies. <a href="refs/Gotelli-2004-cap-6.pdf" target="_blank">PDF</a>
 
 * Krebs, C. J. (1999). Ecological Methodology (2a ed.). Benjamin Cummings, Inc.
 <a href="http://www.zoology.ubc.ca/~krebs/books.html" target="_blank">Link</a>

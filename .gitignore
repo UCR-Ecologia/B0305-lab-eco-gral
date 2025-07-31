@@ -13,12 +13,10 @@ _book
 # eBook build output
 *.epub
 *.mobi
-*.pdf
 
 /.quarto/
 /_output/
 /_site/
-/site_libs/
 
 # History files
 .Rhistory
