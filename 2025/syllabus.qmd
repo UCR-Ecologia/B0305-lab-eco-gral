@@ -85,13 +85,10 @@ format: html
 
 </details>
 
-
-<details open>
 <summary><strong>Proyecto Semestral y Otros</strong></summary>
 
 - **Semana 17 (5/12):**
   - 💡Presentaciones orales Proyecto semestral.
   - 💡🕒 Entrega: Informe escrito Proyecto semestral.
 
-</details>
 
