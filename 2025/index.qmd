@@ -24,11 +24,10 @@ Profesor <br/>
 UCR <br/>
 📧 [MI_CORREO](mailto:faetornis@gmail.com)
 
-<!-- Horario de oficina: 
+Horas consulta: 
 
-- Cuándo:
-- Dónde:
-- Cómo reservar: -->
+- Cuándo: A convenir
+- Cómo reservar: faetornis@gmail.com
 
 ![](/figures/people/teofil.jpeg){fig-align="left" fig-alt="Foto de Dr. Nakov" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
 **[Teofil Nakov](https://scholar.google.com/citations?user=2lKX40AAAAAJ&hl=en)** <br/>
@@ -36,6 +35,10 @@ Profesor <br/>
 UCR <br/>
 📧 [MI_CORREO](mailto:teofiln@gmail.com)
 
+Horas consulta: 
+
+- Cuándo: A convenir
+- Cómo reservar: teofiln@gmail.com
 
 ## Asistentes
 
