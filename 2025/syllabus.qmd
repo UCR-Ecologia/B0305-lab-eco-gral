@@ -4,164 +4,94 @@ subtitle: "Año académico: 2025"
 format: html
 ---
 
-<h2>Cronograma</h2>
+## Cronograma
 
-  <table class="syllabus">
-    <thead>
-      <tr>
-        <th>Sem.</th>
-        <th>Fecha</th>
-        <th>Práctica</th>
-        <th>Tema</th>
-        <th>Sesión</th>
-        <th>Entregas / Giras</th>
-        <th>Trabajo Final</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="odd">
-        <td>1</td>
-        <td>15/8</td>
-        <td>1</td>
-        <td>Organismos y ambiente</td>
-        <td>Pregunta</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td>2</td>
-        <td>23/8</td>
-        <td>1</td>
-        <td>Métodos</td>
-        <td>Observación, pregunta e hipótesis</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="odd">
-        <td>3</td>
-        <td>30/8</td>
-        <td>1</td>
-        <td></td>
-        <td>Recolecta datos</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td>4</td>
-        <td>6/9</td>
-        <td>1</td>
-        <td></td>
-        <td>Análisis</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="odd">
-        <td>5</td>
-        <td>13/9</td>
-        <td>2</td>
-        <td>Poblaciones</td>
-        <td>Pregunta</td>
-        <td>Informe 1</td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td>6</td>
-        <td>20/9</td>
-        <td>2</td>
-        <td></td>
-        <td>Métodos / recolecta de datos</td>
-        <td>Gira 1: Métodos</td>
-        <td></td>
-      </tr>
-      <tr class="odd">
-        <td>7</td>
-        <td>27/9</td>
-        <td>2</td>
-        <td></td>
-        <td>Análisis</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td>8</td>
-        <td>4/10</td>
-        <td>3</td>
-        <td>Interacciones</td>
-        <td>Pregunta / Métodos</td>
-        <td>Informe 2</td>
-        <td></td>
-      </tr>
-      <tr class="odd">
-        <td>9</td>
-        <td>11/10</td>
-        <td>3</td>
-        <td></td>
-        <td>Setup de experimento</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td>10</td>
-        <td>18/10</td>
-        <td>3</td>
-        <td></td>
-        <td>Recolecta de datos</td>
-        <td></td>
-        <td>Avance 1</td>
-      </tr>
-      <tr class="odd">
-        <td>11</td>
-        <td>25/10</td>
-        <td>3</td>
-        <td></td>
-        <td>Análisis</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td>12</td>
-        <td>1/11</td>
-        <td>4</td>
-        <td>Ecosistemas</td>
-        <td>Pregunta</td>
-        <td>Informe 3</td>
-        <td></td>
-      </tr>
-      <tr class="odd">
-        <td>13</td>
-        <td>8/11</td>
-        <td>4</td>
-        <td></td>
-        <td>Métodos / Recolecta de datos</td>
-        <td>Gira 2</td>
-        <td>Avance 2 (Datos)</td>
-      </tr>
-      <tr class="even">
-        <td>14</td>
-        <td>15/11</td>
-        <td>4</td>
-        <td></td>
-        <td>Análisis</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="odd">
-        <td>15</td>
-        <td>22/11</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Informe 4</td>
-        <td>Informe escrito</td>
-      </tr>
-      <tr class="even">
-        <td>16</td>
-        <td>29/11</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Presentaciones orales</td>
-      </tr>
-    </tbody>
-  </table>
+- **Semana 1 (15/8):** Feriado día de la Madre.
+
+<details open>
+<summary><strong>Práctica 1</strong></summary>
+
+- **Semana 2 (22/8):** 
+  - Introducción al curso.
+  - Organismos y ambiente.  
+  - Definición de la pregunta práctica 1. 
+  - Observación, pregunta e hipótesis.
+- **Semana 3 (29/8):** 
+  - Definición de los métodos. 
+  - Introducción a la escritura de reportes y análisis de datos en ecología. 
+  - Discusión métodos práctica 1.
+- **Semana 4 (5/9):** 
+  - Recolecta de datos. 
+  - 💡Anteproyecto semestral. 
+- **Semana 5 (12/9):** 
+  - Análisis de datos.
+
+</details>
+
+
+<details open>
+<summary><strong>Práctica 2</strong></summary>
+
+- **Semana 6 (19/9):**
+  - Poblaciones.
+  - Definición de la pregunta sobre poblaciones enfocada en Bosque Municipal Atenas.
+  - Métodos.
+  - 🕒 Entrega: Reporte 1 versión 1.
+- **Semana 7 (26/9):**
+  - Métodos/recolecta de datos práctica 2.
+  - Recolecta de datos Gira 1 Bosque Municipal de Atenas.
+  - Profes y asistentes entregan Reporte 1 revisado.
+- **Semana 8 (3/10):**
+  - Análisis de datos poblaciones práctica 1.
+  - 🕒 Entrega final reporte 1.
+
+</details>
+
+
+<details open>
+<summary><strong>Práctica 3</strong></summary>
+
+- **Semana 9 (10/10):**
+  - Interacciones Depredación.
+  - Pregunta/Métodos.
+  - 🕒 Entrega: Reporte 2.
+- **Semana 10 (17/10):**
+  - Setup de experimento práctica 3.
+- **Semana 11 (24/10):**
+  - Recolecta de datos.
+  - 💡 🕒 Entrega: Avance 1 proyecto semestral.
+- **Semana 12 (31/10):**
+  - Análisis de datos.
+
+</details>
+
+
+<details open>
+<summary><strong>Práctica 4</strong></summary>
+
+- **Semana 13 (7/11):**
+  - Ecosistemas.
+  - Pregunta grupal Manú.
+  - 🕒 Entrega: Reporte 3.
+- **Semana 14 (14/11):**
+  - Métodos/Recolección de datos.
+  - Gira 2 Manú, 14–16 nov.
+  - Avance 2 (Datos).
+- **Semana 15 (21/11):**
+  - Análisis de datos Gira Manú.
+- **Semana 16 (28/11):**
+  - Presentaciones orales Gira Manú.
+  - 🕒 Entrega: Reporte 4.
+
+</details>
+
+
+<details open>
+<summary><strong>Proyecto Semestral y Otros</strong></summary>
+
+- **Semana 17 (5/12):**
+  - 💡Presentaciones orales Proyecto semestral.
+  - 💡🕒 Entrega: Informe escrito Proyecto semestral.
+
+</details>
+

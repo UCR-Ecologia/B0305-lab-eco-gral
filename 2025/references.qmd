@@ -4,33 +4,31 @@ subtitle: "Año académico: 2025"
 format: html
 ---
 
-# Literatura
+### Bibliografía
 
-* Begon, M., Harper, J., y Townsend, C. (2006). Ecology: From individuals to ecosystems
-(4a. ed.). Blackwell.
+Andrewartha, H. G. (1970). *Introduction to the study of animal populations* (2nd ed.). Chapman and Hall.  
 
-* Beckerman, A. P., Childs, D. Z., & Petchey, O. L. (2017). Getting started with R: an
-introduction for biologists. Oxford University Press.
+Begon, M., Harper, J., & Townsend, C. (2006). *Ecology: From individuals to ecosystems* (4th ed.). Blackwell.  
 
-* Brower, J. E., Zar, J. H., & Von Ende, C. N. (1998). Field and laboratory methods for general
-ecology (Vol. 4, pp. 25-51). Boston: WCB McGraw-Hill.
+Betts, M. G., Hadley, A. S., Frey, D. W., Frey, S. J., Gannon, D., Harris, S. H., ... & 
+Zárrate‐Charry, D. (2021). When are hypotheses useful in ecology and evolution? *Ecology and Evolution, 11*(11), 5762–5776. https://doi.org/10.1002/ece3.7472  
 
-* Crawley, M. J. (2007) The R Book. John Wiley.
+Crawley, M. J. (2007). *The R book*. John Wiley.  
 
-* Farji-Brenner, A. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. Asociación Argentina de Ecología. <a href="refs/Farji-Brenner-2003.pdf" target="_blank">PDF</a>
+Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. *Ecología Austral, 13*(2), 223–227.  
 
-* Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1, pp. 1-640). Sunderland: Sinauer Associates. Chapter 4: Framing and testing hypotheses. <a href="refs/Gotelli-2004-cap-4.pdf" target="_blank">PDF</a>
+Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates.  
 
-* Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1, pp. 1-640). Sunderland: Sinauer Associates. Chapter 6: Designing Successful Field Studies. <a href="refs/Gotelli-2004-cap-6.pdf" target="_blank">PDF</a>
+Krebs, C. J. (1999). *Ecological methodology* (2nd ed.). Benjamin Cummings. http://www.zoology.ubc.ca/~krebs/books.html  
 
-* Krebs, C. J. (1999). Ecological Methodology (2a ed.). Benjamin Cummings, Inc.
-<a href="http://www.zoology.ubc.ca/~krebs/books.html" target="_blank">Link</a>
+Mittelbach, G. G., & McGill, B. J. (2019). *Community ecology*. Oxford University Press.  
 
-* Quinn, G. P. y Keough, M. J. (2002). Experimental design and data analysis for
-biologists. Cambridge University Press.
+Moreno, C. E. (2001). *Manual de métodos para medir la biodiversidad*. Universidad Veracruzana. https://www.researchgate.net/publication/304346666_Metodos_para_medir_la_biodiversidad  
 
-* Schimel, J. (2012). Writing science: how to write papers that get cited and proposals
-that get funded. Oxford University Press USA.
+Quinn, G. P., & Keough, M. J. (2002). *Experimental design and data analysis for biologists*. Cambridge University Press.  
 
-* Sutherland, W. J. (Ed.). (2006). Ecological census techniques: a handbook. Cambridge
-university press. <a href="https://www.researchgate.net/publication/273070581_Ecological_Census_Techniques_A_Handbook" target="_blank" >Link</a>
+Schimel, J. (2012). *Writing science: How to write papers that get cited and proposals that get funded*. Oxford University Press.  
+
+Sutherland, W. J. (Ed.). (2006). *Ecological census techniques: A handbook*. Cambridge University Press. https://www.researchgate.net/publication/273070581_Ecological_Census_Techniques_A_Handbook  
+
+Zar, J. H. (1999). *Biostatistical analysis* (4th ed.). Prentice Hall.

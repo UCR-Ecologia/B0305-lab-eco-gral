@@ -10,3 +10,4 @@ node_modules/
 *.epub
 *.mobi
 *.ipynb_checkpoints
+/.quarto/
