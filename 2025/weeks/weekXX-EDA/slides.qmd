@@ -1,0 +1,456 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://<https://ucr-ecologia.github.io/B0305-lab-eco-gral/>' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'>Análisis exploratorio de datos</font>"
+author: Prof. G. Avalos y T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: true
+    logo: /figures/icons/course_favicon.png
+    css: /css/styles_slides.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+#   cache: true
+---
+
+# ¿Qué es el análisis exploratorio de datos?
+
+## Análisis exploratorio de datos {.smaller}
+
+::: {.callout-tip title = "Análisis exploratorio de datos"}
+Explora los datos de manera sistemática
+:::
+
+::: {.fragment} 
+- Genera preguntas sobre tus datos.
+- Busca respuestas visualizando, transformando y modelando tus datos.
+- Usa lo que aprendes para refinar tus preguntas y/o generar nuevas preguntas.
+:::
+
+<div style="position: absolute; bottom: 1em; right: 2em; font-size:0.9em; text-align:right;">
+     Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for Data Science, 2ed. 
+</div>
+
+## Análisis exploratorio de datos {.smaller}
+
+- El objetivo es desarrollar una comprensión de los datos
+- Lo hacemos haciendo preguntas (¿Cómo cambia la tasa de crecimiento con la temperatura?)
+- Cuantas más preguntas hagamos, más ideas obtendremos y será más probable encontrar respuestas significativas
+- No hay reglas sobre las preguntas que podemos hacer, pero buenos puntos de partida son:
+    - ¿Cuál es la variación dentro de mis variables?
+    - ¿Cuál es la covariación entre mis variables?
+
+## Resumen de los datos {.smaller}
+
+::: columns
+::: {.column width=40%}
+- 'Panorama general' del conjunto de datos:
+    - ¿Cuántas variables?
+    - Tipos de variables (números, categorías, fechas, ...)?
+    - Rangos, medias, conteos de categorías, ...?
+    - ¿Cuántos datos faltantes?
+:::
+
+::: {.column width=60%}
+::: {.fragment}
+```{r echo=TRUE}
+dim(penguins)
+ncol(penguins)
+nrow(penguins)
+summary(penguins)
+```
+:::
+:::
+::::
+
+# Distribuciones (Variación)
+
+## Preparación {.smaller}
+
+- Usaremos los paquetes [`{tidyverse}`](https://www.tidyverse.org/)
+- [`{ggplot2}`](https://ggplot2.tidyverse.org/) para visualización
+- [`{dplyr}`](https://dplyr.tidyverse.org/) para manipulación de datos
+
+::: {.fragment}
+Instalación: Esto se hace una vez, al configurar el entorno. 
+
+```{r, eval = FALSE, echo = TRUE}
+install.packages("ggplot2")
+install.packages("dplyr")
+```
+:::
+
+::: {.fragment}
+Luego, para usar los paquetes hay que cargarlos. 
+```{r, echo = TRUE}
+library(ggplot2)
+library(dplyr)
+# Establecer tema global para todos los gráficos
+theme_set(theme_bw())
+```
+:::
+
+## Variables categóricas (discretas) {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r echo=TRUE, fig.height=4, fig.width=4}
+# library(ggplot2)
+ggplot(penguins) +
+    aes(x=species) +
+    geom_bar(fill="steelblue")
+```
+:::
+::: {.column .fragment}
+```{r echo=TRUE, fig.height=4, fig.width=5}
+# library(ggplot2)
+ggplot(penguins) +
+    aes(x=species, fill = species) +
+    geom_bar()
+```
+:::
+::: 
+
+## Variables categóricas (discretas) {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r, echo = TRUE}
+# library(dplyr)
+penguins |> 
+    group_by(species) |> 
+    tally()
+```
+:::
+::: {.column .fragment}
+```{r, echo = TRUE}
+# library(dplyr)
+penguins |> 
+    group_by(island) |> 
+    tally()
+```
+:::
+::: 
+
+
+## Variables numéricas (continuas) {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+# library(ggplot2)
+ggplot(penguins) +
+    aes(x = bill_len) +
+    geom_histogram(
+        fill = "steelblue", 
+        color= "white"
+    )
+```
+:::
+
+::: {.column .fragment}
+```{r}
+# library(ggplot2)
+ggplot(penguins) +
+    aes(y = bill_len) +
+    geom_boxplot(
+        fill = "steelblue"
+        )
+```
+:::
+::: 
+
+## Variables numéricas (continuas) - Datos de histograma {.smaller}
+
+::: {.fragment}
+```{r}
+min_bill <- min(penguins$bill_len, na.rm=TRUE)
+max_bill <- max(penguins$bill_len, na.rm=TRUE)
+bin_breaks <- seq(min_bill, max_bill, by=2)
+bill_len_bin <- cut(penguins$bill_len, breaks = bin_breaks)
+table(bill_len_bin)
+```
+:::
+
+## Variables numéricas (continuas) - Datos de boxplot {.smaller}
+
+::: {.fragment}
+```{r}
+summary(penguins$bill_len)
+```
+:::
+
+# Relaciones (Covariación)
+
+## Categórica + Categórica {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+penguins |> 
+    ggplot(aes(x = island)) +
+    geom_bar(aes(fill = species))
+```
+:::
+::: {.column .fragment}
+```{r}
+penguins |> 
+    ggplot(aes(x = island)) +
+    geom_bar(
+        aes(fill = species), 
+        position = "dodge"
+    )
+```
+:::
+::: 
+
+## Categórica + Categórica {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+penguins |> 
+    group_by(species, island) |> 
+    tally()
+```
+:::
+::: {.column .fragment}
+```{r}
+penguins |> 
+    group_by(species, island, sex) |> 
+    tally()
+```
+:::
+::: 
+
+## Categórica + Numérica - histogramas {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+penguins |> 
+    ggplot(aes(x = bill_len)) +
+    geom_histogram(
+        aes(fill = sex), 
+        color = "white"
+    )
+```
+:::
+::: {.column .fragment}
+```{r}
+penguins |> 
+    ggplot(aes(x = bill_len)) +
+    geom_histogram(
+        aes(fill = sex), 
+        color = "white",
+        position = "dodge"
+    )
+```
+:::
+::: 
+
+## Categórica + Numérica - boxplots {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+penguins |> 
+    ggplot(aes(x = species, y = bill_len)) +
+    geom_boxplot(aes(fill = species))
+```
+:::
+::: {.column .fragment}
+```{r}
+penguins |> 
+    ggplot(aes(x = species, y = bill_len)) +
+    geom_boxplot(aes(fill = island)) +
+    scale_fill_viridis_d()
+```
+:::
+::: 
+
+## Categórica + Numérica - heatmaps {.smaller}
+
+::: {.fragment}
+```{r, fix.width = 4, fig.height = 4}
+penguins |> 
+    group_by(island, species) |> 
+    summarise(mean_bill_len = mean(bill_len, na.rm = TRUE)) |> 
+    ggplot() +
+    aes(x = island, y = species, fill = mean_bill_len) +
+    geom_tile(color = "white") +
+    geom_text(aes(label = round(mean_bill_len, 2)), color = "white")
+```
+:::
+
+## Categórica + Numérica - datos {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+penguins |> 
+    group_by(year) |> 
+    summarise(
+        mean_bill_len = 
+            mean(bill_len, na.rm = TRUE),
+        mean_body_mass = 
+            mean(body_mass, na.rm = TRUE),
+        )
+```
+:::
+::: {.column .fragment}
+```{r}
+penguins |> 
+    filter(
+        island == "Dream", 
+        species == "Adelie", 
+        sex == "male",
+        body_mass >= 4500) |> 
+    select(island, species, sex, body_mass)
+```
+:::
+::: 
+
+## Numérica + Numérica - scatterplots {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+ggplot(penguins) +
+    aes(
+        x = body_mass, 
+        y = flipper_len
+    ) +
+    geom_point(
+        alpha = 0.4,
+        aes(size = body_mass)
+    )
+```
+:::
+::: {.column .fragment}
+```{r}
+ggplot(penguins) +
+    aes(
+        x = body_mass, 
+        y = flipper_len
+    ) +
+    geom_point(
+        size = 5, alpha = 0.4,
+        aes(
+            color = species, 
+            shape = sex
+        )
+    )
+```
+:::
+::: 
+
+## Numérica + Numérica - scatterplots con regression {.smaller}
+
+::: {.fragment}
+```{r, fix.width = 6, fig.height = 4}
+ggplot(penguins) +
+    aes(x = body_mass, y = flipper_len) +
+    geom_point(
+        size = 5, alpha = 0.4,
+        aes(color = species, shape = sex)
+    ) +
+    geom_smooth(method = "lm")
+```
+:::
+
+## Numérica + Numérica - scatterplots con regression {.smaller}
+
+::: {.fragment}
+```{r, fix.width = 6, fig.height = 4}
+ggplot(penguins) +
+    aes(x = body_mass, y = flipper_len) +
+    geom_point(size = 5, alpha = 0.4, aes(color = island, shape = sex)) +
+    geom_smooth(method = "lm") +
+    facet_wrap(vars(species), ncol = 3)
+```
+:::
+
+## Numérica + Numérica - regression {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+model <- lm(
+    formula = flipper_len ~ body_mass + species, 
+    data = penguins)
+summary(model)
+# install.packages("broom")
+# library(broom)
+# tidy(model)
+```
+:::
+
+::: {.column .fragment}
+- Adelie: flipper_len = 158.9 + 0.008402 * body_mass
+
+- Chinstrap: flipper_len = (158.9 + 5.597) + 0.008402 * body_mass = 164.5 + 0.008402 * body_mass
+
+- Gentoo: flipper_len = (158.9 + 15.68) + 0.008402 * body_mass = 174.6 + 0.008402 * body_mass
+:::
+:::
+
+## Numérica + Numérica - correlation heatmap {.smaller}
+
+::: {.columns}
+::: {.column .fragment}
+```{r}
+# Seleccionar solo variables numéricas
+penguins_numeric <- penguins |> 
+    select(bill_len, bill_dep, flipper_len, body_mass) |> 
+    na.omit()
+
+# Calcular matriz de correlación
+cor_matrix <- cor(penguins_numeric)
+
+# Convertir a formato largo para ggplot
+cor_data <- expand.grid(
+    var1 = colnames(cor_matrix), 
+    var2 = colnames(cor_matrix)
+) |> 
+    mutate(correlation = as.vector(cor_matrix))
+
+round(cor_matrix, 2)
+```
+:::
+
+::: {.column .fragment}
+```{r}
+ggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +
+    geom_tile(color = "white") +
+    geom_text(aes(label = round(correlation, 2)), color = "white", size = 5) +
+    scale_fill_gradient2(low = "blue", mid = "white", high = "red", 
+                         midpoint = 0, limit = c(-1,1)) +
+    labs(x = "Variable", y = "Variable", fill = "Correlación") 
+```
+:::
+:::
+
+## Ejercicios
+
+Usando el conjunto de datos incorporado `iris`:
+
+- Grafica el número de observaciones por especies usando `geom_bar`
+- Calcula la media de `Sepal.Length` por `Species` usando `group_by` y `summarise`
+- Grafica una regresión entre `Sepal.Length` y `Petal.Length` para la especie `setosa`. (Filtra primero para la especie setosa, luego grafica)
+
+
