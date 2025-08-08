@@ -42,8 +42,8 @@ website:
             contents:
               - href: 2025/weeks/week01/page.qmd
                 text: "Semana 01: Material de clase"
-              - href: 2025/weeks/weekXX-EDA/page.qmd
-                text: "Semana XX-EDA: Material de clase"
+              # - href: 2025/weeks/weekXX-EDA/page.qmd
+              #   text: "Semana XX-EDA: Material de clase"
               # - href: 2025/weeks/week01/lab.qmd
               #   text: "💻 Lab Roadmap"
               # - href: 2025/weeks/week01/appendix.qmd
