@@ -11,3 +11,10 @@ node_modules/
 *.mobi
 *.ipynb_checkpoints
 /.quarto/
+
+# Quarto cache and temp files
+.quarto/
+*_cache/
+
+# Generated figure files in source directories (not docs)
+2025/weeks/week*/slides_files/

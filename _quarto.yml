@@ -6,6 +6,7 @@ project:
     - "index.qmd"
     - "2025/*.qmd"
     - "2025/weeks/week01/*.qmd"
+    - "2025/weeks/weekXX-EDA/*.qmd"
 
 website:
   title: "B0305 Lab Eco Gral 2025"
@@ -41,6 +42,8 @@ website:
             contents:
               - href: 2025/weeks/week01/page.qmd
                 text: "Semana 01: Material de clase"
+              - href: 2025/weeks/weekXX-EDA/page.qmd
+                text: "Semana XX-EDA: Material de clase"
               # - href: 2025/weeks/week01/lab.qmd
               #   text: "💻 Lab Roadmap"
               # - href: 2025/weeks/week01/appendix.qmd
@@ -52,11 +55,8 @@ website:
     background: light
     left: "Copyright 2025, UCR" 
 
-
-
 bibliography: references/references.bib
 csl: references/chicago-author-date.csl
-
 
 format:
   html:

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/weekXX-EDA/slides.html</loc>
+    <lastmod>2025-08-08T16:51:48.771Z</lastmod>
+  </url>
+  <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/week01/slides.html</loc>
     <lastmod>2025-08-06T03:22:44.348Z</lastmod>
   </url>
@@ -18,7 +22,7 @@
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/index.html</loc>
-    <lastmod>2025-08-05T18:17:10.357Z</lastmod>
+    <lastmod>2025-08-07T18:47:30.956Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/index.html</loc>
@@ -31,5 +35,9 @@
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/week01/page.html</loc>
     <lastmod>2025-07-30T23:58:40.394Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/weekXX-EDA/page.html</loc>
+    <lastmod>2025-08-06T00:57:22.345Z</lastmod>
   </url>
 </urlset>
