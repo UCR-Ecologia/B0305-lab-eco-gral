@@ -305,9 +305,15 @@ Zárrate‐Charry, D. (2021). When are hypotheses useful in ecology and evolutio
 
 Crawley, M. J. (2007). *The R book*. John Wiley.  
 
-Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. *Ecología Austral, 13*(2), 223–227.  
+Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. *Ecología Austral, 13*(2), 223–227. [📄 PDF](2025/refs/Farji-Brenner-2003.pdf)
 
-Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates.  
+Farji-Brener, A. G. (2004). ¿Son hipótesis las hipótesis estadísticas? *Ecología Austral, 14*(2), 201–203. [📄 PDF](2025/refs/Farji-Brener-2004.pdf)
+
+Farji-Brener, A. G. (2009). Why are leaf-cutting ants more common in early secondary forests than in old-growth tropical forests? An evaluation of the palatable forage hypothesis. *Oikos, 118*(4), 532–540. [📄 PDF](2025/refs/Farji-Brener-2009.pdf)
+
+Farji-Brener, A. G. (2021). The importance of hypothesis-based thinking in ecology: insights from natural history. *Austral Ecology, 46*(7), 1043–1047. [📄 PDF](2025/refs/Farji-Brener-2021.pdf)
+
+Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates. [📄 PDF - Cap. 4](2025/refs/Gotelli-2004-cap-4.pdf) | [📄 PDF - Cap. 6](2025/refs/Gotelli-2004-cap-6.pdf) 
 
 Krebs, C. J. (1999). *Ecological methodology* (2nd ed.). Benjamin Cummings. http://www.zoology.ubc.ca/~krebs/books.html  
 

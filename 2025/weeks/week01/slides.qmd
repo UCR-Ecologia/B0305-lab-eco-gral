@@ -460,10 +460,10 @@ Vayan a buscar un fenómeno observable organismo-ambiente y luego desarrollamos 
 
 ## Referencias {.smaller}
 
-Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos" hipótesis" y" predicciones" en ecología. Ecología Austral, 13(2),
-223-227.
+Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos" hipótesis" y" predicciones" en ecología. Ecología Austral, 13(2), 223-227. [📄 PDF](../../refs/Farji-Brenner-2003.pdf)
 
-Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 4. Sunderland: Sinauer Associates.
+Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 4. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-4.pdf)
 
-Sousa, W. P. (1979). Disturbance in marine intertidal boulder fields: the nonequilibrium maintenance of species
-diversity. Ecology, 60(6), 1225-1239.
+Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 6. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-6.pdf)
+
+Sousa, W. P. (1979). Disturbance in marine intertidal boulder fields: the nonequilibrium maintenance of species diversity. Ecology, 60(6), 1225-1239.

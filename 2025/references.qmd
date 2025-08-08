@@ -15,9 +15,15 @@ Zárrate‐Charry, D. (2021). When are hypotheses useful in ecology and evolutio
 
 Crawley, M. J. (2007). *The R book*. John Wiley.  
 
-Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. *Ecología Austral, 13*(2), 223–227.  
+Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos "hipótesis" y "predicciones" en ecología. *Ecología Austral, 13*(2), 223–227. [📄 PDF](refs/Farji-Brenner-2003.pdf)
 
-Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates.  
+Farji-Brener, A. G. (2004). ¿Son hipótesis las hipótesis estadísticas? *Ecología Austral, 14*(2), 201–203. [📄 PDF](refs/Farji-Brener-2004.pdf)
+
+Farji-Brener, A. G. (2009). ¿Ecólogos o Ególogos? Cuando las ideas someten a los datos. *Austral Ecology, 19*(1), 167–172. [📄 PDF](refs/Farji-Brener-2009.pdf)
+
+Farji-Brener, A. G. (2021). ¿Cómo surgen las ideas? Algunas sugerencias para estimular la generación de proyectos originales en ecología. *Austral Ecology, 31*(1), 216–224. [📄 PDF](refs/Farji-Brener-2021.pdf)
+
+Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates. [📄 PDF - Cap. 4](refs/Gotelli-2004-cap-4.pdf) | [📄 PDF - Cap. 6](refs/Gotelli-2004-cap-6.pdf)  
 
 Krebs, C. J. (1999). *Ecological methodology* (2nd ed.). Benjamin Cummings. http://www.zoology.ubc.ca/~krebs/books.html  
 
