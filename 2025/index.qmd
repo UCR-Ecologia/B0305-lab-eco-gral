@@ -42,15 +42,15 @@ Horas consulta:
 
 ## Asistentes
 
-![](/figures/people/ta_octopunian.png){fig-align="left" fig-alt="Photo of Kenlly" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+![](/figures/people/ecologist.png){fig-align="left" fig-alt="Photo of Kenlly" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
 **Kenlly Pérez** <br/>
 Murciélagos <br> 
-📧 [MI_CORREO](mailto:)
+<!-- 📧 [MI_CORREO](mailto:) -->
 
-![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of Kenneth" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+![](/figures/people/ecologist.png){fig-align="left" fig-alt="Photo of Kenneth" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
 **Kenneth Barrantes** <br/>
 Plantas <br> 
-📧 [MI_CORREO](mailto:)
+<!-- 📧 [MI_CORREO](mailto:) -->
 
 ![](/figures/people/daniel.jpeg){fig-align="left" fig-alt="Photo of Daniel" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
 **Daniel Espitia** <br/>
@@ -62,10 +62,10 @@ Herpetofauna <br>
 Micología <br> 
 📧 [MI_CORREO](mailto: raquel.acevedo@ucr.ac.cr)
 
-![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**TA_NAME** <br/>
-PhD Candidate at PLACE <br> 
-📧 [MI_CORREO](mailto:)
+![](/figures/people/ecologist.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**?** <br/>
+Ecologo <br> 
+<!-- 📧 [MI_CORREO](mailto:) -->
 
 
 :::
