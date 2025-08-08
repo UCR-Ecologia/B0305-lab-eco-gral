@@ -58,9 +58,9 @@ Herpetofauna <br>
 📧 [EMAIL](mailto:)
 
 ![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**TA_NAME** <br/>
-PhD Candidate at PLACE <br> 
-📧 [EMAIL](mailto:)
+**Valeria Acevedo Fernández** <br/>
+Micología <br> 
+📧 [EMAIL](mailto: raquel.acevedo@ucr.ac.cr)
 
 ![](/figures/people/ta_octopunian2.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
 **TA_NAME** <br/>
