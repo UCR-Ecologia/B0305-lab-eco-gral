@@ -62,10 +62,10 @@ Herpetofauna <br>
 Micología <br> 
 📧 [MI_CORREO](mailto: raquel.acevedo@ucr.ac.cr)
 
-![](/figures/people/ecologist.png){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**?** <br/>
-Ecologo <br> 
-<!-- 📧 [MI_CORREO](mailto:) -->
+![](/figures/people/david.jpeg){fig-align="left" fig-alt="Photo of TA_NAME" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
+**David Campos** <br/>
+Neurobiologia y comportamiento <br> 
+📧 [MI_CORREO](mailto:david.campos@ucr.ac.cr)
 
 
 :::
