@@ -17,4 +17,4 @@ node_modules/
 *_cache/
 
 # Generated figure files in source directories (not docs)
-2025/weeks/week*/slides_files/
+2025/lessons/*/slides_files/

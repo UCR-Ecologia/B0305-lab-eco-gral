@@ -1,416 +1,416 @@
 [
   {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#análisis-exploratorio-de-datos",
-    "href": "2025/weeks/weekXX-EDA/slides.html#análisis-exploratorio-de-datos",
-    "title": "Análisis exploratorio de datos",
-    "section": "Análisis exploratorio de datos",
-    "text": "Análisis exploratorio de datos\n\n\n\n\n\n\n\nAnálisis exploratorio de datos\n\n\nExplora los datos de manera sistemática\n\n\n\n\n\n\nGenera preguntas sobre tus datos.\nBusca respuestas visualizando, transformando y modelando tus datos.\nUsa lo que aprendes para refinar tus preguntas y/o generar nuevas preguntas.\n\n\n\n Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for Data Science, 2ed."
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#análisis-exploratorio-de-datos-1",
-    "href": "2025/weeks/weekXX-EDA/slides.html#análisis-exploratorio-de-datos-1",
-    "title": "Análisis exploratorio de datos",
-    "section": "Análisis exploratorio de datos",
-    "text": "Análisis exploratorio de datos\n\nEl objetivo es desarrollar una comprensión de los datos\nLo hacemos haciendo preguntas (¿Cómo cambia la tasa de crecimiento con la temperatura?)\nCuantas más preguntas hagamos, más ideas obtendremos y será más probable encontrar respuestas significativas\nNo hay reglas sobre las preguntas que podemos hacer, pero buenos puntos de partida son:\n\n¿Cuál es la variación dentro de mis variables?\n¿Cuál es la covariación entre mis variables?"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#resumen-de-los-datos",
-    "href": "2025/weeks/weekXX-EDA/slides.html#resumen-de-los-datos",
-    "title": "Análisis exploratorio de datos",
-    "section": "Resumen de los datos",
-    "text": "Resumen de los datos\n\n\n\n‘Panorama general’ del conjunto de datos:\n\n¿Cuántas variables?\nTipos de variables (números, categorías, fechas, …)?\nRangos, medias, conteos de categorías, …?\n¿Cuántos datos faltantes?\n\n\n\n\n\ndim(penguins)\n\n[1] 344   8\n\nncol(penguins)\n\n[1] 8\n\nnrow(penguins)\n\n[1] 344\n\nsummary(penguins)\n\n      species          island       bill_len        bill_dep    \n Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  \n Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  \n Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  \n                                 Mean   :43.92   Mean   :17.15  \n                                 3rd Qu.:48.50   3rd Qu.:18.70  \n                                 Max.   :59.60   Max.   :21.50  \n                                 NA's   :2       NA's   :2      \n  flipper_len      body_mass        sex           year     \n Min.   :172.0   Min.   :2700   female:165   Min.   :2007  \n 1st Qu.:190.0   1st Qu.:3550   male  :168   1st Qu.:2007  \n Median :197.0   Median :4050   NA's  : 11   Median :2008  \n Mean   :200.9   Mean   :4202                Mean   :2008  \n 3rd Qu.:213.0   3rd Qu.:4750                3rd Qu.:2009  \n Max.   :231.0   Max.   :6300                Max.   :2009  \n NA's   :2       NA's   :2"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#preparación",
-    "href": "2025/weeks/weekXX-EDA/slides.html#preparación",
-    "title": "Análisis exploratorio de datos",
-    "section": "Preparación",
-    "text": "Preparación\n\nUsaremos los paquetes {tidyverse}\n{ggplot2} para visualización\n{dplyr} para manipulación de datos\n\n\nInstalación: Esto se hace una vez, al configurar el entorno.\n\ninstall.packages(\"ggplot2\")\ninstall.packages(\"dplyr\")\n\n\n\nLuego, para usar los paquetes hay que cargarlos.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n# Establecer tema global para todos los gráficos\ntheme_set(theme_bw())"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#variables-categóricas-discretas",
-    "href": "2025/weeks/weekXX-EDA/slides.html#variables-categóricas-discretas",
-    "title": "Análisis exploratorio de datos",
-    "section": "Variables categóricas (discretas)",
-    "text": "Variables categóricas (discretas)\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(x=species) +\n    geom_bar(fill=\"steelblue\")\n\n\n\n\n\n\n\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(x=species, fill = species) +\n    geom_bar()"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#variables-categóricas-discretas-1",
-    "href": "2025/weeks/weekXX-EDA/slides.html#variables-categóricas-discretas-1",
-    "title": "Análisis exploratorio de datos",
-    "section": "Variables categóricas (discretas)",
-    "text": "Variables categóricas (discretas)\n\n\n\n# library(dplyr)\npenguins |&gt; \n    group_by(species) |&gt; \n    tally()\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124\n\n\n\n\n# library(dplyr)\npenguins |&gt; \n    group_by(island) |&gt; \n    tally()\n\n# A tibble: 3 × 2\n  island        n\n  &lt;fct&gt;     &lt;int&gt;\n1 Biscoe      168\n2 Dream       124\n3 Torgersen    52"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#variables-numéricas-continuas",
-    "href": "2025/weeks/weekXX-EDA/slides.html#variables-numéricas-continuas",
-    "title": "Análisis exploratorio de datos",
-    "section": "Variables numéricas (continuas)",
-    "text": "Variables numéricas (continuas)\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(x = bill_len) +\n    geom_histogram(\n        fill = \"steelblue\", \n        color= \"white\"\n    )\n\n\n\n\n\n\n\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(y = bill_len) +\n    geom_boxplot(\n        fill = \"steelblue\"\n        )"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#sidenote-on-boxplots",
-    "href": "2025/weeks/weekXX-EDA/slides.html#sidenote-on-boxplots",
-    "title": "Análisis exploratorio de datos",
-    "section": "Sidenote on boxplots",
-    "text": "Sidenote on boxplots"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#variables-numéricas-continuas---datos-de-histograma",
-    "href": "2025/weeks/weekXX-EDA/slides.html#variables-numéricas-continuas---datos-de-histograma",
-    "title": "Análisis exploratorio de datos",
-    "section": "Variables numéricas (continuas) - Datos de histograma",
-    "text": "Variables numéricas (continuas) - Datos de histograma\n\n\nmin_bill &lt;- min(penguins$bill_len, na.rm=TRUE)\nmax_bill &lt;- max(penguins$bill_len, na.rm=TRUE)\nbin_breaks &lt;- seq(min_bill, max_bill, by=2)\nbill_len_bin &lt;- cut(penguins$bill_len, breaks = bin_breaks)\ntable(bill_len_bin)\n\nbill_len_bin\n(32.1,34.1] (34.1,36.1] (36.1,38.1] (38.1,40.1] (40.1,42.1] (42.1,44.1] \n          4          21          40          35          39          30 \n(44.1,46.1] (46.1,48.1] (48.1,50.1] (50.1,52.1] (52.1,54.1] (54.1,56.1] \n         39          41          42          36           7           5 \n(56.1,58.1] \n          1"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#variables-numéricas-continuas---datos-de-boxplot",
-    "href": "2025/weeks/weekXX-EDA/slides.html#variables-numéricas-continuas---datos-de-boxplot",
-    "title": "Análisis exploratorio de datos",
-    "section": "Variables numéricas (continuas) - Datos de boxplot",
-    "text": "Variables numéricas (continuas) - Datos de boxplot\n\n\nsummary(penguins$bill_len)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  32.10   39.23   44.45   43.92   48.50   59.60       2"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#categórica-categórica",
-    "href": "2025/weeks/weekXX-EDA/slides.html#categórica-categórica",
-    "title": "Análisis exploratorio de datos",
-    "section": "Categórica + Categórica",
-    "text": "Categórica + Categórica\n\n\n\npenguins |&gt; \n    ggplot(aes(x = island)) +\n    geom_bar(aes(fill = species))\n\n\n\n\n\n\n\n\n\n\npenguins |&gt; \n    ggplot(aes(x = island)) +\n    geom_bar(\n        aes(fill = species), \n        position = \"dodge\"\n    )"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#categórica-categórica-1",
-    "href": "2025/weeks/weekXX-EDA/slides.html#categórica-categórica-1",
-    "title": "Análisis exploratorio de datos",
-    "section": "Categórica + Categórica",
-    "text": "Categórica + Categórica\n\n\n\npenguins |&gt; \n    group_by(species, island) |&gt; \n    tally()\n\n# A tibble: 5 × 3\n# Groups:   species [3]\n  species   island        n\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Dream        68\n5 Gentoo    Biscoe      124\n\n\n\n\npenguins |&gt; \n    group_by(species, island, sex) |&gt; \n    tally()\n\n# A tibble: 13 × 4\n# Groups:   species, island [5]\n   species   island    sex        n\n   &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n 1 Adelie    Biscoe    female    22\n 2 Adelie    Biscoe    male      22\n 3 Adelie    Dream     female    27\n 4 Adelie    Dream     male      28\n 5 Adelie    Dream     &lt;NA&gt;       1\n 6 Adelie    Torgersen female    24\n 7 Adelie    Torgersen male      23\n 8 Adelie    Torgersen &lt;NA&gt;       5\n 9 Chinstrap Dream     female    34\n10 Chinstrap Dream     male      34\n11 Gentoo    Biscoe    female    58\n12 Gentoo    Biscoe    male      61\n13 Gentoo    Biscoe    &lt;NA&gt;       5"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---histogramas",
-    "href": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---histogramas",
-    "title": "Análisis exploratorio de datos",
-    "section": "Categórica + Numérica - histogramas",
-    "text": "Categórica + Numérica - histogramas\n\n\n\npenguins |&gt; \n    ggplot(aes(x = bill_len)) +\n    geom_histogram(\n        aes(fill = sex), \n        color = \"white\"\n    )\n\n\n\n\n\n\n\n\n\n\npenguins |&gt; \n    ggplot(aes(x = bill_len)) +\n    geom_histogram(\n        aes(fill = sex), \n        color = \"white\",\n        position = \"dodge\"\n    )"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---boxplots",
-    "href": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---boxplots",
-    "title": "Análisis exploratorio de datos",
-    "section": "Categórica + Numérica - boxplots",
-    "text": "Categórica + Numérica - boxplots\n\n\n\npenguins |&gt; \n    ggplot(aes(x = species, y = bill_len)) +\n    geom_boxplot(aes(fill = species))\n\n\n\n\n\n\n\n\n\n\npenguins |&gt; \n    ggplot(aes(x = species, y = bill_len)) +\n    geom_boxplot(aes(fill = island)) +\n    scale_fill_viridis_d()"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---heatmaps",
-    "href": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---heatmaps",
-    "title": "Análisis exploratorio de datos",
-    "section": "Categórica + Numérica - heatmaps",
-    "text": "Categórica + Numérica - heatmaps\n\n\npenguins |&gt; \n    group_by(island, species) |&gt; \n    summarise(mean_bill_len = mean(bill_len, na.rm = TRUE)) |&gt; \n    ggplot() +\n    aes(x = island, y = species, fill = mean_bill_len) +\n    geom_tile(color = \"white\") +\n    geom_text(aes(label = round(mean_bill_len, 2)), color = \"white\")"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---datos",
-    "href": "2025/weeks/weekXX-EDA/slides.html#categórica-numérica---datos",
-    "title": "Análisis exploratorio de datos",
-    "section": "Categórica + Numérica - datos",
-    "text": "Categórica + Numérica - datos\n\n\n\npenguins |&gt; \n    group_by(year) |&gt; \n    summarise(\n        mean_bill_len = \n            mean(bill_len, na.rm = TRUE),\n        mean_body_mass = \n            mean(body_mass, na.rm = TRUE),\n        )\n\n# A tibble: 3 × 3\n   year mean_bill_len mean_body_mass\n  &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;\n1  2007          43.7          4125.\n2  2008          43.5          4267.\n3  2009          44.5          4210.\n\n\n\n\npenguins |&gt; \n    filter(\n        island == \"Dream\", \n        species == \"Adelie\", \n        sex == \"male\",\n        body_mass &gt;= 4500) |&gt; \n    select(island, species, sex, body_mass)\n\n  island species  sex body_mass\n1  Dream  Adelie male      4650\n2  Dream  Adelie male      4600"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---scatterplots",
-    "href": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---scatterplots",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - scatterplots",
-    "text": "Numérica + Numérica - scatterplots\n\n\n\nggplot(penguins) +\n    aes(\n        x = body_mass, \n        y = flipper_len\n    ) +\n    geom_point(\n        alpha = 0.4,\n        aes(size = body_mass)\n    )\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n    aes(\n        x = body_mass, \n        y = flipper_len\n    ) +\n    geom_point(\n        size = 5, alpha = 0.4,\n        aes(\n            color = species, \n            shape = sex\n        )\n    )"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---scatterplots-con-regression",
-    "href": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---scatterplots-con-regression",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - scatterplots con regression",
-    "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(\n        size = 5, alpha = 0.4,\n        aes(color = species, shape = sex)\n    ) +\n    geom_smooth(method = \"lm\")"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---scatterplots-con-regression-1",
-    "href": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---scatterplots-con-regression-1",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - scatterplots con regression",
-    "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(size = 5, alpha = 0.4, aes(color = island, shape = sex)) +\n    geom_smooth(method = \"lm\") +\n    facet_wrap(vars(species), ncol = 3)"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---regression",
-    "href": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---regression",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - regression",
-    "text": "Numérica + Numérica - regression\n\n\n\nmodel &lt;- lm(\n    formula = flipper_len ~ body_mass + species, \n    data = penguins)\nsummary(model)\n\n\nCall:\nlm(formula = flipper_len ~ body_mass + species, data = penguins)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-14.5455  -3.1845   0.1307   3.3533  17.5313 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)      1.589e+02  2.387e+00  66.564  &lt; 2e-16 ***\nbody_mass        8.402e-03  6.339e-04  13.255  &lt; 2e-16 ***\nspeciesChinstrap 5.597e+00  7.882e-01   7.101 7.33e-12 ***\nspeciesGentoo    1.568e+01  1.091e+00  14.374  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.395 on 338 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.8541,    Adjusted R-squared:  0.8528 \nF-statistic: 659.4 on 3 and 338 DF,  p-value: &lt; 2.2e-16\n\n# install.packages(\"broom\")\n# library(broom)\n# tidy(model)\n\n\n\nAdelie: flipper_len = 158.9 + 0.008402 * body_mass\nChinstrap: flipper_len = (158.9 + 5.597) + 0.008402 * body_mass = 164.5 + 0.008402 * body_mass\nGentoo: flipper_len = (158.9 + 15.68) + 0.008402 * body_mass = 174.6 + 0.008402 * body_mass"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---correlation-heatmap",
-    "href": "2025/weeks/weekXX-EDA/slides.html#numérica-numérica---correlation-heatmap",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - correlation heatmap",
-    "text": "Numérica + Numérica - correlation heatmap\n\n\n\n# Seleccionar solo variables numéricas\npenguins_numeric &lt;- penguins |&gt; \n    select(bill_len, bill_dep, flipper_len, body_mass) |&gt; \n    na.omit()\n\n# Calcular matriz de correlación\ncor_matrix &lt;- cor(penguins_numeric)\n\n# Convertir a formato largo para ggplot\ncor_data &lt;- expand.grid(\n    var1 = colnames(cor_matrix), \n    var2 = colnames(cor_matrix)\n) |&gt; \n    mutate(correlation = as.vector(cor_matrix))\n\nround(cor_matrix, 2)\n\n            bill_len bill_dep flipper_len body_mass\nbill_len        1.00    -0.24        0.66      0.60\nbill_dep       -0.24     1.00       -0.58     -0.47\nflipper_len     0.66    -0.58        1.00      0.87\nbody_mass       0.60    -0.47        0.87      1.00\n\n\n\n\nggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +\n    geom_tile(color = \"white\") +\n    geom_text(aes(label = round(correlation, 2)), color = \"white\", size = 5) +\n    scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\", \n                         midpoint = 0, limit = c(-1,1)) +\n    labs(x = \"Variable\", y = \"Variable\", fill = \"Correlación\")"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#ejercicios",
-    "href": "2025/weeks/weekXX-EDA/slides.html#ejercicios",
-    "title": "Análisis exploratorio de datos",
-    "section": "Ejercicios",
-    "text": "Ejercicios\nUsando el conjunto de datos incorporado iris:\n\nGrafica el número de observaciones por especies usando geom_bar\nCalcula la media de Sepal.Length por Species usando group_by y summarise\nGrafica una regresión entre Sepal.Length y Petal.Length para la especie setosa. (Filtra primero para la especie setosa, luego grafica)"
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/slides.html#bibliografia",
-    "href": "2025/weeks/weekXX-EDA/slides.html#bibliografia",
-    "title": "Análisis exploratorio de datos",
-    "section": "Bibliografia",
-    "text": "Bibliografia\nHadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for Data Science, 2ed. https://r4ds.hadley.nz/\nEspecificamente:\nCapitulo 1: https://r4ds.hadley.nz/data-visualize.html\nCapitulo 10: https://r4ds.hadley.nz/EDA.html"
-  },
-  {
-    "objectID": "2025/weeks/week01/slides.html#profes",
-    "href": "2025/weeks/week01/slides.html#profes",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#profes",
+    "href": "2025/lessons/intro_and_methods/slides.html#profes",
     "title": " Introducción",
     "section": "Profes",
     "text": "Profes\n\n\n\n\n\nProf. Avalos Ecología Tropical\n\n\n\n\n\n\nProf. Nakov Ecología y evolución acuática\n\n\n\nSitio web del curso: https://ucr-ecologia.github.io/B0305-lab-eco-gral"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#asistentes",
-    "href": "2025/weeks/week01/slides.html#asistentes",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#asistentes",
+    "href": "2025/lessons/intro_and_methods/slides.html#asistentes",
     "title": " Introducción",
     "section": "Asistentes",
     "text": "Asistentes\n\n\n\n\n\nKenlly Pérez Murciélagos\n\n\n\n\n\n\nKenneth Barrantes Plantas\n\n\n\n\n\n\nDaniel Espitia Herpetofauna\n\n\n\n\n\n\n\n\nValeria Acevedo Fernández Micología\n\n\n\n\n\n\nNombre Asistente 5 Afiliación o rol"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#una-hipótesis-qué-es",
-    "href": "2025/weeks/week01/slides.html#una-hipótesis-qué-es",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#una-hipótesis-qué-es",
+    "href": "2025/lessons/intro_and_methods/slides.html#una-hipótesis-qué-es",
     "title": " Introducción",
     "section": "Una hipótesis ¿Qué es?",
     "text": "Una hipótesis ¿Qué es?\n\nPosible explicación para un fenómeno observado\nUsualmente describen relaciones de causa y efecto\nSi las observaciones son el “qué”, las hipótesis son el “cómo”\nLas observaciones son los datos\nEl objetivo de un estudio científico: entender las causas de fenómenos observables\nEs posible probarlas\nGenera nuevas predicciones"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#qué-proponen-de-hipótesis",
-    "href": "2025/weeks/week01/slides.html#qué-proponen-de-hipótesis",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#qué-proponen-de-hipótesis",
+    "href": "2025/lessons/intro_and_methods/slides.html#qué-proponen-de-hipótesis",
     "title": " Introducción",
     "section": "¿Qué proponen de hipótesis?",
     "text": "¿Qué proponen de hipótesis?\n\n3 de marzo 2017. Veinte toneladas de peces muertos en el Golfo de Nicoya"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#ejercicio-1",
-    "href": "2025/weeks/week01/slides.html#ejercicio-1",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#ejercicio-1",
+    "href": "2025/lessons/intro_and_methods/slides.html#ejercicio-1",
     "title": " Introducción",
     "section": "Ejercicio 1",
     "text": "Ejercicio 1\n\nHIPÓTESIS: Mayor densidad de plántulas de ciprés bajo que fuera la sombra de arbustos\nPREDICCIONES: No pone.\nVEREDICTO: Esto NO es una hipótesis, sino una predicción. No describe el mecanismo que se está poniendo a prueba\n\n\n\n\n\n\n\n\n\nAdvertencia\n\n\nMal uso del Método hipotético-deductivo (MHD)\n\n\n\n\n\n\nFarji-Brener, A. G. (2003). Ecología Austral, 13(2), 223-227."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#ejercicio-2",
-    "href": "2025/weeks/week01/slides.html#ejercicio-2",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#ejercicio-2",
+    "href": "2025/lessons/intro_and_methods/slides.html#ejercicio-2",
     "title": " Introducción",
     "section": "Ejercicio 2",
     "text": "Ejercicio 2\n\nHIPÓTESIS: La presencia de arbustos, al dar sombra y disminuir la desecación del suelo, favorece el establecimiento de plántulas de ciprés\nPREDICCIONES: No pone.\nVEREDICTO: Esto sí es una hipótesis. Propone un mecanismo que tiene que ver con sombra y humedad del suelo, pero no pone predicciones.\n\n\n\n\n\n\n\n\n\nAdvertencia\n\n\nMal uso del Método hipotético-deductivo (MHD)\n\n\n\n\n\n\nFarji-Brener, A. G. (2003). Ecología Austral, 13(2), 223-227."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#ejercicio-3",
-    "href": "2025/weeks/week01/slides.html#ejercicio-3",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#ejercicio-3",
+    "href": "2025/lessons/intro_and_methods/slides.html#ejercicio-3",
     "title": " Introducción",
     "section": "Ejercicio 3",
     "text": "Ejercicio 3\n\nHIPÓTESIS: La presencia de arbustos, al dar sombra y disminuir la desecación del suelo, favorece el establecimiento de plántulas de ciprés\nPREDICCIONES: Asociación positiva entre densidad de arbustos y densidad de cipreses.\nVEREDICTO: Hipótesis correcta pero predicción incorrecta. El resultado esperado de esta predicción no apoya ni descarta la hipótesis. El que haya una correlación entre arbustos y densidad de plántulas no dice NADA sobre los mecanismos propuestos en la hipótesis, que tienen que ver con sombra, humedad del suelo. O sea, las predicciones TIENEN que hablar de sombra y humedad. No dejen el mecanismo por fuera de las predicciones!\n\n\n\n\n\n\n\n\n\nAdvertencia\n\n\nMal uso del Método hipotético-deductivo (MHD)\n\n\n\n\n\n\nFarji-Brener, A. G. (2003). Ecología Austral, 13(2), 223-227."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#ejercicio-4",
-    "href": "2025/weeks/week01/slides.html#ejercicio-4",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#ejercicio-4",
+    "href": "2025/lessons/intro_and_methods/slides.html#ejercicio-4",
     "title": " Introducción",
     "section": "Ejercicio 4",
     "text": "Ejercicio 4\n\nHIPÓTESIS: La presencia de arbustos, al dar sombra y disminuir la desecación del suelo, favorece el establecimiento de plántulas de ciprés\nPREDICCIONES:\n\nMayor densidad de plántulas de ciprés bajo que fuera la sombra de los arbustos\nMayor humedad en suelos bajo que fuera la sombra de los arbustos\nMenor mortalidad de plántulas de ciprés por desecación bajo que fuera la sombra de los arbustos\n\nVEREDICTO: Esto sí es una hipótesis. Propone un mecanismo y predicciones que tienen que ver con sombra y humedad del suelo.\n\n\n\n\n\n\n\n\n\n¡Bien!\n\n\nHipótesis Y predicciones correctas. Buen uso del Método hipotético-deductivo (MHD)\n\n\n\n\n\n\nFarji-Brener, A. G. (2003). Ecología Austral, 13(2), 223-227."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#el-método-científico",
-    "href": "2025/weeks/week01/slides.html#el-método-científico",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#el-método-científico",
+    "href": "2025/lessons/intro_and_methods/slides.html#el-método-científico",
     "title": " Introducción",
     "section": "El método científico",
     "text": "El método científico\n\nEs una técnica para decidir entre hipótesis, basándonos en observaciones y predicciones\nSe dice que hay solo uno, pero en realidad son varios"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#deducción-e-inducción",
-    "href": "2025/weeks/week01/slides.html#deducción-e-inducción",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#deducción-e-inducción",
+    "href": "2025/lessons/intro_and_methods/slides.html#deducción-e-inducción",
     "title": " Introducción",
     "section": "Deducción e inducción",
     "text": "Deducción e inducción\n\nSon dos importantes formas de razonamiento científico\nAmbos involucran sacar conclusiones (inferencias) de datos o modelos\nDeducción es de general a específico\nInducción es de específico a general\n\n\n\n\n\n\n\n\n\nOjo\n\n\nTanto inducción como deducción se usan en el razonamiento científico"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#deducción-general-a-específico",
-    "href": "2025/weeks/week01/slides.html#deducción-general-a-específico",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#deducción-general-a-específico",
+    "href": "2025/lessons/intro_and_methods/slides.html#deducción-general-a-específico",
     "title": " Introducción",
     "section": "Deducción: general a específico",
     "text": "Deducción: general a específico\nPremisas generales:\n\nTodas las hormigas en el bosquecito son del género Myrmica.\nEsta hormiga en particular fue muestreada en el bosquecito\nConclusión: Esta hormiga en particular es del género Myrmica.\n\n\n\n\n\n\n\n\n\nOjo\n\n\nTambién se le llama “inferencia cierta”: si las premisas 1 y 2 son ciertas, la conclusión TIENE que ser cierta"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#inducción-específico-a-general",
-    "href": "2025/weeks/week01/slides.html#inducción-específico-a-general",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#inducción-específico-a-general",
+    "href": "2025/lessons/intro_and_methods/slides.html#inducción-específico-a-general",
     "title": " Introducción",
     "section": "Inducción: específico a general",
     "text": "Inducción: específico a general\n\nLa estadística es inductiva: Sacamos conclusiones generales a partir de una muestra limitada. Por ejemplo:\n\nTras revisar 25 hormigas, veo que son del género Myrmica\nTodas estas 25 hormigas fueron muestreadas en el bosquecito\nConclusión: Todas las hormigas del bosquecito son del género Myrmica.\n\n\n\n\n\n\n\n\n\n\nOjo\n\n\nTambién se le llama “inferencia de probabilidad”: La conclusión probablemente es cierta, pero nuestra certeza aumenta con el tamaño de la muestra (e.g. en vez de 25 hormigas, muestrear 1000)"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#section",
-    "href": "2025/weeks/week01/slides.html#section",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#section",
+    "href": "2025/lessons/intro_and_methods/slides.html#section",
     "title": " Introducción",
     "section": "",
     "text": "En la práctica usamos una mezcla\n\n\nEl método hipotético-deductivo es una mezcla de inducción y deducción, ya que con las predicciones (conclusiones deductivas de la hipótesis) se puede ver si se cumplen o no por medio del contraste con datos empíricos y análisis estadístico (parte inductiva)."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#método-inductivo",
-    "href": "2025/weeks/week01/slides.html#método-inductivo",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#método-inductivo",
+    "href": "2025/lessons/intro_and_methods/slides.html#método-inductivo",
     "title": " Introducción",
     "section": "Método inductivo",
     "text": "Método inductivo\n\nToda investigación científica empieza con una observación que estamos tratando de explicar\nEl método inductivo toma una observación y desarrolla una sola hipótesis\nA través de la deducción, generamos predicciones\nProbamos las predicciones colectando más observaciones (datos)\nSi las observaciones están de acuerdo con las predicciones, hay apoyo para la hipótesis\nSi no, se modifica la hipótesis para que considere las observaciones originales y las nuevas\nSe repite un ciclo de hipótesis - predicción- observación, hasta que la hipótesis se va acercando cada vez más a la verdad\nEs “confirmatorio”: buscamos datos que apoyan la hipótesis y luego modificamos la hipótesis para que se ajuste a los datos ya acumulados"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#método-inductivo-1",
-    "href": "2025/weeks/week01/slides.html#método-inductivo-1",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#método-inductivo-1",
+    "href": "2025/lessons/intro_and_methods/slides.html#método-inductivo-1",
     "title": " Introducción",
     "section": "Método inductivo",
     "text": "Método inductivo\n\n\n\n\n\nVentajas:\n\nEnfatiza la relación estrecha entre datos y teoría\nConstruye hipótesis basándose en información previa\n\n\n\nDesventajas:\n\nSolo considera 1 hipótesis a la vez\nFomenta “enamoramientos” con ciertas hipótesis"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#método-hipotético-deductivo-mhd",
-    "href": "2025/weeks/week01/slides.html#método-hipotético-deductivo-mhd",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#método-hipotético-deductivo-mhd",
+    "href": "2025/lessons/intro_and_methods/slides.html#método-hipotético-deductivo-mhd",
     "title": " Introducción",
     "section": "Método hipotético-deductivo (MHD)",
     "text": "Método hipotético-deductivo (MHD)\n\nTambién empieza con un fenómeno que queremos explicar\nPero nos pide que propongamos múltiples hipótesis cada una con sus predicciones, y que las probemos todas con nuevas observaciones\nEl objetivo no es confirmar la hipótesis sino falsarla"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#método-hipotético-deductivo-mhd-1",
-    "href": "2025/weeks/week01/slides.html#método-hipotético-deductivo-mhd-1",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#método-hipotético-deductivo-mhd-1",
+    "href": "2025/lessons/intro_and_methods/slides.html#método-hipotético-deductivo-mhd-1",
     "title": " Introducción",
     "section": "Método hipotético-deductivo (MHD)",
     "text": "Método hipotético-deductivo (MHD)"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#método-hipotetico-deductivo-mhd",
-    "href": "2025/weeks/week01/slides.html#método-hipotetico-deductivo-mhd",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#método-hipotetico-deductivo-mhd",
+    "href": "2025/lessons/intro_and_methods/slides.html#método-hipotetico-deductivo-mhd",
     "title": " Introducción",
     "section": "Método hipotetico-deductivo (MHD)",
     "text": "Método hipotetico-deductivo (MHD)\n\n\nEl ciclo de observaciones y nuevas predicciones se repite\nNunca confirma una hipótesis: se acepta la hipótesis que no se ha podido falsar\n\n\n\nVentajas:\n\nNos obliga a considerar varias hipótesis desde el puro principio\nEnfatiza las diferencias predictivas entre ellas\n\n\n\nDesventajas:\n\nA veces no tenemos varias hipótesis de trabajo\nNo funcione a menos de que la hipótesis correcta esté entre las opciones"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#prueba-de-hipótesis-1",
-    "href": "2025/weeks/week01/slides.html#prueba-de-hipótesis-1",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#prueba-de-hipótesis-1",
+    "href": "2025/lessons/intro_and_methods/slides.html#prueba-de-hipótesis-1",
     "title": " Introducción",
     "section": "Prueba de hipótesis",
     "text": "Prueba de hipótesis\n\nUsamos estadística para describir patrones en nuestros datos y pruebas estadísticas para ver si las predicciones de una hipótesis tienen apoyo o no\nAceptar o rechazar una hipótesis estadística es diferentes que aceptar o rechazar una hipótesis científica"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-de-la-perturbación-intermedia",
-    "href": "2025/weeks/week01/slides.html#hipótesis-de-la-perturbación-intermedia",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-perturbación-intermedia",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-perturbación-intermedia",
     "title": " Introducción",
     "section": "Hipótesis de la perturbación intermedia",
     "text": "Hipótesis de la perturbación intermedia\nFenómeno observable:\n\nEn zonas intermareales con piedras de diferentes tamaños, las rocas medianas tienen mucho mayor riqueza de especies de organismos sésiles creciendo que piedras equeñas y grandes.\nLas olas vuelcan las rocas pequeñas con mucha frecuencia, y estas son dominadas por una sola especie de alga verde Ulva de sucesión temprana (Sousa 1979)\nLas olas casi nunca vuelcan las rocas grandes, dominadas solo por una especie de alga roja sucesional tardía Gigartina canaliculata (Sousa 1979)."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-de-la-perturbación-intermedia-1",
-    "href": "2025/weeks/week01/slides.html#hipótesis-de-la-perturbación-intermedia-1",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-perturbación-intermedia-1",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-perturbación-intermedia-1",
     "title": " Introducción",
     "section": "Hipótesis de la perturbación intermedia",
     "text": "Hipótesis de la perturbación intermedia\n\nLas olas crean espacios vacíos al remover especies de invertebrados competitivamente dominantes.\nEl espacio abierto resultante puede ser colonizado por especies que son peores competidoras que de otra manera serían excluidas"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-de-la-perturbación-intermedia-2",
-    "href": "2025/weeks/week01/slides.html#hipótesis-de-la-perturbación-intermedia-2",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-perturbación-intermedia-2",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-perturbación-intermedia-2",
     "title": " Introducción",
     "section": "Hipótesis de la perturbación intermedia",
     "text": "Hipótesis de la perturbación intermedia\n\nPredicción:\n\n\nLa diversidad de especies de invertebrados marinos cambia en función del nivel de perturbación de las piedras (Sousa 1979)"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-estadística-nula-h0",
-    "href": "2025/weeks/week01/slides.html#hipótesis-estadística-nula-h0",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-estadística-nula-h0",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-estadística-nula-h0",
     "title": " Introducción",
     "section": "Hipótesis estadística nula (H0)",
     "text": "Hipótesis estadística nula (H0)\n\nEs el punto de inicio de una investigación científica\nTrata de explicar patrones en los datos de la manera más simple: a menudo esto es aleatoriedad o error de medición\nSi esa hipótesis nula se puede rechazar, podemos pasar a hipotesis más complejas"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#probando-la-hipótesis-de-la-perturbación-intermedia",
-    "href": "2025/weeks/week01/slides.html#probando-la-hipótesis-de-la-perturbación-intermedia",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#probando-la-hipótesis-de-la-perturbación-intermedia",
+    "href": "2025/lessons/intro_and_methods/slides.html#probando-la-hipótesis-de-la-perturbación-intermedia",
     "title": " Introducción",
     "section": "Probando la Hipótesis de la perturbación intermedia",
     "text": "Probando la Hipótesis de la perturbación intermedia\n\nUsted va y mide riqueza de especies en rocas perturbadas y no perturbadas\nNo encuentra diferencias entre los dos grupos\nNo pudo rechazar la hipótesis nula y los patrones en los datos rechazan una de las predicciones de la hipótesis\n\n\n\n\n\n\n\n\n\nOjo\n\n\nAusencia de evidencia no significa evidencia de ausencia - no rechazar una H0 no significa tener que aceptarla"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-de-la-distribución-ideal-libre-dil",
-    "href": "2025/weeks/week01/slides.html#hipótesis-de-la-distribución-ideal-libre-dil",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-distribución-ideal-libre-dil",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-de-la-distribución-ideal-libre-dil",
     "title": " Introducción",
     "section": "Hipótesis de la distribución ideal libre (DIL)",
     "text": "Hipótesis de la distribución ideal libre (DIL)\n\nAquí, el patrón estadístico es igual pero la conclusión científica es diferente\nEsta hipótesis predice que los organismos se desplazan entre hábitats para modificar su densidad de manera que tengan un nivel de desempeño promedio igual en diferentes hábitats (Fretwell y Lucas 1970)\nPredicción: el desempeño de los organismos en hábitats distintos es igual aunque su densidad poblacional sea distinta"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#probando-la-dil",
-    "href": "2025/weeks/week01/slides.html#probando-la-dil",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#probando-la-dil",
+    "href": "2025/lessons/intro_and_methods/slides.html#probando-la-dil",
     "title": " Introducción",
     "section": "Probando la DIL",
     "text": "Probando la DIL\n\nDigamos que ud. mide la tasa de crecimiento poblacional de aves (muy importante para el desempeño de las mismas)\nUsted no logra rechazar la H 0 , o sea no hay diferencia que las tasas de crecimiento difieran entre hábitats\nPero, en este caso, no rechazar la H 0 de hecho apoya la predicción de la distribución ideal libre"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#section-1",
-    "href": "2025/weeks/week01/slides.html#section-1",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#section-1",
+    "href": "2025/lessons/intro_and_methods/slides.html#section-1",
     "title": " Introducción",
     "section": "",
     "text": "Importante\n\n\nLas hipótesis estadísticas y científicas son cosas diferentes.\nEs su trabajo determinar si apoyar o refutar las hipótesis estadísticas dan evidencia positiva o negativa para sus hipótesis científicas."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#valores-de-p",
-    "href": "2025/weeks/week01/slides.html#valores-de-p",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#valores-de-p",
+    "href": "2025/lessons/intro_and_methods/slides.html#valores-de-p",
     "title": " Introducción",
     "section": "Valores de p",
     "text": "Valores de p\n\n“los niveles de hormonas glucocorticoides (GC) en perezosos no expuestos a ruido de carros fue de 679 ng GC/G, pero en perezosos expuestos a carros fue de (1530 ng GC/g)”\n¿Cómo sabemos si esta diferencia es lo suficientemente grande como para deberse a carros?\nPodemos hacer una prueba estadística como una t de student, que nos va a dar un estadístico de prueba, y un valor de probabilidad (o valor de p) asociado"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#la-hipótesis-estadística-nula-h0",
-    "href": "2025/weeks/week01/slides.html#la-hipótesis-estadística-nula-h0",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#la-hipótesis-estadística-nula-h0",
+    "href": "2025/lessons/intro_and_methods/slides.html#la-hipótesis-estadística-nula-h0",
     "title": " Introducción",
     "section": "La hipótesis estadística nula H0",
     "text": "La hipótesis estadística nula H0\n\nAntes de definir la probabilidad de una prueba estadística (o sea, el valor de p) debemos primero definir qué es la hipótesis estadística nula, o H0\n¿Qué era? la explicación más sencilla posible: p. Ej. las diferencias en GC refleja variación aleatoria entre grupos y no refleja ningún efecto sistemático de los carros\nH0: Las diferencias entre grupos no son mayores de lo que esperaríamos simplemente debido a variación aleatoria entre grupos\nEsta es la hipótesis estadística nula: hipotetiza que un mecanismo específico o alguna fuerza (que NO es variación aleatoria) NO está operando aquí."
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-alternativa-ha",
-    "href": "2025/weeks/week01/slides.html#hipótesis-alternativa-ha",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-alternativa-ha",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-alternativa-ha",
     "title": " Introducción",
     "section": "Hipótesis alternativa (HA)",
     "text": "Hipótesis alternativa (HA)\n\nUna vez que establecemos la hipótesis estadística nula, debemos definir una o más alternativas a la hipótesis nula\nHA : “diferencia observada en niveles promedio de GC entre grupos son demasiado grandes para ser causados por variación aleatoria entre individuos”\nOjo! La HA no dice nada de carros! Solo se enfoca en el patrón presente en los datos. Podemos inferir mecanismos a partir del patrón, pero esto es un paso aparte\nLa prueba estadística solo nos dice si el patrón es probable o no"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#y-el-mecanismo-causal",
-    "href": "2025/weeks/week01/slides.html#y-el-mecanismo-causal",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#y-el-mecanismo-causal",
+    "href": "2025/lessons/intro_and_methods/slides.html#y-el-mecanismo-causal",
     "title": " Introducción",
     "section": "¿Y el mecanismo causal?",
     "text": "¿Y el mecanismo causal?\n\nDiay, depende de la calidad de nuestro diseño experimental y de nuestras mediciones…\nFactores de confusión (p.ej. Persecución por turistas)\nOjo, en la mayoría de las investigaciones las HA no se escriben porque hay muchas. Entonces simplemente se considera un juego de alternativas “que no son H0”"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#valores-estadísticos-de-p",
-    "href": "2025/weeks/week01/slides.html#valores-estadísticos-de-p",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#valores-estadísticos-de-p",
+    "href": "2025/lessons/intro_and_methods/slides.html#valores-estadísticos-de-p",
     "title": " Introducción",
     "section": "Valores estadísticos de p",
     "text": "Valores estadísticos de p\n\n\n\n\n\n\n\n\nDefinición\n\n\nProbabilidad de que las diferencias observadas (o más extremas) fueran detectadas si la H0 fuera cierta\n\n\n\n\n\n\n\n“los niveles de hormonas glucocorticoides (GC) en perezosos no expuestos a ruido de carros fue de 679 ng G C/G, pero en perezosos expuestos a carros fue de (1530 ng GC/g) (p=0.001)”\nInterpretación: hay muy baja probabilidad (0.01%) de observar esas diferencias entre grupos si H0 es cierta\nSi p=0.897, entonces “hay muy alta probabilidad (89.7%) de observar esas diferencias si la H0 es cierta”"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#hipótesis-estadísticas-vs.-científicas",
-    "href": "2025/weeks/week01/slides.html#hipótesis-estadísticas-vs.-científicas",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#hipótesis-estadísticas-vs.-científicas",
+    "href": "2025/lessons/intro_and_methods/slides.html#hipótesis-estadísticas-vs.-científicas",
     "title": " Introducción",
     "section": "Hipótesis estadísticas vs. científicas",
     "text": "Hipótesis estadísticas vs. científicas\n\nLo más difícil de usar valores de p es que a veces nos cuesta distinguir entre hipótesis científicas nulas vs. hipótesis científicas. Recuerde:\nUna hipótesis científica propone un mecanismo formal para explicar patrones en los datos.\nP.ej. los carros estresan a los perezosos, lo cual proponemos probar midiendo niveles de GC en sangre y heces. Niveles más altos de GC podrían ser causados por cambios fisiológicos debidos al estrés que resultan en niveles elevados de GC\nEn cambio, la hipótesis estadística nula es solo un enunciado sobre los patrones en los datos y la probabilidad de que pudieran haber sido causados por pura casualidad o procesos aleatorios NO relacionados con los factores que estamos estudiando"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#en-conclusión",
-    "href": "2025/weeks/week01/slides.html#en-conclusión",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#en-conclusión",
+    "href": "2025/lessons/intro_and_methods/slides.html#en-conclusión",
     "title": " Introducción",
     "section": "En conclusión",
     "text": "En conclusión\n\nUsamos las pruebas estadísticas y la hipótesis nula estadística para ver si hay patrones en los datos\nLuego, sacamos conclusiones (inferencias) sobre la validez de nuestras hipótesis científicas basándonos en los patrones estadísticos observados en los datos\nLa potencia de nuestra inferencia depende de la calidad de nuestro diseño experimental y de muestreo (réplica, factores de confusión, presencia de controles, asignación aleatoria de los niveles del tratamiento) así como la calidad de nuestras mediciones"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#section-2",
-    "href": "2025/weeks/week01/slides.html#section-2",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#section-2",
+    "href": "2025/lessons/intro_and_methods/slides.html#section-2",
     "title": " Introducción",
     "section": "",
     "text": "¿Listas y listos para probar?\n\n\nActividad afuera:\nVayan a buscar un fenómeno observable organismo-ambiente y luego desarrollamos hipótesis y predicciones para explicarlo!"
   },
   {
-    "objectID": "2025/weeks/week01/slides.html#referencias",
-    "href": "2025/weeks/week01/slides.html#referencias",
+    "objectID": "2025/lessons/intro_and_methods/slides.html#referencias",
+    "href": "2025/lessons/intro_and_methods/slides.html#referencias",
     "title": " Introducción",
     "section": "Referencias",
     "text": "Referencias\nFarji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos” hipótesis” y” predicciones” en ecología. Ecología Austral, 13(2), 223-227. 📄 PDF\nGotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 4. Sunderland: Sinauer Associates. 📄 PDF\nGotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 6. Sunderland: Sinauer Associates. 📄 PDF\nSousa, W. P. (1979). Disturbance in marine intertidal boulder fields: the nonequilibrium maintenance of species diversity. Ecology, 60(6), 1225-1239."
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#análisis-exploratorio-de-datos",
+    "href": "2025/lessons/eda/slides.html#análisis-exploratorio-de-datos",
+    "title": "Análisis exploratorio de datos",
+    "section": "Análisis exploratorio de datos",
+    "text": "Análisis exploratorio de datos\n\n\n\n\n\n\n\nAnálisis exploratorio de datos\n\n\nExplora los datos de manera sistemática\n\n\n\n\n\n\nGenera preguntas sobre tus datos.\nBusca respuestas visualizando, transformando y modelando tus datos.\nUsa lo que aprendes para refinar tus preguntas y/o generar nuevas preguntas.\n\n\n\n Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for Data Science, 2ed."
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#análisis-exploratorio-de-datos-1",
+    "href": "2025/lessons/eda/slides.html#análisis-exploratorio-de-datos-1",
+    "title": "Análisis exploratorio de datos",
+    "section": "Análisis exploratorio de datos",
+    "text": "Análisis exploratorio de datos\n\nEl objetivo es desarrollar una comprensión de los datos\nLo hacemos haciendo preguntas (¿Cómo cambia la tasa de crecimiento con la temperatura?)\nCuantas más preguntas hagamos, más ideas obtendremos y será más probable encontrar respuestas significativas\nNo hay reglas sobre las preguntas que podemos hacer, pero buenos puntos de partida son:\n\n¿Cuál es la variación dentro de mis variables?\n¿Cuál es la covariación entre mis variables?"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#resumen-de-los-datos",
+    "href": "2025/lessons/eda/slides.html#resumen-de-los-datos",
+    "title": "Análisis exploratorio de datos",
+    "section": "Resumen de los datos",
+    "text": "Resumen de los datos\n\n\n\n‘Panorama general’ del conjunto de datos:\n\n¿Cuántas variables?\nTipos de variables (números, categorías, fechas, …)?\nRangos, medias, conteos de categorías, …?\n¿Cuántos datos faltantes?\n\n\n\n\n\ndim(penguins)\n\n[1] 344   8\n\nncol(penguins)\n\n[1] 8\n\nnrow(penguins)\n\n[1] 344\n\nsummary(penguins)\n\n      species          island       bill_len        bill_dep    \n Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  \n Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  \n Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  \n                                 Mean   :43.92   Mean   :17.15  \n                                 3rd Qu.:48.50   3rd Qu.:18.70  \n                                 Max.   :59.60   Max.   :21.50  \n                                 NA's   :2       NA's   :2      \n  flipper_len      body_mass        sex           year     \n Min.   :172.0   Min.   :2700   female:165   Min.   :2007  \n 1st Qu.:190.0   1st Qu.:3550   male  :168   1st Qu.:2007  \n Median :197.0   Median :4050   NA's  : 11   Median :2008  \n Mean   :200.9   Mean   :4202                Mean   :2008  \n 3rd Qu.:213.0   3rd Qu.:4750                3rd Qu.:2009  \n Max.   :231.0   Max.   :6300                Max.   :2009  \n NA's   :2       NA's   :2"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#preparación",
+    "href": "2025/lessons/eda/slides.html#preparación",
+    "title": "Análisis exploratorio de datos",
+    "section": "Preparación",
+    "text": "Preparación\n\nUsaremos los paquetes {tidyverse}\n{ggplot2} para visualización\n{dplyr} para manipulación de datos\n\n\nInstalación: Esto se hace una vez, al configurar el entorno.\n\ninstall.packages(\"ggplot2\")\ninstall.packages(\"dplyr\")\n\n\n\nLuego, para usar los paquetes hay que cargarlos.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n# Establecer tema global para todos los gráficos\ntheme_set(theme_bw())"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#variables-categóricas-discretas",
+    "href": "2025/lessons/eda/slides.html#variables-categóricas-discretas",
+    "title": "Análisis exploratorio de datos",
+    "section": "Variables categóricas (discretas)",
+    "text": "Variables categóricas (discretas)\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(x=species) +\n    geom_bar(fill=\"steelblue\")\n\n\n\n\n\n\n\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(x=species, fill = species) +\n    geom_bar()"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#variables-categóricas-discretas-1",
+    "href": "2025/lessons/eda/slides.html#variables-categóricas-discretas-1",
+    "title": "Análisis exploratorio de datos",
+    "section": "Variables categóricas (discretas)",
+    "text": "Variables categóricas (discretas)\n\n\n\n# library(dplyr)\npenguins |&gt; \n    group_by(species) |&gt; \n    tally()\n\n# A tibble: 3 × 2\n  species       n\n  &lt;fct&gt;     &lt;int&gt;\n1 Adelie      152\n2 Chinstrap    68\n3 Gentoo      124\n\n\n\n\n# library(dplyr)\npenguins |&gt; \n    group_by(island) |&gt; \n    tally()\n\n# A tibble: 3 × 2\n  island        n\n  &lt;fct&gt;     &lt;int&gt;\n1 Biscoe      168\n2 Dream       124\n3 Torgersen    52"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#variables-numéricas-continuas",
+    "href": "2025/lessons/eda/slides.html#variables-numéricas-continuas",
+    "title": "Análisis exploratorio de datos",
+    "section": "Variables numéricas (continuas)",
+    "text": "Variables numéricas (continuas)\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(x = bill_len) +\n    geom_histogram(\n        fill = \"steelblue\", \n        color= \"white\"\n    )\n\n\n\n\n\n\n\n\n\n\n# library(ggplot2)\nggplot(penguins) +\n    aes(y = bill_len) +\n    geom_boxplot(\n        fill = \"steelblue\"\n        )"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#sidenote-on-boxplots",
+    "href": "2025/lessons/eda/slides.html#sidenote-on-boxplots",
+    "title": "Análisis exploratorio de datos",
+    "section": "Sidenote on boxplots",
+    "text": "Sidenote on boxplots"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#variables-numéricas-continuas---datos-de-histograma",
+    "href": "2025/lessons/eda/slides.html#variables-numéricas-continuas---datos-de-histograma",
+    "title": "Análisis exploratorio de datos",
+    "section": "Variables numéricas (continuas) - Datos de histograma",
+    "text": "Variables numéricas (continuas) - Datos de histograma\n\n\nmin_bill &lt;- min(penguins$bill_len, na.rm=TRUE)\nmax_bill &lt;- max(penguins$bill_len, na.rm=TRUE)\nbin_breaks &lt;- seq(min_bill, max_bill, by=2)\nbill_len_bin &lt;- cut(penguins$bill_len, breaks = bin_breaks)\ntable(bill_len_bin)\n\nbill_len_bin\n(32.1,34.1] (34.1,36.1] (36.1,38.1] (38.1,40.1] (40.1,42.1] (42.1,44.1] \n          4          21          40          35          39          30 \n(44.1,46.1] (46.1,48.1] (48.1,50.1] (50.1,52.1] (52.1,54.1] (54.1,56.1] \n         39          41          42          36           7           5 \n(56.1,58.1] \n          1"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#variables-numéricas-continuas---datos-de-boxplot",
+    "href": "2025/lessons/eda/slides.html#variables-numéricas-continuas---datos-de-boxplot",
+    "title": "Análisis exploratorio de datos",
+    "section": "Variables numéricas (continuas) - Datos de boxplot",
+    "text": "Variables numéricas (continuas) - Datos de boxplot\n\n\nsummary(penguins$bill_len)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  32.10   39.23   44.45   43.92   48.50   59.60       2"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#categórica-categórica",
+    "href": "2025/lessons/eda/slides.html#categórica-categórica",
+    "title": "Análisis exploratorio de datos",
+    "section": "Categórica + Categórica",
+    "text": "Categórica + Categórica\n\n\n\npenguins |&gt; \n    ggplot(aes(x = island)) +\n    geom_bar(aes(fill = species))\n\n\n\n\n\n\n\n\n\n\npenguins |&gt; \n    ggplot(aes(x = island)) +\n    geom_bar(\n        aes(fill = species), \n        position = \"dodge\"\n    )"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#categórica-categórica-1",
+    "href": "2025/lessons/eda/slides.html#categórica-categórica-1",
+    "title": "Análisis exploratorio de datos",
+    "section": "Categórica + Categórica",
+    "text": "Categórica + Categórica\n\n\n\npenguins |&gt; \n    group_by(species, island) |&gt; \n    tally()\n\n# A tibble: 5 × 3\n# Groups:   species [3]\n  species   island        n\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;\n1 Adelie    Biscoe       44\n2 Adelie    Dream        56\n3 Adelie    Torgersen    52\n4 Chinstrap Dream        68\n5 Gentoo    Biscoe      124\n\n\n\n\npenguins |&gt; \n    group_by(species, island, sex) |&gt; \n    tally()\n\n# A tibble: 13 × 4\n# Groups:   species, island [5]\n   species   island    sex        n\n   &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n 1 Adelie    Biscoe    female    22\n 2 Adelie    Biscoe    male      22\n 3 Adelie    Dream     female    27\n 4 Adelie    Dream     male      28\n 5 Adelie    Dream     &lt;NA&gt;       1\n 6 Adelie    Torgersen female    24\n 7 Adelie    Torgersen male      23\n 8 Adelie    Torgersen &lt;NA&gt;       5\n 9 Chinstrap Dream     female    34\n10 Chinstrap Dream     male      34\n11 Gentoo    Biscoe    female    58\n12 Gentoo    Biscoe    male      61\n13 Gentoo    Biscoe    &lt;NA&gt;       5"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#categórica-numérica---histogramas",
+    "href": "2025/lessons/eda/slides.html#categórica-numérica---histogramas",
+    "title": "Análisis exploratorio de datos",
+    "section": "Categórica + Numérica - histogramas",
+    "text": "Categórica + Numérica - histogramas\n\n\n\npenguins |&gt; \n    ggplot(aes(x = bill_len)) +\n    geom_histogram(\n        aes(fill = sex), \n        color = \"white\"\n    )\n\n\n\n\n\n\n\n\n\n\npenguins |&gt; \n    ggplot(aes(x = bill_len)) +\n    geom_histogram(\n        aes(fill = sex), \n        color = \"white\",\n        position = \"dodge\"\n    )"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#categórica-numérica---boxplots",
+    "href": "2025/lessons/eda/slides.html#categórica-numérica---boxplots",
+    "title": "Análisis exploratorio de datos",
+    "section": "Categórica + Numérica - boxplots",
+    "text": "Categórica + Numérica - boxplots\n\n\n\npenguins |&gt; \n    ggplot(aes(x = species, y = bill_len)) +\n    geom_boxplot(aes(fill = species))\n\n\n\n\n\n\n\n\n\n\npenguins |&gt; \n    ggplot(aes(x = species, y = bill_len)) +\n    geom_boxplot(aes(fill = island)) +\n    scale_fill_viridis_d()"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#categórica-numérica---heatmaps",
+    "href": "2025/lessons/eda/slides.html#categórica-numérica---heatmaps",
+    "title": "Análisis exploratorio de datos",
+    "section": "Categórica + Numérica - heatmaps",
+    "text": "Categórica + Numérica - heatmaps\n\n\npenguins |&gt; \n    group_by(island, species) |&gt; \n    summarise(mean_bill_len = mean(bill_len, na.rm = TRUE)) |&gt; \n    ggplot() +\n    aes(x = island, y = species, fill = mean_bill_len) +\n    geom_tile(color = \"white\") +\n    geom_text(aes(label = round(mean_bill_len, 2)), color = \"white\")"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#categórica-numérica---datos",
+    "href": "2025/lessons/eda/slides.html#categórica-numérica---datos",
+    "title": "Análisis exploratorio de datos",
+    "section": "Categórica + Numérica - datos",
+    "text": "Categórica + Numérica - datos\n\n\n\npenguins |&gt; \n    group_by(year) |&gt; \n    summarise(\n        mean_bill_len = \n            mean(bill_len, na.rm = TRUE),\n        mean_body_mass = \n            mean(body_mass, na.rm = TRUE),\n        )\n\n# A tibble: 3 × 3\n   year mean_bill_len mean_body_mass\n  &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;\n1  2007          43.7          4125.\n2  2008          43.5          4267.\n3  2009          44.5          4210.\n\n\n\n\npenguins |&gt; \n    filter(\n        island == \"Dream\", \n        species == \"Adelie\", \n        sex == \"male\",\n        body_mass &gt;= 4500) |&gt; \n    select(island, species, sex, body_mass)\n\n  island species  sex body_mass\n1  Dream  Adelie male      4650\n2  Dream  Adelie male      4600"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---scatterplots",
+    "href": "2025/lessons/eda/slides.html#numérica-numérica---scatterplots",
+    "title": "Análisis exploratorio de datos",
+    "section": "Numérica + Numérica - scatterplots",
+    "text": "Numérica + Numérica - scatterplots\n\n\n\nggplot(penguins) +\n    aes(\n        x = body_mass, \n        y = flipper_len\n    ) +\n    geom_point(\n        alpha = 0.4,\n        aes(size = body_mass)\n    )\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n    aes(\n        x = body_mass, \n        y = flipper_len\n    ) +\n    geom_point(\n        size = 5, alpha = 0.4,\n        aes(\n            color = species, \n            shape = sex\n        )\n    )"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---scatterplots-con-regression",
+    "href": "2025/lessons/eda/slides.html#numérica-numérica---scatterplots-con-regression",
+    "title": "Análisis exploratorio de datos",
+    "section": "Numérica + Numérica - scatterplots con regression",
+    "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(\n        size = 5, alpha = 0.4,\n        aes(color = species, shape = sex)\n    ) +\n    geom_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---scatterplots-con-regression-1",
+    "href": "2025/lessons/eda/slides.html#numérica-numérica---scatterplots-con-regression-1",
+    "title": "Análisis exploratorio de datos",
+    "section": "Numérica + Numérica - scatterplots con regression",
+    "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(size = 5, alpha = 0.4, aes(color = island, shape = sex)) +\n    geom_smooth(method = \"lm\") +\n    facet_wrap(vars(species), ncol = 3)"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---regression",
+    "href": "2025/lessons/eda/slides.html#numérica-numérica---regression",
+    "title": "Análisis exploratorio de datos",
+    "section": "Numérica + Numérica - regression",
+    "text": "Numérica + Numérica - regression\n\n\n\nmodel &lt;- lm(\n    formula = flipper_len ~ body_mass + species, \n    data = penguins)\nsummary(model)\n\n\nCall:\nlm(formula = flipper_len ~ body_mass + species, data = penguins)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-14.5455  -3.1845   0.1307   3.3533  17.5313 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)      1.589e+02  2.387e+00  66.564  &lt; 2e-16 ***\nbody_mass        8.402e-03  6.339e-04  13.255  &lt; 2e-16 ***\nspeciesChinstrap 5.597e+00  7.882e-01   7.101 7.33e-12 ***\nspeciesGentoo    1.568e+01  1.091e+00  14.374  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.395 on 338 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.8541,    Adjusted R-squared:  0.8528 \nF-statistic: 659.4 on 3 and 338 DF,  p-value: &lt; 2.2e-16\n\n# install.packages(\"broom\")\n# library(broom)\n# tidy(model)\n\n\n\nAdelie: flipper_len = 158.9 + 0.008402 * body_mass\nChinstrap: flipper_len = (158.9 + 5.597) + 0.008402 * body_mass = 164.5 + 0.008402 * body_mass\nGentoo: flipper_len = (158.9 + 15.68) + 0.008402 * body_mass = 174.6 + 0.008402 * body_mass"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---correlation-heatmap",
+    "href": "2025/lessons/eda/slides.html#numérica-numérica---correlation-heatmap",
+    "title": "Análisis exploratorio de datos",
+    "section": "Numérica + Numérica - correlation heatmap",
+    "text": "Numérica + Numérica - correlation heatmap\n\n\n\n# Seleccionar solo variables numéricas\npenguins_numeric &lt;- penguins |&gt; \n    select(bill_len, bill_dep, flipper_len, body_mass) |&gt; \n    na.omit()\n\n# Calcular matriz de correlación\ncor_matrix &lt;- cor(penguins_numeric)\n\n# Convertir a formato largo para ggplot\ncor_data &lt;- expand.grid(\n    var1 = colnames(cor_matrix), \n    var2 = colnames(cor_matrix)\n) |&gt; \n    mutate(correlation = as.vector(cor_matrix))\n\nround(cor_matrix, 2)\n\n            bill_len bill_dep flipper_len body_mass\nbill_len        1.00    -0.24        0.66      0.60\nbill_dep       -0.24     1.00       -0.58     -0.47\nflipper_len     0.66    -0.58        1.00      0.87\nbody_mass       0.60    -0.47        0.87      1.00\n\n\n\n\nggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +\n    geom_tile(color = \"white\") +\n    geom_text(aes(label = round(correlation, 2)), color = \"white\", size = 5) +\n    scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\", \n                         midpoint = 0, limit = c(-1,1)) +\n    labs(x = \"Variable\", y = \"Variable\", fill = \"Correlación\")"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#ejercicios",
+    "href": "2025/lessons/eda/slides.html#ejercicios",
+    "title": "Análisis exploratorio de datos",
+    "section": "Ejercicios",
+    "text": "Ejercicios\nUsando el conjunto de datos incorporado iris:\n\nGrafica el número de observaciones por especies usando geom_bar\nCalcula la media de Sepal.Length por Species usando group_by y summarise\nGrafica una regresión entre Sepal.Length y Petal.Length para la especie setosa. (Filtra primero para la especie setosa, luego grafica)"
+  },
+  {
+    "objectID": "2025/lessons/eda/slides.html#bibliografia",
+    "href": "2025/lessons/eda/slides.html#bibliografia",
+    "title": "Análisis exploratorio de datos",
+    "section": "Bibliografia",
+    "text": "Bibliografia\nHadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for Data Science, 2ed. https://r4ds.hadley.nz/\nEspecificamente:\nCapitulo 1: https://r4ds.hadley.nz/data-visualize.html\nCapitulo 10: https://r4ds.hadley.nz/EDA.html"
   },
   {
     "objectID": "2025/syllabus.html",
@@ -604,60 +604,75 @@
     ]
   },
   {
-    "objectID": "2025/weeks/week01/page.html",
-    "href": "2025/weeks/week01/page.html",
+    "objectID": "2025/lessons/eda/page.html",
+    "href": "2025/lessons/eda/page.html",
+    "title": "🗓️ Semana XX - Análisis exploratorio de datos",
+    "section": "",
+    "text": "En algún momento de tu carrera en biología y ecología, tendrás que trabajar con datos. Cuando llegue ese momento, deberías tener cierta familiaridad con las diversas herramientas y métodos utilizados para abordar correctamente el análisis de datos. En estas clases comenzaremos a explorar estos temas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "3. Analisis exploratorio de datos"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/eda/page.html#diapositivas-de-la-clase",
+    "href": "2025/lessons/eda/page.html#diapositivas-de-la-clase",
+    "title": "🗓️ Semana XX - Análisis exploratorio de datos",
+    "section": "👨‍🏫 Diapositivas de la Clase",
+    "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "3. Analisis exploratorio de datos"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/eda/page.html#lecturas-recomendadas",
+    "href": "2025/lessons/eda/page.html#lecturas-recomendadas",
+    "title": "🗓️ Semana XX - Análisis exploratorio de datos",
+    "section": "📚 Lecturas Recomendadas",
+    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "3. Analisis exploratorio de datos"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/intro_and_methods/page.html",
+    "href": "2025/lessons/intro_and_methods/page.html",
     "title": "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave",
     "section": "",
     "text": "En la primera semana, presentaremos el curso y discutiremos conceptos fundamentales sobre los métodos científicos inductivo y deductivo, definición de hipótesis y predicciones, diseño experimental y prueba de hipótesis.",
     "crumbs": [
       "2025",
-      "🗓️ Semanas",
-      "Semana 01: Material de clase"
+      "📚 Lecciones",
+      "1. Introducción y metodología"
     ]
   },
   {
-    "objectID": "2025/weeks/week01/page.html#diapositivas-de-la-clase",
-    "href": "2025/weeks/week01/page.html#diapositivas-de-la-clase",
+    "objectID": "2025/lessons/intro_and_methods/page.html#diapositivas-de-la-clase",
+    "href": "2025/lessons/intro_and_methods/page.html#diapositivas-de-la-clase",
     "title": "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave",
     "section": "👨‍🏫 Diapositivas de la Clase",
     "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
     "crumbs": [
       "2025",
-      "🗓️ Semanas",
-      "Semana 01: Material de clase"
+      "📚 Lecciones",
+      "1. Introducción y metodología"
     ]
   },
   {
-    "objectID": "2025/weeks/week01/page.html#lecturas-recomendadas",
-    "href": "2025/weeks/week01/page.html#lecturas-recomendadas",
+    "objectID": "2025/lessons/intro_and_methods/page.html#lecturas-recomendadas",
+    "href": "2025/lessons/intro_and_methods/page.html#lecturas-recomendadas",
     "title": "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave",
     "section": "📚 Lecturas Recomendadas",
     "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
     "crumbs": [
       "2025",
-      "🗓️ Semanas",
-      "Semana 01: Material de clase"
+      "📚 Lecciones",
+      "1. Introducción y metodología"
     ]
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/page.html",
-    "href": "2025/weeks/weekXX-EDA/page.html",
-    "title": "🗓️ Semana XX - Análisis exploratorio de datos",
-    "section": "",
-    "text": "En algún momento de tu carrera en biología y ecología, tendrás que trabajar con datos. Cuando llegue ese momento, deberías tener cierta familiaridad con las diversas herramientas y métodos utilizados para abordar correctamente el análisis de datos. En estas clases comenzaremos a explorar estos temas."
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/page.html#diapositivas-de-la-clase",
-    "href": "2025/weeks/weekXX-EDA/page.html#diapositivas-de-la-clase",
-    "title": "🗓️ Semana XX - Análisis exploratorio de datos",
-    "section": "👨‍🏫 Diapositivas de la Clase",
-    "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas."
-  },
-  {
-    "objectID": "2025/weeks/weekXX-EDA/page.html#lecturas-recomendadas",
-    "href": "2025/weeks/weekXX-EDA/page.html#lecturas-recomendadas",
-    "title": "🗓️ Semana XX - Análisis exploratorio de datos",
-    "section": "📚 Lecturas Recomendadas",
-    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase."
   }
 ]

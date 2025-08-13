@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/weekXX-EDA/slides.html</loc>
-    <lastmod>2025-08-08T16:51:48.771Z</lastmod>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/intro_and_methods/slides.html</loc>
+    <lastmod>2025-08-08T23:53:15.025Z</lastmod>
   </url>
   <url>
-    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/week01/slides.html</loc>
-    <lastmod>2025-08-08T23:53:15.025Z</lastmod>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/eda/slides.html</loc>
+    <lastmod>2025-08-08T16:51:48.771Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/syllabus.html</loc>
@@ -26,18 +26,18 @@
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/index.html</loc>
-    <lastmod>2025-08-12T00:14:29.082Z</lastmod>
+    <lastmod>2025-08-12T23:44:23.290Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/references.html</loc>
     <lastmod>2025-08-08T23:43:03.073Z</lastmod>
   </url>
   <url>
-    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/week01/page.html</loc>
-    <lastmod>2025-07-30T23:58:40.394Z</lastmod>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/eda/page.html</loc>
+    <lastmod>2025-08-06T00:57:22.345Z</lastmod>
   </url>
   <url>
-    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/weeks/weekXX-EDA/page.html</loc>
-    <lastmod>2025-08-06T00:57:22.345Z</lastmod>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/intro_and_methods/page.html</loc>
+    <lastmod>2025-07-30T23:58:40.394Z</lastmod>
   </url>
 </urlset>

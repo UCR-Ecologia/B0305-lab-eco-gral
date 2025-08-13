@@ -8,7 +8,7 @@ format: html
 
 (01/08/2025)
 
-- ¡[🗓️ Material de la semana 01](/2025/weeks/week01/page.qmd) ya está disponible!
+- ¡[🗓️ Material de la semana 01](/2025/lessons/intro_and_methods/page.qmd) ya está disponible!
 
 :::
 
