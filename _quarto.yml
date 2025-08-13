@@ -5,8 +5,7 @@ project:
   render:
     - "index.qmd"
     - "2025/*.qmd"
-    - "2025/weeks/week01/*.qmd"
-    - "2025/weeks/weekXX-EDA/*.qmd"
+    - "2025/lessons/*/*.qmd"
 
 website:
   title: "B0305 Lab Eco Gral 2025"
@@ -38,16 +37,12 @@ website:
             text: "📊 Evaluación"
           - href: 2025/references.qmd
             text: "📚 Referencias"
-          - section: "🗓️ Semanas"
+          - section: "📚 Lecciones"
             contents:
-              - href: 2025/weeks/week01/page.qmd
-                text: "Semana 01: Material de clase"
-              # - href: 2025/weeks/weekXX-EDA/page.qmd
-              #   text: "Semana XX-EDA: Material de clase"
-              # - href: 2025/weeks/week01/lab.qmd
-              #   text: "💻 Lab Roadmap"
-              # - href: 2025/weeks/week01/appendix.qmd
-              #   text: "🔖 Appendix"
+              - href: 2025/lessons/intro_and_methods/page.qmd
+                text: "1. Introducción y metodología"
+              - href: 2025/lessons/eda/page.qmd
+                text: "3. Analisis exploratorio de datos"
 
   navbar:
     background: primary
