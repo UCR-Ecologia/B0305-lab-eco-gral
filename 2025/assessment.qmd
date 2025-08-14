@@ -14,7 +14,7 @@ El curso se aprueba con una nota igual o superior a 7.0. Las personas estudiante
 | 2 reportes en pareja de las prácticas de laboratorio*                  | 20 (10 por reporte)    |
 | 2 reportes grupales de las prácticas de las giras                      | 25 (12.5 por reporte)  |
 | Una presentación de la práctica grupal de la gira de Manú             | 10 (5 en Manú, 5 en UCR)|
-| 1 presentación oral sobre la aplicación de una prueba estadística      | 10                     |
+| 1 presentación oral sobre la aplicación de una prueba estadística en grupo      | 10                     |
 | 1 trabajo de investigación en parejas (Reporte y presentación)         | 35                     |
 | **Total**                                                              | **100**                |
 
@@ -44,15 +44,15 @@ El proyecto de investigación en parejas (35% de la nota final) será evaluado d
 
 | Sección            | Puntos |
 |--------------------|--------|
-| Anteproyecto       | 10     |
-| Informe de avance  | 10     |
-| Reporte            | 65     |
-| Presentación oral  | 15     |
+| [Anteproyecto](#anteproyecto-evaluacion)       | 10     |
+| [Informe de avance](#informe-de-avance-evaluacion)  | 10     |
+| [Reporte](#reporte-investigacion-evaluacion)            | 65     |
+| [Presentación oral](#presentacion-oral-evaluacion)  | 15     |
 | **Total**          | **100**|
 
 ---
 
-El anteproyecto se evaluará de la siguiente manera:
+<a id="anteproyecto-evaluacion">El anteproyecto se evaluará de la siguiente manera:</a>
 
 | Sección      | Puntos |
 |-------------|--------|
@@ -64,7 +64,7 @@ El anteproyecto se evaluará de la siguiente manera:
 
 ---
 
-El informe de avance se evaluará de la siguiente manera:
+<a id="informe-de-avance-evaluacion">El informe de avance se evaluará de la siguiente manera:</a>
 
 | Ítem                                                                                           | Puntos |
 |------------------------------------------------------------------------------------------------|--------|
@@ -74,7 +74,7 @@ El informe de avance se evaluará de la siguiente manera:
 
 ---
 
-El reporte de la investigación en parejas se evalúa siguiendo el siguiente cuadro de secciones:
+<a id="reporte-investigacion-evaluacion">El reporte de la investigación en parejas se evalúa siguiendo el siguiente cuadro de secciones:</a>
 
 | Sección              | Puntos |
 |----------------------|--------|
@@ -85,12 +85,12 @@ El reporte de la investigación en parejas se evalúa siguiendo el siguiente cua
 | Materiales y métodos | 10     |
 | Resultados           | 25     |
 | Discusión            | 25     |
-| Bibliografía         | 5      |
+| Referencias          | 5      |
 | **Total**            | **100**|
 
 ---
 
-Las presentaciones orales se evalúan en base al uso del tiempo, orden, claridad, calidad y dominio, se entregará una rúbrica de calificación al inicio del semestre.
+<a id="presentacion-oral-evaluacion">Las presentaciones orales se evalúan en base al uso del tiempo, orden, claridad, calidad y dominio, se entregará una rúbrica de calificación al inicio del semestre.</a>
 
 ---
 

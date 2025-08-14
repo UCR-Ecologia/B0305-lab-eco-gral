@@ -36,14 +36,14 @@ format: html
   - Poblaciones.
   - Definición de la pregunta sobre poblaciones enfocada en Bosque Municipal Atenas.
   - Métodos.
-  - 🕒 Entrega: Reporte 1 versión 1.
+  - 🕒 Entrega: Reporte 1 versión 1 (Organismos y ambiente).
 - **Semana 7 (26/9):**
   - Métodos/recolecta de datos práctica 2.
   - Recolecta de datos Gira 1 Bosque Municipal de Atenas.
   - Profes y asistentes entregan Reporte 1 revisado.
 - **Semana 8 (3/10):**
   - Análisis de datos poblaciones práctica 1.
-  - 🕒 Entrega final reporte 1.
+  - 🕒 Entrega final reporte 1 (organismos y ambiente).
 
 </details>
 
@@ -54,7 +54,7 @@ format: html
 - **Semana 9 (10/10):**
   - Interacciones Depredación.
   - Pregunta/Métodos.
-  - 🕒 Entrega: Reporte 2.
+  - 🕒 Entrega: Reporte 2 (poblaciónes).
 - **Semana 10 (17/10):**
   - Setup de experimento práctica 3.
 - **Semana 11 (24/10):**
@@ -72,7 +72,7 @@ format: html
 - **Semana 13 (7/11):**
   - Ecosistemas.
   - Pregunta grupal Manú.
-  - 🕒 Entrega: Reporte 3.
+  - 🕒 Entrega: Reporte 3 (interacciones).
 - **Semana 14 (14/11):**
   - Métodos/Recolección de datos.
   - Gira 2 Manú, 14–16 nov.
@@ -81,7 +81,7 @@ format: html
   - Análisis de datos Gira Manú.
 - **Semana 16 (28/11):**
   - Presentaciones orales Gira Manú.
-  - 🕒 Entrega: Reporte 4.
+  - 🕒 Entrega: Reporte 4 (tema propuesto por su grupo).
 
 </details>
 

@@ -1,10 +1,9 @@
 ---
-title: "B0305 -- LAB ECO GRAL"
-subtitle: "Año académico: 2025"
+title: "Referencias - B0305 LAB ECO GRAL 2025"
 format: html
 ---
 
-### Bibliografía
+## Referencias
 
 Andrewartha, H. G. (1970). *Introduction to the study of animal populations* (2nd ed.). Chapman and Hall.  
 
@@ -19,11 +18,11 @@ Farji-Brener, A. G. (2003). Uso correcto, parcial e incorrecto de los términos 
 
 Farji-Brener, A. G. (2004). ¿Son hipótesis las hipótesis estadísticas? *Ecología Austral, 14*(2), 201–203. [📄 PDF](refs/Farji-Brener-2004.pdf)
 
-Farji-Brener, A. G. (2009). ¿Ecólogos o Ególogos? Cuando las ideas someten a los datos. *Austral Ecology, 19*(1), 167–172. [📄 PDF](refs/Farji-Brener-2009.pdf)
+Farji-Brener, A. G. (2009). Why are leaf-cutting ants more common in early secondary forests than in old-growth tropical forests? An evaluation of the palatable forage hypothesis. *Oikos, 118*(4), 532–540. [📄 PDF](refs/Farji-Brener-2009.pdf)
 
-Farji-Brener, A. G. (2021). ¿Cómo surgen las ideas? Algunas sugerencias para estimular la generación de proyectos originales en ecología. *Austral Ecology, 31*(1), 216–224. [📄 PDF](refs/Farji-Brener-2021.pdf)
+Farji-Brener, A. G. (2021). The importance of hypothesis-based thinking in ecology: insights from natural history. *Austral Ecology, 46*(7), 1043–1047. [📄 PDF](refs/Farji-Brener-2021.pdf)
 
-Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates. [📄 PDF - Cap. 4](refs/Gotelli-2004-cap-4.pdf) | [📄 PDF - Cap. 6](refs/Gotelli-2004-cap-6.pdf)  
+Gotelli, N. J., & Ellison, A. M. (2004). *A primer of ecological statistics* (Vol. 1). Sinauer Associates. [📄 PDF - Cap. 4](refs/Gotelli-2004-cap-4.pdf) | [📄 PDF - Cap. 6](refs/Gotelli-2004-cap-6.pdf) 
 
 Krebs, C. J. (1999). *Ecological methodology* (2nd ed.). Benjamin Cummings. http://www.zoology.ubc.ca/~krebs/books.html  
 
