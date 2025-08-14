@@ -1,9 +1,8 @@
 ---
-title: "Análisis exploratorio de datos"
+title: "Introducción a R"
 ---
 
-En algún momento de tu carrera en biología y ecología, tendrás que trabajar con datos. Cuando llegue ese momento, deberías tener cierta familiaridad
-con las diversas herramientas y métodos utilizados para abordar correctamente el análisis de datos. En estas clases comenzaremos a explorar estos temas.
+En la primera semana, presentaremos el curso y discutiremos conceptos fundamentales sobre los métodos científicos inductivo y deductivo, definición de hipótesis y predicciones, diseño experimental y prueba de hipótesis.
 
 ## 👨‍🏫 Diapositivas de la Clase
 

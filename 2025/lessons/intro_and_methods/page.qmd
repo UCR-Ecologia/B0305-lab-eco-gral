@@ -1,5 +1,5 @@
 ---
-title: "🗓️ Semana 01 - Introducción, Contexto y Conceptos Clave"
+title: "Introducción, Contexto y Conceptos Clave"
 ---
 
 En la primera semana, presentaremos el curso y discutiremos conceptos fundamentales sobre los métodos científicos inductivo y deductivo, definición de hipótesis y predicciones, diseño experimental y prueba de hipótesis.

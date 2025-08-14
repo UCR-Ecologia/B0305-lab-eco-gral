@@ -41,6 +41,8 @@ website:
             contents:
               - href: 2025/lessons/intro_and_methods/page.qmd
                 text: "1. Introducción y metodología"
+              - href: 2025/lessons/r_primer/page.qmd
+                text: "2. Introducción a R y `{renv}`"
               - href: 2025/lessons/eda/page.qmd
                 text: "3. Analisis exploratorio de datos"
 

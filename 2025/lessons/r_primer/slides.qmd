@@ -1,0 +1,345 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://<https://ucr-ecologia.github.io/B0305-lab-eco-gral/>' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'> Introducción a R</font>"
+author: Prof. G. Avalos y T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: true
+    logo: /figures/icons/course_favicon.png
+    css: /css/styles_slides.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+  cache: true
+---
+
+# R. Que? Por que?
+
+## ¿Qué es R? {.smaller}
+- Lenguaje de programación estadística **gratuito y de código abierto**
+- Desarrollado específicamente para análisis de datos y estadística
+- Amplia comunidad científica y de desarrolladores
+- Miles de paquetes especializados disponibles
+
+## ¿Por qué R? {.smaller}
+
+- Excelentes capacidades de procesamiento de datos
+- Excelentes capacidades de modelado estadístico
+- Excelentes gráficos, visualizaciones hermosas
+- Excelente soporte para programación reproducible
+- Excelente soporte para visualización interactiva de datos
+
+- Ampliamente usado en Ecología, Evolución, Bioinformática, ...
+- Especialmente útil para análisis ecológicos y evolutivos especializados
+- Muchas extensiones escritas por científicos y desarrolladores de métodos específicamente para problemas biológicos
+
+## ¿Qué es RStudio? {.smaller}
+- **Entorno de desarrollo integrado (IDE)** para R
+- Interfaz gráfica amigable para usar R
+- Facilita la escritura de código, visualización de datos y manejo de proyectos
+- **Gratuito** para uso personal y académico
+
+# Installation
+
+## Instalación de R {.smaller}
+
+1. **Visitar** [**https://www.r-project.org/**](https://www.r-project.org/)
+2. **Hacer clic** en "Download R" → "CRAN"
+3. **Seleccionar** un mirror (ej: "Universidad de Costa Rica")
+4. **Elegir** tu sistema operativo:
+   - **Windows**: "Download R for Windows" → "base" → "Download R 4.x.x for Windows"
+   - **macOS**: "Download R for macOS" → seleccionar la versión apropiada
+   - **Linux**: seguir instrucciones para tu distribución
+5. **Ejecutar** el instalador descargado y seguir las instrucciones
+
+## Instalación de RStudio {.smaller}
+
+1. **Primero instalar R** (paso anterior)
+2. **Visitar** [**https://posit.co/downloads/**](https://posit.co/downloads/)
+3. **Scroll down** hasta "RStudio Desktop"
+4. **Hacer clic** en "Download RStudio Desktop"
+5. **Seleccionar** la versión gratuita: "RStudio Desktop Open Source License"
+6. **Elegir** tu sistema operativo y descargar
+7. **Ejecutar** el instalador y seguir las instrucciones
+
+::: {.fragment}
+::: {.callout-warning title = "Importante"}
+- **R debe estar instalado ANTES que RStudio**
+- RStudio es solo la interfaz; R es el motor
+:::
+:::
+
+## Verificación de la instalación {.smaller}
+
+::: {.columns}
+::: {.column}
+1. **Abrir RStudio** (no R directamente)
+2. **En la consola** (panel inferior izquierdo), escribir:
+3. **Si aparecen los resultados**, ¡la instalación fue exitosa! 🎉
+:::
+
+::: {.column}
+::: {.fragment}
+```{r}
+# Verificar versión de R
+R.version.string
+
+# Hacer un cálculo simple
+2 + 2
+
+# Crear un vector simple
+mi_vector <- c(1, 2, 3, 4, 5)
+mi_vector
+```
+:::
+:::
+::: 
+
+## Recursos adicionales:
+- **Manual oficial**: [https://cran.r-project.org/doc/manuals/r-release/R-intro.html](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+- **RStudio Cheatsheets**: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
+
+# Entorno de R
+
+## ¿Qué es renv? {.smaller}
+
+::: {.fragment}
+#### Problema común:
+- "Mi código funciona en mi computadora, pero no en la tuya" 😕
+- Diferentes versiones de paquetes
+- Incompatibilidades entre estudiantes
+- Dificultad para reproducir análisis
+:::
+
+::: {.fragment}
+#### Solución: renv
+- **Gestión de entornos** reproducibles en R
+- **Congela** versiones específicas de paquetes
+- **Garantiza** que todos tengan el mismo entorno
+- **Facilita** la colaboración y enseñanza
+:::
+
+## Configuración del curso {.smaller}
+
+### Paquetes incluidos para ecología:
+::: {.fragment}
+**📊 Análisis y Visualización:**  
+- `readr/readxl` - Importar datos   
+- `dplyr` - Transformación de datos  
+- `ggplot2` - Gráficos hermosos  
+:::
+
+::: {.fragment}
+**🔬 Análisis ecológico:**  
+- `vegan` - Análisis de comunidades
+:::
+
+::: {.fragment}
+**📝 Reportes:**  
+- `rmarkdown` - Documentos reproducibles  
+- `quarto` - Reportes modernos  
+- `kableExtra` - Tablas bonitas  
+:::
+
+
+## Instalación y uso {.smaller}
+
+::: {.fragment}
+#### Paso 1: Instalar renv
+```{r}
+#| eval: false
+install.packages("renv")
+```
+:::
+
+::: {.fragment}
+#### Paso 2: Descargar archivo de configuración
+- **Descargar** el archivo `renv.lock` desde: [**https://ucr-ecologia.github.io/B0305-lab-eco-gral/renv.lock**](https://ucr-ecologia.github.io/B0305-lab-eco-gral/renv.lock)
+- **Guardar** en tu directorio de trabajo de R
+:::
+
+::: {.fragment}
+#### Paso 3: Activar el entorno del curso
+```{r}
+#| eval: false
+# En el directorio donde guardaste renv.lock:
+renv::restore()
+```
+:::
+::: {.fragment}
+#### Paso 4: Verificar que funciona
+```{r}
+#| eval: false
+library(tidyverse)
+library(vegan)
+library(ggplot2)
+# Si no hay errores, ¡todo listo! 🎉
+```
+:::
+
+::: {.fragment}
+### ⚠️ Solo necesitas hacer esto UNA VEZ al inicio del curso
+:::
+
+
+# Ejercicios
+
+## Ejercicio 1: Primeros pasos con R {.smaller}
+
+### Operaciones básicas y variables
+
+```{r}
+#| eval: false
+# 1. Realiza las siguientes operaciones matemáticas:
+5 + 3
+10 - 4
+6 * 7
+20 / 4
+2^3
+
+# 2. Crea variables y úsalas:
+mi_edad <- 25
+tu_edad <- 30
+edad_promedio <- (mi_edad + tu_edad) / 2
+edad_promedio
+
+# 3. Crea un vector con las edades de tu grupo:
+edades_grupo <- c(22, 25, 19, 28, 21)
+mean(edades_grupo)  # promedio
+```
+
+---
+
+## Ejercicio 2: Trabajando con vectores {.smaller}
+
+### Manipulación de datos básicos
+
+```{r}
+#| eval: false
+# 1. Crea vectores de datos ecológicos:
+especies <- c("Quercus", "Pinus", "Cecropia", "Ficus", "Inga")
+alturas <- c(15.2, 22.8, 8.5, 18.3, 12.1)  # metros
+diametros <- c(45, 67, 23, 52, 38)  # cm
+
+# 2. Explora los datos:
+length(especies)  # número de especies
+max(alturas)      # altura máxima
+min(diametros)    # diámetro mínimo
+mean(alturas)     # altura promedio
+
+# 3. Filtra datos:
+especies[alturas > 15]  # especies con altura > 15m
+alturas[diametros < 50] # alturas con diámetro < 50cm
+```
+
+---
+
+## Ejercicio 3: Data frames y análisis {.smaller}
+
+### Creando y analizando conjuntos de datos
+
+```{r}
+#| eval: false  
+# 1. Crea un data frame:
+arboles <- data.frame(
+  especie = c("Quercus", "Pinus", "Cecropia", "Ficus", "Inga"),
+  altura = c(15.2, 22.8, 8.5, 18.3, 12.1),
+  diametro = c(45, 67, 23, 52, 38),
+  sitio = c("bosque", "bosque", "claro", "ribera", "claro")
+)
+
+# 2. Explora el data frame:
+head(arboles)          # primeras filas
+str(arboles)           # estructura
+summary(arboles)       # resumen estadístico
+
+# 3. Análisis por sitio:
+mean(arboles$altura[arboles$sitio == "bosque"])
+table(arboles$sitio)   # frecuencia por sitio
+```
+
+---
+
+## Ejercicio 4: Visualización básica {.smaller}
+
+### Gráficos simples para datos ecológicos
+
+```{r}
+#| eval: false
+# Usando los datos del ejercicio anterior:
+
+# 1. Gráfico de dispersión:
+plot(arboles$diametro, arboles$altura,
+     xlab = "Diámetro (cm)", 
+     ylab = "Altura (m)",
+     main = "Relación Diámetro-Altura")
+
+# 2. Boxplot por sitio:
+boxplot(altura ~ sitio, data = arboles,
+        xlab = "Tipo de sitio",
+        ylab = "Altura (m)",
+        main = "Altura por tipo de sitio")
+
+# 3. Histograma:
+hist(arboles$altura, 
+     xlab = "Altura (m)", 
+     main = "Distribución de alturas")
+```
+
+---
+
+## Ejercicio 5: Configuración del entorno {.smaller}
+
+### Práctica con renv y paquetes del curso
+
+```{r}
+#| eval: false
+# 1. Configurar renv (solo la primera vez):
+install.packages("renv")
+renv::restore()  # instalar paquetes del curso
+
+# 2. Cargar paquetes principales:
+library(tidyverse)
+library(vegan)
+
+# 3. Probar con datos de ejemplo:
+data(penguins, package = "palmerpenguins")
+head(penguins)
+
+# 4. Crear un gráfico con ggplot2:
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  labs(title = "Dimensiones del pico en pingüinos",
+       x = "Longitud del pico (mm)",
+       y = "Profundidad del pico (mm)")
+
+# 5. Verificar que vegan funciona:
+library(vegan)
+data(dune)
+diversity(dune, index = "shannon")
+```
+
+
+
+
+# Bibliografia {.smaller}
+
+Manual oficial: https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+
+RStudio Cheatsheets:https://posit.co/resources/cheatsheets/
+
+Gromelund, G. 2014. Hands on Programming with R. https://rstudio-education.github.io/hopr/index.html

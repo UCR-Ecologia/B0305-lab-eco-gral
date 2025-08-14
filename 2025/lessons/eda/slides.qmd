@@ -449,7 +449,7 @@ ggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +
 :::
 :::
 
-## Ejercicios {.smaller}
+# Ejercicios {.smaller}
 
 Usando el conjunto de datos incorporado `iris`:
 
@@ -457,7 +457,7 @@ Usando el conjunto de datos incorporado `iris`:
 - Calcula la media de `Sepal.Length` por `Species` usando `group_by` y `summarise`
 - Grafica una regresión entre `Sepal.Length` y `Petal.Length` para la especie `setosa`. (Filtra primero para la especie setosa, luego grafica)
 
-## Bibliografia {.smaller}
+# Bibliografia {.smaller}
 
 Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for Data Science, 2ed. https://r4ds.hadley.nz/
 

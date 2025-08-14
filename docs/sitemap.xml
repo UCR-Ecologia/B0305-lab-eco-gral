@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/r_primer/slides.html</loc>
+    <lastmod>2025-08-14T18:05:54.662Z</lastmod>
+  </url>
+  <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/intro_and_methods/slides.html</loc>
     <lastmod>2025-08-08T23:53:15.025Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/eda/slides.html</loc>
-    <lastmod>2025-08-08T16:51:48.771Z</lastmod>
+    <lastmod>2025-08-14T17:02:58.306Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/syllabus.html</loc>
-    <lastmod>2025-08-05T18:15:21.883Z</lastmod>
+    <lastmod>2025-08-14T16:54:54.764Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/methodology.html</loc>
-    <lastmod>2025-08-05T16:16:59.918Z</lastmod>
+    <lastmod>2025-08-14T16:54:59.368Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/assessment.html</loc>
-    <lastmod>2025-08-05T16:17:30.280Z</lastmod>
+    <lastmod>2025-08-14T16:59:20.524Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/index.html</loc>
-    <lastmod>2025-08-08T23:36:08.443Z</lastmod>
+    <lastmod>2025-08-14T16:41:33.997Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/index.html</loc>
-    <lastmod>2025-08-12T23:44:23.290Z</lastmod>
+    <lastmod>2025-08-14T16:55:01.453Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/references.html</loc>
-    <lastmod>2025-08-08T23:43:03.073Z</lastmod>
+    <lastmod>2025-08-14T16:57:42.555Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/eda/page.html</loc>
-    <lastmod>2025-08-06T00:57:22.345Z</lastmod>
+    <lastmod>2025-08-13T00:15:43.801Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/intro_and_methods/page.html</loc>
-    <lastmod>2025-07-30T23:58:40.394Z</lastmod>
+    <lastmod>2025-08-13T00:15:29.072Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/r_primer/page.html</loc>
+    <lastmod>2025-08-13T00:15:24.288Z</lastmod>
   </url>
 </urlset>
