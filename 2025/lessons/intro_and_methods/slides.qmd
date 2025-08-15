@@ -128,7 +128,7 @@ Sitio web del curso:  [https://ucr-ecologia.github.io/B0305-lab-eco-gral](https:
 
 ## ¿Qué proponen de hipótesis?
 
-![](/2025/weeks/week01/img/20t_peces.jpeg)
+![](/2025/lessons/intro_and_methods/img/20t_peces.jpeg)
 
 3 de marzo 2017. Veinte toneladas de peces muertos en el Golfo de Nicoya
 
