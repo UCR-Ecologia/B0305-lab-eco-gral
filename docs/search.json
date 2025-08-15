@@ -382,7 +382,7 @@
     "href": "2025/lessons/eda/slides.html#preparación",
     "title": "Análisis exploratorio de datos",
     "section": "Preparación",
-    "text": "Preparación\n\nUsaremos los paquetes {tidyverse}\n{ggplot2} para visualización\n{dplyr} para manipulación de datos\n\n\nInstalación: Esto se hace una vez, al configurar el entorno.\n\ninstall.packages(\"ggplot2\")\ninstall.packages(\"dplyr\")\n\n\n\nLuego, para usar los paquetes hay que cargarlos.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n# Establecer tema global para todos los gráficos\ntheme_set(theme_bw())"
+    "text": "Preparación\n\nUsaremos los paquetes {tidyverse}\n{ggplot2} para visualización\n{dplyr} para manipulación de datos\n\n\nConfiguración del entorno: Ya configuramos nuestro entorno en la clase anterior.\n\n# Si aún no has configurado el entorno:\nrenv::restore()  # Instala todos los paquetes necesarios\n\n\n\nCargar los paquetes necesarios:\n\nlibrary(ggplot2)\nlibrary(dplyr)\n# Establecer tema global para todos los gráficos\ntheme_set(theme_bw())"
   },
   {
     "objectID": "2025/lessons/eda/slides.html#variables-categóricas-discretas",

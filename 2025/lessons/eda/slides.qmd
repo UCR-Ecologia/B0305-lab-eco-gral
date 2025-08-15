@@ -86,16 +86,16 @@ summary(penguins)
 - [`{dplyr}`](https://dplyr.tidyverse.org/) para manipulación de datos
 
 ::: {.fragment}
-Instalación: Esto se hace una vez, al configurar el entorno. 
+**Configuración del entorno:** Ya configuramos nuestro entorno en la clase anterior.
 
 ```{r, eval = FALSE, echo = TRUE}
-install.packages("ggplot2")
-install.packages("dplyr")
+# Si aún no has configurado el entorno:
+renv::restore()  # Instala todos los paquetes necesarios
 ```
 :::
 
 ::: {.fragment}
-Luego, para usar los paquetes hay que cargarlos. 
+Cargar los paquetes necesarios:
 ```{r, echo = TRUE}
 library(ggplot2)
 library(dplyr)

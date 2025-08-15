@@ -340,14 +340,14 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <li class="fragment"><a href="https://dplyr.tidyverse.org/"><code>{dplyr}</code></a> para manipulación de datos</li>
 </ul>
 <div class="fragment">
-<p>Instalación: Esto se hace una vez, al configurar el entorno.</p>
+<p><strong>Configuración del entorno:</strong> Ya configuramos nuestro entorno en la clase anterior.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb10-2"><a></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Si aún no has configurado el entorno:</span></span>
+<span id="cb10-2"><a></a>renv<span class="sc">::</span><span class="fu">restore</span>()  <span class="co"># Instala todos los paquetes necesarios</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
-<p>Luego, para usar los paquetes hay que cargarlos.</p>
+<p>Cargar los paquetes necesarios:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb11-2"><a></a><span class="fu">library</span>(dplyr)</span>
