@@ -1,0 +1,38 @@
+/* Custom CSS for modeling slides */
+.reveal {
+  font-size: 1.4em;
+}
+
+/* Code block font size */
+.reveal pre {
+  font-size: 0.6em;
+}
+
+.reveal code {
+  font-size: 0.8em;
+}
+
+/* Specific for code chunks */
+.reveal .sourceCode {
+  font-size: 0.6em;
+}
+
+/* Two-column layout support */
+.reveal .columns {
+  display: flex;
+  align-items: flex-start;
+}
+
+.reveal .column {
+  flex: 1;
+  margin: 0 10px;
+}
+
+/* Smaller margins for side-by-side content */
+.reveal .columns pre {
+  margin: 0.5em 0;
+}
+
+.reveal .columns .cell-output {
+  margin: 0.5em 0;
+}

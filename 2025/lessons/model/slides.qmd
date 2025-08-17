@@ -1,0 +1,833 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://<https://ucr-ecologia.github.io/B0305-lab-eco-gral/>' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'> Modelado en R</font>"
+author: Prof. G. Avalos y T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: true
+    logo: /figures/icons/course_favicon.png
+    css: 
+      - /css/styles_slides.css
+      - custom.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+  cache: false
+---
+
+# Introducción al Modelado
+
+## ¿Qué es un modelo?
+
+::: {.fragment}
+### Definición
+
+Un **modelo** es una representación simplificada de un proceso o sistema real que nos ayuda a:
+
+- **Entender** patrones en los datos
+
+- **Predecir** valores futuros  
+
+- **Probar hipótesis** sobre mecanismos biológicos
+:::
+
+::: {.fragment}
+### Ejemplo: Crecimiento de levaduras
+Imaginemos que cultivamos levaduras en el laboratorio y medimos su densidad poblacional a lo largo del tiempo...
+
+**¿Qué tipo de patrón esperaríamos ver?** 🤔
+:::
+
+---
+
+## Patrón típico del crecimiento microbiano
+
+::: {.fragment}
+### Fase lag (retraso)
+
+**Primeras horas:** Las células se adaptan al medio, casi no hay crecimiento
+:::
+
+::: {.fragment}
+### Fase exponencial (logarítmica)
+
+**Crecimiento rápido:** Recursos abundantes, las células se dividen a máxima velocidad
+
+- Duplicación constante: 1 → 2 → 4 → 8 → 16...
+
+- **¡Patrón exponencial!** $N(t) = N_0 \cdot e^{rt}$
+:::
+
+::: {.fragment}
+### Fase estacionaria
+
+**Recursos limitados:** Nutrientes se agotan, se acumulan toxinas
+
+- **Capacidad de carga:** Densidad máxima que el medio puede sostener
+
+- **Crecimiento se desacelera** hasta detenerse
+:::
+
+::: {.fragment}
+### Resultado: **Curva sigmoidea (forma de S)**
+*¿Qué modelo matemático describe mejor este patrón?* 🤔
+:::
+
+## La ecuación de crecimiento exponencial
+
+::: {.fragment}
+**Durante la fase exponencial**, el crecimiento se describe con:  
+$$N(t) = N_0 \cdot e^{rt}$$
+:::
+
+::: {.fragment}
+**Donde:**  
+- $N(t)$ = densidad poblacional en el tiempo $t$  
+- $N_0$ = densidad poblacional inicial (en $t = 0$)    
+- $r$ = tasa intrínseca de crecimiento (por unidad de tiempo)  
+- $e$ = base del logaritmo natural (≈ 2.718)  
+- $t$ = tiempo  
+:::
+
+::: {.fragment}
+**Interpretación biológica:**  
+- Si $r > 0$: población crece exponencialmente  
+- Si $r = 0$: población constante   
+- Si $r < 0$: población decrece exponencialmente  
+:::
+
+::: {.fragment}
+**Problema:** Que pasa cuando se agotan los recursos?
+:::
+
+---
+
+## Aggregando capacidad de carga
+
+::: {.fragment}
+**Problema del modelo exponencial:** ¡Crecimiento infinito es imposible!
+
+En la realidad, los recursos son **limitados**:  
+- Espacio físico finito  
+- Nutrientes se agotan   
+- Acumulación de desechos tóxicos  
+- Competencia entre individuos  
+:::
+
+::: {.fragment}
+**Solución:** Introducir la **capacidad de carga** ($K$)  
+
+$$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$
+:::
+
+::: {.fragment}
+**Parámetros del modelo logístico:**  
+- $K$ = **capacidad de carga** (densidad máxima sostenible)  
+- $r$ = tasa intrínseca de crecimiento (cuando N << K)  
+- $N_0$ = densidad inicial  
+:::
+
+::: {.fragment} 
+**Comportamiento del modelo:**  
+- Cuando $N \ll K$: crecimiento ≈ exponencial  
+- Cuando $N \approx K/2$: máxima tasa de crecimiento  
+- Cuando $N \to K$: crecimiento se desacelera hacia cero  
+:::
+
+## Datos de crecimiento de levaduras
+
+Simulemos datos realistas de crecimiento de *Saccharomyces cerevisiae*:
+
+```{r}
+#| echo: true
+# Crear datos de crecimiento de levaduras
+set.seed(123)
+tiempo <- seq(0, 24, by = 2)  # horas
+# Crecimiento logístico con ruido
+K <- 1000  # capacidad de carga
+r <- 0.3   # tasa de crecimiento
+N0 <- 10   # población inicial
+
+densidad_real <- K / (1 + ((K - N0) / N0) * exp(-r * tiempo))
+# Añadir ruido realista
+densidad <- densidad_real * exp(rnorm(length(tiempo), 0, 0.1))
+
+# Crear data frame
+levaduras <- data.frame(tiempo = tiempo, densidad = densidad)
+head(levaduras, 8)
+```
+
+---
+
+## Visualizar los datos
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+```{r}
+#| eval: true
+#| echo: true
+library(ggplot2)
+
+# Configurar tema global para todos los gráficos
+theme_set(theme_bw())
+
+p1 <- ggplot(levaduras, aes(x = tiempo, y = densidad)) +
+  geom_point(size = 3, color = "steelblue") +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)",
+       title = "Crecimiento de Saccharomyces cerevisiae")
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 6
+# Mostrar el gráfico
+p1
+```
+:::
+
+:::
+
+**¿Qué patrón observas? ¿Cómo modelarías este crecimiento?** 🤔
+
+# Modelo 1: Regresión Lineal
+
+## Intentemos un modelo lineal
+
+**Hipótesis ingenua:** La densidad aumenta linealmente con el tiempo
+
+```{r}
+#| echo: true
+# Ajustar modelo lineal
+modelo_lineal <- lm(densidad ~ tiempo, data = levaduras)
+summary(modelo_lineal)
+```
+
+---
+
+## Visualizar el ajuste lineal
+
+::: {.columns}
+
+::: {.column width="60%"}
+
+```{r}
+#| eval: true
+#| echo: true
+p2 <- ggplot(levaduras, aes(x = tiempo, y = densidad)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", size = 1.2) +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)",
+       title = "Modelo Lineal: ¿Buen ajuste?")
+```
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 6
+p2
+```
+:::
+
+:::
+
+**¿Qué problemas observas con este modelo?** 🚨
+
+---
+
+## Diagnósticos del modelo lineal
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+```{r}
+#| echo: true
+#| fig-height: 5
+#| fig-width: 8
+# Gráficos de diagnóstico
+par(mfrow = c(1, 2))
+plot(modelo_lineal, which = 1:2)
+```
+
+::: {.fragment}
+```{r}
+predicciones <- predict(modelo_lineal)
+tiempo_negativo <- levaduras$tiempo[predicciones < 0]
+cat(
+  "Tiempos con predicciones negativas:", 
+  tiempo_negativo
+)
+```
+:::
+
+:::
+:::
+::: {.column}
+::: {.fragment}
+**Problemas evidentes:**  
+- Residuos no aleatorios (patrón curvo)  
+- Heteroscedasticidad (varianza no constante)  
+- ¡El modelo predice densidades negativas!  
+:::
+:::
+::: 
+
+
+# Modelo 2: Regresión Log-Lineal
+
+## Transformación logarítmica
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+**Nueva hipótesis:** El crecimiento es exponencial (al menos inicialmente)
+
+Si: $N(t) = N_0 \cdot e^{rt}$
+
+Entonces: $\log(N(t)) = \log(N_0) + rt$
+:::
+:::
+::: {.column}
+::: {.fragment}
+```{r}
+#| echo: true
+# Crear variable transformada
+levaduras$log_densidad <- log(levaduras$densidad)
+
+# Ajustar modelo log-lineal
+modelo_log <- lm(log_densidad ~ tiempo, data = levaduras)
+summary(modelo_log)
+```
+:::
+:::
+::: 
+
+---
+
+## Visualizar en escala logarítmica
+
+::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| eval: true
+#| echo: true
+p3 <- ggplot(levaduras, aes(x = tiempo, y = log_densidad)) +
+  geom_point(size = 3, color = "darkgreen") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", size = 1.2) +
+  labs(x = "Tiempo (horas)", 
+       y = "log(Densidad)",
+       title = "Modelo Log-Lineal")
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 6
+p3
+```
+:::
+
+:::
+
+**¿Mejor ajuste en los primeros puntos, pero qué pasa después?** 🤔
+
+---
+
+## Comparar modelos en escala original
+
+::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| eval: true
+#| echo: true
+# Predicciones del modelo log-lineal
+levaduras$pred_log <- exp(predict(modelo_log))
+
+p4 <- ggplot(levaduras, aes(x = tiempo, y = densidad)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_line(aes(y = pred_log), color = "darkgreen", size = 1.2) +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)",
+       title = "Modelo Log-Lineal vs Datos Reales")
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 6
+p4
+```
+:::
+
+:::
+
+**Problema:** ¡Predice crecimiento exponencial infinito! 📈
+
+# Modelo 3: Crecimiento Logístico
+
+## El modelo biológicamente realista
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+**Hipótesis biológica:** Las poblaciones tienen una capacidad de carga limitada
+
+$$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$
+
+Donde:  
+- $K$ = capacidad de carga (densidad máxima)  
+- $r$ = tasa intrínseca de crecimiento    
+- $N_0$ = densidad inicial  
+:::
+:::
+
+::: {.column}
+::: {.fragment}
+```{r}
+#| echo: true
+# Ajustar modelo logístico usando nls()
+# Non-linear least squares 
+modelo_logistico <- nls(
+  densidad ~ K / (1 + ((K - N0) / N0) * exp(-r * tiempo)),
+  data = levaduras,
+  start = list(K = 800, r = 0.2, N0 = 15)  # valores iniciales
+)
+
+summary(modelo_logistico)
+```
+:::
+:::
+::: 
+
+---
+
+## Visualizar el modelo logístico
+
+::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| eval: true
+#| echo: true
+levaduras$pred_logistico <- predict(modelo_logistico)
+
+p5 <- ggplot(levaduras, aes(x = tiempo, y = densidad)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_line(aes(y = pred_logistico), color = "purple", size = 1.2) +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)",
+       title = "Modelo Logístico: ¡Ajuste Biológicamente Realista!")
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 6
+p5
+```
+:::
+
+:::
+
+---
+
+## Comparación de los tres modelos
+
+::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| eval: true
+#| echo: true
+# Preparar datos para comparación
+levaduras$pred_lineal <- predict(modelo_lineal)
+levaduras$pred_logistico <- predict(modelo_logistico)
+
+p6 <- ggplot(levaduras, aes(x = tiempo, y = densidad)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_line(aes(y = pred_lineal, color = "Lineal"), 
+            size = 1) +
+  geom_line(aes(y = pred_log, color = "Log-lineal"), 
+            size = 1) +
+  geom_line(aes(y = pred_logistico, color = "Logístico"), 
+            size = 1) +
+  scale_color_manual(values = c("Lineal" = "red", 
+                               "Log-lineal" = "darkgreen", 
+                               "Logístico" = "purple")) +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)",
+       title = "Comparación de Modelos",
+       color = "Modelo")
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 7
+p6
+```
+:::
+
+:::
+
+# Evaluación de Modelos
+
+## Criterios de evaluación
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+**¿Cómo decidimos cuál modelo es mejor?**
+
+1. **R² (coeficiente de determinación)**
+2. **Análisis de residuos**
+3. **Interpretabilidad biológica**
+4. **AIC/BIC** (Otras opciones mas avanzadas...)
+:::
+:::
+::: {.column width="60%"}
+::: {.fragment}
+```{r}
+#| echo: true
+# Calcular R² para cada modelo
+r2_lineal <- summary(modelo_lineal)$r.squared
+r2_log <- summary(modelo_log)$r.squared
+
+# Para modelo logístico, tenemos que calcular R2 manualmente
+# ss_total = suma total de cuadrados (variación total en los datos)
+ss_total <- sum((levaduras$densidad - mean(levaduras$densidad))^2)
+# ss_residual = suma de cuadrados de residuos (variación no explicada)
+ss_residual <- sum(residuals(modelo_logistico)^2)
+# R2 = 1 - (variación no explicada / variación total)
+r2_logistico <- 1 - (ss_residual / ss_total)
+
+data.frame(
+  Modelo = c("Lineal", "Log-lineal", "Logístico"),
+  R_cuadrado = round(c(r2_lineal, r2_log, r2_logistico), 3)
+)
+```
+:::
+:::
+::: 
+
+---
+
+## Análisis de residuos
+
+::: {.columns}
+::: {.column width="60%"}
+```{r}
+#| eval: true
+#| echo: true
+# Crear data frame con residuos
+residuos_df <- data.frame(
+  tiempo = rep(levaduras$tiempo, 3),
+  residuos = c(residuals(modelo_lineal), 
+               residuals(modelo_log), 
+               residuals(modelo_logistico)),
+  modelo = rep(c("Lineal", "Log-lineal", "Logístico"), 
+               each = nrow(levaduras))
+)
+
+p7 <- ggplot(residuos_df) +
+  aes(x = tiempo, y = residuos, color = modelo) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  facet_wrap(~modelo, scales = "free_y") +
+  labs(
+    x = "Tiempo (horas)", 
+    y = "Residuos",
+    title = "Análisis de Residuos por Modelo") +
+  theme(legend.position = "bottom")
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| eval: true
+#| echo: true
+#| fig-height: 6
+#| fig-width: 8
+p7
+```
+:::
+
+:::
+
+**¿Qué modelo tiene los residuos más aleatorios?** 🎯
+
+---
+
+## ⚠️ Cuidado con los residuos transformados
+
+::: {.incremental}
+- Los residuos del modelo **log-lineal** están en **escala logarítmica**
+- No son directamente comparables con residuos en escala original
+- Para comparar correctamente, necesitamos calcular residuos en la **misma escala**
+:::
+
+::: {.fragment}
+```{r}
+#| echo: true
+# Residuos en escala original para todos los modelos
+residuos_originales <- data.frame(
+  tiempo = levaduras$tiempo,
+  lineal = levaduras$densidad - predict(modelo_lineal),
+  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!
+  logistico = levaduras$densidad - predict(modelo_logistico)
+)
+
+# Calcular suma de cuadrados de residuos en escala original
+rss_original <- sapply(residuos_originales[,-1], function(x) sum(x^2))
+print(round(rss_original, 2))
+```
+:::
+
+::: {.fragment}
+**Ahora sí podemos comparar correctamente** ✅
+:::
+
+---
+
+## Residuos en escala original - Comparación visual
+
+::: {.fragment}
+**Ahora podemos ver cuál modelo realmente ajusta mejor** 👀
+:::
+
+::: {.fragment}
+::: {.columns}
+::: {.column width = "60%"}
+```{r}
+#| echo: true
+#| fig-height: 7
+# Crear data frame para visualización
+residuos_originales_plot <- data.frame(
+  tiempo = rep(levaduras$tiempo, 3),
+  residuos = c(residuos_originales$lineal, 
+               residuos_originales$log_lineal, 
+               residuos_originales$logistico),
+  modelo = rep(c("Lineal", "Log-lineal", "Logístico"), 
+               each = nrow(levaduras))
+)
+
+p8 <- ggplot(residuos_originales_plot) +
+  aes(x = tiempo, y = residuos, color = modelo) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  facet_wrap(~modelo) +
+  labs(x = "Tiempo (horas)", 
+       y = "Residuos (escala original)",
+       title = "Residuos en Escala Original - Comparación Justa"
+    ) +
+  theme(legend.position = "bottom")
+```
+
+:::
+::: {.column width = "40%"}
+```{r}
+p8
+```
+:::
+::: 
+:::
+
+## Residuos en escala original - Comparación visual
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6
+p8
+```
+
+
+# Interpretación Biológica
+
+## Parámetros del modelo logístico
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+
+### Tasa, Capacidad de carga, densidad $t0$
+```{r}
+#| echo: true
+# Extraer parámetros estimados
+params <- coef(modelo_logistico)
+print(params)
+```
+:::
+
+::: {.fragment}
+
+### Intervalos de confianza
+```{r}
+#| echo: true
+# Calcular intervalos de confianza
+conf_int <- confint(modelo_logistico)
+print(conf_int)
+```
+:::
+
+:::
+::: {.column}
+::: {.fragment}
+### Interpretación biológica:  
+
+- **K** ≈ `r round(params["K"], 0)` células/mL: Capacidad de carga del medio  
+- **r** ≈ `r round(params["r"], 3)` h⁻¹: Tasa intrínseca de crecimiento    
+- **N₀** ≈ `r round(params["N0"], 1)` células/mL: Densidad inicial  
+:::
+
+::: {.fragment}
+### Parametros de simulacion:  
+
+- **K** = `1000` células/mL
+- **r** = `0.3` h⁻¹
+- **N₀** = `10` células/mL
+:::
+
+:::
+::: 
+
+
+---
+
+## Tiempo de duplicación
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+```{r}
+#| echo: true
+# Calcular tiempo de duplicación
+r_estimado <- params["r"]
+tiempo_duplicacion <- log(2) / r_estimado
+
+cat(
+  "Tiempo de duplicación:", 
+  round(tiempo_duplicacion, 2), "horas\n"
+)
+```
+:::
+
+::: {.fragment}
+```{r}
+# Tiempo para alcanzar 50% de la capacidad de carga
+K_estimado <- params["K"]
+N0_estimado <- params["N0"]
+# Calcular la constanta logistica
+A <- log((K_estimado - N0_estimado) / N0_estimado)
+t_50_K <- A / r_estimado
+
+cat(
+  "Tiempo para alcanzar 50% de K:", 
+  round(t_50_K, 2), "horas\n"
+)
+```
+:::
+
+::: {.fragment} 
+::: {.incremental}
+**Estas métricas son importantes para:**  
+- Optimización de cultivos  
+- Predicción de rendimientos  
+- Comparación entre cepas  
+:::
+:::
+
+:::
+::: {.column}
+::: {.fragment}
+::: {.callout-note}
+## 📚 Leer más:
+
+**El punto de inflexión** de la curva logística ocurre exactamente en $K/2$. La fórmula $t_{50\%} = \frac{\ln((K-N_0)/N_0)}{r}$ se deriva resolviendo la ecuación logística para $N(t) = K/2$.
+
+**Referencias recomendadas:**  
+- **Gotelli, N.J.** (2008). *A Primer of Ecology*, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)
+
+**Nota importante:** La logística nunca alcanza exactamente $K$, solo se aproxima asintóticamente.
+:::
+:::
+:::
+:::
+
+---
+
+# Conclusiones
+
+## Lecciones aprendidas
+
+::: {.incremental}
+1. **Los modelos simples** (lineal) pueden ser inadecuados para procesos biológicos complejos
+
+2. **Las transformaciones** (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología
+
+3. **Los modelos mecanísticos** (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables
+
+4. **La evaluación de modelos** requiere múltiples criterios, no solo R²
+
+5. **El contexto biológico** es crucial para la selección del modelo apropiado
+:::
+
+---
+
+## Próximos pasos
+
+**En sus proyectos de investigación, consideren:**
+
+- ¿Qué proceso biológico están estudiando?
+- ¿Qué tipo de relación esperan teóricamente?
+- ¿Cómo pueden validar sus modelos?
+- ¿Los parámetros estimados tienen sentido biológico?
+
+<!-- **Recursos adicionales:**
+- Modelos de crecimiento poblacional
+- Modelos dosis-respuesta  
+- Modelos de competencia
+- Modelos espaciales -->
+
+## Bibliografia
+
+**Gotelli, N.J.** (2008). *A Primer of Ecology*, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)

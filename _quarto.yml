@@ -45,6 +45,8 @@ website:
                 text: "2. Introducción a R y `{renv}`"
               - href: 2025/lessons/eda/page.qmd
                 text: "3. Analisis exploratorio de datos"
+              - href: 2025/lessons/model/page.qmd
+                text: "4. Modelado en R"
 
   navbar:
     background: primary

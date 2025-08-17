@@ -105,6 +105,181 @@
     "text": "Ejercicio 5: Configuración del entorno\nPráctica con renv y paquetes del curso\n\n# 1. Configurar renv (solo la primera vez):\ninstall.packages(\"renv\")\nrenv::restore()  # instalar paquetes del curso\n\n# 2. Cargar paquetes principales:\nlibrary(tidyverse)\nlibrary(vegan)\n\n# 3. Probar con datos de ejemplo:\ndata(penguins, package = \"palmerpenguins\")\nhead(penguins)\n\n# 4. Crear un gráfico con ggplot2:\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(aes(color = species)) +\n  labs(title = \"Dimensiones del pico en pingüinos\",\n       x = \"Longitud del pico (mm)\",\n       y = \"Profundidad del pico (mm)\")\n\n# 5. Verificar que vegan funciona:\nlibrary(vegan)\ndata(dune)\ndiversity(dune, index = \"shannon\")"
   },
   {
+    "objectID": "2025/lessons/model/slides.html#qué-es-un-modelo",
+    "href": "2025/lessons/model/slides.html#qué-es-un-modelo",
+    "title": " Modelado en R",
+    "section": "¿Qué es un modelo?",
+    "text": "¿Qué es un modelo?\n\nDefinición\nUn modelo es una representación simplificada de un proceso o sistema real que nos ayuda a:\n\nEntender patrones en los datos\nPredecir valores futuros\nProbar hipótesis sobre mecanismos biológicos\n\n\n\nEjemplo: Crecimiento de levaduras\nImaginemos que cultivamos levaduras en el laboratorio y medimos su densidad poblacional a lo largo del tiempo…\n¿Qué tipo de patrón esperaríamos ver? 🤔"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#patrón-típico-del-crecimiento-microbiano",
+    "href": "2025/lessons/model/slides.html#patrón-típico-del-crecimiento-microbiano",
+    "title": " Modelado en R",
+    "section": "Patrón típico del crecimiento microbiano",
+    "text": "Patrón típico del crecimiento microbiano\n\nFase lag (retraso)\nPrimeras horas: Las células se adaptan al medio, casi no hay crecimiento\n\n\nFase exponencial (logarítmica)\nCrecimiento rápido: Recursos abundantes, las células se dividen a máxima velocidad\n\nDuplicación constante: 1 → 2 → 4 → 8 → 16…\n¡Patrón exponencial! \\(N(t) = N_0 \\cdot e^{rt}\\)\n\n\n\nFase estacionaria\nRecursos limitados: Nutrientes se agotan, se acumulan toxinas\n\nCapacidad de carga: Densidad máxima que el medio puede sostener\nCrecimiento se desacelera hasta detenerse\n\n\n\nResultado: Curva sigmoidea (forma de S)\n¿Qué modelo matemático describe mejor este patrón? 🤔"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#la-ecuación-de-crecimiento-exponencial",
+    "href": "2025/lessons/model/slides.html#la-ecuación-de-crecimiento-exponencial",
+    "title": " Modelado en R",
+    "section": "La ecuación de crecimiento exponencial",
+    "text": "La ecuación de crecimiento exponencial\n\nDurante la fase exponencial, el crecimiento se describe con:\n\\[N(t) = N_0 \\cdot e^{rt}\\]\n\n\nDonde:\n- \\(N(t)\\) = densidad poblacional en el tiempo \\(t\\)\n- \\(N_0\\) = densidad poblacional inicial (en \\(t = 0\\))\n- \\(r\\) = tasa intrínseca de crecimiento (por unidad de tiempo)\n- \\(e\\) = base del logaritmo natural (≈ 2.718)\n- \\(t\\) = tiempo\n\n\nInterpretación biológica:\n- Si \\(r &gt; 0\\): población crece exponencialmente\n- Si \\(r = 0\\): población constante\n- Si \\(r &lt; 0\\): población decrece exponencialmente\n\n\nProblema: Que pasa cuando se agotan los recursos?"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#aggregando-capacidad-de-carga",
+    "href": "2025/lessons/model/slides.html#aggregando-capacidad-de-carga",
+    "title": " Modelado en R",
+    "section": "Aggregando capacidad de carga",
+    "text": "Aggregando capacidad de carga\n\nProblema del modelo exponencial: ¡Crecimiento infinito es imposible!\nEn la realidad, los recursos son limitados:\n- Espacio físico finito\n- Nutrientes se agotan\n- Acumulación de desechos tóxicos\n- Competencia entre individuos\n\n\nSolución: Introducir la capacidad de carga (\\(K\\))\n\\[N(t) = \\frac{K}{1 + \\left(\\frac{K-N_0}{N_0}\\right)e^{-rt}}\\]\n\n\nParámetros del modelo logístico:\n- \\(K\\) = capacidad de carga (densidad máxima sostenible)\n- \\(r\\) = tasa intrínseca de crecimiento (cuando N &lt;&lt; K)\n- \\(N_0\\) = densidad inicial\n\n\nComportamiento del modelo:\n- Cuando \\(N \\ll K\\): crecimiento ≈ exponencial\n- Cuando \\(N \\approx K/2\\): máxima tasa de crecimiento\n- Cuando \\(N \\to K\\): crecimiento se desacelera hacia cero"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#datos-de-crecimiento-de-levaduras",
+    "href": "2025/lessons/model/slides.html#datos-de-crecimiento-de-levaduras",
+    "title": " Modelado en R",
+    "section": "Datos de crecimiento de levaduras",
+    "text": "Datos de crecimiento de levaduras\nSimulemos datos realistas de crecimiento de Saccharomyces cerevisiae:\n\n# Crear datos de crecimiento de levaduras\nset.seed(123)\ntiempo &lt;- seq(0, 24, by = 2)  # horas\n# Crecimiento logístico con ruido\nK &lt;- 1000  # capacidad de carga\nr &lt;- 0.3   # tasa de crecimiento\nN0 &lt;- 10   # población inicial\n\ndensidad_real &lt;- K / (1 + ((K - N0) / N0) * exp(-r * tiempo))\n# Añadir ruido realista\ndensidad &lt;- densidad_real * exp(rnorm(length(tiempo), 0, 0.1))\n\n# Crear data frame\nlevaduras &lt;- data.frame(tiempo = tiempo, densidad = densidad)\nhead(levaduras, 8)\n\n  tiempo   densidad\n1      0   9.454942\n2      2  17.661370\n3      4  37.921560\n4      6  57.995942\n5      8 101.493323\n6     10 200.220597\n7     12 282.633370\n8     14 354.657568"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#visualizar-los-datos",
+    "href": "2025/lessons/model/slides.html#visualizar-los-datos",
+    "title": " Modelado en R",
+    "section": "Visualizar los datos",
+    "text": "Visualizar los datos\n\n\n\nlibrary(ggplot2)\n\n# Configurar tema global para todos los gráficos\ntheme_set(theme_bw())\n\np1 &lt;- ggplot(levaduras, aes(x = tiempo, y = densidad)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Densidad (células/mL)\",\n       title = \"Crecimiento de Saccharomyces cerevisiae\")\n\n\n\n# Mostrar el gráfico\np1\n\n\n\n\n\n\n\n\n\n¿Qué patrón observas? ¿Cómo modelarías este crecimiento? 🤔"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#intentemos-un-modelo-lineal",
+    "href": "2025/lessons/model/slides.html#intentemos-un-modelo-lineal",
+    "title": " Modelado en R",
+    "section": "Intentemos un modelo lineal",
+    "text": "Intentemos un modelo lineal\nHipótesis ingenua: La densidad aumenta linealmente con el tiempo\n\n# Ajustar modelo lineal\nmodelo_lineal &lt;- lm(densidad ~ tiempo, data = levaduras)\nsummary(modelo_lineal)\n\n\nCall:\nlm(formula = densidad ~ tiempo, data = levaduras)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-122.785  -95.839    2.071   73.387  166.855 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -157.400     54.507  -2.888   0.0148 *  \ntiempo        45.346      3.854  11.765 1.42e-07 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 104 on 11 degrees of freedom\nMultiple R-squared:  0.9264,    Adjusted R-squared:  0.9197 \nF-statistic: 138.4 on 1 and 11 DF,  p-value: 1.425e-07"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#visualizar-el-ajuste-lineal",
+    "href": "2025/lessons/model/slides.html#visualizar-el-ajuste-lineal",
+    "title": " Modelado en R",
+    "section": "Visualizar el ajuste lineal",
+    "text": "Visualizar el ajuste lineal\n\n\n\np2 &lt;- ggplot(levaduras, aes(x = tiempo, y = densidad)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"red\", size = 1.2) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Densidad (células/mL)\",\n       title = \"Modelo Lineal: ¿Buen ajuste?\")\n\n\n\np2\n\n\n\n\n\n\n\n\n\n¿Qué problemas observas con este modelo? 🚨"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#diagnósticos-del-modelo-lineal",
+    "href": "2025/lessons/model/slides.html#diagnósticos-del-modelo-lineal",
+    "title": " Modelado en R",
+    "section": "Diagnósticos del modelo lineal",
+    "text": "Diagnósticos del modelo lineal\n\n\n\n\n# Gráficos de diagnóstico\npar(mfrow = c(1, 2))\nplot(modelo_lineal, which = 1:2)\n\n\n\n\n\n\n\n\n\n\npredicciones &lt;- predict(modelo_lineal)\ntiempo_negativo &lt;- levaduras$tiempo[predicciones &lt; 0]\ncat(\n  \"Tiempos con predicciones negativas:\", \n  tiempo_negativo\n)\n\nTiempos con predicciones negativas: 0 2\n\n\n\n\n\n\nProblemas evidentes:\n- Residuos no aleatorios (patrón curvo)\n- Heteroscedasticidad (varianza no constante)\n- ¡El modelo predice densidades negativas!"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#transformación-logarítmica",
+    "href": "2025/lessons/model/slides.html#transformación-logarítmica",
+    "title": " Modelado en R",
+    "section": "Transformación logarítmica",
+    "text": "Transformación logarítmica\n\n\n\nNueva hipótesis: El crecimiento es exponencial (al menos inicialmente)\nSi: \\(N(t) = N_0 \\cdot e^{rt}\\)\nEntonces: \\(\\log(N(t)) = \\log(N_0) + rt\\)\n\n\n\n\n# Crear variable transformada\nlevaduras$log_densidad &lt;- log(levaduras$densidad)\n\n# Ajustar modelo log-lineal\nmodelo_log &lt;- lm(log_densidad ~ tiempo, data = levaduras)\nsummary(modelo_log)\n\n\nCall:\nlm(formula = log_densidad ~ tiempo, data = levaduras)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.66649 -0.33371  0.05152  0.26777  0.49981 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  2.84004    0.20683   13.73 2.88e-08 ***\ntiempo       0.19596    0.01462   13.40 3.72e-08 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.3946 on 11 degrees of freedom\nMultiple R-squared:  0.9423,    Adjusted R-squared:  0.937 \nF-statistic: 179.5 on 1 and 11 DF,  p-value: 3.716e-08"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#visualizar-en-escala-logarítmica",
+    "href": "2025/lessons/model/slides.html#visualizar-en-escala-logarítmica",
+    "title": " Modelado en R",
+    "section": "Visualizar en escala logarítmica",
+    "text": "Visualizar en escala logarítmica\n\n\n\np3 &lt;- ggplot(levaduras, aes(x = tiempo, y = log_densidad)) +\n  geom_point(size = 3, color = \"darkgreen\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"red\", size = 1.2) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"log(Densidad)\",\n       title = \"Modelo Log-Lineal\")\n\n\n\np3\n\n\n\n\n\n\n\n\n\n¿Mejor ajuste en los primeros puntos, pero qué pasa después? 🤔"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#comparar-modelos-en-escala-original",
+    "href": "2025/lessons/model/slides.html#comparar-modelos-en-escala-original",
+    "title": " Modelado en R",
+    "section": "Comparar modelos en escala original",
+    "text": "Comparar modelos en escala original\n\n\n\n# Predicciones del modelo log-lineal\nlevaduras$pred_log &lt;- exp(predict(modelo_log))\n\np4 &lt;- ggplot(levaduras, aes(x = tiempo, y = densidad)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_line(aes(y = pred_log), color = \"darkgreen\", size = 1.2) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Densidad (células/mL)\",\n       title = \"Modelo Log-Lineal vs Datos Reales\")\n\n\n\np4\n\n\n\n\n\n\n\n\n\nProblema: ¡Predice crecimiento exponencial infinito! 📈"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#el-modelo-biológicamente-realista",
+    "href": "2025/lessons/model/slides.html#el-modelo-biológicamente-realista",
+    "title": " Modelado en R",
+    "section": "El modelo biológicamente realista",
+    "text": "El modelo biológicamente realista\n\n\n\nHipótesis biológica: Las poblaciones tienen una capacidad de carga limitada\n\\[N(t) = \\frac{K}{1 + \\left(\\frac{K-N_0}{N_0}\\right)e^{-rt}}\\]\nDonde:\n- \\(K\\) = capacidad de carga (densidad máxima)\n- \\(r\\) = tasa intrínseca de crecimiento\n- \\(N_0\\) = densidad inicial\n\n\n\n\n# Ajustar modelo logístico usando nls()\n# Non-linear least squares \nmodelo_logistico &lt;- nls(\n  densidad ~ K / (1 + ((K - N0) / N0) * exp(-r * tiempo)),\n  data = levaduras,\n  start = list(K = 800, r = 0.2, N0 = 15)  # valores iniciales\n)\n\nsummary(modelo_logistico)\n\n\nFormula: densidad ~ K/(1 + ((K - N0)/N0) * exp(-r * tiempo))\n\nParameters:\n    Estimate Std. Error t value Pr(&gt;|t|)    \nK  1.107e+03  6.432e+01  17.213 9.26e-09 ***\nr  2.794e-01  2.696e-02  10.362 1.15e-06 ***\nN0 1.185e+01  4.272e+00   2.775   0.0196 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 34.83 on 10 degrees of freedom\n\nNumber of iterations to convergence: 8 \nAchieved convergence tolerance: 3.168e-06"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#visualizar-el-modelo-logístico",
+    "href": "2025/lessons/model/slides.html#visualizar-el-modelo-logístico",
+    "title": " Modelado en R",
+    "section": "Visualizar el modelo logístico",
+    "text": "Visualizar el modelo logístico\n\n\n\nlevaduras$pred_logistico &lt;- predict(modelo_logistico)\n\np5 &lt;- ggplot(levaduras, aes(x = tiempo, y = densidad)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_line(aes(y = pred_logistico), color = \"purple\", size = 1.2) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Densidad (células/mL)\",\n       title = \"Modelo Logístico: ¡Ajuste Biológicamente Realista!\")\n\n\n\np5"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#comparación-de-los-tres-modelos",
+    "href": "2025/lessons/model/slides.html#comparación-de-los-tres-modelos",
+    "title": " Modelado en R",
+    "section": "Comparación de los tres modelos",
+    "text": "Comparación de los tres modelos\n\n\n\n# Preparar datos para comparación\nlevaduras$pred_lineal &lt;- predict(modelo_lineal)\nlevaduras$pred_logistico &lt;- predict(modelo_logistico)\n\np6 &lt;- ggplot(levaduras, aes(x = tiempo, y = densidad)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_line(aes(y = pred_lineal, color = \"Lineal\"), \n            size = 1) +\n  geom_line(aes(y = pred_log, color = \"Log-lineal\"), \n            size = 1) +\n  geom_line(aes(y = pred_logistico, color = \"Logístico\"), \n            size = 1) +\n  scale_color_manual(values = c(\"Lineal\" = \"red\", \n                               \"Log-lineal\" = \"darkgreen\", \n                               \"Logístico\" = \"purple\")) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Densidad (células/mL)\",\n       title = \"Comparación de Modelos\",\n       color = \"Modelo\")\n\n\n\np6"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#criterios-de-evaluación",
+    "href": "2025/lessons/model/slides.html#criterios-de-evaluación",
+    "title": " Modelado en R",
+    "section": "Criterios de evaluación",
+    "text": "Criterios de evaluación\n\n\n\n¿Cómo decidimos cuál modelo es mejor?\n\nR² (coeficiente de determinación)\nAnálisis de residuos\nInterpretabilidad biológica\nAIC/BIC (Otras opciones mas avanzadas…)\n\n\n\n\n\n# Calcular R² para cada modelo\nr2_lineal &lt;- summary(modelo_lineal)$r.squared\nr2_log &lt;- summary(modelo_log)$r.squared\n\n# Para modelo logístico, tenemos que calcular R2 manualmente\n# ss_total = suma total de cuadrados (variación total en los datos)\nss_total &lt;- sum((levaduras$densidad - mean(levaduras$densidad))^2)\n# ss_residual = suma de cuadrados de residuos (variación no explicada)\nss_residual &lt;- sum(residuals(modelo_logistico)^2)\n# R2 = 1 - (variación no explicada / variación total)\nr2_logistico &lt;- 1 - (ss_residual / ss_total)\n\ndata.frame(\n  Modelo = c(\"Lineal\", \"Log-lineal\", \"Logístico\"),\n  R_cuadrado = round(c(r2_lineal, r2_log, r2_logistico), 3)\n)\n\n      Modelo R_cuadrado\n1     Lineal      0.926\n2 Log-lineal      0.942\n3  Logístico      0.992"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#análisis-de-residuos",
+    "href": "2025/lessons/model/slides.html#análisis-de-residuos",
+    "title": " Modelado en R",
+    "section": "Análisis de residuos",
+    "text": "Análisis de residuos\n\n\n\n# Crear data frame con residuos\nresiduos_df &lt;- data.frame(\n  tiempo = rep(levaduras$tiempo, 3),\n  residuos = c(residuals(modelo_lineal), \n               residuals(modelo_log), \n               residuals(modelo_logistico)),\n  modelo = rep(c(\"Lineal\", \"Log-lineal\", \"Logístico\"), \n               each = nrow(levaduras))\n)\n\np7 &lt;- ggplot(residuos_df) +\n  aes(x = tiempo, y = residuos, color = modelo) +\n  geom_point(size = 2) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  facet_wrap(~modelo, scales = \"free_y\") +\n  labs(\n    x = \"Tiempo (horas)\", \n    y = \"Residuos\",\n    title = \"Análisis de Residuos por Modelo\") +\n  theme(legend.position = \"bottom\")\n\n\n\np7\n\n\n\n\n\n\n\n\n\n¿Qué modelo tiene los residuos más aleatorios? 🎯"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#cuidado-con-los-residuos-transformados",
+    "href": "2025/lessons/model/slides.html#cuidado-con-los-residuos-transformados",
+    "title": " Modelado en R",
+    "section": "⚠️ Cuidado con los residuos transformados",
+    "text": "⚠️ Cuidado con los residuos transformados\n\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual",
+    "href": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual",
+    "title": " Modelado en R",
+    "section": "Residuos en escala original - Comparación visual",
+    "text": "Residuos en escala original - Comparación visual\n\nAhora podemos ver cuál modelo realmente ajusta mejor 👀\n\n\n\n\n\n# Crear data frame para visualización\nresiduos_originales_plot &lt;- data.frame(\n  tiempo = rep(levaduras$tiempo, 3),\n  residuos = c(residuos_originales$lineal, \n               residuos_originales$log_lineal, \n               residuos_originales$logistico),\n  modelo = rep(c(\"Lineal\", \"Log-lineal\", \"Logístico\"), \n               each = nrow(levaduras))\n)\n\np8 &lt;- ggplot(residuos_originales_plot) +\n  aes(x = tiempo, y = residuos, color = modelo) +\n  geom_point(size = 2) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  facet_wrap(~modelo) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Residuos (escala original)\",\n       title = \"Residuos en Escala Original - Comparación Justa\"\n    ) +\n  theme(legend.position = \"bottom\")\n\n\n\np8"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual-1",
+    "href": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual-1",
+    "title": " Modelado en R",
+    "section": "Residuos en escala original - Comparación visual",
+    "text": "Residuos en escala original - Comparación visual"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#parámetros-del-modelo-logístico",
+    "href": "2025/lessons/model/slides.html#parámetros-del-modelo-logístico",
+    "title": " Modelado en R",
+    "section": "Parámetros del modelo logístico",
+    "text": "Parámetros del modelo logístico\n\n\n\nTasa, Capacidad de carga, densidad \\(t0\\)\n\n# Extraer parámetros estimados\nparams &lt;- coef(modelo_logistico)\nprint(params)\n\n          K           r          N0 \n1107.075934    0.279384   11.853795 \n\n\n\n\nIntervalos de confianza\n\n# Calcular intervalos de confianza\nconf_int &lt;- confint(modelo_logistico)\nprint(conf_int)\n\n          2.5%        97.5%\nK  994.6076225 1283.0776710\nr    0.2264351    0.3434993\nN0   4.8573373   23.8982205\n\n\n\n\n\nInterpretación biológica:\n\nK ≈ 1107 células/mL: Capacidad de carga del medio\n\nr ≈ 0.279 h⁻¹: Tasa intrínseca de crecimiento\n\nN₀ ≈ 11.9 células/mL: Densidad inicial\n\n\n\n\nParametros de simulacion:\n\nK = 1000 células/mL\nr = 0.3 h⁻¹\nN₀ = 10 células/mL"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#tiempo-de-duplicación",
+    "href": "2025/lessons/model/slides.html#tiempo-de-duplicación",
+    "title": " Modelado en R",
+    "section": "Tiempo de duplicación",
+    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\n# Tiempo para alcanzar 50% de la capacidad de carga\nK_estimado &lt;- params[\"K\"]\nN0_estimado &lt;- params[\"N0\"]\n# Calcular la constanta logistica\nA &lt;- log((K_estimado - N0_estimado) / N0_estimado)\nt_50_K &lt;- A / r_estimado\n\ncat(\n  \"Tiempo para alcanzar 50% de K:\", \n  round(t_50_K, 2), \"horas\\n\"\n)\n\nTiempo para alcanzar 50% de K: 16.2 horas\n\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\nEl punto de inflexión de la curva logística ocurre exactamente en \\(K/2\\). La fórmula \\(t_{50\\%} = \\frac{\\ln((K-N_0)/N_0)}{r}\\) se deriva resolviendo la ecuación logística para \\(N(t) = K/2\\).\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)\nNota importante: La logística nunca alcanza exactamente \\(K\\), solo se aproxima asintóticamente."
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#lecciones-aprendidas",
+    "href": "2025/lessons/model/slides.html#lecciones-aprendidas",
+    "title": " Modelado en R",
+    "section": "Lecciones aprendidas",
+    "text": "Lecciones aprendidas\n\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#próximos-pasos",
+    "href": "2025/lessons/model/slides.html#próximos-pasos",
+    "title": " Modelado en R",
+    "section": "Próximos pasos",
+    "text": "Próximos pasos\nEn sus proyectos de investigación, consideren:\n\n¿Qué proceso biológico están estudiando?\n¿Qué tipo de relación esperan teóricamente?\n¿Cómo pueden validar sus modelos?\n¿Los parámetros estimados tienen sentido biológico?"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#bibliografia",
+    "href": "2025/lessons/model/slides.html#bibliografia",
+    "title": " Modelado en R",
+    "section": "Bibliografia",
+    "text": "Bibliografia\nGotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)"
+  },
+  {
     "objectID": "2025/lessons/intro_and_methods/slides.html#profes",
     "href": "2025/lessons/intro_and_methods/slides.html#profes",
     "title": " Introducción",
@@ -786,6 +961,42 @@
       "2025",
       "📚 Lecciones",
       "1. Introducción y metodología"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/model/page.html",
+    "href": "2025/lessons/model/page.html",
+    "title": "Modelado en R",
+    "section": "",
+    "text": "Cuando tienes un buen entendimiento de tu conjunto de datos, obtenido mediante el Análisis Exploratorio de Datos, es momento de comenzar a modelar tus datos. Esto te permitirá poner a prueba hipótesis estadísticas específicas, que, si están relacionadas con tus predicciones, pueden ayudarte a evaluar tu hipótesis biologica.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "4. Modelado en R"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/model/page.html#diapositivas-de-la-clase",
+    "href": "2025/lessons/model/page.html#diapositivas-de-la-clase",
+    "title": "Modelado en R",
+    "section": "👨‍🏫 Diapositivas de la Clase",
+    "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "4. Modelado en R"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/model/page.html#lecturas-recomendadas",
+    "href": "2025/lessons/model/page.html#lecturas-recomendadas",
+    "title": "Modelado en R",
+    "section": "📚 Lecturas Recomendadas",
+    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "4. Modelado en R"
     ]
   },
   {

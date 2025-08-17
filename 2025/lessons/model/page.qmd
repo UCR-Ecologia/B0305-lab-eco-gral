@@ -1,0 +1,18 @@
+---
+title: "Modelado en R"
+---
+
+Cuando tienes un buen entendimiento de tu conjunto de datos, obtenido mediante el Análisis Exploratorio de Datos, es momento de comenzar a modelar tus datos. Esto te permitirá poner a prueba hipótesis estadísticas específicas, que, si están relacionadas con tus predicciones, pueden ayudarte a evaluar tu hipótesis biologica.
+
+## 👨‍🏫 Diapositivas de la Clase
+
+Haz clic en el área de las diapositivas a continuación o haz clic [aquí](slides.qmd) para verlas en pantalla completa.
+Usa el teclado para navegar por las diapositivas.
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="slides.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
+
+## 📚 Lecturas Recomendadas
+
+- Consulta el final de las diapositivas para ver la lista de referencias citadas en la clase.
