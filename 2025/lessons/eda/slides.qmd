@@ -24,7 +24,7 @@ format:
     footer: 'B0305 -- Lab Eco Gral'
 execute:
   echo: true
-  cache: true
+  cache: false
 ---
 
 # ¿Qué es el análisis exploratorio de datos?
