@@ -1,0 +1,910 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://ucr-ecologia.github.io/B0305-lab-eco-gral/' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'>Escribiendo Reportes Científicos con Quarto</font>"
+author: Prof. G. Avalos y T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: false
+    logo: /figures/icons/course_favicon.png
+    css: 
+      - /css/styles_slides.css
+      - custom.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+  cache: false
+---
+
+# ¿Por qué Quarto para reportes científicos?
+
+## Problemas con Word tradicional 😤
+
+::: {.columns}
+::: {.column}
+::: {.fragment}
+### Citas y bibliografía
+- Copiar y pegar referencias manualmente
+- Formato inconsistente 
+- Error al cambiar estilos de citación
+- Bibliografía desorganizada
+:::
+
+::: {.fragment}
+### Figuras y tablas
+- "La figura se movió sola" 🤯
+- Referencias cruzadas rotas
+- Leyendas inconsistentes
+- Problemas de resolución
+:::
+:::
+::: {.column}
+::: {.fragment}
+### Reproducibilidad
+- ¿Cómo se generó esa gráfica?
+- ¿Cuál análisis se usó?
+- Imposible reproducir resultados
+:::
+
+:::
+:::
+
+
+
+---
+
+## Ventajas de Quarto 🚀
+::: {.columns}
+::: {.column}
+::: {.fragment}
+### Todo en un lugar
+- Texto + código + resultados
+- Automáticamente actualizado
+- Formato profesional
+:::
+
+::: {.fragment}
+### Citas automáticas
+- Base de datos bibliográfica (BibTeX)
+- Inserción automática: `[@autor2023]`
+- Múltiples formatos: APA, Chicago, Nature...
+:::
+:::
+::: {.column}
+
+::: {.fragment}
+### Figuras inteligentes
+- Generadas por código R/Python
+- Referencias automáticas: `@fig-crecimiento`
+- Numeración y leyendas consistentes
+:::
+
+::: {.fragment}
+### Múltiples formatos
+- PDF para entregar
+- HTML para web/presentación
+- Word si es necesario
+:::
+:::
+::: 
+
+# Instalación y configuración
+
+## Requisitos del sistema 🔧
+
+::: {.fragment}
+### Quarto CLI (obligatorio)
+**Quarto** es una aplicación independiente que debe instalarse en su sistema:
+
+- **Windows:** Descargar de [quarto.org](https://quarto.org/docs/get-started/)
+- **Mac:** `brew install quarto` o descargar instalador
+- **Linux:** `sudo apt install quarto` o descargar .deb/.rpm
+
+**Verificar instalación:**
+```bash
+quarto --version  # Debe mostrar v1.4+ 
+```
+:::
+
+::: {.fragment}
+### RStudio (recomendado)
+- **RStudio Desktop** (v2022.07+) con soporte nativo para Quarto
+- **Alternativa:** VS Code con extensión de Quarto
+:::
+
+---
+
+## Configurar entorno R 📦
+
+::: {.columns}
+
+::: {.column width="50%"}
+::: {.fragment}
+### Opción A: renv (recomendado)
+Si tienen `renv.lock` del curso:
+
+```r
+# En RStudio/R Console
+install.packages("renv")
+renv::restore()
+```
+
+Esto instalará automáticamente:  
+- `quarto` (paquete R para interfaz)  
+- `knitr`, `ggplot2`, `dplyr`  
+- Todas las dependencias necesarias  
+:::
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+### Opción B: Instalación manual
+```r
+install.packages(c(
+  "quarto",      # Interfaz R-Quarto
+  "knitr",       # Para renderizar
+  "rmarkdown",   # Compatibilidad
+  "ggplot2",     # Gráficos
+  "dplyr",       # Manipulación datos
+  "palmerpenguins" # Datos ejemplo
+))
+```
+
+**Verificar:**
+```r
+library(quarto)
+quarto_version()  # Debe detectar Quarto CLI
+```
+:::
+:::
+
+:::
+
+---
+
+# Introducción a Markdown
+
+## ¿Qué es Markdown? 📝
+
+::: {.fragment}
+**Markdown** es un lenguaje de marcado ligero para dar formato a texto
+
+- **Fácil de leer** en texto plano
+- **Fácil de escribir** - solo símbolos simples
+- **Se convierte** a HTML, PDF, Word...
+:::
+
+::: {.fragment}
+### Filosofía
+> "Un documento Markdown debe ser legible tal como está, sin verse como si hubiera sido marcado con etiquetas o instrucciones de formato"
+> 
+> — John Gruber (creador de Markdown)
+:::
+
+---
+
+## Formato básico de texto
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Código Markdown:**
+```markdown
+# Título principal
+## Subtítulo
+### Sub-subtítulo
+
+**Texto en negrita**
+*Texto en cursiva*
+~~Texto tachado~~
+
+Párrafo normal con texto.
+
+- Lista con viñetas
+- Segundo elemento
+  - Sub-elemento
+
+1. Lista numerada
+2. Segundo elemento
+3. Tercer elemento
+```
+:::
+
+::: {.column width="50%"}
+**Resultado:**
+
+<div style="border: 1px solid #ccc; padding: 1em; background-color: #f9f9f9;">
+
+<h1 style="margin-top: 0;">Título principal</h1>
+<h2>Subtítulo</h2>  
+<h3>Sub-subtítulo</h3>
+
+<strong>Texto en negrita</strong><br>
+<em>Texto en cursiva</em><br>
+<s>Texto tachado</s>
+
+<p>Párrafo normal con texto.</p>
+
+<ul>
+<li>Lista con viñetas</li>
+<li>Segundo elemento
+  <ul><li>Sub-elemento</li></ul>
+</li>
+</ul>
+
+<ol>
+<li>Lista numerada</li>
+<li>Segundo elemento</li>  
+<li>Tercer elemento</li>
+</ol>
+
+</div>
+:::
+
+:::
+
+---
+
+## Enlaces y citas científicas
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Enlaces:**
+```markdown
+[Texto de enlace](https://ejemplo.com)
+
+[Email](mailto:profesor@ucr.ac.cr)
+```
+
+**Citas bibliográficas:**
+```markdown
+Según @begon2006ecology, las poblaciones...
+
+El crecimiento logístico [@verhulst1838notice; @gotelli2008primer] es fundamental.
+
+Como mencionan varios autores [-@pearl1925biology; -@begon2006ecology]
+```
+:::
+
+::: {.column width="50%"}
+**Resultado:**
+
+[Texto de enlace](https://ejemplo.com)
+
+[Email](mailto:profesor@ucr.ac.cr)
+
+Según Begon et al. (2006), las poblaciones...
+
+El crecimiento logístico (Verhulst, 1838; Gotelli, 2008) es fundamental.
+
+Como mencionan varios autores (Pearl & Reed, 1925; Begon et al., 2006)
+:::
+
+:::
+
+---
+
+## Ecuaciones matemáticas
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Inline math:**
+```markdown
+La población crece según $N(t) = N_0 e^{rt}$
+```
+
+**Display math:**
+```markdown
+$$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$
+```
+
+**Ecuaciones numeradas:**
+```markdown
+$$N(t) = N_0 e^{rt}$$ {#eq-exponencial}
+
+Ver ecuación @eq-exponencial...
+```
+:::
+
+::: {.column width="50%"}
+**Resultado:**
+
+La población crece según $N(t) = N_0 e^{rt}$
+
+$$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$
+
+$$N(t) = N_0 e^{rt}$$ {#eq-exponencial}
+
+Ver ecuación @eq-exponencial ...
+:::
+
+:::
+
+---
+
+## Código y resultados
+
+::: {.columns}
+
+::: {.column width="60%"}
+**Código R en Quarto:**
+```markdown
+#| label: fig-crecimiento
+#| fig-cap: "Crecimiento de S. cerevisiae"
+#| echo: true
+
+library(ggplot2)
+data <- data.frame(
+  tiempo = 0:24, 
+  densidad = exp(0.2 * (0:24))
+)
+ggplot(data, aes(tiempo, densidad)) + 
+  geom_line() + 
+  labs(x = "Tiempo (h)", 
+       y = "Densidad (cells/mL)")
+
+Como se observa en @fig-crecimiento, el crecimiento es exponencial.
+```
+
+:::
+
+::: {.column width="40%"}
+**Resultado ejecutado:**
+
+```{r}
+#| label: fig-crecimiento
+#| fig-cap: "Crecimiento de *S. cerevisiae* en medio YPD"
+#| echo: false
+#| fig-width: 4
+#| fig-height: 3
+
+library(ggplot2)
+data <- data.frame(tiempo = 0:24, densidad = exp(0.2 * (0:24)))
+ggplot(data, aes(tiempo, densidad)) + 
+  geom_line(color = "steelblue", size = 1) + 
+  labs(x = "Tiempo (h)", y = "Densidad (cells/mL)") +
+  theme_bw()
+```
+
+Como se observa en @fig-crecimiento, el crecimiento es exponencial.
+:::
+
+:::
+
+
+# La plantilla B0305
+
+## Estructura de archivos 📁
+
+Su plantilla incluye varios archivos importantes:
+
+```
+B305-report-template-kit/
+├── B305-report-template.qmd    # 📝 Plantilla principal
+├── reference.docx              # 📄 Formato Word de referencia  
+├── references.bib              # 📚 Base de datos bibliográfica
+├── apa.csl                     # 📋 Estilo de citación APA
+├── styles.css                  # 🎨 Estilos HTML
+└── how-to-knit.md             # 📖 Instrucciones
+```
+
+::: {.fragment}
+**¡Todos deben estar en la misma carpeta!** 📂
+:::
+
+---
+
+## Configuración YAML
+
+El encabezado YAML configura todo el documento:
+
+```yaml
+---
+title: "TÍTULO DEL REPORTE (12–15 palabras)"
+author:
+  - name: "Nombre Apellido-Apellido" 
+    affiliation: "Escuela de Biología, Universidad de Costa Rica..."
+keywords: ["palabra clave 1", "palabra clave 2", ...]
+format:
+  pdf: 
+    pdf-engine: xelatex
+    mainfont: "Times New Roman"
+    fontsize: 12pt
+    linestretch: 2    # Doble espacio
+  html:
+    css: styles.css
+  docx:
+    reference-doc: reference.docx
+bibliography: references.bib
+csl: apa.csl
+lang: es
+---
+```
+
+---
+
+## Múltiples formatos de salida
+
+::: {.fragment}
+### PDF (recomendado para entrega)
+```bash
+quarto render B305-report-template.qmd --to pdf
+```
+- Formato profesional
+- Times New Roman, 12pt
+- Doble espacio
+- Márgenes correctos
+:::
+
+::: {.fragment}
+### HTML (para revisión)
+```bash
+quarto render B305-report-template.qmd --to html
+```
+- Rápido de generar
+- Fácil de compartir
+- Links clickeables
+:::
+
+::: {.fragment}
+### Word (si es necesario)
+```bash
+quarto render B305-report-template.qmd --to docx
+```
+- Compatible con revisiones
+- Formato basado en `reference.docx`
+:::
+
+---
+
+## Estructura del reporte
+
+```markdown
+# Resumen
+**Resumen:** (máx. 250 palabras).
+**Palabras claves:** palabra1; palabra2; palabra3; palabra4; palabra5
+
+# INTRODUCCIÓN
+Contexto, antecedentes, hipótesis...
+
+# MATERIALES Y MÉTODOS
+Descripción detallada de métodos...
+
+# RESULTADOS  
+Presentación objetiva de resultados...
+
+# DISCUSIÓN
+Interpretación y comparación con literatura...
+
+# LITERATURA CITADA
+(Se genera automáticamente)
+```
+
+# Trabajando con citas
+
+## Base de datos bibliográfica (BibTeX)
+
+El archivo `references.bib` contiene todas sus referencias:
+
+```bibtex
+@book{begon2006ecology,
+  title={Ecology: from individuals to ecosystems},
+  author={Begon, Michael and Townsend, Colin R and Harper, John L},
+  year={2006},
+  publisher={Blackwell publishing}
+}
+
+@article{verhulst1838notice,
+  title={Notice sur la loi que la population suit dans son accroissement},
+  author={Verhulst, Pierre Fran{\c{c}}ois},
+  journal={Correspondance math{\'e}matique et physique},
+  volume={10},
+  pages={113--126},
+  year={1838}
+}
+```
+
+---
+
+## Agregando nuevas referencias
+
+::: {.fragment}
+### Desde Google Scholar
+1. Buscar el artículo
+2. Click en "Citar" 
+3. Click en "BibTeX"
+4. Copiar y pegar en `references.bib`
+:::
+
+::: {.fragment}
+### Desde DOI
+- Usar [doi2bib.org](https://www.doi2bib.org/)
+- Introducir DOI: `10.1038/nature12373`
+- Copiar resultado a `references.bib`
+:::
+
+---
+
+## Citando en el texto
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Código Markdown:**
+```markdown
+<!-- Cita parentética -->
+El crecimiento poblacional [@verhulst1838notice] 
+es fundamental.
+
+<!-- Cita narrativa -->
+Según @begon2006ecology, las poblaciones...
+
+<!-- Múltiples citas -->
+Varios autores [@verhulst1838notice; @gotelli2008primer] 
+han estudiado...
+
+<!-- Solo año -->
+@begon2006ecology [-@begon2006ecology] mostraron...
+
+<!-- Páginas específicas -->
+Como indica @verhulst1838notice [p. 15], la ecuación...
+```
+:::
+
+::: {.column width="50%"}
+**Resultado:**
+
+El crecimiento poblacional (Verhulst, 1838) es fundamental.
+
+Según Begon et al. (2006), las poblaciones...
+
+Varios autores (Verhulst, 1838; Gotelli, 2008) han estudiado...
+
+Begon et al. (2006) mostraron...
+
+Como indica Verhulst (1838, p. 15), la ecuación...
+:::
+
+:::
+
+# Figuras y tablas
+
+## Figuras desde R
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Código R para figura:**
+```markdown
+#| label: fig-logistico
+#| fig-cap: "Crecimiento logístico de S. cerevisiae"
+#| fig-width: 6
+#| fig-height: 4
+#| echo: false
+
+library(ggplot2)
+t <- seq(0, 24, 0.1)
+N <- 1000 / (1 + 99 * exp(-0.3 * t))
+data <- data.frame(tiempo = t, densidad = N)
+
+ggplot(data, aes(tiempo, densidad)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)") +
+  theme_bw()
+
+Como se observa en @fig-logistico...
+
+```
+
+**Opciones importantes:**  
+- `label:` para referencias cruzadas  
+- `fig-cap:` para la leyenda  
+- `echo: false` para ocultar código  
+- `fig-width` y `fig-height` para dimensiones  
+
+
+:::
+
+::: {.column width="50%"}
+**Resultado ejecutado:**
+
+```{r}
+#| label: fig-logistico
+#| fig-cap: "Crecimiento logístico de *Saccharomyces cerevisiae*"
+#| fig-width: 5
+#| fig-height: 3.5
+#| echo: false
+
+library(ggplot2)
+t <- seq(0, 24, 0.1)
+N <- 1000 / (1 + 99 * exp(-0.3 * t))
+data <- data.frame(tiempo = t, densidad = N)
+
+ggplot(data, aes(tiempo, densidad)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  labs(x = "Tiempo (horas)", 
+       y = "Densidad (células/mL)") +
+  theme_bw()
+```
+
+Como se observa en @fig-logistico, el crecimiento presenta una curva típica logística.
+:::
+
+:::
+
+
+---
+
+## Tablas con código R
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Código R para tabla:**
+```markdown
+#| label: tbl-parametros
+#| tbl-cap: "Parámetros del modelo logístico"
+
+library(knitr)
+parametros <- data.frame(
+  Parámetro = c("K", "r", "N₀"),
+  Valor = c(987.3, 0.281, 10.2),
+  `Error estándar` = c(45.2, 0.025, 1.8),
+  Unidades = c("células/mL", "h⁻¹", "células/mL")
+)
+kable(parametros, digits = 3)
+
+Los parámetros estimados (@tbl-parametros)...
+
+```
+
+:::
+
+::: {.column width="50%"}
+**Resultado ejecutado:**
+
+```{r}
+#| label: tbl-parametros
+#| tbl-cap: "Parámetros del modelo logístico estimados"
+#| echo: false
+
+library(knitr)
+parametros <- data.frame(
+  Parámetro = c("K", "r", "N₀"),
+  Valor = c(987.3, 0.281, 10.2),
+  `Error estándar` = c(45.2, 0.025, 1.8),
+  Unidades = c("células/mL", "h⁻¹", "células/mL")
+)
+kable(parametros, digits = 3)
+```
+
+Los parámetros estimados (@tbl-parametros) muestran que la capacidad de carga es aproximadamente 987 células/mL.
+:::
+
+:::
+
+---
+
+## Figuras externas
+
+:::{.fragment}
+````{.markdown}
+![Microscopio utilizado en el experimento](img/microscopio.jpeg){#fig-microscopio width=20%}
+
+Las observaciones se realizaron con el microscopio mostrado en @fig-microscopio...
+````
+:::
+
+::: {.fragment}
+![Microscopio utilizado en el experimento](img/microscopio.jpeg){#fig-microscopio width=20%}
+
+Las observaciones se realizaron con el microscopio mostrado en @fig-microscopio...
+:::
+
+::: {.fragment}
+**Formatos recomendados:**  
+- **PNG** para diagramas y screenshots  
+- **JPG** para fotografías  
+- **PDF** para figuras vectoriales  
+- **SVG** para gráficos web  
+:::
+
+# Flujo de trabajo recomendado
+
+## Pasos para crear un reporte
+
+### 1. Preparar el workspace
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.fragment}
+1. **Crear nueva carpeta:**  
+   - Nombrar: `mi-reporte-ecologia`   
+
+2. **Descargar plantilla:**   
+   - Ir al repositorio del curso  
+   - Descargar `B305-report-template-kit.zip`  
+   - Extraer en la carpeta creada  
+
+3. **En RStudio:**  
+   - File → New Project → Existing Directory  
+   - Seleccionar `mi-reporte-ecologia`  
+   - Renombrar `B305-report-template.qmd` → `mi-reporte.qmd` 
+
+:::
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment}
+**Verificar archivos:**  
+- ✅ `mi-reporte.qmd`  
+- ✅ `references.bib`  
+- ✅ `reference.docx`  
+- ✅ `apa.csl`  
+- ✅ `styles.css`  
+:::
+
+::: {.fragment}
+### 2. Configurar encabezado  
+- Cambiar título y autor  
+- Ajustar palabras clave  
+- Verificar archivos auxiliares  
+:::
+
+::: {.fragment}
+### 3. Escribir contenido  
+- Usar estructura científica estándar  
+- Incorporar código R inline  
+- Citar literatura relevante  
+:::
+:::
+:::
+
+
+---
+
+## Durante el desarrollo
+
+::: {.fragment}
+### Renderizar frecuentemente
+```bash
+# Vista rápida HTML
+quarto render mi-reporte.qmd --to html
+
+# Versión final PDF  
+quarto render mi-reporte.qmd --to pdf
+```
+:::
+
+<!-- ::: {.fragment}
+### Usar control de versiones
+```bash
+git init
+git add .
+git commit -m "Versión inicial del reporte"
+
+# Después de cambios importantes
+git add -A
+git commit -m "Agregado análisis estadístico"
+```
+::: -->
+
+::: {.fragment}
+### Respaldos regulares
+- Guardar en la nube (Google Drive, Dropbox)
+- Enviar por email a ustedes mismos
+- Usar repositorio GitHub
+:::
+
+---
+
+## Consejos para reportes exitosos
+
+::: {.fragment}
+### Organización de archivos
+```
+mi-proyecto/
+├── mi-reporte.qmd           # Documento principal
+├── references.bib           # Bibliografia  
+├── data/                    # Datos
+│   ├── crecimiento.csv
+│   └── experimento.xlsx
+├── scripts/                 # Código R auxiliar
+│   └── analisis.R
+├── figures/                 # Figuras externas
+│   └── setup-experimental.jpg
+└── output/                  # Archivos generados
+    ├── mi-reporte.pdf
+    └── mi-reporte.html
+```
+:::
+
+::: {.fragment}
+### Buenas prácticas
+- **Comentar el código R** para futuro yo
+- **Usar nombres descriptivos** para chunks y figuras  
+- **Verificar referencias** antes de entregar
+- **Revisar formato final** en PDF
+:::
+
+# Demostración práctica
+
+## Crear un reporte simple
+
+Vamos a crear juntos un reporte básico paso a paso:
+
+::: {.fragment}
+### 1. Configuración inicial
+- Copiar plantilla
+- Cambiar título y autor  
+- Ajustar palabras clave
+:::
+
+::: {.fragment}
+### 2. Agregar contenido
+- Escribir introducción simple
+- Incluir una figura R
+- Agregar una cita
+:::
+
+::: {.fragment}
+### 3. Renderizar
+- Generar HTML para revisión
+- Generar PDF final
+:::
+
+---
+
+# ¡Manos a la obra! 🚀
+
+**Su próximo reporte será:**  
+- Profesional y reproducible  
+- Con citas automáticas   
+- Figuras y tablas numeradas  
+- Múltiples formatos de salida  
+
+**¿Preguntas?** 🤔
+
+---
+
+## Para la próxima semana
+
+::: {.fragment}
+### Práctica requerida
+1. **Descargar la plantilla** desde el repositorio del curso
+2. **Crear un reporte corto** (2-3 páginas) sobre cualquier tema de ecología
+3. **Incluir:** Al menos 2 citas, 1 figura generada con R, 1 tabla
+4. **Renderizar** a PDF y HTML
+:::
+
+## Bibliografia
+
+### Documentación oficial
+- [Quarto Documentation](https://quarto.org/docs/)
+- [Quarto Reference](https://quarto.org/docs/reference/)
+
+### Markdown y matemáticas
+- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
+- [LaTeX Math Symbols](http://tug.ctan.org/info/undergradmath/undergradmath.pdf)
+
+### Gestión bibliográfica
+- [Zotero](https://www.zotero.org/) - Gestor gratuito
+- [Google Scholar](https://scholar.google.com/) - Búsqueda académica
+- [doi2bib](https://www.doi2bib.org/) - DOI a BibTeX

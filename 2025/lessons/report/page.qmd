@@ -1,0 +1,24 @@
+---
+title: "Escribiendo Reportes Científicos"
+---
+
+En esta lección aprenderás a crear reportes científicos profesionales usando Quarto y Markdown. Te familiarizarás con la plantilla B0305 del curso, que te permitirá generar documentos con formato académico, citas automáticas, y figuras numeradas. Esta es una habilidad esencial para comunicar tus resultados de investigación de manera efectiva y reproducible.
+
+## 👨‍🏫 Diapositivas de la Clase
+
+Haz clic en el área de las diapositivas a continuación o haz clic [aquí](slides.qmd) para verlas en pantalla completa.
+Usa el teclado para navegar por las diapositivas.
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="slides.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
+
+## 📁 Recursos de la Clase
+
+- **Plantilla B0305:** [Descargar kit completo](/report_template/B0305-report-template-kit.zip)
+- **Documentación Quarto:** [quarto.org](https://quarto.org/)
+- **Guía Markdown:** [markdownguide.org](https://www.markdownguide.org/cheat-sheet/)
+
+## 📚 Lecturas Recomendadas
+
+- Consulta el final de las diapositivas para ver la lista de referencias citadas en la clase.

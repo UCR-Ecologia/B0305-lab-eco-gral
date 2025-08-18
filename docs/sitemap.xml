@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/report/slides.html</loc>
+    <lastmod>2025-08-18T16:59:59.820Z</lastmod>
+  </url>
+  <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/r_primer/slides.html</loc>
     <lastmod>2025-08-14T18:05:54.662Z</lastmod>
   </url>
@@ -55,5 +59,9 @@
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/r_primer/page.html</loc>
     <lastmod>2025-08-13T00:15:24.288Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/report/page.html</loc>
+    <lastmod>2025-08-18T16:04:46.141Z</lastmod>
   </url>
 </urlset>

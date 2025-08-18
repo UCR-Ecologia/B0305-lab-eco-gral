@@ -1,5 +1,173 @@
 [
   {
+    "objectID": "2025/lessons/report/slides.html#problemas-con-word-tradicional",
+    "href": "2025/lessons/report/slides.html#problemas-con-word-tradicional",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Problemas con Word tradicional 😤",
+    "text": "Problemas con Word tradicional 😤\n\n\n\nCitas y bibliografía\n\nCopiar y pegar referencias manualmente\nFormato inconsistente\nError al cambiar estilos de citación\nBibliografía desorganizada\n\n\n\nFiguras y tablas\n\n“La figura se movió sola” 🤯\nReferencias cruzadas rotas\nLeyendas inconsistentes\nProblemas de resolución\n\n\n\n\nReproducibilidad\n\n¿Cómo se generó esa gráfica?\n¿Cuál análisis se usó?\nImposible reproducir resultados"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#ventajas-de-quarto",
+    "href": "2025/lessons/report/slides.html#ventajas-de-quarto",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Ventajas de Quarto 🚀",
+    "text": "Ventajas de Quarto 🚀\n\n\n\nTodo en un lugar\n\nTexto + código + resultados\nAutomáticamente actualizado\nFormato profesional\n\n\n\nCitas automáticas\n\nBase de datos bibliográfica (BibTeX)\nInserción automática: [@autor2023]\nMúltiples formatos: APA, Chicago, Nature…\n\n\n\n\nFiguras inteligentes\n\nGeneradas por código R/Python\nReferencias automáticas: @fig-crecimiento\nNumeración y leyendas consistentes\n\n\n\nMúltiples formatos\n\nPDF para entregar\nHTML para web/presentación\nWord si es necesario"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#qué-es-markdown",
+    "href": "2025/lessons/report/slides.html#qué-es-markdown",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "¿Qué es Markdown? 📝",
+    "text": "¿Qué es Markdown? 📝\n\nMarkdown es un lenguaje de marcado ligero para dar formato a texto\n\nFácil de leer en texto plano\nFácil de escribir - solo símbolos simples\nSe convierte a HTML, PDF, Word…\n\n\n\nFilosofía\n\n“Un documento Markdown debe ser legible tal como está, sin verse como si hubiera sido marcado con etiquetas o instrucciones de formato”\n— John Gruber (creador de Markdown)"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#formato-básico-de-texto",
+    "href": "2025/lessons/report/slides.html#formato-básico-de-texto",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Formato básico de texto",
+    "text": "Formato básico de texto\n\n\nCódigo Markdown:\n# Título principal\n## Subtítulo\n### Sub-subtítulo\n\n**Texto en negrita**\n*Texto en cursiva*\n~~Texto tachado~~\n\nPárrafo normal con texto.\n\n- Lista con viñetas\n- Segundo elemento\n  - Sub-elemento\n\n1. Lista numerada\n2. Segundo elemento\n3. Tercer elemento\n\nResultado:\n\n\nTítulo principal\n\n\nSubtítulo\n\n\nSub-subtítulo\n\nTexto en negrita Texto en cursiva Texto tachado\n\nPárrafo normal con texto.\n\n\n\nLista con viñetas\n\n\nSegundo elemento\n\n\nSub-elemento\n\n\n\n\n\n\nLista numerada\n\n\nSegundo elemento\n\n\nTercer elemento"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#subtítulo",
+    "href": "2025/lessons/report/slides.html#subtítulo",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Subtítulo",
+    "text": "Subtítulo\nSub-subtítulo\nTexto en negrita\nTexto en cursiva\nTexto tachado\nPárrafo normal con texto.\n\nLista con viñetas\nSegundo elemento\n\nSub-elemento\n\n\n\nLista numerada\nSegundo elemento\n\nTercer elemento"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#enlaces-y-citas-científicas",
+    "href": "2025/lessons/report/slides.html#enlaces-y-citas-científicas",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Enlaces y citas científicas",
+    "text": "Enlaces y citas científicas\n\n\nEnlaces:\n[Texto de enlace](https://ejemplo.com)\n\n[Email](mailto:profesor@ucr.ac.cr)\nCitas bibliográficas:\nSegún @begon2006ecology, las poblaciones...\n\nEl crecimiento logístico [@verhulst1838notice; @gotelli2008primer] es fundamental.\n\nComo mencionan varios autores [-@pearl1925biology; -@begon2006ecology]\n\nResultado:\nTexto de enlace\nEmail\nSegún Begon et al. (2006), las poblaciones…\nEl crecimiento logístico (Verhulst, 1838; Gotelli, 2008) es fundamental.\nComo mencionan varios autores (Pearl & Reed, 1925; Begon et al., 2006)"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#ecuaciones-matemáticas",
+    "href": "2025/lessons/report/slides.html#ecuaciones-matemáticas",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Ecuaciones matemáticas",
+    "text": "Ecuaciones matemáticas\n\n\nInline math:\nLa población crece según $N(t) = N_0 e^{rt}$\nDisplay math:\n$$N(t) = \\frac{K}{1 + \\left(\\frac{K-N_0}{N_0}\\right)e^{-rt}}$$\nEcuaciones numeradas:\n$$N(t) = N_0 e^{rt}$$ {#eq-exponencial}\n\nVer ecuación @eq-exponencial...\n\nResultado:\nLa población crece según \\(N(t) = N_0 e^{rt}\\)\n\\[N(t) = \\frac{K}{1 + \\left(\\frac{K-N_0}{N_0}\\right)e^{-rt}}\\]\n\\[N(t) = N_0 e^{rt} \\qquad(1)\\]\nVer ecuación Equation 1 …"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#código-y-resultados",
+    "href": "2025/lessons/report/slides.html#código-y-resultados",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Código y resultados",
+    "text": "Código y resultados\n\n\nCódigo R en Quarto:\n#| label: fig-crecimiento\n#| fig-cap: \"Crecimiento de S. cerevisiae\"\n#| echo: true\n\nlibrary(ggplot2)\ndata &lt;- data.frame(\n  tiempo = 0:24, \n  densidad = exp(0.2 * (0:24))\n)\nggplot(data, aes(tiempo, densidad)) + \n  geom_line() + \n  labs(x = \"Tiempo (h)\", \n       y = \"Densidad (cells/mL)\")\n\nComo se observa en @fig-crecimiento, el crecimiento es exponencial.\n\nResultado ejecutado:\n\n\n\n\n\n\n\n\nFigure 1: Crecimiento de S. cerevisiae en medio YPD\n\n\n\n\n\nComo se observa en Figure 1, el crecimiento es exponencial."
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#estructura-de-archivos",
+    "href": "2025/lessons/report/slides.html#estructura-de-archivos",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Estructura de archivos 📁",
+    "text": "Estructura de archivos 📁\nSu plantilla incluye varios archivos importantes:\nB305-report-template-kit/\n├── B305-report-template.qmd    # 📝 Plantilla principal\n├── reference.docx              # 📄 Formato Word de referencia  \n├── references.bib              # 📚 Base de datos bibliográfica\n├── apa.csl                     # 📋 Estilo de citación APA\n├── styles.css                  # 🎨 Estilos HTML\n└── how-to-knit.md             # 📖 Instrucciones\n\n¡Todos deben estar en la misma carpeta! 📂"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#configuración-yaml",
+    "href": "2025/lessons/report/slides.html#configuración-yaml",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Configuración YAML",
+    "text": "Configuración YAML\nEl encabezado YAML configura todo el documento:\n---\ntitle: \"TÍTULO DEL REPORTE (12–15 palabras)\"\nauthor:\n  - name: \"Nombre Apellido-Apellido\" \n    affiliation: \"Escuela de Biología, Universidad de Costa Rica...\"\nkeywords: [\"palabra clave 1\", \"palabra clave 2\", ...]\nformat:\n  pdf: \n    pdf-engine: xelatex\n    mainfont: \"Times New Roman\"\n    fontsize: 12pt\n    linestretch: 2    # Doble espacio\n  html:\n    css: styles.css\n  docx:\n    reference-doc: reference.docx\nbibliography: references.bib\ncsl: apa.csl\nlang: es\n---"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#múltiples-formatos-de-salida",
+    "href": "2025/lessons/report/slides.html#múltiples-formatos-de-salida",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Múltiples formatos de salida",
+    "text": "Múltiples formatos de salida\n\nPDF (recomendado para entrega)\nquarto render B305-report-template.qmd --to pdf\n\nFormato profesional\nTimes New Roman, 12pt\nDoble espacio\nMárgenes correctos\n\n\n\nHTML (para revisión)\nquarto render B305-report-template.qmd --to html\n\nRápido de generar\nFácil de compartir\nLinks clickeables\n\n\n\nWord (si es necesario)\nquarto render B305-report-template.qmd --to docx\n\nCompatible con revisiones\nFormato basado en reference.docx"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#estructura-del-reporte",
+    "href": "2025/lessons/report/slides.html#estructura-del-reporte",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Estructura del reporte",
+    "text": "Estructura del reporte\n# Resumen\n**Resumen:** (máx. 250 palabras).\n**Palabras claves:** palabra1; palabra2; palabra3; palabra4; palabra5\n\n# INTRODUCCIÓN\nContexto, antecedentes, hipótesis...\n\n# MATERIALES Y MÉTODOS\nDescripción detallada de métodos...\n\n# RESULTADOS  \nPresentación objetiva de resultados...\n\n# DISCUSIÓN\nInterpretación y comparación con literatura...\n\n# LITERATURA CITADA\n(Se genera automáticamente)"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#base-de-datos-bibliográfica-bibtex",
+    "href": "2025/lessons/report/slides.html#base-de-datos-bibliográfica-bibtex",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Base de datos bibliográfica (BibTeX)",
+    "text": "Base de datos bibliográfica (BibTeX)\nEl archivo references.bib contiene todas sus referencias:\n@book{begon2006ecology,\n  title={Ecology: from individuals to ecosystems},\n  author={Begon, Michael and Townsend, Colin R and Harper, John L},\n  year={2006},\n  publisher={Blackwell publishing}\n}\n\n@article{verhulst1838notice,\n  title={Notice sur la loi que la population suit dans son accroissement},\n  author={Verhulst, Pierre Fran{\\c{c}}ois},\n  journal={Correspondance math{\\'e}matique et physique},\n  volume={10},\n  pages={113--126},\n  year={1838}\n}"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#agregando-nuevas-referencias",
+    "href": "2025/lessons/report/slides.html#agregando-nuevas-referencias",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Agregando nuevas referencias",
+    "text": "Agregando nuevas referencias\n\nDesde Google Scholar\n\nBuscar el artículo\nClick en “Citar”\nClick en “BibTeX”\nCopiar y pegar en references.bib\n\n\n\nDesde DOI\n\nUsar doi2bib.org\nIntroducir DOI: 10.1038/nature12373\nCopiar resultado a references.bib"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#citando-en-el-texto",
+    "href": "2025/lessons/report/slides.html#citando-en-el-texto",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Citando en el texto",
+    "text": "Citando en el texto\n\n\nCódigo Markdown:\n&lt;!-- Cita parentética --&gt;\nEl crecimiento poblacional [@verhulst1838notice] \nes fundamental.\n\n&lt;!-- Cita narrativa --&gt;\nSegún @begon2006ecology, las poblaciones...\n\n&lt;!-- Múltiples citas --&gt;\nVarios autores [@verhulst1838notice; @gotelli2008primer] \nhan estudiado...\n\n&lt;!-- Solo año --&gt;\n@begon2006ecology [-@begon2006ecology] mostraron...\n\n&lt;!-- Páginas específicas --&gt;\nComo indica @verhulst1838notice [p. 15], la ecuación...\n\nResultado:\nEl crecimiento poblacional (Verhulst, 1838) es fundamental.\nSegún Begon et al. (2006), las poblaciones…\nVarios autores (Verhulst, 1838; Gotelli, 2008) han estudiado…\nBegon et al. (2006) mostraron…\nComo indica Verhulst (1838, p. 15), la ecuación…"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#figuras-desde-r",
+    "href": "2025/lessons/report/slides.html#figuras-desde-r",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Figuras desde R",
+    "text": "Figuras desde R\n\n\nCódigo R para figura:\n#| label: fig-logistico\n#| fig-cap: \"Crecimiento logístico de S. cerevisiae\"\n#| fig-width: 6\n#| fig-height: 4\n#| echo: false\n\nlibrary(ggplot2)\nt &lt;- seq(0, 24, 0.1)\nN &lt;- 1000 / (1 + 99 * exp(-0.3 * t))\ndata &lt;- data.frame(tiempo = t, densidad = N)\n\nggplot(data, aes(tiempo, densidad)) +\n  geom_line(color = \"steelblue\", size = 1.2) +\n  labs(x = \"Tiempo (horas)\", \n       y = \"Densidad (células/mL)\") +\n  theme_bw()\n\nComo se observa en @fig-logistico...\nOpciones importantes:\n- label: para referencias cruzadas\n- fig-cap: para la leyenda\n- echo: false para ocultar código\n- fig-width y fig-height para dimensiones\n\nResultado ejecutado:\n\n\n\n\n\n\n\n\nFigure 2: Crecimiento logístico de Saccharomyces cerevisiae\n\n\n\n\n\nComo se observa en Figure 2, el crecimiento presenta una curva típica logística."
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#tablas-con-código-r",
+    "href": "2025/lessons/report/slides.html#tablas-con-código-r",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Tablas con código R",
+    "text": "Tablas con código R\n\n\nCódigo R para tabla:\n#| label: tbl-parametros\n#| tbl-cap: \"Parámetros del modelo logístico\"\n\nlibrary(knitr)\nparametros &lt;- data.frame(\n  Parámetro = c(\"K\", \"r\", \"N₀\"),\n  Valor = c(987.3, 0.281, 10.2),\n  `Error estándar` = c(45.2, 0.025, 1.8),\n  Unidades = c(\"células/mL\", \"h⁻¹\", \"células/mL\")\n)\nkable(parametros, digits = 3)\n\nLos parámetros estimados (@tbl-parametros)...\n\nResultado ejecutado:\n\n\n\n\nTable 1: Parámetros del modelo logístico estimados\n\n\n\n\n\n\nParámetro\nValor\nError.estándar\nUnidades\n\n\n\n\nK\n987.300\n45.200\ncélulas/mL\n\n\nr\n0.281\n0.025\nh⁻¹\n\n\nN₀\n10.200\n1.800\ncélulas/mL\n\n\n\n\n\n\n\n\nLos parámetros estimados (Table 1) muestran que la capacidad de carga es aproximadamente 987 células/mL."
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#figuras-externas",
+    "href": "2025/lessons/report/slides.html#figuras-externas",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Figuras externas",
+    "text": "Figuras externas\n\n![Microscopio utilizado en el experimento](img/microscopio.jpeg){#fig-microscopio width=20%}\n\nLas observaciones se realizaron con el microscopio mostrado en @fig-microscopio...\n\n\n\n\n\n\n\n\nFigure 3: Microscopio utilizado en el experimento\n\n\n\nLas observaciones se realizaron con el microscopio mostrado en Figure 3…\n\n\nFormatos recomendados:\n- PNG para diagramas y screenshots\n- JPG para fotografías\n- PDF para figuras vectoriales\n- SVG para gráficos web"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#pasos-para-crear-un-reporte",
+    "href": "2025/lessons/report/slides.html#pasos-para-crear-un-reporte",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Pasos para crear un reporte",
+    "text": "Pasos para crear un reporte\n1. Preparar el workspace\n\n\n\n\nCrear nueva carpeta:\n\nNombrar: mi-reporte-ecologia\n\nDescargar plantilla:\n\nIr al repositorio del curso\n\nDescargar B305-report-template-kit.zip\n\nExtraer en la carpeta creada\n\nEn RStudio:\n\nFile → New Project → Existing Directory\n\nSeleccionar mi-reporte-ecologia\n\nRenombrar B305-report-template.qmd → mi-reporte.qmd\n\n\n\n\n\nVerificar archivos:\n- ✅ mi-reporte.qmd\n- ✅ references.bib\n- ✅ reference.docx\n- ✅ apa.csl\n- ✅ styles.css\n\n\n2. Configurar encabezado\n\nCambiar título y autor\n\nAjustar palabras clave\n\nVerificar archivos auxiliares\n\n\n\n\n3. Escribir contenido\n\nUsar estructura científica estándar\n\nIncorporar código R inline\n\nCitar literatura relevante"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#durante-el-desarrollo",
+    "href": "2025/lessons/report/slides.html#durante-el-desarrollo",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Durante el desarrollo",
+    "text": "Durante el desarrollo\n\nRenderizar frecuentemente\n# Vista rápida HTML\nquarto render mi-reporte.qmd --to html\n\n# Versión final PDF  \nquarto render mi-reporte.qmd --to pdf\n\n\n\nRespaldos regulares\n\nGuardar en la nube (Google Drive, Dropbox)\nEnviar por email a ustedes mismos\nUsar repositorio GitHub"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#consejos-para-reportes-exitosos",
+    "href": "2025/lessons/report/slides.html#consejos-para-reportes-exitosos",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Consejos para reportes exitosos",
+    "text": "Consejos para reportes exitosos\n\nOrganización de archivos\nmi-proyecto/\n├── mi-reporte.qmd           # Documento principal\n├── references.bib           # Bibliografia  \n├── data/                    # Datos\n│   ├── crecimiento.csv\n│   └── experimento.xlsx\n├── scripts/                 # Código R auxiliar\n│   └── analisis.R\n├── figures/                 # Figuras externas\n│   └── setup-experimental.jpg\n└── output/                  # Archivos generados\n    ├── mi-reporte.pdf\n    └── mi-reporte.html\n\n\nBuenas prácticas\n\nComentar el código R para futuro yo\nUsar nombres descriptivos para chunks y figuras\n\nVerificar referencias antes de entregar\nRevisar formato final en PDF"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#crear-un-reporte-simple",
+    "href": "2025/lessons/report/slides.html#crear-un-reporte-simple",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Crear un reporte simple",
+    "text": "Crear un reporte simple\nVamos a crear juntos un reporte básico paso a paso:\n\n1. Configuración inicial\n\nCopiar plantilla\nCambiar título y autor\n\nAjustar palabras clave\n\n\n\n2. Agregar contenido\n\nEscribir introducción simple\nIncluir una figura R\nAgregar una cita\n\n\n\n3. Renderizar\n\nGenerar HTML para revisión\nGenerar PDF final"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#recursos-adiciales",
+    "href": "2025/lessons/report/slides.html#recursos-adiciales",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Recursos adiciales",
+    "text": "Recursos adiciales\nDocumentación oficial\n\nQuarto Documentation\nQuarto Reference\n\nMarkdown y matemáticas\n\nMarkdown Cheat Sheet\nLaTeX Math Symbols\n\nGestión bibliográfica\n\nZotero - Gestor gratuito\nGoogle Scholar - Búsqueda académica\ndoi2bib - DOI a BibTeX"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#para-la-próxima-semana",
+    "href": "2025/lessons/report/slides.html#para-la-próxima-semana",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Para la próxima semana",
+    "text": "Para la próxima semana\n\nPráctica requerida\n\nDescargar la plantilla desde el repositorio del curso\nCrear un reporte corto (2-3 páginas) sobre cualquier tema de ecología\nIncluir: Al menos 2 citas, 1 figura generada con R, 1 tabla\nRenderizar a PDF y HTML"
+  },
+  {
     "objectID": "2025/lessons/r_primer/slides.html#qué-es-r",
     "href": "2025/lessons/r_primer/slides.html#qué-es-r",
     "title": " Introducción a R",
@@ -1034,5 +1202,81 @@
       "📚 Lecciones",
       "2. Introducción a R y `{renv}`"
     ]
+  },
+  {
+    "objectID": "2025/lessons/report/page.html",
+    "href": "2025/lessons/report/page.html",
+    "title": "Escribiendo Reportes Científicos",
+    "section": "",
+    "text": "En esta lección aprenderás a crear reportes científicos profesionales usando Quarto y Markdown. Te familiarizarás con la plantilla B0305 del curso, que te permitirá generar documentos con formato académico, citas automáticas, y figuras numeradas. Esta es una habilidad esencial para comunicar tus resultados de investigación de manera efectiva y reproducible.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "5. Reportes con R y `{quarto}`"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/report/page.html#diapositivas-de-la-clase",
+    "href": "2025/lessons/report/page.html#diapositivas-de-la-clase",
+    "title": "Escribiendo Reportes Científicos",
+    "section": "👨‍🏫 Diapositivas de la Clase",
+    "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "5. Reportes con R y `{quarto}`"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/report/page.html#recursos-de-la-clase",
+    "href": "2025/lessons/report/page.html#recursos-de-la-clase",
+    "title": "Escribiendo Reportes Científicos",
+    "section": "📁 Recursos de la Clase",
+    "text": "📁 Recursos de la Clase\n\nPlantilla B0305: Descargar kit completo\nDocumentación Quarto: quarto.org\nGuía Markdown: markdownguide.org",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "5. Reportes con R y `{quarto}`"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/report/page.html#lecturas-recomendadas",
+    "href": "2025/lessons/report/page.html#lecturas-recomendadas",
+    "title": "Escribiendo Reportes Científicos",
+    "section": "📚 Lecturas Recomendadas",
+    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "5. Reportes con R y `{quarto}`"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#requisitos-del-sistema",
+    "href": "2025/lessons/report/slides.html#requisitos-del-sistema",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Requisitos del sistema 🔧",
+    "text": "Requisitos del sistema 🔧\n\nQuarto CLI (obligatorio)\nQuarto es una aplicación independiente que debe instalarse en su sistema:\n\nWindows: Descargar de quarto.org\nMac: brew install quarto o descargar instalador\nLinux: sudo apt install quarto o descargar .deb/.rpm\n\nVerificar instalación:\nquarto --version  # Debe mostrar v1.4+ \n\n\nRStudio (recomendado)\n\nRStudio Desktop (v2022.07+) con soporte nativo para Quarto\nAlternativa: VS Code con extensión de Quarto"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#configurar-entorno-r",
+    "href": "2025/lessons/report/slides.html#configurar-entorno-r",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Configurar entorno R 📦",
+    "text": "Configurar entorno R 📦\n\n\n\nOpción A: renv (recomendado)\nSi tienen renv.lock del curso:\n# En RStudio/R Console\ninstall.packages(\"renv\")\nrenv::restore()\nEsto instalará automáticamente:\n- quarto (paquete R para interfaz)\n- knitr, ggplot2, dplyr\n- Todas las dependencias necesarias\n\n\n\nOpción B: Instalación manual\ninstall.packages(c(\n  \"quarto\",      # Interfaz R-Quarto\n  \"knitr\",       # Para renderizar\n  \"rmarkdown\",   # Compatibilidad\n  \"ggplot2\",     # Gráficos\n  \"dplyr\",       # Manipulación datos\n  \"palmerpenguins\" # Datos ejemplo\n))\nVerificar:\nlibrary(quarto)\nquarto_version()  # Debe detectar Quarto CLI"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#quarto-cli-vs-paquete-r",
+    "href": "2025/lessons/report/slides.html#quarto-cli-vs-paquete-r",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "¿Quarto CLI vs paquete R? 🤔",
+    "text": "¿Quarto CLI vs paquete R? 🤔\n\nQuarto CLI (Sistema)\n\nMotor principal que renderiza documentos\nConvierte .qmd → PDF/HTML/Word\nNecesario para que funcione todo\nSe instala una vez en el sistema\n\n\n\nPaquete quarto (R)\n\nInterfaz entre R y Quarto CLI\n\nPermite renderizar desde R: quarto::quarto_render()\nOpcional pero muy conveniente\nSe instala como cualquier paquete R\n\n\n\n¡Ambos son necesarios! ⚠️\n# Esto NO funcionará sin Quarto CLI instalado\nquarto::quarto_render(\"mi-documento.qmd\")\n# Error: Quarto CLI not found"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#bibliografia",
+    "href": "2025/lessons/report/slides.html#bibliografia",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Bibliografia",
+    "text": "Bibliografia\nDocumentación oficial\n\nQuarto Documentation\nQuarto Reference\n\nMarkdown y matemáticas\n\nMarkdown Cheat Sheet\nLaTeX Math Symbols\n\nGestión bibliográfica\n\nZotero - Gestor gratuito\nGoogle Scholar - Búsqueda académica\ndoi2bib - DOI a BibTeX"
   }
 ]

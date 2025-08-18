@@ -6,6 +6,8 @@ project:
     - "index.qmd"
     - "2025/*.qmd"
     - "2025/lessons/*/*.qmd"
+  resources:
+    - "report_template/"
 
 website:
   title: "B0305 Lab Eco Gral 2025"
@@ -47,6 +49,8 @@ website:
                 text: "3. Analisis exploratorio de datos"
               - href: 2025/lessons/model/page.qmd
                 text: "4. Modelado en R"
+              - href: 2025/lessons/report/page.qmd
+                text: "5. Reportes con R y `{quarto}`"
 
   navbar:
     background: primary
