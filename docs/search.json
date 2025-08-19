@@ -102,7 +102,7 @@
     "href": "2025/lessons/report/slides.html#citando-en-el-texto",
     "title": "Escribiendo Reportes Científicos con Quarto",
     "section": "Citando en el texto",
-    "text": "Citando en el texto\n\n\nCódigo Markdown:\n&lt;!-- Cita parentética --&gt;\nEl crecimiento poblacional [@verhulst1838notice] \nes fundamental.\n\n&lt;!-- Cita narrativa --&gt;\nSegún @begon2006ecology, las poblaciones...\n\n&lt;!-- Múltiples citas --&gt;\nVarios autores [@verhulst1838notice; @gotelli2008primer] \nhan estudiado...\n\n&lt;!-- Solo año --&gt;\n@begon2006ecology [-@begon2006ecology] mostraron...\n\n&lt;!-- Páginas específicas --&gt;\nComo indica @verhulst1838notice [p. 15], la ecuación...\n\nResultado:\nEl crecimiento poblacional (Verhulst, 1838) es fundamental.\nSegún Begon et al. (2006), las poblaciones…\nVarios autores (Verhulst, 1838; Gotelli, 2008) han estudiado…\nBegon et al. (2006) mostraron…\nComo indica Verhulst (1838, p. 15), la ecuación…"
+    "text": "Citando en el texto\n\n\nCódigo Markdown:\n&lt;!-- Cita parentética --&gt;\nEl crecimiento poblacional [@verhulst1838notice] \nes fundamental.\n\n&lt;!-- Cita narrativa --&gt;\nSegún @begon2006ecology, las poblaciones...\n\n&lt;!-- Múltiples citas --&gt;\nVarios autores [@verhulst1838notice; @gotelli2008primer] \nhan estudiado...\n\n&lt;!-- Solo año --&gt;\n@begon2006ecology mostraron...\n\n&lt;!-- Páginas específicas --&gt;\nComo indica @verhulst1838notice [p. 15], la ecuación...\n\nResultado:\nEl crecimiento poblacional (Verhulst, 1838) es fundamental.\nSegún Begon et al. (2006), las poblaciones…\nVarios autores (Verhulst, 1838; Gotelli, 2008) han estudiado…\nBegon et al. (2006) mostraron…\nComo indica Verhulst (1838, p. 15), la ecuación…"
   },
   {
     "objectID": "2025/lessons/report/slides.html#figuras-desde-r",
@@ -1232,7 +1232,7 @@
     "href": "2025/lessons/report/page.html#recursos-de-la-clase",
     "title": "Escribiendo Reportes Científicos",
     "section": "📁 Recursos de la Clase",
-    "text": "📁 Recursos de la Clase\n\nPlantilla B0305: Descargar kit completo | Enlace alternativo\nDocumentación Quarto: quarto.org\nGuía Markdown: markdownguide.org",
+    "text": "📁 Recursos de la Clase\n\nPlantilla B0305: Descargar kit completo | Enlace alternativo\nGuía Markdown: markdownguide.org",
     "crumbs": [
       "2025",
       "📚 Lecciones",
