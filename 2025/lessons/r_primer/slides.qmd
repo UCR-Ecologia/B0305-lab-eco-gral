@@ -168,7 +168,7 @@ install.packages("renv")
 
 ::: {.fragment}
 #### Paso 2: Descargar archivo de configuración
-- **Descargar** el archivo `renv.lock` desde: [**https://ucr-ecologia.github.io/B0305-lab-eco-gral/renv.lock**](https://ucr-ecologia.github.io/B0305-lab-eco-gral/renv.lock)
+- **Descargar** el archivo `renv.lock` desde: [**Archivo renv.lock del curso**](/renv.lock)
 - **Guardar** en tu directorio de trabajo de R
 :::
 

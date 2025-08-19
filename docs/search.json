@@ -242,7 +242,7 @@
     "href": "2025/lessons/r_primer/slides.html#instalación-y-uso",
     "title": " Introducción a R",
     "section": "Instalación y uso",
-    "text": "Instalación y uso\n\nPaso 1: Instalar renv\n\ninstall.packages(\"renv\")\n\n\n\nPaso 2: Descargar archivo de configuración\n\nDescargar el archivo renv.lock desde: https://ucr-ecologia.github.io/B0305-lab-eco-gral/renv.lock\nGuardar en tu directorio de trabajo de R\n\n\n\nPaso 3: Activar el entorno del curso\n\n# En el directorio donde guardaste renv.lock:\nrenv::restore()\n\n\n\nPaso 4: Verificar que funciona\n\nlibrary(tidyverse)\nlibrary(vegan)\nlibrary(ggplot2)\n# Si no hay errores, ¡todo listo! 🎉\n\n\n\n⚠️ Solo necesitas hacer esto UNA VEZ al inicio del curso"
+    "text": "Instalación y uso\n\nPaso 1: Instalar renv\n\ninstall.packages(\"renv\")\n\n\n\nPaso 2: Descargar archivo de configuración\n\nDescargar el archivo renv.lock desde: Archivo renv.lock del curso\nGuardar en tu directorio de trabajo de R\n\n\n\nPaso 3: Activar el entorno del curso\n\n# En el directorio donde guardaste renv.lock:\nrenv::restore()\n\n\n\nPaso 4: Verificar que funciona\n\nlibrary(tidyverse)\nlibrary(vegan)\nlibrary(ggplot2)\n# Si no hay errores, ¡todo listo! 🎉\n\n\n\n⚠️ Solo necesitas hacer esto UNA VEZ al inicio del curso"
   },
   {
     "objectID": "2025/lessons/r_primer/slides.html#ejercicio-1-primeros-pasos-con-r",
