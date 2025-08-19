@@ -8,6 +8,7 @@ project:
     - "2025/lessons/*/*.qmd"
   resources:
     - "report_template/"
+    - "renv.lock"
 
 website:
   title: "B0305 Lab Eco Gral 2025"

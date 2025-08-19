@@ -14,6 +14,20 @@
     "text": "Ventajas de Quarto 🚀\n\n\n\nTodo en un lugar\n\nTexto + código + resultados\nAutomáticamente actualizado\nFormato profesional\n\n\n\nCitas automáticas\n\nBase de datos bibliográfica (BibTeX)\nInserción automática: [@autor2023]\nMúltiples formatos: APA, Chicago, Nature…\n\n\n\n\nFiguras inteligentes\n\nGeneradas por código R/Python\nReferencias automáticas: @fig-crecimiento\nNumeración y leyendas consistentes\n\n\n\nMúltiples formatos\n\nPDF para entregar\nHTML para web/presentación\nWord si es necesario"
   },
   {
+    "objectID": "2025/lessons/report/slides.html#requisitos-del-sistema",
+    "href": "2025/lessons/report/slides.html#requisitos-del-sistema",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Requisitos del sistema 🔧",
+    "text": "Requisitos del sistema 🔧\n\nQuarto CLI (obligatorio)\nQuarto es una aplicación independiente que debe instalarse en su sistema:\n\nWindows: Descargar de quarto.org\nMac: brew install quarto o descargar instalador\nLinux: sudo apt install quarto o descargar .deb/.rpm\n\nVerificar instalación:\nquarto --version  # Debe mostrar v1.4+ \n\n\nRStudio (recomendado)\n\nRStudio Desktop (v2022.07+) con soporte nativo para Quarto\nAlternativa: VS Code con extensión de Quarto"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#configurar-entorno-r",
+    "href": "2025/lessons/report/slides.html#configurar-entorno-r",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Configurar entorno R 📦",
+    "text": "Configurar entorno R 📦\n\n\n\nOpción A: renv (recomendado)\nSi tienen renv.lock del curso:\n# En RStudio/R Console\ninstall.packages(\"renv\")\nrenv::restore()\nEsto instalará automáticamente:\n- quarto (paquete R para interfaz)\n- knitr, ggplot2, dplyr\n- Todas las dependencias necesarias\n\n\n\nOpción B: Instalación manual\ninstall.packages(c(\n  \"quarto\",      # Interfaz R-Quarto\n  \"knitr\",       # Para renderizar\n  \"rmarkdown\",   # Compatibilidad\n  \"ggplot2\",     # Gráficos\n  \"dplyr\",       # Manipulación datos\n  \"palmerpenguins\" # Datos ejemplo\n))\nVerificar:\nlibrary(quarto)\nquarto_version()  # Debe detectar Quarto CLI"
+  },
+  {
     "objectID": "2025/lessons/report/slides.html#qué-es-markdown",
     "href": "2025/lessons/report/slides.html#qué-es-markdown",
     "title": "Escribiendo Reportes Científicos con Quarto",
@@ -26,13 +40,6 @@
     "title": "Escribiendo Reportes Científicos con Quarto",
     "section": "Formato básico de texto",
     "text": "Formato básico de texto\n\n\nCódigo Markdown:\n# Título principal\n## Subtítulo\n### Sub-subtítulo\n\n**Texto en negrita**\n*Texto en cursiva*\n~~Texto tachado~~\n\nPárrafo normal con texto.\n\n- Lista con viñetas\n- Segundo elemento\n  - Sub-elemento\n\n1. Lista numerada\n2. Segundo elemento\n3. Tercer elemento\n\nResultado:\n\n\nTítulo principal\n\n\nSubtítulo\n\n\nSub-subtítulo\n\nTexto en negrita Texto en cursiva Texto tachado\n\nPárrafo normal con texto.\n\n\n\nLista con viñetas\n\n\nSegundo elemento\n\n\nSub-elemento\n\n\n\n\n\n\nLista numerada\n\n\nSegundo elemento\n\n\nTercer elemento"
-  },
-  {
-    "objectID": "2025/lessons/report/slides.html#subtítulo",
-    "href": "2025/lessons/report/slides.html#subtítulo",
-    "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Subtítulo",
-    "text": "Subtítulo\nSub-subtítulo\nTexto en negrita\nTexto en cursiva\nTexto tachado\nPárrafo normal con texto.\n\nLista con viñetas\nSegundo elemento\n\nSub-elemento\n\n\n\nLista numerada\nSegundo elemento\n\nTercer elemento"
   },
   {
     "objectID": "2025/lessons/report/slides.html#enlaces-y-citas-científicas",
@@ -154,18 +161,18 @@
     "text": "Crear un reporte simple\nVamos a crear juntos un reporte básico paso a paso:\n\n1. Configuración inicial\n\nCopiar plantilla\nCambiar título y autor\n\nAjustar palabras clave\n\n\n\n2. Agregar contenido\n\nEscribir introducción simple\nIncluir una figura R\nAgregar una cita\n\n\n\n3. Renderizar\n\nGenerar HTML para revisión\nGenerar PDF final"
   },
   {
-    "objectID": "2025/lessons/report/slides.html#recursos-adiciales",
-    "href": "2025/lessons/report/slides.html#recursos-adiciales",
-    "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Recursos adiciales",
-    "text": "Recursos adiciales\nDocumentación oficial\n\nQuarto Documentation\nQuarto Reference\n\nMarkdown y matemáticas\n\nMarkdown Cheat Sheet\nLaTeX Math Symbols\n\nGestión bibliográfica\n\nZotero - Gestor gratuito\nGoogle Scholar - Búsqueda académica\ndoi2bib - DOI a BibTeX"
-  },
-  {
     "objectID": "2025/lessons/report/slides.html#para-la-próxima-semana",
     "href": "2025/lessons/report/slides.html#para-la-próxima-semana",
     "title": "Escribiendo Reportes Científicos con Quarto",
     "section": "Para la próxima semana",
     "text": "Para la próxima semana\n\nPráctica requerida\n\nDescargar la plantilla desde el repositorio del curso\nCrear un reporte corto (2-3 páginas) sobre cualquier tema de ecología\nIncluir: Al menos 2 citas, 1 figura generada con R, 1 tabla\nRenderizar a PDF y HTML"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#bibliografia",
+    "href": "2025/lessons/report/slides.html#bibliografia",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "Bibliografia",
+    "text": "Bibliografia\nDocumentación oficial\n\nQuarto Documentation\nQuarto Reference\n\nMarkdown y matemáticas\n\nMarkdown Cheat Sheet\nLaTeX Math Symbols\n\nGestión bibliográfica\n\nZotero - Gestor gratuito\nGoogle Scholar - Búsqueda académica\ndoi2bib - DOI a BibTeX"
   },
   {
     "objectID": "2025/lessons/r_primer/slides.html#qué-es-r",
@@ -1250,33 +1257,5 @@
       "📚 Lecciones",
       "5. Reportes con R y `{quarto}`"
     ]
-  },
-  {
-    "objectID": "2025/lessons/report/slides.html#requisitos-del-sistema",
-    "href": "2025/lessons/report/slides.html#requisitos-del-sistema",
-    "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Requisitos del sistema 🔧",
-    "text": "Requisitos del sistema 🔧\n\nQuarto CLI (obligatorio)\nQuarto es una aplicación independiente que debe instalarse en su sistema:\n\nWindows: Descargar de quarto.org\nMac: brew install quarto o descargar instalador\nLinux: sudo apt install quarto o descargar .deb/.rpm\n\nVerificar instalación:\nquarto --version  # Debe mostrar v1.4+ \n\n\nRStudio (recomendado)\n\nRStudio Desktop (v2022.07+) con soporte nativo para Quarto\nAlternativa: VS Code con extensión de Quarto"
-  },
-  {
-    "objectID": "2025/lessons/report/slides.html#configurar-entorno-r",
-    "href": "2025/lessons/report/slides.html#configurar-entorno-r",
-    "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Configurar entorno R 📦",
-    "text": "Configurar entorno R 📦\n\n\n\nOpción A: renv (recomendado)\nSi tienen renv.lock del curso:\n# En RStudio/R Console\ninstall.packages(\"renv\")\nrenv::restore()\nEsto instalará automáticamente:\n- quarto (paquete R para interfaz)\n- knitr, ggplot2, dplyr\n- Todas las dependencias necesarias\n\n\n\nOpción B: Instalación manual\ninstall.packages(c(\n  \"quarto\",      # Interfaz R-Quarto\n  \"knitr\",       # Para renderizar\n  \"rmarkdown\",   # Compatibilidad\n  \"ggplot2\",     # Gráficos\n  \"dplyr\",       # Manipulación datos\n  \"palmerpenguins\" # Datos ejemplo\n))\nVerificar:\nlibrary(quarto)\nquarto_version()  # Debe detectar Quarto CLI"
-  },
-  {
-    "objectID": "2025/lessons/report/slides.html#quarto-cli-vs-paquete-r",
-    "href": "2025/lessons/report/slides.html#quarto-cli-vs-paquete-r",
-    "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "¿Quarto CLI vs paquete R? 🤔",
-    "text": "¿Quarto CLI vs paquete R? 🤔\n\nQuarto CLI (Sistema)\n\nMotor principal que renderiza documentos\nConvierte .qmd → PDF/HTML/Word\nNecesario para que funcione todo\nSe instala una vez en el sistema\n\n\n\nPaquete quarto (R)\n\nInterfaz entre R y Quarto CLI\n\nPermite renderizar desde R: quarto::quarto_render()\nOpcional pero muy conveniente\nSe instala como cualquier paquete R\n\n\n\n¡Ambos son necesarios! ⚠️\n# Esto NO funcionará sin Quarto CLI instalado\nquarto::quarto_render(\"mi-documento.qmd\")\n# Error: Quarto CLI not found"
-  },
-  {
-    "objectID": "2025/lessons/report/slides.html#bibliografia",
-    "href": "2025/lessons/report/slides.html#bibliografia",
-    "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Bibliografia",
-    "text": "Bibliografia\nDocumentación oficial\n\nQuarto Documentation\nQuarto Reference\n\nMarkdown y matemáticas\n\nMarkdown Cheat Sheet\nLaTeX Math Symbols\n\nGestión bibliográfica\n\nZotero - Gestor gratuito\nGoogle Scholar - Búsqueda académica\ndoi2bib - DOI a BibTeX"
   }
 ]
