@@ -103,7 +103,7 @@ execute:
 
 # Instalación y configuración
 
-## Requisitos del sistema 🔧
+## 1. Requisitos del sistema 🔧
 
 ::: {.fragment}
 ### Quarto CLI (obligatorio)
@@ -120,14 +120,23 @@ quarto --version  # Debe mostrar v1.4+
 :::
 
 ::: {.fragment}
-### RStudio (recomendado)
-- **RStudio Desktop** (v2022.07+) con soporte nativo para Quarto
-- **Alternativa:** VS Code con extensión de Quarto
+### TinyTeX (para PDFs)
+**Necesario para generar documentos PDF:**
+```bash
+quarto install tinytex
+```
+
+**Verificar:**
+```bash
+quarto tools list  # Debe mostrar tinytex instalado
+```
+
+**Alternativas:** MiKTeX (Windows) o MacTeX (Mac) si ya los tienen
 :::
 
 ---
 
-## Configurar entorno R 📦
+## 2. Configurar entorno R 📦
 
 ::: {.columns}
 
@@ -140,6 +149,12 @@ Si tienen `renv.lock` del curso:
 # En RStudio/R Console
 install.packages("renv")
 renv::restore()
+```
+
+**Verificar todo funciona:**
+```r
+library(quarto)
+quarto_version()  # Debe mostrar CLI detectado
 ```
 
 Esto instalará automáticamente:  
@@ -163,10 +178,13 @@ install.packages(c(
 ))
 ```
 
-**Verificar:**
+**Verificar paso a paso:**
 ```r
 library(quarto)
 quarto_version()  # Debe detectar Quarto CLI
+
+# Probar rendering básico
+quarto::quarto_render("test.qmd")
 ```
 :::
 :::
@@ -174,6 +192,49 @@ quarto_version()  # Debe detectar Quarto CLI
 :::
 
 ---
+
+## 3. Pruebas y solución de problemas ⚠️
+
+::: {.fragment}
+### 🚨 Paso crítico: Probar PDF
+```r
+# Crear archivo de prueba
+cat("# Test\nHello world", file = "test.qmd")
+
+# Probar HTML (debe funcionar)
+quarto::quarto_render("test.qmd")
+
+# Probar PDF (puede requerir TinyTeX)
+quarto::quarto_render("test.qmd", output_format = "pdf")
+```
+
+Si PDF falla → `quarto install tinytex`
+:::
+
+::: {.columns}
+
+::: {.column width="50%"}
+::: {.fragment}
+### Problemas comunes - Windows
+- **"quarto not found":** Reiniciar RStudio/terminal
+- **Errores PDF:** `quarto install tinytex`
+- **LaTeX lento:** Primera vez es normal
+:::
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+### Problemas comunes - Mac/Linux
+- **Permisos:** `brew install quarto` (Mac)
+- **TinyTeX falla:** 
+  ```bash
+  quarto uninstall tinytex
+  quarto install tinytex --update-path
+  ```
+:::
+:::
+
+:::
 
 # Introducción a Markdown
 

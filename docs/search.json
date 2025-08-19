@@ -17,15 +17,22 @@
     "objectID": "2025/lessons/report/slides.html#requisitos-del-sistema",
     "href": "2025/lessons/report/slides.html#requisitos-del-sistema",
     "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Requisitos del sistema 🔧",
-    "text": "Requisitos del sistema 🔧\n\nQuarto CLI (obligatorio)\nQuarto es una aplicación independiente que debe instalarse en su sistema:\n\nWindows: Descargar de quarto.org\nMac: brew install quarto o descargar instalador\nLinux: sudo apt install quarto o descargar .deb/.rpm\n\nVerificar instalación:\nquarto --version  # Debe mostrar v1.4+ \n\n\nRStudio (recomendado)\n\nRStudio Desktop (v2022.07+) con soporte nativo para Quarto\nAlternativa: VS Code con extensión de Quarto"
+    "section": "1. Requisitos del sistema 🔧",
+    "text": "1. Requisitos del sistema 🔧\n\nQuarto CLI (obligatorio)\nQuarto es una aplicación independiente que debe instalarse en su sistema:\n\nWindows: Descargar de quarto.org\nMac: brew install quarto o descargar instalador\nLinux: sudo apt install quarto o descargar .deb/.rpm\n\nVerificar instalación:\nquarto --version  # Debe mostrar v1.4+ \n\n\nTinyTeX (para PDFs)\nNecesario para generar documentos PDF:\nquarto install tinytex\nVerificar:\nquarto tools list  # Debe mostrar tinytex instalado\nAlternativas: MiKTeX (Windows) o MacTeX (Mac) si ya los tienen"
   },
   {
     "objectID": "2025/lessons/report/slides.html#configurar-entorno-r",
     "href": "2025/lessons/report/slides.html#configurar-entorno-r",
     "title": "Escribiendo Reportes Científicos con Quarto",
-    "section": "Configurar entorno R 📦",
-    "text": "Configurar entorno R 📦\n\n\n\nOpción A: renv (recomendado)\nSi tienen renv.lock del curso:\n# En RStudio/R Console\ninstall.packages(\"renv\")\nrenv::restore()\nEsto instalará automáticamente:\n- quarto (paquete R para interfaz)\n- knitr, ggplot2, dplyr\n- Todas las dependencias necesarias\n\n\n\nOpción B: Instalación manual\ninstall.packages(c(\n  \"quarto\",      # Interfaz R-Quarto\n  \"knitr\",       # Para renderizar\n  \"rmarkdown\",   # Compatibilidad\n  \"ggplot2\",     # Gráficos\n  \"dplyr\",       # Manipulación datos\n  \"palmerpenguins\" # Datos ejemplo\n))\nVerificar:\nlibrary(quarto)\nquarto_version()  # Debe detectar Quarto CLI"
+    "section": "2. Configurar entorno R 📦",
+    "text": "2. Configurar entorno R 📦\n\n\n\nOpción A: renv (recomendado)\nSi tienen renv.lock del curso:\n# En RStudio/R Console\ninstall.packages(\"renv\")\nrenv::restore()\nVerificar todo funciona:\nlibrary(quarto)\nquarto_version()  # Debe mostrar CLI detectado\nEsto instalará automáticamente:\n- quarto (paquete R para interfaz)\n- knitr, ggplot2, dplyr\n- Todas las dependencias necesarias\n\n\n\nOpción B: Instalación manual\ninstall.packages(c(\n  \"quarto\",      # Interfaz R-Quarto\n  \"knitr\",       # Para renderizar\n  \"rmarkdown\",   # Compatibilidad\n  \"ggplot2\",     # Gráficos\n  \"dplyr\",       # Manipulación datos\n  \"palmerpenguins\" # Datos ejemplo\n))\nVerificar paso a paso:\nlibrary(quarto)\nquarto_version()  # Debe detectar Quarto CLI\n\n# Probar rendering básico\nquarto::quarto_render(\"test.qmd\")"
+  },
+  {
+    "objectID": "2025/lessons/report/slides.html#pruebas-y-solución-de-problemas",
+    "href": "2025/lessons/report/slides.html#pruebas-y-solución-de-problemas",
+    "title": "Escribiendo Reportes Científicos con Quarto",
+    "section": "3. Pruebas y solución de problemas ⚠️",
+    "text": "3. Pruebas y solución de problemas ⚠️\n\n🚨 Paso crítico: Probar PDF\n# Crear archivo de prueba\ncat(\"# Test\\nHello world\", file = \"test.qmd\")\n\n# Probar HTML (debe funcionar)\nquarto::quarto_render(\"test.qmd\")\n\n# Probar PDF (puede requerir TinyTeX)\nquarto::quarto_render(\"test.qmd\", output_format = \"pdf\")\nSi PDF falla → quarto install tinytex\n\n\n\n\nProblemas comunes - Windows\n\n“quarto not found”: Reiniciar RStudio/terminal\nErrores PDF: quarto install tinytex\nLaTeX lento: Primera vez es normal\n\n\n\n\nProblemas comunes - Mac/Linux\n\nPermisos: brew install quarto (Mac)\nTinyTeX falla:\nquarto uninstall tinytex\nquarto install tinytex --update-path"
   },
   {
     "objectID": "2025/lessons/report/slides.html#qué-es-markdown",

@@ -318,7 +318,7 @@ Prof.&nbsp;G. Avalos y T. Nakov
 
 </section>
 <section id="requisitos-del-sistema" class="slide level2">
-<h2>Requisitos del sistema 🔧</h2>
+<h2>1. Requisitos del sistema 🔧</h2>
 <div class="fragment">
 <h3 id="quarto-cli-obligatorio">Quarto CLI (obligatorio)</h3>
 <p><strong>Quarto</strong> es una aplicación independiente que debe instalarse en su sistema:</p>
@@ -331,23 +331,27 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">quarto</span> <span class="at">--version</span>  <span class="co"># Debe mostrar v1.4+ </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<h3 id="rstudio-recomendado">RStudio (recomendado)</h3>
-<ul>
-<li><strong>RStudio Desktop</strong> (v2022.07+) con soporte nativo para Quarto</li>
-<li><strong>Alternativa:</strong> VS Code con extensión de Quarto</li>
-</ul>
+<h3 id="tinytex-para-pdfs">TinyTeX (para PDFs)</h3>
+<p><strong>Necesario para generar documentos PDF:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">quarto</span> install tinytex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Verificar:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">quarto</span> tools list  <span class="co"># Debe mostrar tinytex instalado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Alternativas:</strong> MiKTeX (Windows) o MacTeX (Mac) si ya los tienen</p>
 </div>
 </section>
 <section id="configurar-entorno-r" class="slide level2">
-<h2>Configurar entorno R 📦</h2>
+<h2>2. Configurar entorno R 📦</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="fragment">
 <h3 id="opción-a-renv-recomendado">Opción A: renv (recomendado)</h3>
 <p>Si tienen <code>renv.lock</code> del curso:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># En RStudio/R Console</span></span>
-<span id="cb2-2"><a></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
-<span id="cb2-3"><a></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># En RStudio/R Console</span></span>
+<span id="cb4-2"><a></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
+<span id="cb4-3"><a></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Verificar todo funciona:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(quarto)</span>
+<span id="cb5-2"><a></a><span class="fu">quarto_version</span>()  <span class="co"># Debe mostrar CLI detectado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Esto instalará automáticamente:<br>
 - <code>quarto</code> (paquete R para interfaz)<br>
 - <code>knitr</code>, <code>ggplot2</code>, <code>dplyr</code><br>
@@ -356,22 +360,58 @@ Prof.&nbsp;G. Avalos y T. Nakov
 </div><div class="column" style="width:50%;">
 <div class="fragment">
 <h3 id="opción-b-instalación-manual">Opción B: Instalación manual</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
-<span id="cb3-2"><a></a>  <span class="st">"quarto"</span>,      <span class="co"># Interfaz R-Quarto</span></span>
-<span id="cb3-3"><a></a>  <span class="st">"knitr"</span>,       <span class="co"># Para renderizar</span></span>
-<span id="cb3-4"><a></a>  <span class="st">"rmarkdown"</span>,   <span class="co"># Compatibilidad</span></span>
-<span id="cb3-5"><a></a>  <span class="st">"ggplot2"</span>,     <span class="co"># Gráficos</span></span>
-<span id="cb3-6"><a></a>  <span class="st">"dplyr"</span>,       <span class="co"># Manipulación datos</span></span>
-<span id="cb3-7"><a></a>  <span class="st">"palmerpenguins"</span> <span class="co"># Datos ejemplo</span></span>
-<span id="cb3-8"><a></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Verificar:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(quarto)</span>
-<span id="cb4-2"><a></a><span class="fu">quarto_version</span>()  <span class="co"># Debe detectar Quarto CLI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
+<span id="cb6-2"><a></a>  <span class="st">"quarto"</span>,      <span class="co"># Interfaz R-Quarto</span></span>
+<span id="cb6-3"><a></a>  <span class="st">"knitr"</span>,       <span class="co"># Para renderizar</span></span>
+<span id="cb6-4"><a></a>  <span class="st">"rmarkdown"</span>,   <span class="co"># Compatibilidad</span></span>
+<span id="cb6-5"><a></a>  <span class="st">"ggplot2"</span>,     <span class="co"># Gráficos</span></span>
+<span id="cb6-6"><a></a>  <span class="st">"dplyr"</span>,       <span class="co"># Manipulación datos</span></span>
+<span id="cb6-7"><a></a>  <span class="st">"palmerpenguins"</span> <span class="co"># Datos ejemplo</span></span>
+<span id="cb6-8"><a></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Verificar paso a paso:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(quarto)</span>
+<span id="cb7-2"><a></a><span class="fu">quarto_version</span>()  <span class="co"># Debe detectar Quarto CLI</span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="co"># Probar rendering básico</span></span>
+<span id="cb7-5"><a></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"test.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
-<section class="slide level2">
-
+<section id="pruebas-y-solución-de-problemas" class="slide level2">
+<h2>3. Pruebas y solución de problemas ⚠️</h2>
+<div class="fragment">
+<h3 id="paso-crítico-probar-pdf">🚨 Paso crítico: Probar PDF</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Crear archivo de prueba</span></span>
+<span id="cb8-2"><a></a><span class="fu">cat</span>(<span class="st">"# Test</span><span class="sc">\n</span><span class="st">Hello world"</span>, <span class="at">file =</span> <span class="st">"test.qmd"</span>)</span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="co"># Probar HTML (debe funcionar)</span></span>
+<span id="cb8-5"><a></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"test.qmd"</span>)</span>
+<span id="cb8-6"><a></a></span>
+<span id="cb8-7"><a></a><span class="co"># Probar PDF (puede requerir TinyTeX)</span></span>
+<span id="cb8-8"><a></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"test.qmd"</span>, <span class="at">output_format =</span> <span class="st">"pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si PDF falla → <code>quarto install tinytex</code></p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<h3 id="problemas-comunes---windows">Problemas comunes - Windows</h3>
+<ul>
+<li><strong>“quarto not found”:</strong> Reiniciar RStudio/terminal</li>
+<li><strong>Errores PDF:</strong> <code>quarto install tinytex</code></li>
+<li><strong>LaTeX lento:</strong> Primera vez es normal</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<h3 id="problemas-comunes---maclinux">Problemas comunes - Mac/Linux</h3>
+<ul>
+<li><p><strong>Permisos:</strong> <code>brew install quarto</code> (Mac)</p></li>
+<li><p><strong>TinyTeX falla:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">quarto</span> uninstall tinytex</span>
+<span id="cb9-2"><a></a><span class="ex">quarto</span> install tinytex <span class="at">--update-path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="introducción-a-markdown" class="title-slide slide level1">
@@ -401,23 +441,23 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Código Markdown:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="fu"># Título principal</span></span>
-<span id="cb5-2"><a></a><span class="fu">## Subtítulo</span></span>
-<span id="cb5-3"><a></a><span class="fu">### Sub-subtítulo</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a>**Texto en negrita**</span>
-<span id="cb5-6"><a></a>*Texto en cursiva*</span>
-<span id="cb5-7"><a></a>~~Texto tachado~~</span>
-<span id="cb5-8"><a></a></span>
-<span id="cb5-9"><a></a>Párrafo normal con texto.</span>
-<span id="cb5-10"><a></a></span>
-<span id="cb5-11"><a></a><span class="ss">- </span>Lista con viñetas</span>
-<span id="cb5-12"><a></a><span class="ss">- </span>Segundo elemento</span>
-<span id="cb5-13"><a></a><span class="ss">  - </span>Sub-elemento</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a><span class="ss">1. </span>Lista numerada</span>
-<span id="cb5-16"><a></a><span class="ss">2. </span>Segundo elemento</span>
-<span id="cb5-17"><a></a><span class="ss">3. </span>Tercer elemento</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="fu"># Título principal</span></span>
+<span id="cb10-2"><a></a><span class="fu">## Subtítulo</span></span>
+<span id="cb10-3"><a></a><span class="fu">### Sub-subtítulo</span></span>
+<span id="cb10-4"><a></a></span>
+<span id="cb10-5"><a></a>**Texto en negrita**</span>
+<span id="cb10-6"><a></a>*Texto en cursiva*</span>
+<span id="cb10-7"><a></a>~~Texto tachado~~</span>
+<span id="cb10-8"><a></a></span>
+<span id="cb10-9"><a></a>Párrafo normal con texto.</span>
+<span id="cb10-10"><a></a></span>
+<span id="cb10-11"><a></a><span class="ss">- </span>Lista con viñetas</span>
+<span id="cb10-12"><a></a><span class="ss">- </span>Segundo elemento</span>
+<span id="cb10-13"><a></a><span class="ss">  - </span>Sub-elemento</span>
+<span id="cb10-14"><a></a></span>
+<span id="cb10-15"><a></a><span class="ss">1. </span>Lista numerada</span>
+<span id="cb10-16"><a></a><span class="ss">2. </span>Segundo elemento</span>
+<span id="cb10-17"><a></a><span class="ss">3. </span>Tercer elemento</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Resultado:</strong></p>
 <div style="border: 1px solid #ccc; padding: 1em; background-color: #f9f9f9;">
@@ -466,15 +506,15 @@ Tercer elemento
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Enlaces:</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="co">[</span><span class="ot">Texto de enlace</span><span class="co">](https://ejemplo.com)</span></span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a><span class="co">[</span><span class="ot">Email</span><span class="co">](mailto:profesor@ucr.ac.cr)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a><span class="co">[</span><span class="ot">Texto de enlace</span><span class="co">](https://ejemplo.com)</span></span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a><span class="co">[</span><span class="ot">Email</span><span class="co">](mailto:profesor@ucr.ac.cr)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Citas bibliográficas:</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a>Según @begon2006ecology, las poblaciones...</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>El crecimiento logístico <span class="co">[</span><span class="ot">@verhulst1838notice; @gotelli2008primer</span><span class="co">]</span> es fundamental.</span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a>Como mencionan varios autores <span class="co">[</span><span class="ot">-@pearl1925biology; -@begon2006ecology</span><span class="co">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a>Según @begon2006ecology, las poblaciones...</span>
+<span id="cb12-2"><a></a></span>
+<span id="cb12-3"><a></a>El crecimiento logístico <span class="co">[</span><span class="ot">@verhulst1838notice; @gotelli2008primer</span><span class="co">]</span> es fundamental.</span>
+<span id="cb12-4"><a></a></span>
+<span id="cb12-5"><a></a>Como mencionan varios autores <span class="co">[</span><span class="ot">-@pearl1925biology; -@begon2006ecology</span><span class="co">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Resultado:</strong></p>
 <p><a href="https://ejemplo.com">Texto de enlace</a></p>
@@ -489,13 +529,13 @@ Tercer elemento
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Inline math:</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a>La población crece según $N(t) = N_0 e^{rt}$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a>La población crece según $N(t) = N_0 e^{rt}$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Display math:</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a>$$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a>$$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Ecuaciones numeradas:</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a>$$N(t) = N_0 e^{rt}$$ {#eq-exponencial}</span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a>Ver ecuación @eq-exponencial...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a></a>$$N(t) = N_0 e^{rt}$$ {#eq-exponencial}</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a>Ver ecuación @eq-exponencial...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Resultado:</strong></p>
 <p>La población crece según <span class="math inline">\(N(t) = N_0 e^{rt}\)</span></p>
@@ -509,21 +549,21 @@ Tercer elemento
 <div class="columns">
 <div class="column" style="width:60%;">
 <p><strong>Código R en Quarto:</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a>#| label: fig-crecimiento</span>
-<span id="cb11-2"><a></a>#| fig-cap: "Crecimiento de S. cerevisiae"</span>
-<span id="cb11-3"><a></a>#| echo: true</span>
-<span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a>library(ggplot2)</span>
-<span id="cb11-6"><a></a>data &lt;- data.frame(</span>
-<span id="cb11-7"><a></a>  tiempo = 0:24, </span>
-<span id="cb11-8"><a></a>  densidad = exp(0.2 * (0:24))</span>
-<span id="cb11-9"><a></a>)</span>
-<span id="cb11-10"><a></a>ggplot(data, aes(tiempo, densidad)) + </span>
-<span id="cb11-11"><a></a>  geom_line() + </span>
-<span id="cb11-12"><a></a>  labs(x = "Tiempo (h)", </span>
-<span id="cb11-13"><a></a>       y = "Densidad (cells/mL)")</span>
-<span id="cb11-14"><a></a></span>
-<span id="cb11-15"><a></a>Como se observa en @fig-crecimiento, el crecimiento es exponencial.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a></a>#| label: fig-crecimiento</span>
+<span id="cb16-2"><a></a>#| fig-cap: "Crecimiento de S. cerevisiae"</span>
+<span id="cb16-3"><a></a>#| echo: true</span>
+<span id="cb16-4"><a></a></span>
+<span id="cb16-5"><a></a>library(ggplot2)</span>
+<span id="cb16-6"><a></a>data &lt;- data.frame(</span>
+<span id="cb16-7"><a></a>  tiempo = 0:24, </span>
+<span id="cb16-8"><a></a>  densidad = exp(0.2 * (0:24))</span>
+<span id="cb16-9"><a></a>)</span>
+<span id="cb16-10"><a></a>ggplot(data, aes(tiempo, densidad)) + </span>
+<span id="cb16-11"><a></a>  geom_line() + </span>
+<span id="cb16-12"><a></a>  labs(x = "Tiempo (h)", </span>
+<span id="cb16-13"><a></a>       y = "Densidad (cells/mL)")</span>
+<span id="cb16-14"><a></a></span>
+<span id="cb16-15"><a></a>Como se observa en @fig-crecimiento, el crecimiento es exponencial.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:40%;">
 <p><strong>Resultado ejecutado:</strong></p>
 <div class="cell">
@@ -565,32 +605,32 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 <section id="configuración-yaml" class="slide level2">
 <h2>Configuración YAML</h2>
 <p>El encabezado YAML configura todo el documento:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a></a><span class="pp">---</span></span>
-<span id="cb13-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"TÍTULO DEL REPORTE (12–15 palabras)"</span></span>
-<span id="cb13-3"><a></a><span class="fu">author</span><span class="kw">:</span></span>
-<span id="cb13-4"><a></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Nombre Apellido-Apellido"</span><span class="at"> </span></span>
-<span id="cb13-5"><a></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Biología, Universidad de Costa Rica..."</span></span>
-<span id="cb13-6"><a></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"palabra clave 1"</span><span class="kw">,</span><span class="at"> </span><span class="st">"palabra clave 2"</span><span class="kw">,</span><span class="at"> ...</span><span class="kw">]</span></span>
-<span id="cb13-7"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb13-8"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb13-9"><a></a><span class="at">    </span><span class="fu">pdf-engine</span><span class="kw">:</span><span class="at"> xelatex</span></span>
-<span id="cb13-10"><a></a><span class="at">    </span><span class="fu">mainfont</span><span class="kw">:</span><span class="at"> </span><span class="st">"Times New Roman"</span></span>
-<span id="cb13-11"><a></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 12pt</span></span>
-<span id="cb13-12"><a></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span><span class="co">    # Doble espacio</span></span>
-<span id="cb13-13"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb13-14"><a></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
-<span id="cb13-15"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
-<span id="cb13-16"><a></a><span class="at">    </span><span class="fu">reference-doc</span><span class="kw">:</span><span class="at"> reference.docx</span></span>
-<span id="cb13-17"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
-<span id="cb13-18"><a></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span>
-<span id="cb13-19"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> es</span></span>
-<span id="cb13-20"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a></a><span class="pp">---</span></span>
+<span id="cb18-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"TÍTULO DEL REPORTE (12–15 palabras)"</span></span>
+<span id="cb18-3"><a></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb18-4"><a></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Nombre Apellido-Apellido"</span><span class="at"> </span></span>
+<span id="cb18-5"><a></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Biología, Universidad de Costa Rica..."</span></span>
+<span id="cb18-6"><a></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"palabra clave 1"</span><span class="kw">,</span><span class="at"> </span><span class="st">"palabra clave 2"</span><span class="kw">,</span><span class="at"> ...</span><span class="kw">]</span></span>
+<span id="cb18-7"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb18-8"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb18-9"><a></a><span class="at">    </span><span class="fu">pdf-engine</span><span class="kw">:</span><span class="at"> xelatex</span></span>
+<span id="cb18-10"><a></a><span class="at">    </span><span class="fu">mainfont</span><span class="kw">:</span><span class="at"> </span><span class="st">"Times New Roman"</span></span>
+<span id="cb18-11"><a></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 12pt</span></span>
+<span id="cb18-12"><a></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span><span class="co">    # Doble espacio</span></span>
+<span id="cb18-13"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb18-14"><a></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
+<span id="cb18-15"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
+<span id="cb18-16"><a></a><span class="at">    </span><span class="fu">reference-doc</span><span class="kw">:</span><span class="at"> reference.docx</span></span>
+<span id="cb18-17"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
+<span id="cb18-18"><a></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span></span>
+<span id="cb18-19"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> es</span></span>
+<span id="cb18-20"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="múltiples-formatos-de-salida" class="slide level2">
 <h2>Múltiples formatos de salida</h2>
 <div class="fragment">
 <h3 id="pdf-recomendado-para-entrega">PDF (recomendado para entrega)</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">quarto</span> render B305-report-template.qmd <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a></a><span class="ex">quarto</span> render B305-report-template.qmd <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Formato profesional</li>
 <li>Times New Roman, 12pt</li>
@@ -600,7 +640,7 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 </div>
 <div class="fragment">
 <h3 id="html-para-revisión">HTML (para revisión)</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">quarto</span> render B305-report-template.qmd <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a></a><span class="ex">quarto</span> render B305-report-template.qmd <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Rápido de generar</li>
 <li>Fácil de compartir</li>
@@ -609,7 +649,7 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 </div>
 <div class="fragment">
 <h3 id="word-si-es-necesario">Word (si es necesario)</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a></a><span class="ex">quarto</span> render B305-report-template.qmd <span class="at">--to</span> docx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a></a><span class="ex">quarto</span> render B305-report-template.qmd <span class="at">--to</span> docx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Compatible con revisiones</li>
 <li>Formato basado en <code>reference.docx</code></li>
@@ -618,24 +658,24 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 </section>
 <section id="estructura-del-reporte" class="slide level2">
 <h2>Estructura del reporte</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a></a><span class="fu"># Resumen</span></span>
-<span id="cb17-2"><a></a>**Resumen:** (máx. 250 palabras).</span>
-<span id="cb17-3"><a></a>**Palabras claves:** palabra1; palabra2; palabra3; palabra4; palabra5</span>
-<span id="cb17-4"><a></a></span>
-<span id="cb17-5"><a></a><span class="fu"># INTRODUCCIÓN</span></span>
-<span id="cb17-6"><a></a>Contexto, antecedentes, hipótesis...</span>
-<span id="cb17-7"><a></a></span>
-<span id="cb17-8"><a></a><span class="fu"># MATERIALES Y MÉTODOS</span></span>
-<span id="cb17-9"><a></a>Descripción detallada de métodos...</span>
-<span id="cb17-10"><a></a></span>
-<span id="cb17-11"><a></a><span class="fu"># RESULTADOS  </span></span>
-<span id="cb17-12"><a></a>Presentación objetiva de resultados...</span>
-<span id="cb17-13"><a></a></span>
-<span id="cb17-14"><a></a><span class="fu"># DISCUSIÓN</span></span>
-<span id="cb17-15"><a></a>Interpretación y comparación con literatura...</span>
-<span id="cb17-16"><a></a></span>
-<span id="cb17-17"><a></a><span class="fu"># LITERATURA CITADA</span></span>
-<span id="cb17-18"><a></a>(Se genera automáticamente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a></a><span class="fu"># Resumen</span></span>
+<span id="cb22-2"><a></a>**Resumen:** (máx. 250 palabras).</span>
+<span id="cb22-3"><a></a>**Palabras claves:** palabra1; palabra2; palabra3; palabra4; palabra5</span>
+<span id="cb22-4"><a></a></span>
+<span id="cb22-5"><a></a><span class="fu"># INTRODUCCIÓN</span></span>
+<span id="cb22-6"><a></a>Contexto, antecedentes, hipótesis...</span>
+<span id="cb22-7"><a></a></span>
+<span id="cb22-8"><a></a><span class="fu"># MATERIALES Y MÉTODOS</span></span>
+<span id="cb22-9"><a></a>Descripción detallada de métodos...</span>
+<span id="cb22-10"><a></a></span>
+<span id="cb22-11"><a></a><span class="fu"># RESULTADOS  </span></span>
+<span id="cb22-12"><a></a>Presentación objetiva de resultados...</span>
+<span id="cb22-13"><a></a></span>
+<span id="cb22-14"><a></a><span class="fu"># DISCUSIÓN</span></span>
+<span id="cb22-15"><a></a>Interpretación y comparación con literatura...</span>
+<span id="cb22-16"><a></a></span>
+<span id="cb22-17"><a></a><span class="fu"># LITERATURA CITADA</span></span>
+<span id="cb22-18"><a></a>(Se genera automáticamente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="trabajando-con-citas" class="title-slide slide level1">
@@ -645,21 +685,21 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 <section id="base-de-datos-bibliográfica-bibtex" class="slide level2">
 <h2>Base de datos bibliográfica (BibTeX)</h2>
 <p>El archivo <code>references.bib</code> contiene todas sus referencias:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb18-1"><a></a><span class="va">@book</span>{<span class="ot">begon2006ecology</span>,</span>
-<span id="cb18-2"><a></a>  <span class="dt">title</span>={Ecology: from individuals to ecosystems},</span>
-<span id="cb18-3"><a></a>  <span class="dt">author</span>={Begon, Michael and Townsend, Colin R and Harper, John L},</span>
-<span id="cb18-4"><a></a>  <span class="dt">year</span>={2006},</span>
-<span id="cb18-5"><a></a>  <span class="dt">publisher</span>={Blackwell publishing}</span>
-<span id="cb18-6"><a></a>}</span>
-<span id="cb18-7"><a></a></span>
-<span id="cb18-8"><a></a><span class="va">@article</span>{<span class="ot">verhulst1838notice</span>,</span>
-<span id="cb18-9"><a></a>  <span class="dt">title</span>={Notice sur la loi que la population suit dans son accroissement},</span>
-<span id="cb18-10"><a></a>  <span class="dt">author</span>={Verhulst, Pierre Fran{<span class="ch">\c</span>{c}}ois},</span>
-<span id="cb18-11"><a></a>  <span class="dt">journal</span>={Correspondance math{<span class="ch">\'</span>e}matique et physique},</span>
-<span id="cb18-12"><a></a>  <span class="dt">volume</span>={10},</span>
-<span id="cb18-13"><a></a>  <span class="dt">pages</span>={113--126},</span>
-<span id="cb18-14"><a></a>  <span class="dt">year</span>={1838}</span>
-<span id="cb18-15"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb23-1"><a></a><span class="va">@book</span>{<span class="ot">begon2006ecology</span>,</span>
+<span id="cb23-2"><a></a>  <span class="dt">title</span>={Ecology: from individuals to ecosystems},</span>
+<span id="cb23-3"><a></a>  <span class="dt">author</span>={Begon, Michael and Townsend, Colin R and Harper, John L},</span>
+<span id="cb23-4"><a></a>  <span class="dt">year</span>={2006},</span>
+<span id="cb23-5"><a></a>  <span class="dt">publisher</span>={Blackwell publishing}</span>
+<span id="cb23-6"><a></a>}</span>
+<span id="cb23-7"><a></a></span>
+<span id="cb23-8"><a></a><span class="va">@article</span>{<span class="ot">verhulst1838notice</span>,</span>
+<span id="cb23-9"><a></a>  <span class="dt">title</span>={Notice sur la loi que la population suit dans son accroissement},</span>
+<span id="cb23-10"><a></a>  <span class="dt">author</span>={Verhulst, Pierre Fran{<span class="ch">\c</span>{c}}ois},</span>
+<span id="cb23-11"><a></a>  <span class="dt">journal</span>={Correspondance math{<span class="ch">\'</span>e}matique et physique},</span>
+<span id="cb23-12"><a></a>  <span class="dt">volume</span>={10},</span>
+<span id="cb23-13"><a></a>  <span class="dt">pages</span>={113--126},</span>
+<span id="cb23-14"><a></a>  <span class="dt">year</span>={1838}</span>
+<span id="cb23-15"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="agregando-nuevas-referencias" class="slide level2">
 <h2>Agregando nuevas referencias</h2>
@@ -686,22 +726,22 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Código Markdown:</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a></a><span class="co">&lt;!-- Cita parentética --&gt;</span></span>
-<span id="cb19-2"><a></a>El crecimiento poblacional <span class="co">[</span><span class="ot">@verhulst1838notice</span><span class="co">]</span> </span>
-<span id="cb19-3"><a></a>es fundamental.</span>
-<span id="cb19-4"><a></a></span>
-<span id="cb19-5"><a></a><span class="co">&lt;!-- Cita narrativa --&gt;</span></span>
-<span id="cb19-6"><a></a>Según @begon2006ecology, las poblaciones...</span>
-<span id="cb19-7"><a></a></span>
-<span id="cb19-8"><a></a><span class="co">&lt;!-- Múltiples citas --&gt;</span></span>
-<span id="cb19-9"><a></a>Varios autores <span class="co">[</span><span class="ot">@verhulst1838notice; @gotelli2008primer</span><span class="co">]</span> </span>
-<span id="cb19-10"><a></a>han estudiado...</span>
-<span id="cb19-11"><a></a></span>
-<span id="cb19-12"><a></a><span class="co">&lt;!-- Solo año --&gt;</span></span>
-<span id="cb19-13"><a></a>@begon2006ecology mostraron...</span>
-<span id="cb19-14"><a></a></span>
-<span id="cb19-15"><a></a><span class="co">&lt;!-- Páginas específicas --&gt;</span></span>
-<span id="cb19-16"><a></a>Como indica @verhulst1838notice <span class="co">[</span><span class="ot">p. 15</span><span class="co">]</span>, la ecuación...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a></a><span class="co">&lt;!-- Cita parentética --&gt;</span></span>
+<span id="cb24-2"><a></a>El crecimiento poblacional <span class="co">[</span><span class="ot">@verhulst1838notice</span><span class="co">]</span> </span>
+<span id="cb24-3"><a></a>es fundamental.</span>
+<span id="cb24-4"><a></a></span>
+<span id="cb24-5"><a></a><span class="co">&lt;!-- Cita narrativa --&gt;</span></span>
+<span id="cb24-6"><a></a>Según @begon2006ecology, las poblaciones...</span>
+<span id="cb24-7"><a></a></span>
+<span id="cb24-8"><a></a><span class="co">&lt;!-- Múltiples citas --&gt;</span></span>
+<span id="cb24-9"><a></a>Varios autores <span class="co">[</span><span class="ot">@verhulst1838notice; @gotelli2008primer</span><span class="co">]</span> </span>
+<span id="cb24-10"><a></a>han estudiado...</span>
+<span id="cb24-11"><a></a></span>
+<span id="cb24-12"><a></a><span class="co">&lt;!-- Solo año --&gt;</span></span>
+<span id="cb24-13"><a></a>@begon2006ecology mostraron...</span>
+<span id="cb24-14"><a></a></span>
+<span id="cb24-15"><a></a><span class="co">&lt;!-- Páginas específicas --&gt;</span></span>
+<span id="cb24-16"><a></a>Como indica @verhulst1838notice <span class="co">[</span><span class="ot">p. 15</span><span class="co">]</span>, la ecuación...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Resultado:</strong></p>
 <p>El crecimiento poblacional (Verhulst, 1838) es fundamental.</p>
@@ -721,24 +761,24 @@ Figure&nbsp;1: Crecimiento de <em>S. cerevisiae</em> en medio YPD
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Código R para figura:</strong></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a></a>#| label: fig-logistico</span>
-<span id="cb20-2"><a></a>#| fig-cap: "Crecimiento logístico de S. cerevisiae"</span>
-<span id="cb20-3"><a></a>#| fig-width: 6</span>
-<span id="cb20-4"><a></a>#| fig-height: 4</span>
-<span id="cb20-5"><a></a>#| echo: false</span>
-<span id="cb20-6"><a></a></span>
-<span id="cb20-7"><a></a>library(ggplot2)</span>
-<span id="cb20-8"><a></a>t &lt;- seq(0, 24, 0.1)</span>
-<span id="cb20-9"><a></a>N &lt;- 1000 / (1 + 99 * exp(-0.3 * t))</span>
-<span id="cb20-10"><a></a>data &lt;- data.frame(tiempo = t, densidad = N)</span>
-<span id="cb20-11"><a></a></span>
-<span id="cb20-12"><a></a>ggplot(data, aes(tiempo, densidad)) +</span>
-<span id="cb20-13"><a></a>  geom_line(color = "steelblue", size = 1.2) +</span>
-<span id="cb20-14"><a></a>  labs(x = "Tiempo (horas)", </span>
-<span id="cb20-15"><a></a>       y = "Densidad (células/mL)") +</span>
-<span id="cb20-16"><a></a>  theme_bw()</span>
-<span id="cb20-17"><a></a></span>
-<span id="cb20-18"><a></a>Como se observa en @fig-logistico...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a></a>#| label: fig-logistico</span>
+<span id="cb25-2"><a></a>#| fig-cap: "Crecimiento logístico de S. cerevisiae"</span>
+<span id="cb25-3"><a></a>#| fig-width: 6</span>
+<span id="cb25-4"><a></a>#| fig-height: 4</span>
+<span id="cb25-5"><a></a>#| echo: false</span>
+<span id="cb25-6"><a></a></span>
+<span id="cb25-7"><a></a>library(ggplot2)</span>
+<span id="cb25-8"><a></a>t &lt;- seq(0, 24, 0.1)</span>
+<span id="cb25-9"><a></a>N &lt;- 1000 / (1 + 99 * exp(-0.3 * t))</span>
+<span id="cb25-10"><a></a>data &lt;- data.frame(tiempo = t, densidad = N)</span>
+<span id="cb25-11"><a></a></span>
+<span id="cb25-12"><a></a>ggplot(data, aes(tiempo, densidad)) +</span>
+<span id="cb25-13"><a></a>  geom_line(color = "steelblue", size = 1.2) +</span>
+<span id="cb25-14"><a></a>  labs(x = "Tiempo (horas)", </span>
+<span id="cb25-15"><a></a>       y = "Densidad (células/mL)") +</span>
+<span id="cb25-16"><a></a>  theme_bw()</span>
+<span id="cb25-17"><a></a></span>
+<span id="cb25-18"><a></a>Como se observa en @fig-logistico...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Opciones importantes:</strong><br>
 - <code>label:</code> para referencias cruzadas<br>
 - <code>fig-cap:</code> para la leyenda<br>
@@ -768,19 +808,19 @@ Figure&nbsp;2: Crecimiento logístico de <em>Saccharomyces cerevisiae</em>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Código R para tabla:</strong></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a></a>#| label: tbl-parametros</span>
-<span id="cb21-2"><a></a>#| tbl-cap: "Parámetros del modelo logístico"</span>
-<span id="cb21-3"><a></a></span>
-<span id="cb21-4"><a></a>library(knitr)</span>
-<span id="cb21-5"><a></a>parametros &lt;- data.frame(</span>
-<span id="cb21-6"><a></a>  Parámetro = c("K", "r", "N₀"),</span>
-<span id="cb21-7"><a></a>  Valor = c(987.3, 0.281, 10.2),</span>
-<span id="cb21-8"><a></a>  <span class="in">`Error estándar`</span> = c(45.2, 0.025, 1.8),</span>
-<span id="cb21-9"><a></a>  Unidades = c("células/mL", "h⁻¹", "células/mL")</span>
-<span id="cb21-10"><a></a>)</span>
-<span id="cb21-11"><a></a>kable(parametros, digits = 3)</span>
-<span id="cb21-12"><a></a></span>
-<span id="cb21-13"><a></a>Los parámetros estimados (@tbl-parametros)...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a></a>#| label: tbl-parametros</span>
+<span id="cb26-2"><a></a>#| tbl-cap: "Parámetros del modelo logístico"</span>
+<span id="cb26-3"><a></a></span>
+<span id="cb26-4"><a></a>library(knitr)</span>
+<span id="cb26-5"><a></a>parametros &lt;- data.frame(</span>
+<span id="cb26-6"><a></a>  Parámetro = c("K", "r", "N₀"),</span>
+<span id="cb26-7"><a></a>  Valor = c(987.3, 0.281, 10.2),</span>
+<span id="cb26-8"><a></a>  <span class="in">`Error estándar`</span> = c(45.2, 0.025, 1.8),</span>
+<span id="cb26-9"><a></a>  Unidades = c("células/mL", "h⁻¹", "células/mL")</span>
+<span id="cb26-10"><a></a>)</span>
+<span id="cb26-11"><a></a>kable(parametros, digits = 3)</span>
+<span id="cb26-12"><a></a></span>
+<span id="cb26-13"><a></a>Los parámetros estimados (@tbl-parametros)...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Resultado ejecutado:</strong></p>
 <div class="cell">
@@ -832,9 +872,9 @@ Table&nbsp;1: Parámetros del modelo logístico estimados
 <section id="figuras-externas" class="slide level2">
 <h2>Figuras externas</h2>
 <div class="fragment">
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a></a><span class="al">![Microscopio utilizado en el experimento](img/microscopio.jpeg)</span>{#fig-microscopio width=20%}</span>
-<span id="cb22-2"><a></a></span>
-<span id="cb22-3"><a></a>Las observaciones se realizaron con el microscopio mostrado en @fig-microscopio...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a></a><span class="al">![Microscopio utilizado en el experimento](img/microscopio.jpeg)</span>{#fig-microscopio width=20%}</span>
+<span id="cb27-2"><a></a></span>
+<span id="cb27-3"><a></a>Las observaciones se realizaron con el microscopio mostrado en @fig-microscopio...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div id="fig-microscopio" class="quarto-float quarto-figure quarto-figure-center">
@@ -941,14 +981,14 @@ Figure&nbsp;3: Microscopio utilizado en el experimento
 </div><div class="column" style="width:50%;">
 <div class="fragment">
 <h3 id="renderizar-por-terminal">Renderizar por terminal</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a></a><span class="co"># Vista rápida HTML</span></span>
-<span id="cb23-2"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> html</span>
-<span id="cb23-3"><a></a></span>
-<span id="cb23-4"><a></a><span class="co"># Versión final PDF  </span></span>
-<span id="cb23-5"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> pdf</span>
-<span id="cb23-6"><a></a></span>
-<span id="cb23-7"><a></a><span class="co"># Todos los formatos</span></span>
-<span id="cb23-8"><a></a><span class="ex">quarto</span> render mi-reporte.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a></a><span class="co"># Vista rápida HTML</span></span>
+<span id="cb28-2"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> html</span>
+<span id="cb28-3"><a></a></span>
+<span id="cb28-4"><a></a><span class="co"># Versión final PDF  </span></span>
+<span id="cb28-5"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> pdf</span>
+<span id="cb28-6"><a></a></span>
+<span id="cb28-7"><a></a><span class="co"># Todos los formatos</span></span>
+<span id="cb28-8"><a></a><span class="ex">quarto</span> render mi-reporte.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 <!-- ::: {.fragment}
