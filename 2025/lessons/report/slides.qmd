@@ -782,15 +782,38 @@ Las observaciones se realizaron con el microscopio mostrado en @fig-microscopio.
 
 ## Durante el desarrollo
 
+::: {.columns}
+
+::: {.column width="50%"}
 ::: {.fragment}
-### Renderizar frecuentemente
+### Renderizar en RStudio (fácil)
+**Opción A: Botón Render**  
+- Click en **"Render"** en la barra superior  
+- Automáticamente detecta formato por defecto  
+- Muestra preview en Viewer pane  
+
+**Opción B: Render específico**  
+- Click en ▼ junto a "Render"  
+- Seleccionar: "Render PDF", "Render HTML", etc.  
+:::
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+### Renderizar por terminal
 ```bash
 # Vista rápida HTML
 quarto render mi-reporte.qmd --to html
 
 # Versión final PDF  
 quarto render mi-reporte.qmd --to pdf
+
+# Todos los formatos
+quarto render mi-reporte.qmd
 ```
+:::
+:::
+
 :::
 
 <!-- ::: {.fragment}

@@ -926,14 +926,31 @@ Figure&nbsp;3: Microscopio utilizado en el experimento
 </section>
 <section id="durante-el-desarrollo" class="slide level2">
 <h2>Durante el desarrollo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="fragment">
-<h3 id="renderizar-frecuentemente">Renderizar frecuentemente</h3>
+<h3 id="renderizar-en-rstudio-fácil">Renderizar en RStudio (fácil)</h3>
+<p><strong>Opción A: Botón Render</strong><br>
+- Click en <strong>“Render”</strong> en la barra superior<br>
+- Automáticamente detecta formato por defecto<br>
+- Muestra preview en Viewer pane</p>
+<p><strong>Opción B: Render específico</strong><br>
+- Click en ▼ junto a “Render”<br>
+- Seleccionar: “Render PDF”, “Render HTML”, etc.</p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<h3 id="renderizar-por-terminal">Renderizar por terminal</h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a></a><span class="co"># Vista rápida HTML</span></span>
 <span id="cb23-2"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> html</span>
 <span id="cb23-3"><a></a></span>
 <span id="cb23-4"><a></a><span class="co"># Versión final PDF  </span></span>
-<span id="cb23-5"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-5"><a></a><span class="ex">quarto</span> render mi-reporte.qmd <span class="at">--to</span> pdf</span>
+<span id="cb23-6"><a></a></span>
+<span id="cb23-7"><a></a><span class="co"># Todos los formatos</span></span>
+<span id="cb23-8"><a></a><span class="ex">quarto</span> render mi-reporte.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div></div>
 <!-- ::: {.fragment}
 ### Usar control de versiones
 ```bash

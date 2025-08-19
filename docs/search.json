@@ -137,7 +137,7 @@
     "href": "2025/lessons/report/slides.html#durante-el-desarrollo",
     "title": "Escribiendo Reportes Científicos con Quarto",
     "section": "Durante el desarrollo",
-    "text": "Durante el desarrollo\n\nRenderizar frecuentemente\n# Vista rápida HTML\nquarto render mi-reporte.qmd --to html\n\n# Versión final PDF  \nquarto render mi-reporte.qmd --to pdf\n\n\n\nRespaldos regulares\n\nGuardar en la nube (Google Drive, Dropbox)\nEnviar por email a ustedes mismos\nUsar repositorio GitHub"
+    "text": "Durante el desarrollo\n\n\n\nRenderizar en RStudio (fácil)\nOpción A: Botón Render\n- Click en “Render” en la barra superior\n- Automáticamente detecta formato por defecto\n- Muestra preview en Viewer pane\nOpción B: Render específico\n- Click en ▼ junto a “Render”\n- Seleccionar: “Render PDF”, “Render HTML”, etc.\n\n\n\nRenderizar por terminal\n# Vista rápida HTML\nquarto render mi-reporte.qmd --to html\n\n# Versión final PDF  \nquarto render mi-reporte.qmd --to pdf\n\n# Todos los formatos\nquarto render mi-reporte.qmd\n\n\n\n\nRespaldos regulares\n\nGuardar en la nube (Google Drive, Dropbox)\nEnviar por email a ustedes mismos\nUsar repositorio GitHub"
   },
   {
     "objectID": "2025/lessons/report/slides.html#consejos-para-reportes-exitosos",
