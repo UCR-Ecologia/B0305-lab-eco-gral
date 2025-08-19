@@ -7,7 +7,7 @@ project:
     - "2025/*.qmd"
     - "2025/lessons/*/*.qmd"
   resources:
-    - "report_template/"
+    - "B305-report-template-kit.zip"
     - "renv.lock"
 
 website:

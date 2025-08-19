@@ -15,7 +15,7 @@ Usa el teclado para navegar por las diapositivas.
 
 ## 📁 Recursos de la Clase
 
-- **Plantilla B0305:** [Descargar kit completo](/report_template/B0305-report-template-kit.zip) | [Enlace alternativo](https://github.com/UCR-Ecologia/B0305-lab-eco-gral/blob/79920ea42960c4f101c03b37a087856d268b76d9/report_template/B305-report-template-kit.zip)
+- **Plantilla B0305:** [Descargar kit completo](/B305-report-template-kit.zip) | [Enlace alternativo](https://github.com/UCR-Ecologia/B0305-lab-eco-gral/blob/79920ea42960c4f101c03b37a087856d268b76d9/report_template/B305-report-template-kit.zip)
 - **Guía Markdown:** [markdownguide.org](https://www.markdownguide.org/cheat-sheet/)
 
 ## 📚 Lecturas Recomendadas
