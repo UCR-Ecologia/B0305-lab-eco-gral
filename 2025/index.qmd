@@ -94,7 +94,7 @@ Horas consulta:
 - Cómo reservar: faetornis@gmail.com
 
 ![](/figures/people/teofil.jpeg){fig-align="left" fig-alt="Foto de Dr. Nakov" style="object-fit: cover;width:5em;height:5em;border-radius: 50%;"}  
-**[Teofil Nakov](https://scholar.google.com/citations?user=2lKX40AAAAAJ&hl=en)** <br/>
+**[Teofil Nakov](https://aquaticbiodiversitylab.org/)** <br/>
 Profesor <br/>
 UCR <br/>
 📧 [MI_CORREO](mailto:teofiln@gmail.com)
