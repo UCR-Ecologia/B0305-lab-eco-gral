@@ -18,3 +18,19 @@ node_modules/
 
 # Generated figure files in source directories (not docs)
 2025/lessons/*/slides_files/
+
+# LaTeX intermediary and auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb

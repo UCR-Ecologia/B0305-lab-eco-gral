@@ -1,0 +1,43 @@
+---
+title: "Medición de Cobertura de Dosel con Densiómetro Cóncavo"
+author: "B305 Ecología General"
+date: "2025-08-26"
+format: pdf
+---
+
+# Medición de la Cobertura de Dosel con Densiómetro Cóncavo
+
+El densiómetro cóncavo es una herramienta sencilla utilizada para estimar el porcentaje de cobertura de dosel en un área determinada del bosque.
+
+## Materiales
+- Densiómetro cóncavo (espejo con cuadrícula grabada)
+- Hoja de registro y lápiz
+
+## Procedimiento
+1. **Ubicación del punto de muestreo:**
+   - Colócate en el punto donde deseas medir la cobertura.
+2. **Sujeción del densiómetro:**
+   - Sostén el densiómetro a la altura del pecho y en posición horizontal, asegurándote de que esté nivelado.
+3. **Observación:**
+   - Observa el reflejo del dosel en el espejo. La cuadrícula suele estar dividida en 24 cuadrados.
+4. **Método de los cuatro puntos por cuadrado:**
+   - Dentro de cada cuadrado de la cuadrícula, imagina (o visualiza) cuatro puntos equidistantes.
+   - Para cada uno de estos puntos, observa si está expuesto a la luz (sin cobertura de dosel) o cubierto por hojas/ramas.
+   - Anota para cada cuadrado cuántos de los cuatro puntos están expuestos a la luz (o cubiertos, pero sé consistente en el criterio que uses).
+5. **Cálculo del porcentaje de cobertura:**
+   - Suma el número total de puntos expuestos a la luz en todos los cuadrados.
+   - Multiplica este total por 1.04.
+   - Porcentaje de cobertura = 100 menos el resultado anterior:
+     
+     Porcentaje de cobertura = 100 - (total de puntos expuestos × 1.04)
+6. **Repeticiones:**
+   - Realiza varias mediciones en diferentes puntos para obtener un promedio representativo del área.
+
+## Notas
+- Evita que tu cuerpo o sombra interfieran con la medición.
+- Realiza las mediciones en condiciones de luz adecuadas.
+
+---
+
+**Referencia:**
+- Adaptado de protocolos estándar de muestreo en ecología de campo.

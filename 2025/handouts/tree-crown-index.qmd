@@ -1,0 +1,62 @@
+---
+title: "Índice de Copa (Crown Index) para Árboles"
+author: "B305 Ecología General"
+date: "2025-08-26"
+format: pdf
+---
+
+# Índice de Copa para Árboles
+
+El índice de copa es una medida visual y rápida para caracterizar la posición y el grado de exposición de la copa de un árbol en el dosel del bosque. Es útil para estudios de ecología de árboles, competencia por luz y dinámica de bosques.
+
+## Referencias
+- Dawkins, H.C. & Field, D.R.B. (1978). A long-term surveillance system for British woodlands. Commonwealth Forestry Institute, Oxford.
+- Clark, D.B. & Clark, D.A. (1992). Life history diversity of canopy and emergent trees in a neotropical rain forest. Ecological Monographs, 62(3), 315-344.
+
+## Procedimiento
+1. **Selecciona el árbol a evaluar.**
+2. **Observa la copa desde el suelo, a una distancia suficiente para ver toda la copa.**
+3. **Evalúa dos aspectos principales:**
+   - **Posición vertical de la copa:**
+     - 1 = Árbol suprimido (totalmente bajo el dosel de otros árboles)
+     - 2 = Subdosel (parte de la copa bajo el dosel, parte expuesta)
+     - 3 = Dosel (copa en el nivel superior del dosel, expuesta por arriba)
+     - 4 = Emergente (copa sobresale claramente por encima del dosel circundante)
+   - **Exposición lateral de la copa:**
+     - 1 = Ningún lado expuesto
+     - 2 = Un lado expuesto
+     - 3 = Dos lados expuestos
+     - 4 = Tres lados expuestos
+     - 5 = Todos los lados expuestos
+4. **Índice de copa:**
+   - El índice final puede expresarse como la suma o combinación de ambas categorías, o reportarse por separado según el protocolo del estudio.
+
+## Ejemplo de registro
+| Árbol | Posición vertical | Exposición lateral |
+|-------|-------------------|--------------------|
+|   1   |         3         |         4          |
+|   2   |         2         |         2          |
+
+## Notas
+- Realiza la evaluación de manera consistente y, si es posible, con el mismo observador para minimizar la subjetividad.
+- Este método es rápido y no requiere equipo especializado.
+
+---
+
+
+## Tabla: Índice de Iluminación de la Copa (Dawkins & Field 1978)
+
+| Valor del índice | Definición |
+|------------------|------------|
+| 5 | Copa completamente expuesta (a la luz vertical y lateral dentro del cono invertido de 90° que abarca la copa) |
+| 4 | Luz total desde arriba (≥90% de la proyección vertical de la copa expuesta a luz vertical; luz lateral bloqueada en parte o todo el cono de 90°) |
+| 3 | Algo de luz desde arriba (10–90% de la proyección vertical de la copa expuesta a luz vertical) |
+| 2.5 | Luz lateral alta (<10% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, alta) |
+| 2.0 | Luz lateral media (<10% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, media) |
+| 1.5 | Luz lateral baja (<10% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, baja) |
+| 1 | Sin luz directa (la copa no recibe luz directa ni vertical ni lateral) |
+
+---
+
+**Referencia:**
+- Adaptado de Dawkins & Field (1978) y Clark & Clark (1992).

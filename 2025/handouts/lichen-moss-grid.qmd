@@ -1,0 +1,42 @@
+    ---
+title: "Muestreo de Líquenes y Musgos en Troncos de Árboles"
+author: "B305 Ecología General"
+date: "2025-08-26"
+format: pdf
+---
+
+# Muestreo de Líquenes y Musgos en Troncos de Árboles
+
+Este método permite estimar la frecuencia de cobertura de líquenes y musgos en la corteza de árboles utilizando una cuadrícula con puntos de muestreo.
+
+## Materiales
+- Cuadrícula con 10 puntos marcados (ver imagen abajo)
+- Hoja de registro y lápiz
+
+## Procedimiento
+1. **Selección de árboles:**
+   - Selecciona árboles con un diámetro mínimo de 10 cm (DAP ≥ 10 cm).
+2. **Altura y orientación:**
+   - Realiza la medición a 1.5 m de altura sobre el suelo.
+   - Aplica la cuadrícula en cada uno de los cuatro lados cardinales del tronco (N, S, E, O).
+3. **Registro de puntos:**
+   - Para cada uno de los 10 puntos de la cuadrícula, observa si el punto cae sobre un liquen, un musgo, o ambos.
+   - Si el punto cubre ambos, registra 1 para líquen y 1 para musgo.
+   - Si el punto no cubre ninguno, registra 0 para ambos.
+4. **Cálculo de frecuencia:**
+   - Suma el número de puntos positivos para líquenes y para musgos por cada lado y árbol.
+   - Puedes expresar la frecuencia como porcentaje: (número de puntos positivos / 10) × 100 para cada grupo.
+
+## Notas
+- Mantén la cuadrícula nivelada y perpendicular al tronco para mayor consistencia.
+- Realiza el muestreo en condiciones de luz adecuadas.
+- Sé consistente en los criterios para identificar líquenes y musgos.
+
+## Ejemplo de cuadrícula
+
+![Cuadrícula de 10 puntos para muestreo](../../figures/lichen-moss-grid.png){ width=60% }
+
+---
+
+**Referencia:**
+- Adaptado de protocolos estándar de muestreo de epífitas en ecología de campo.

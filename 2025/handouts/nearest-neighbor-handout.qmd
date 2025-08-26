@@ -1,0 +1,33 @@
+---
+title: "Método del Vecino Más Cercano para Muestreo de Árboles"
+author: "B305 Ecología General"
+date: "2025-08-26"
+format: pdf
+---
+
+# Método del Vecino Más Cercano
+
+Este método se utiliza para seleccionar árboles de manera sistemática en un área de estudio, asegurando que cada árbol cumpla con un criterio específico (por ejemplo, diámetro a la altura del pecho, DAP, mayor o igual a 10 cm).
+
+## Pasos del método
+
+1. **Selección del árbol inicial:**
+   - Lanza un objeto (por ejemplo, una rama o piedra) al azar dentro del área de muestreo.
+   - El árbol más cercano al punto donde cae el objeto será el árbol inicial.
+
+2. **Criterio de selección:**
+   - Solo se consideran árboles con DAP ≥ 10 cm.
+
+3. **Selección de vecinos:**
+   - Desde el árbol inicial, identifica el árbol más cercano que cumpla con el criterio (DAP ≥ 10 cm) y que no haya sido seleccionado previamente.
+   - Repite este paso hasta alcanzar el número deseado de árboles o hasta que no haya más vecinos elegibles.
+
+## Notas
+- Este método ayuda a evitar sesgos en la selección y es útil en bosques densos o con vegetación heterogénea.
+- Es importante registrar la distancia entre cada par de árboles seleccionados.
+- Si se llega a un punto donde no hay vecinos elegibles, se puede reiniciar el proceso eligiendo un nuevo árbol inicial.
+
+---
+
+**Referencia:**
+- Adaptado de métodos clásicos de muestreo en ecología de campo.
