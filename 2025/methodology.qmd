@@ -23,9 +23,5 @@ El curso tiene además dos giras (una de un día, la otra de 2 noches 3 días) e
 Como parte del curso, las personas estudiantes deben realizar un trabajo práctico de investigación en parejas. En este trabajo las y los estudiantes deben poner en práctica todos los pasos del método científico para resolver un problema o pregunta ecológica. **No se permitirán trabajos cortos, deben ser de tres o más visitas de campo o incluir un componente de laboratorio de una complejidad razonable, dependiendo de la naturaleza del proyecto.** Dentro del primer mes de clases (agosto) los y las estudiantes deben presentar su idea mediante un anteproyecto escrito. El anteproyecto escrito deberá llevar el siguiente formato: título, introducción (incluyendo hipótesis y predicciones), materiales y métodos y referencias. En la introducción los estudiantes deberán incluir una breve revisión de la literatura que sirva para justificar las hipótesis que quieren probar y sus predicciones. Los materiales y métodos deberán incluir una descripción del sitio de estudio, del diseño experimental (diseño de muestreo) y de los materiales que usarán para ello, las posibles pruebas estadísticas y un cronograma que incluya las fechas de recolección de datos y análisis de datos.
 
 En los siguientes dos meses (setiembre y octubre) los estudiantes deben llevar a cabo la recolección de datos. **Se les solicitará un informe de avance a mitad del mes de octubre.** En el último mes (noviembre) deben concluir con la toma de datos y entrar en el análisis de los datos y preparar el reporte y la presentación oral. El documento deberá llevar el formato de reporte científico según el formato que se les entregue en el curso. Los estudiantes deben presentar los resultados en forma oral al final del curso. La presentación de los trabajos orales se realizará según la fecha indicada en el cronograma. Todas las personas estudiantes deberán presentarse a la hora establecida. Para cada trabajo semestral las y los estudiantes tienen un tiempo de 12 min de presentación y 5 min para aclarar preguntas del público.
----
-title: "B0305 -- LAB ECO GRAL"
-subtitle: "Año académico: 2025"
-format: html
----
+
 

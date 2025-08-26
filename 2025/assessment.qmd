@@ -96,7 +96,7 @@ El proyecto de investigación en parejas (35% de la nota final) será evaluado d
 
 ### Evaluación de colaboración
 
-Para todos los reportes que se realicen de forma grupal y para la investigación en parejas se deberá entregar una evaluación de la colaboración de cada compañera o compañero del grupo, esto se tomará en cuenta para repartir la nota del reporte puesta por la persona docente de acuerdo con dicho criterio, según el siguiente cuadro:
+Para todos los reportes que se realicen d   e forma grupal y para la investigación en parejas se deberá entregar una evaluación de la colaboración de cada compañera o compañero del grupo, esto se tomará en cuenta para repartir la nota del reporte puesta por la persona docente de acuerdo con dicho criterio, según el siguiente cuadro:
 
 | CONCEPTO                       | Porcentaje | Estudiante 1 | Estudiante 2 | Estudiante 3 | Estudiante 4 | Estudiante 5 |
 |--------------------------------|------------|--------------|--------------|--------------|--------------|--------------|
@@ -112,9 +112,5 @@ Para todos los reportes que se realicen de forma grupal y para la investigación
 ## Entrega de evaluaciónes
 
 La persona docente debe entregar al alumnado las evaluaciones calificadas y todo documento o material sujeto a evaluación, a más tardar diez días hábiles después de haberse efectuado las evaluaciones y haber recibido los documentos (Artículo 22 del Reglamento de Régimen Académico Estudiantil). El período razonable para guardar los trabajos y exámenes de los estudiantes posterior a la conclusión del ciclo lectivo es de seis meses, concluido este tiempo se pueden eliminar. Si la persona estudiante no está de acuerdo con la nota asignada en alguno de los rubros calificados, debe comunicarlo a los profesores del curso en un plazo no mayor de tres días hábiles posteriores a la devolución de esta. Los profesores atenderán con cuidado y prontitud la petición, para lo cual tendrá un plazo no mayor a cinco días hábiles (Artículo 22 del Reglamento de Régimen Académico Estudiantil).
----
-title: "B0305 -- LAB ECO GRAL"
-subtitle: "Año académico: 2025"
-format: html
----
+
 
