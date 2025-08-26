@@ -41,22 +41,26 @@ El índice de copa es una medida visual y rápida para caracterizar la posición
 - Realiza la evaluación de manera consistente y, si es posible, con el mismo observador para minimizar la subjetividad.
 - Este método es rápido y no requiere equipo especializado.
 
----
-
 
 ## Tabla: Índice de Iluminación de la Copa (Dawkins & Field 1978)
 
-| Valor del índice | Definición |
-|------------------|------------|
-| 5 | Copa completamente expuesta (a la luz vertical y lateral dentro del cono invertido de 90° que abarca la copa) |
-| 4 | Luz total desde arriba (≥90% de la proyección vertical de la copa expuesta a luz vertical; luz lateral bloqueada en parte o todo el cono de 90°) |
-| 3 | Algo de luz desde arriba (10–90% de la proyección vertical de la copa expuesta a luz vertical) |
-| 2.5 | Luz lateral alta (<10% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, alta) |
-| 2.0 | Luz lateral media (<10% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, media) |
-| 1.5 | Luz lateral baja (<10% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, baja) |
-| 1 | Sin luz directa (la copa no recibe luz directa ni vertical ni lateral) |
+::: {=latex}
+\begin{tabular}{p{0.10\textwidth} p{0.85\textwidth}}
+\textbf{Valor del índice} & \textbf{Definición} \\
+\hline
+5 & Copa completamente expuesta (a la luz vertical y lateral dentro del cono invertido de 90° que abarca la copa) \\
+4 & Luz total desde arriba (≥90\% de la proyección vertical de la copa expuesta a luz vertical; luz lateral bloqueada en parte o todo el cono de 90°) \\
+3 & Algo de luz desde arriba (10–90\% de la proyección vertical de la copa expuesta a luz vertical) \\
+2.5 & Luz lateral alta (<10\% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, alta) \\
+2.0 & Luz lateral media (<10\% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, media) \\
+1.5 & Luz lateral baja (<10\% de la proyección vertical expuesta a luz vertical; copa iluminada lateralmente, baja) \\
+1 & Sin luz directa (la copa no recibe luz directa ni vertical ni lateral) \\
+\end{tabular}
+:::
 
----
+## Ejemplo
+
+![Indice de copa](../../figures/indice-de-copa.jpeg){ width=60% }
 
 **Referencia:**
 - Adaptado de Dawkins & Field (1978) y Clark & Clark (1992).
