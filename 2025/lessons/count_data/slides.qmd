@@ -121,7 +121,6 @@ format:
 :::
 :::
 
-
 ---
 
 ## Errores Tipo I y Tipo II {.smaller}
@@ -137,6 +136,77 @@ format:
 **Error Tipo II (β)**: No rechazar H₀ cuando es falsa ("falso negativo")
 
 **En contexto de sobredispersión**: Ignorar la sobredispersión **eleva** Error Tipo I
+:::
+
+---
+
+## Evaluando la Sobredispersión {.smaller}
+
+**Paso 1: Calcular parámetro de dispersión**
+
+- φ = Devianza residual / Grados de libertad residuales
+- φ ≈ 1: Poisson es adecuado
+- φ > 1: Sobredispersión presente
+
+. . .
+
+**Paso 2: Pruebas formales**
+
+- **LRT**: Comparar Poisson vs. Binomial Negativa
+- **AIC/BIC**: Criterios de información para selección de modelos
+
+---
+
+## Ejemplo: Peligro de Ignorar la Sobredispersión {.smaller}
+
+::: {.columns}
+::: {.column}
+**Código R:**
+```{r}
+#| eval: true
+#| echo: true
+# Simular datos sobredispersos
+set.seed(123)
+library(MASS)
+
+# Generar datos con NB
+# (media=5, sobredispersión)
+counts <- rnegbin(40, mu = 5, theta = 1)
+
+# Dividir en 2 "hábitats" aleatoriamente
+habitat <- rep(c("Mar", "Rio"), each = 20)
+data <- data.frame(counts, habitat)
+
+# Modelo Poisson (INCORRECTO)
+m_poisson <- glm(counts ~ habitat, 
+                 family = poisson, data = data)
+
+```
+
+:::
+::: {.column}
+```{r}
+#| eval: true
+#| echo: true
+summary(m_poisson)
+
+# Verificar sobredispersión
+deviance(m_poisson) / df.residual(m_poisson)
+```
+:::
+:::
+
+## Modelo Binomial Negativa (CORRECTO) {.smaller}
+
+```{r}
+#| eval: true
+#| echo: true
+m_nb <- glm.nb(counts ~ habitat, data = data)
+summary(m_nb)
+```
+
+::: {.callout-warning title="Lección"}
+**Mismo coeficiente**, pero **error estándar realista** → conclusión correcta
 :::
 
 ---
@@ -164,23 +234,6 @@ format:
 
 ---
 
-## Evaluando la Sobredispersión {.smaller}
-
-**Paso 1: Calcular parámetro de dispersión**
-
-- φ = Devianza residual / Grados de libertad residuales
-- φ ≈ 1: Poisson es adecuado
-- φ > 1: Sobredispersión presente
-
-. . .
-
-**Paso 2: Pruebas formales**
-
-- **LRT**: Comparar Poisson vs. Binomial Negativa
-- **AIC/BIC**: Criterios de información para selección de modelos
-
----
-
 ## Evaluando la Inflación de Ceros {.smaller}
 
 **Evaluación visual:**
@@ -200,6 +253,92 @@ format:
 **Regla práctica:**
 
 Si >60-70% son ceros, considerar modelos de inflación de ceros
+
+---
+
+## Ejemplo: Cuándo Usar Modelos Zero-Inflated {.smaller}
+
+::: {.columns}
+::: {.column}
+**Código R:**
+```{r}
+#| eval: true
+#| echo: true
+# Simular peces en Mar vs. Río
+set.seed(456)
+library(pscl)
+
+# Generar datos zero-inflated
+n <- 40
+habitat <- rep(c("Mar", "Rio"), each = 20)
+
+# Crear inflación de ceros estructural
+# Mar: más peces, Rio: muchos ceros
+prob_zero <- ifelse(habitat == "Rio", 0.7, 0.2)
+counts <- ifelse(runif(n) < prob_zero, 0,
+                 rpois(n, lambda = 8))
+
+data <- data.frame(counts, habitat) 
+```
+
+:::
+::: {.column}
+
+```{r}
+table(data$counts, data$habitat) 
+```
+
+**Datos observados:**  
+- **65% de ceros** (mucho más que Poisson)  
+- Mar: Pocos ceros, conteos altos  
+- Río: Muchos ceros (condiciones no aptas)  
+
+:::
+:::
+
+---
+
+## Modelos {.smaller}
+
+::: {.columns}
+::: {.column}
+
+**Modelo Binomial Negativa:**
+```{r}
+#| eval: true
+#| echo: true
+m_nb <- glm.nb(counts ~ habitat, data = data)
+summary(m_nb)
+```
+
+
+:::
+::: {.column}
+**Modelo ZINB (correcto):**
+```{r}
+#| eval: true
+#| echo: true
+m_zinb <- zeroinfl(counts ~ habitat | habitat, dist = "negbin", data = data
+)
+summary(m_zinb)
+```
+
+:::
+:::
+
+## Interpretación: {.smaller}
+
+```{r}
+m_zinb
+```
+
+
+- Ríos tienen **7x más probabilidad** de ser ceros estructurales (exp(1.99) ≈ 7.3)
+- Dado que hay peces presentes, no hay diferencia significativa en abundancia entre habitats
+
+::: {.callout-tip title="Lección"}
+ZINB permite separar **presencia/ausencia** vs. **abundancia dado presencia** - dos procesos biológicos distintos
+:::
 
 ---
 

@@ -1405,5 +1405,47 @@
       "📚 Lecciones",
       "5. Reportes con R y `{quarto}`"
     ]
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#ejemplo-peligro-de-ignorar-la-sobredispersión",
+    "href": "2025/lessons/count_data/slides.html#ejemplo-peligro-de-ignorar-la-sobredispersión",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Ejemplo: Peligro de Ignorar la Sobredispersión",
+    "text": "Ejemplo: Peligro de Ignorar la Sobredispersión\n\n\nCódigo R:\n\n# Simular datos sobredispersos\nset.seed(123)\nlibrary(MASS)\n\n# Generar datos con NB\n# (media=5, sobredispersión)\ncounts &lt;- rnegbin(40, mu = 5, theta = 1)\n\n# Dividir en 2 \"hábitats\" aleatoriamente\nhabitat &lt;- rep(c(\"Mar\", \"Rio\"), each = 20)\ndata &lt;- data.frame(counts, habitat)\n\n# Modelo Poisson (INCORRECTO)\nm_poisson &lt;- glm(counts ~ habitat, \n                 family = poisson, data = data)\n\n\n\nsummary(m_poisson)\n\n\nCall:\nglm(formula = counts ~ habitat, family = poisson, data = data)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)  1.67710    0.09667   17.35   &lt;2e-16 ***\nhabitatRio  -0.35534    0.15060   -2.36   0.0183 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 232.43  on 39  degrees of freedom\nResidual deviance: 226.78  on 38  degrees of freedom\nAIC: 333.12\n\nNumber of Fisher Scoring iterations: 6\n\n# Verificar sobredispersión\ndeviance(m_poisson) / df.residual(m_poisson)\n\n[1] 5.967796"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#modelo-binomial-negativa-correcto",
+    "href": "2025/lessons/count_data/slides.html#modelo-binomial-negativa-correcto",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Modelo Binomial Negativa (CORRECTO)",
+    "text": "Modelo Binomial Negativa (CORRECTO)\n\nm_nb &lt;- glm.nb(counts ~ habitat, data = data)\nsummary(m_nb)\n\n\nCall:\nglm.nb(formula = counts ~ habitat, data = data, init.theta = 0.825913691, \n    link = log)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)   1.6771     0.2644   6.344 2.24e-10 ***\nhabitatRio   -0.3553     0.3792  -0.937    0.349    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for Negative Binomial(0.8259) family taken to be 1)\n\n    Null deviance: 45.513  on 39  degrees of freedom\nResidual deviance: 44.637  on 38  degrees of freedom\nAIC: 213.93\n\nNumber of Fisher Scoring iterations: 1\n\n              Theta:  0.826 \n          Std. Err.:  0.231 \n\n 2 x log-likelihood:  -207.925 \n\n\n\n\n\n\n\n\n\nLección\n\n\nMismo coeficiente, pero error estándar realista → conclusión correcta"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#ejemplo-cuándo-usar-modelos-zero-inflated",
+    "href": "2025/lessons/count_data/slides.html#ejemplo-cuándo-usar-modelos-zero-inflated",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Ejemplo: Cuándo Usar Modelos Zero-Inflated",
+    "text": "Ejemplo: Cuándo Usar Modelos Zero-Inflated\n\n\nCódigo R:\n\n# Simular peces en Mar vs. Río\nset.seed(456)\nlibrary(pscl)\n\n# Generar datos zero-inflated\nn &lt;- 40\nhabitat &lt;- rep(c(\"Mar\", \"Rio\"), each = 20)\n\n# Crear inflación de ceros estructural\n# Mar: más peces, Rio: muchos ceros\nprob_zero &lt;- ifelse(habitat == \"Rio\", 0.7, 0.2)\ncounts &lt;- ifelse(runif(n) &lt; prob_zero, 0,\n                 rpois(n, lambda = 8))\n\ndata &lt;- data.frame(counts, habitat) \n\n\n\n\n    \n     Mar Rio\n  0    2   9\n  1    0   1\n  3    0   1\n  4    3   0\n  5    2   0\n  6    1   2\n  7    4   4\n  8    2   1\n  9    1   1\n  10   1   0\n  11   1   0\n  12   3   0\n  13   0   1\n\n\nDatos observados:\n- 65% de ceros (mucho más que Poisson)\n- Mar: Pocos ceros, conteos altos\n- Río: Muchos ceros (condiciones no aptas)"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#interpretación-del-modelo-zinb",
+    "href": "2025/lessons/count_data/slides.html#interpretación-del-modelo-zinb",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Interpretación del Modelo ZINB",
+    "text": "Interpretación del Modelo ZINB\nDos componentes del modelo:\n\n\nProceso de inflación de ceros (logístico):\nZero-inflation model coefficients (binomial with logit link):\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)   -1.386      0.520  -2.67   0.0076 ** \nhabitatRio     2.944      0.746   3.95  &lt;0.001 ***\nInterpretación: Ríos tienen 19x más probabilidad de ser ceros estructurales\n\nProceso de conteo (log-lineal):\nCount model coefficients (negbin with log link):\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)    2.079      0.223   9.33  &lt;0.001 ***\nhabitatRio    -0.693      0.447  -1.55    0.121    \nInterpretación: Dado que hay peces presentes, no hay diferencia significativa en abundancia entre hábitats\n\n\n\n\n\n\n\n\nLección\n\n\nZINB permite separar presencia/ausencia vs. abundancia dado presencia - dos procesos biológicos distintos"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#modelos",
+    "href": "2025/lessons/count_data/slides.html#modelos",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Modelos",
+    "text": "Modelos\n\n\nModelo Binomial Negativa:\n\nm_nb &lt;- glm.nb(counts ~ habitat, data = data)\nsummary(m_nb)\n\n\nCall:\nglm.nb(formula = counts ~ habitat, data = data, init.theta = 1.236507457, \n    link = log)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)   1.9315     0.2184   8.845   &lt;2e-16 ***\nhabitatRio   -0.6232     0.3188  -1.955   0.0506 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for Negative Binomial(1.2365) family taken to be 1)\n\n    Null deviance: 54.486  on 39  degrees of freedom\nResidual deviance: 50.687  on 38  degrees of freedom\nAIC: 222.98\n\nNumber of Fisher Scoring iterations: 1\n\n              Theta:  1.237 \n          Std. Err.:  0.443 \n\n 2 x log-likelihood:  -216.979 \n\n\n\nModelo ZINB (correcto):\n\nm_zinb &lt;- zeroinfl(counts ~ habitat | habitat, dist = \"negbin\", data = data\n)\nsummary(m_zinb)\n\n\nCall:\nzeroinfl(formula = counts ~ habitat | habitat, data = data, dist = \"negbin\")\n\nPearson residuals:\n     Min       1Q   Median       3Q      Max \n-1.92830 -0.95007  0.02794  0.84733  2.38795 \n\nCount model coefficients (negbin with log link):\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)  2.03622    0.08925  22.815   &lt;2e-16 ***\nhabitatRio  -0.13161    0.15079  -0.873    0.383    \nLog(theta)   4.39992    3.36360   1.308    0.191    \n\nZero-inflation model coefficients (binomial with logit link):\n            Estimate Std. Error z value Pr(&gt;|z|)   \n(Intercept)  -2.2039     0.7499  -2.939  0.00329 **\nhabitatRio    1.9997     0.8747   2.286  0.02224 * \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 \n\nTheta = 81.4445 \nNumber of iterations in BFGS optimization: 23 \nLog-likelihood: -91.42 on 5 Df"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#interpretación",
+    "href": "2025/lessons/count_data/slides.html#interpretación",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Interpretación:",
+    "text": "Interpretación:\n\n\n\nCall:\nzeroinfl(formula = counts ~ habitat | habitat, data = data, dist = \"negbin\")\n\nCount model coefficients (negbin with log link):\n(Intercept)   habitatRio  \n     2.0362      -0.1316  \nTheta = 81.4445 \n\nZero-inflation model coefficients (binomial with logit link):\n(Intercept)   habitatRio  \n     -2.204        2.000  \n\n\n\nRíos tienen 7x más probabilidad de ser ceros estructurales (exp(1.99) ≈ 7.3)\nDado que hay peces presentes, no hay diferencia significativa en abundancia entre habitats\n\n\n\n\n\n\n\n\nLección\n\n\nZINB permite separar presencia/ausencia vs. abundancia dado presencia - dos procesos biológicos distintos"
   }
 ]
