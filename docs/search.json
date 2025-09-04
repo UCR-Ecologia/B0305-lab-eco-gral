@@ -963,7 +963,7 @@
     "href": "2025/lessons/count_data/slides.html#bibliografía",
     "title": "Análisis de datos de conteo en ecología",
     "section": "Bibliografía",
-    "text": "Bibliografía\n\nGotelli, N.J. & Ellison, A.M. (2004). A Primer of Ecological Statistics. Sinauer Associates. 📄 PDF - Cap. 6\n\nRecursos adicionales:\n\nBurnham, K.P. & Anderson, D.R. (2002). Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach. 2nd ed. Springer-Verlag.\nZuur, A.F., Ieno, E.N., Walker, N.J., Saveliev, A.A. & Smith, G.M. (2009). Mixed Effects Models and Extensions in Ecology with R. Springer.\nBolker, B.M. (2008). Ecological Models and Data in R. Princeton University Press."
+    "text": "Bibliografía\n\nGotelli, N.J. & Ellison, A.M. (2004). A Primer of Ecological Statistics. Sinauer Associates.\n\nRecursos adicionales:\n\nBurnham, K.P. & Anderson, D.R. (2002). Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach. 2nd ed. Springer-Verlag.\nZuur, A.F., Ieno, E.N., Walker, N.J., Saveliev, A.A. & Smith, G.M. (2009). Mixed Effects Models and Extensions in Ecology with R. Springer.\nBolker, B.M. (2008). Ecological Models and Data in R. Princeton University Press."
   },
   {
     "objectID": "2025/syllabus.html",
