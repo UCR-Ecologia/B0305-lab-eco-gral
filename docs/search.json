@@ -861,6 +861,111 @@
     "text": "Numérica + Numérica - correlation heatmap\n\n\n\n# Seleccionar solo variables numéricas\npenguins_numeric &lt;- penguins |&gt; \n    select(bill_len, bill_dep, flipper_len, body_mass) |&gt; \n    na.omit()\n\n# Calcular matriz de correlación\ncor_matrix &lt;- cor(penguins_numeric)\n\n# Convertir a formato largo para ggplot\ncor_data &lt;- expand.grid(\n    var1 = colnames(cor_matrix), \n    var2 = colnames(cor_matrix)\n) |&gt; \n    mutate(correlation = as.vector(cor_matrix))\n\nround(cor_matrix, 2)\n\n            bill_len bill_dep flipper_len body_mass\nbill_len        1.00    -0.24        0.66      0.60\nbill_dep       -0.24     1.00       -0.58     -0.47\nflipper_len     0.66    -0.58        1.00      0.87\nbody_mass       0.60    -0.47        0.87      1.00\n\n\n\n\nggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +\n    geom_tile(color = \"white\") +\n    geom_text(aes(label = round(correlation, 2)), color = \"white\", size = 5) +\n    scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\", \n                         midpoint = 0, limit = c(-1,1)) +\n    labs(x = \"Variable\", y = \"Variable\", fill = \"Correlación\")"
   },
   {
+    "objectID": "2025/lessons/count_data/slides.html#qué-son-los-datos-de-conteo",
+    "href": "2025/lessons/count_data/slides.html#qué-son-los-datos-de-conteo",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "¿Qué son los Datos de Conteo?",
+    "text": "¿Qué son los Datos de Conteo?\n\nDefinición: Números enteros no negativos que representan el número de ocurrencias de un evento\nRango: 0, 1, 2, 3, 4, …\nNo pueden ser negativos ni fraccionarios\n\n\n¿Por qué tratamiento especial?\n\nDiscretos, no continuos\nDistribuciones a menudo sesgadas\nLa varianza a menudo está relacionada con la media"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#datos-de-conteo-en-biología-y-ecología",
+    "href": "2025/lessons/count_data/slides.html#datos-de-conteo-en-biología-y-ecología",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Datos de Conteo en Biología y Ecología",
+    "text": "Datos de Conteo en Biología y Ecología\nEjemplos comunes:\n\nNúmero de especies en un cuadrante\nSemillas por fruto\nParásitos por hospedero\nDescendencia por individuo\nVisitantes a flores por hora\nCajas nido ocupadas por sitio\n\n\n¿Por qué esto importa?\n¡Las distribuciones normales y modelos lineales pueden no ser apropiados!"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#la-distribución-de-poisson",
+    "href": "2025/lessons/count_data/slides.html#la-distribución-de-poisson",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "La Distribución de Poisson",
+    "text": "La Distribución de Poisson\nLa distribución “por defecto” para datos de conteo\n\nParámetro: λ (lambda) = media = varianza\nSupuesto: los eventos ocurren independientemente\n\n\nPropiedad clave: La media es igual a la varianza\n\nSi media = 3, entonces varianza = 3\nEsto a menudo se viola en datos ecológicos"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#problemas-con-datos-de-conteo-ecológicos",
+    "href": "2025/lessons/count_data/slides.html#problemas-con-datos-de-conteo-ecológicos",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Problemas con Datos de Conteo Ecológicos",
+    "text": "Problemas con Datos de Conteo Ecológicos\nDos problemas principales:\n\nSobredispersión - varianza &gt; media\nInflación de ceros - más ceros de los esperados\n\n\n¿Por qué ocurren en ecología?\n\nSobredispersión: Agregación espacial, heterogeneidad ambiental, variables no medidas\nInflación de ceros: Ausencias verdaderas vs. fallas de detección, idoneidad del hábitat"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#sobredispersión-en-detalle",
+    "href": "2025/lessons/count_data/slides.html#sobredispersión-en-detalle",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Sobredispersión en Detalle",
+    "text": "Sobredispersión en Detalle\n\n\n¿Qué es?\n\nLa varianza excede la media\nIndica variabilidad extra no capturada por Poisson\n\nCausas en ecología:\n\nAgregación espacial (organismos se agrupan)\nHeterogeneidad ambiental\nDiferencias individuales en rasgos\nCovariables no medidas\n\n\nConsecuencias estadísticas:\n\nErrores estándar subestimados\nValores p artificialmente pequeños\nIncremento en tasas de error Tipo I (encontrar diferencias que no existen)\nConclusiones excesivamente confiadas"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#errores-tipo-i-y-tipo-ii",
+    "href": "2025/lessons/count_data/slides.html#errores-tipo-i-y-tipo-ii",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Errores Tipo I y Tipo II",
+    "text": "Errores Tipo I y Tipo II\n\n\n\n\n\n\n\nRecordatorio: Tipos de Error Estadístico\n\n\n\n\n\nRealidad vs Decisión\nNo rechazar H₀\nRechazar H₀\n\n\n\n\nH₀ es verdadera\n✓ Correcto\n❌ Error Tipo I\n\n\nH₀ es falsa\n❌ Error Tipo II\n✓ Correcto\n\n\n\nError Tipo I (α): Rechazar H₀ cuando es verdadera (“falso positivo”)\nError Tipo II (β): No rechazar H₀ cuando es falsa (“falso negativo”)\nEn contexto de sobredispersión: Ignorar la sobredispersión eleva Error Tipo I"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#inflación-de-ceros-en-detalle",
+    "href": "2025/lessons/count_data/slides.html#inflación-de-ceros-en-detalle",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Inflación de Ceros en Detalle",
+    "text": "Inflación de Ceros en Detalle\n¿Qué es?\n\nMás ceros observados que los predichos por Poisson (o Binomial Negativa)\n\n\nDos tipos de ceros:\n\nCeros estructurales: Ausencias “verdaderas” (hábitat no adecuado)\nCeros de muestreo: Presente pero no detectado\n\n\n\nEjemplos:\n\nConteos de peces en arroyos (algunos sitios no adecuados para peces)\nCargas parasitarias (algunos hospederos resistentes)\nConteos de plantas (algunas parcelas carecen de condiciones adecuadas)"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#evaluando-la-sobredispersión",
+    "href": "2025/lessons/count_data/slides.html#evaluando-la-sobredispersión",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Evaluando la Sobredispersión",
+    "text": "Evaluando la Sobredispersión\nPaso 1: Calcular parámetro de dispersión\n\nφ = Devianza residual / Grados de libertad residuales\nφ ≈ 1: Poisson es adecuado\nφ &gt; 1: Sobredispersión presente\n\n\nPaso 2: Pruebas formales\n\nLRT: Comparar Poisson vs. Binomial Negativa\nAIC/BIC: Criterios de información para selección de modelos"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#evaluando-la-inflación-de-ceros",
+    "href": "2025/lessons/count_data/slides.html#evaluando-la-inflación-de-ceros",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Evaluando la Inflación de Ceros",
+    "text": "Evaluando la Inflación de Ceros\nEvaluación visual:\n\nComparar conteos de ceros observados vs. esperados\nHistograma de la distribución de datos\n\n\nPruebas formales:\n\nLRT: Modelos con inflación de ceros vs. estándar\nAIC/BIC: Comparación de criterios de información\n\n\n\nRegla práctica:\nSi &gt;60-70% son ceros, considerar modelos de inflación de ceros"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#comparación-de-modelos",
+    "href": "2025/lessons/count_data/slides.html#comparación-de-modelos",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Comparación de Modelos",
+    "text": "Comparación de Modelos\n\n\n\n\n\n\n\n\n\n\nModelo\nCuándo usar\nPregunta típica\nVentaja principal\nDesventaja principal\n\n\n\n\nPoisson\nMedia ≈ varianzaSin exceso de ceros\n¿Cómo afecta X la abundancia?\nSencillo e interpretable\nAsume equidispersión(rara en ecología)\n\n\nBinomial Negativa\nSobredispersiónpresente\n¿Qué factores afectan abundancia con variabilidad realista?\nManeja sobredispersiónInterpretación similar a Poisson\nNo maneja inflaciónde ceros\n\n\nZIP/ZINB\nExceso de ceros± sobredispersión\n¿Qué determina presencia vs. abundancia?\nModela dos procesosbiológicos distintos\nMás complejoRequiere justificaciónbiológica"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#selección-de-modelos",
+    "href": "2025/lessons/count_data/slides.html#selección-de-modelos",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Selección de Modelos",
+    "text": "Selección de Modelos\n\n\nCriterios de información:\n\nAIC: Criterio de Información de Akaike (más tolerante a la complejidad del modelo)\nBIC: Criterio de Información Bayesiano (más conservador, tiende a favorecer modelos simples)\nValores menores indican mejor ajuste\n\n\nLRT:\n\nSolo para modelos anidados\nOK: Poisson vs. Binomial Negativa ✓, ZIP vs. ZINB ✓\nNOT OK: Poisson vs. ZIP ✗, Poisson vs. ZINB ✗, Binomial Negativa vs. ZINB ✗ (no anidados)\n\n\n\n\n\n\n\n\n\n\nLeer más\n\n\n\\(AIC = -2 × log-likelihood + 2 × k\\)\n\\(BIC = -2 × log-likelihood + ln(n) × k\\)\nDonde: k = número de parámetros, n = tamaño de muestra. Como ln(n) &gt; 2 cuando n &gt; 7, BIC penaliza parámetros adicionales más fuertemente que AIC.\nBurnham, K.P. & Anderson, D.R. (2002). Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#interpretación-de-resultados",
+    "href": "2025/lessons/count_data/slides.html#interpretación-de-resultados",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Interpretación de Resultados",
+    "text": "Interpretación de Resultados\nCoeficientes Poisson/Binomial Negativa:\n\nCoeficiente crudo: Cambio en log(media) por incremento unitario\nCoeficiente exponenciado: Cambio multiplicativo en la media\nexp(β) = 1.5 significa incremento del 50%\n\n\nEjemplo:\n\nβ = 0.405 → exp(0.405) = 1.5\n“Un incremento unitario en X se asocia con incremento del 50% en el conteo esperado”\n\n\n\n\n\n\n\n\n\n\nRecordar\n\n\nSiempre reportar intervalos de confianza - La incertidumbre es parte fundamental del resultado"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#resumen",
+    "href": "2025/lessons/count_data/slides.html#resumen",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Resumen",
+    "text": "Resumen\nMensajes clave:\n\nLos datos de conteo requieren tratamiento estadístico especial\nVerificar sobredispersión e inflación de ceros\nEmpezar simple, agregar complejidad según sea necesario\nLa selección de modelos es crucial\nInterpretar resultados en contexto biológico\n\n\nRecordar:\n\nLos modelos son herramientas, no verdades\nLos supuestos importan\nEl entendimiento biológico guía las decisiones estadísticas"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#próximos-pasos",
+    "href": "2025/lessons/count_data/slides.html#próximos-pasos",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Próximos pasos",
+    "text": "Próximos pasos\n\nAnálisis práctico con datos ecológicos reales\nExperiencia práctica con ajuste de modelos\nGráficos de diagnóstico y verificación de modelos"
+  },
+  {
+    "objectID": "2025/lessons/count_data/slides.html#bibliografía",
+    "href": "2025/lessons/count_data/slides.html#bibliografía",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\nGotelli, N.J. & Ellison, A.M. (2004). A Primer of Ecological Statistics. Sinauer Associates. 📄 PDF - Cap. 6\n\nRecursos adicionales:\n\nBurnham, K.P. & Anderson, D.R. (2002). Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach. 2nd ed. Springer-Verlag.\nZuur, A.F., Ieno, E.N., Walker, N.J., Saveliev, A.A. & Smith, G.M. (2009). Mixed Effects Models and Extensions in Ecology with R. Springer.\nBolker, B.M. (2008). Ecological Models and Data in R. Princeton University Press."
+  },
+  {
     "objectID": "2025/syllabus.html",
     "href": "2025/syllabus.html",
     "title": "B0305 – LAB ECO GRAL",
@@ -1071,6 +1176,42 @@
     "crumbs": [
       "2025",
       "📚 Referencias"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/count_data/page.html",
+    "href": "2025/lessons/count_data/page.html",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "",
+    "text": "En algún momento de tu carrera en biología y ecología, tendrás que trabajar con datos. Cuando llegue ese momento, deberías tener cierta familiaridad con las diversas herramientas y métodos utilizados para abordar correctamente el análisis de datos. En estas clases comenzaremos a explorar estos temas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "6. Análisis de datos de conteo"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/count_data/page.html#diapositivas-de-la-clase",
+    "href": "2025/lessons/count_data/page.html#diapositivas-de-la-clase",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "👨‍🏫 Diapositivas de la Clase",
+    "text": "👨‍🏫 Diapositivas de la Clase\nHaz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "6. Análisis de datos de conteo"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/count_data/page.html#lecturas-recomendadas",
+    "href": "2025/lessons/count_data/page.html#lecturas-recomendadas",
+    "title": "Análisis de datos de conteo en ecología",
+    "section": "📚 Lecturas Recomendadas",
+    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "6. Análisis de datos de conteo"
     ]
   },
   {

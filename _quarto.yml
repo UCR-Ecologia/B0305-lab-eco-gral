@@ -52,6 +52,8 @@ website:
                 text: "4. Modelado en R"
               - href: 2025/lessons/report/page.qmd
                 text: "5. Reportes con R y `{quarto}`"
+              - href: 2025/lessons/count_data/page.qmd
+                text: "6. Análisis de datos de conteo"
 
   navbar:
     background: primary
