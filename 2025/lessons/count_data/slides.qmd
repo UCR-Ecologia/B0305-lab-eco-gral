@@ -469,7 +469,7 @@ Burnham, K.P. & Anderson, D.R. (2002). *Model Selection and Multimodel Inference
 
 ## Bibliografía {.smaller}
 
-- **Gotelli, N.J. & Ellison, A.M.** (2004). *A Primer of Ecological Statistics*. Sinauer Associates. [📄 PDF - Cap. 6](../../../refs/Gotelli-2004-cap-6.pdf)
+- **Gotelli, N.J. & Ellison, A.M.** (2004). *A Primer of Ecological Statistics*. Sinauer Associates.
 
 **Recursos adicionales:**
 
