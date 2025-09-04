@@ -1,0 +1,480 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://ucr-ecologia.github.io/B0305-lab-eco-gral/' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'>Análisis de datos de conteo en ecología</font>"
+author: "Prof. Teo Nakov"
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: "04 September 2025"
+date-meta: "04 September 2025"
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: false
+    logo: /figures/icons/course_favicon.png
+    css: /css/styles_slides.css
+    footer: 'B0305 -- Lab Eco Gral'
+---
+
+## ¿Qué son los Datos de Conteo? {.smaller}
+
+- **Definición**: Números enteros no negativos que representan el número de ocurrencias de un evento
+- **Rango**: 0, 1, 2, 3, 4, ...
+- **No pueden ser negativos ni fraccionarios**
+
+. . .
+
+**¿Por qué tratamiento especial?**
+
+- Discretos, no continuos
+- Distribuciones a menudo sesgadas
+- La varianza a menudo está relacionada con la media
+
+---
+
+## Datos de Conteo en Biología y Ecología {.smaller}
+
+**Ejemplos comunes:**
+
+- Número de especies en un cuadrante
+- Semillas por fruto
+- Parásitos por hospedero
+- Descendencia por individuo
+- Visitantes a flores por hora
+- Cajas nido ocupadas por sitio
+
+. . .
+
+**¿Por qué esto importa?**
+
+¡Las distribuciones normales y modelos lineales pueden no ser apropiados!
+
+---
+
+## La Distribución de Poisson {.smaller}
+
+**La distribución "por defecto" para datos de conteo**
+
+- Parámetro: λ (lambda) = media = varianza
+- Supuesto: los eventos ocurren independientemente
+
+. . .
+
+**Propiedad clave**: La media es igual a la varianza
+
+- Si media = 3, entonces varianza = 3
+- Esto a menudo se **viola** en datos ecológicos
+
+---
+
+## Problemas con Datos de Conteo Ecológicos {.smaller}
+
+**Dos problemas principales:**
+
+1. **Sobredispersión** - varianza > media
+2. **Inflación de ceros** - más ceros de los esperados
+
+. . .
+
+**¿Por qué ocurren en ecología?**
+
+- **Sobredispersión**: Agregación espacial, heterogeneidad ambiental, variables no medidas
+- **Inflación de ceros**: Ausencias verdaderas vs. fallas de detección, idoneidad del hábitat
+
+---
+
+## Sobredispersión en Detalle {.smaller}
+
+::: {.columns}
+::: {.column}
+**¿Qué es?**
+
+- La varianza excede la media
+- Indica variabilidad extra no capturada por Poisson
+
+**Causas en ecología:**
+
+- Agregación espacial (organismos se agrupan)
+- Heterogeneidad ambiental
+- Diferencias individuales en rasgos
+- Covariables no medidas
+
+:::
+::: {.column}
+
+
+**Consecuencias estadísticas:**
+
+- Errores estándar subestimados
+- Valores p artificialmente pequeños
+- **Incremento en tasas de error Tipo I** (encontrar diferencias que no existen)
+- Conclusiones excesivamente confiadas
+
+:::
+:::
+
+
+---
+
+## Errores Tipo I y Tipo II {.smaller}
+
+::: {.callout-important title="Recordatorio: Tipos de Error Estadístico"}
+
+| Realidad vs Decisión | No rechazar H₀ | Rechazar H₀ |
+|:-------------------:|:--------------:|:-----------:|
+| **H₀ es verdadera** | ✓ Correcto | ❌ **Error Tipo I** |
+| **H₀ es falsa** | ❌ **Error Tipo II** | ✓ Correcto |
+
+**Error Tipo I (α)**: Rechazar H₀ cuando es verdadera ("falso positivo")  
+**Error Tipo II (β)**: No rechazar H₀ cuando es falsa ("falso negativo")
+
+**En contexto de sobredispersión**: Ignorar la sobredispersión **eleva** Error Tipo I
+:::
+
+---
+
+## Inflación de Ceros en Detalle {.smaller}
+
+**¿Qué es?**
+
+- Más ceros observados que los predichos por Poisson (o Binomial Negativa)
+
+. . .
+
+**Dos tipos de ceros:**
+
+1. **Ceros estructurales**: Ausencias "verdaderas" (hábitat no adecuado)
+2. **Ceros de muestreo**: Presente pero no detectado
+
+. . .
+
+**Ejemplos:**
+
+- Conteos de peces en arroyos (algunos sitios no adecuados para peces)
+- Cargas parasitarias (algunos hospederos resistentes)
+- Conteos de plantas (algunas parcelas carecen de condiciones adecuadas)
+
+---
+
+## Evaluando la Sobredispersión {.smaller}
+
+**Paso 1: Calcular parámetro de dispersión**
+
+- φ = Devianza residual / Grados de libertad residuales
+- φ ≈ 1: Poisson es adecuado
+- φ > 1: Sobredispersión presente
+
+. . .
+
+**Paso 2: Pruebas formales**
+
+- **LRT**: Comparar Poisson vs. Binomial Negativa
+- **AIC/BIC**: Criterios de información para selección de modelos
+
+---
+
+## Evaluando la Inflación de Ceros {.smaller}
+
+**Evaluación visual:**
+
+- Comparar conteos de ceros observados vs. esperados
+- Histograma de la distribución de datos
+
+. . .
+
+**Pruebas formales:**
+
+- **LRT**: Modelos con inflación de ceros vs. estándar
+- **AIC/BIC**: Comparación de criterios de información
+
+. . .
+
+**Regla práctica:**
+
+Si >60-70% son ceros, considerar modelos de inflación de ceros
+
+---
+
+## Comparación de Modelos {.smaller}
+
+| Modelo | Cuándo usar | Pregunta típica | Ventaja principal | Desventaja principal |
+|--------|-------------|-----------------|-------------------|---------------------|
+| **Poisson** | Media ≈ varianza<br>Sin exceso de ceros | ¿Cómo afecta X la abundancia? | Sencillo e interpretable | Asume equidispersión<br>(rara en ecología) |
+| **Binomial Negativa** | Sobredispersión<br>presente | ¿Qué factores afectan abundancia con variabilidad realista? | Maneja sobredispersión<br>Interpretación similar a Poisson | No maneja inflación<br>de ceros |
+| **ZIP/ZINB** | Exceso de ceros<br>± sobredispersión | ¿Qué determina presencia vs. abundancia? | Modela dos procesos<br>biológicos distintos | Más complejo<br>Requiere justificación<br>biológica |
+
+---
+
+<!-- ---
+
+## Modelos para Datos de Conteo {.smaller}
+
+**Jerarquía de complejidad:**
+
+1. **GLM de Poisson**: Datos de conteo bien comportados
+2. **Binomial Negativa**: Datos sobredispersos
+3. **Modelos con inflación de ceros**: Exceso de ceros + sobredispersión
+
+--- -->
+
+<!-- 
+## GLM de Poisson {.smaller}
+
+**Cuándo usarlo:**
+
+- Media ≈ varianza
+- Sin inflación obvia de ceros
+- Procesos de conteo simples
+
+. . .
+
+**Tipos de preguntas:**
+
+- ¿Cómo afecta el tratamiento la abundancia?
+- ¿Qué factores ambientales predicen los conteos?
+- ¿Hay diferencias entre grupos?
+
+. . .
+
+--- -->
+
+<!-- ## GLM de Poisson: Advertencias {.smaller}
+
+**Cuidado con:**
+
+- **Sobredispersión**: Verificar devianza residual
+- **Inflación de ceros**: Observar patrones residuales
+- **Valores atípicos**: Observaciones influyentes
+- **Supuestos del modelo**: Independencia, función de enlace correcta -->
+
+<!-- . . .
+
+**Diagnósticos:**
+
+- Gráficos de residuos
+- Gráficos QQ de residuos
+- Análisis de observaciones influyentes -->
+<!-- 
+---
+
+## Modelos Binomial Negativa {.smaller}
+
+**Cuándo usarlos:**
+
+- Sobredispersión presente (varianza > media)
+- Modelo de Poisson inadecuado
+- Variabilidad extra de fuentes no medidas
+
+. . .
+
+**Parámetro adicional:**
+
+- **Parámetro de dispersión (θ)**: Controla la cantidad de sobredispersión
+- Cuando θ → ∞, se aproxima a Poisson
+- θ más pequeño = más sobredispersión
+
+. . .
+
+**Interpretación:** Similar a Poisson, pero con incertidumbre realista
+
+---
+
+## Binomial Negativa: Tipos de Preguntas {.smaller}
+
+**Preguntas de investigación:**
+
+- Igual que Poisson, pero con estimaciones de incertidumbre apropiadas
+- "¿Qué factores afectan la abundancia, considerando la variabilidad natural?"
+- Comparaciones entre grupos con intervalos de confianza realistas
+
+. . .
+
+**Ventajas:**
+
+- Más conservador (intervalos de confianza más amplios)
+- Mejor ajuste del modelo para datos sobredispersos
+- Robusto a desviaciones moderadas de los supuestos
+
+--- -->
+
+<!-- ## Binomial Negativa: Advertencias {.smaller}
+
+**Aún necesita verificar:**
+
+- **Inflación de ceros**: Puede estar presente aún
+- **Supuestos del modelo**: Función de enlace, independencia
+- **Convergencia**: La estimación puede ser desafiante
+
+. . .
+
+**Cuándo no es suficiente:**
+
+- Ceros excesivos requieren modelos con inflación de ceros
+- Relaciones no lineales necesitan enfoques diferentes
+- Correlación espacial/temporal requiere modelos mixtos
+
+--- -->
+<!-- 
+## Modelos con Inflación de Ceros {.smaller}
+
+**Dos componentes:**
+
+1. **Proceso binario**: Probabilidad de cero "verdadero" vs. potencial no-cero
+2. **Proceso de conteo**: Poisson o Binomial Negativa para la parte no-cero
+
+. . .
+
+**ZIP**: Poisson con Inflación de Ceros  
+**ZINB**: Binomial Negativa con Inflación de Ceros
+
+. . .
+
+**Interpretación:**
+
+- Coeficientes para proceso de inflación de ceros (logístico)
+- Coeficientes para proceso de conteo (log-lineal)
+
+---
+
+## Modelos con Inflación de Ceros: Aplicaciones {.smaller}
+
+**Preguntas de investigación:**
+
+- "¿Qué determina presencia vs. ausencia?"
+- "Dada la presencia, ¿qué afecta la abundancia?"
+- Procesos ecológicos de dos etapas
+
+. . .
+
+**Ejemplos:**
+
+- Producción de semillas: Plantas reproductivas vs. no reproductivas
+- Conteos de enfermedades: Hospederos susceptibles vs. resistentes
+- Ocurrencia de especies: Hábitat adecuado vs. no adecuado -->
+
+<!-- --- -->
+
+<!-- ## Modelos con Inflación de Ceros: Advertencias {.smaller}
+
+**Complejidad:**
+
+- Más parámetros que estimar
+- Selección de modelos desafiante
+- La interpretación requiere cuidado
+
+. . .
+
+**Cuándo evitarlos:**
+
+- Tamaños de muestra pequeños
+- Justificación biológica poco clara para dos procesos
+- Cuando modelos más simples son adecuados
+
+--- -->
+
+## Selección de Modelos {.smaller}
+
+::: {.columns}
+::: {.column}
+**Criterios de información:**
+
+- **AIC**: Criterio de Información de Akaike (más tolerante a la complejidad del modelo)
+- **BIC**: Criterio de Información Bayesiano (más conservador, tiende a favorecer modelos simples)
+- Valores menores indican mejor ajuste
+
+:::
+::: {.column}
+**LRT:**
+
+- **Solo para modelos anidados**
+- **OK:** Poisson vs. Binomial Negativa ✓, ZIP vs. ZINB ✓
+- **NOT OK:** Poisson vs. ZIP ✗, Poisson vs. ZINB ✗, Binomial Negativa vs. ZINB ✗ (no anidados)
+
+:::
+::: 
+
+<!-- ::: {.callout-important title = "Ojo"}
+**Para modelos no anidados:** Usar solo AIC/BIC
+::: -->
+
+::: {.callout-tip title="Leer más"}
+$AIC = -2 × log-likelihood + 2 × k$  
+$BIC = -2 × log-likelihood + ln(n) × k$
+
+Donde: k = número de parámetros, n = tamaño de muestra. Como ln(n) > 2 cuando n > 7, BIC penaliza parámetros adicionales más fuertemente que AIC.
+
+Burnham, K.P. & Anderson, D.R. (2002). *Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach*
+:::
+
+---
+
+## Interpretación de Resultados {.smaller}
+
+**Coeficientes Poisson/Binomial Negativa:**
+
+- **Coeficiente crudo**: Cambio en log(media) por incremento unitario
+- **Coeficiente exponenciado**: Cambio multiplicativo en la media
+- exp(β) = 1.5 significa incremento del 50%
+
+. . .
+
+**Ejemplo:**
+
+- β = 0.405 → exp(0.405) = 1.5
+- "Un incremento unitario en X se asocia con incremento del 50% en el conteo esperado"
+
+. . .
+
+::: {.callout-important title = "Recordar"}
+**Siempre reportar intervalos de confianza** - La incertidumbre es parte fundamental del resultado
+:::
+
+---
+
+## Resumen {.smaller}
+
+**Mensajes clave:**
+
+1. Los datos de conteo requieren tratamiento estadístico especial
+2. Verificar sobredispersión e inflación de ceros
+3. Empezar simple, agregar complejidad según sea necesario
+4. La selección de modelos es crucial
+5. Interpretar resultados en contexto biológico
+
+. . .
+
+**Recordar:**
+
+- Los modelos son herramientas, no verdades
+- Los supuestos importan
+- El entendimiento biológico guía las decisiones estadísticas
+
+---
+
+## Próximos pasos {.smaller}
+
+- Análisis práctico con datos ecológicos reales
+- Experiencia práctica con ajuste de modelos
+- Gráficos de diagnóstico y verificación de modelos
+
+---
+
+## Bibliografía {.smaller}
+
+- **Gotelli, N.J. & Ellison, A.M.** (2004). *A Primer of Ecological Statistics*. Sinauer Associates. [📄 PDF - Cap. 6](../../../refs/Gotelli-2004-cap-6.pdf)
+
+**Recursos adicionales:**
+
+- **Burnham, K.P. & Anderson, D.R.** (2002). *Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach*. 2nd ed. Springer-Verlag.
+
+- **Zuur, A.F., Ieno, E.N., Walker, N.J., Saveliev, A.A. & Smith, G.M.** (2009). *Mixed Effects Models and Extensions in Ecology with R*. Springer.
+
+- **Bolker, B.M.** (2008). *Ecological Models and Data in R*. Princeton University Press.

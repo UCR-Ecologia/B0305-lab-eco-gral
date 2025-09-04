@@ -1,0 +1,19 @@
+---
+title: "Análisis de datos de conteo en ecología"
+---
+
+En algún momento de tu carrera en biología y ecología, tendrás que trabajar con datos. Cuando llegue ese momento, deberías tener cierta familiaridad
+con las diversas herramientas y métodos utilizados para abordar correctamente el análisis de datos. En estas clases comenzaremos a explorar estos temas.
+
+## 👨‍🏫 Diapositivas de la Clase
+
+Haz clic en el área de las diapositivas a continuación o haz clic [aquí](slides.qmd) para verlas en pantalla completa.
+Usa el teclado para navegar por las diapositivas.
+
+<div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
+<iframe src="slides.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;"></iframe>
+</div>
+
+## 📚 Lecturas Recomendadas
+
+- Consulta el final de las diapositivas para ver la lista de referencias citadas en la clase.
