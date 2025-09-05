@@ -907,7 +907,7 @@
     "href": "2025/lessons/count_data/slides.html#evaluando-la-sobredispersión",
     "title": "Análisis de datos de conteo en ecología",
     "section": "Evaluando la Sobredispersión",
-    "text": "Evaluando la Sobredispersión\nPaso 1: Calcular parámetro de dispersión\n\nφ = Devianza residual / Grados de libertad residuales\nφ ≈ 1: Poisson es adecuado\nφ &gt; 1: Sobredispersión presente\n\n\nPaso 2: Pruebas formales\n\nLRT: Comparar Poisson vs. Binomial Negativa\nAIC/BIC: Criterios de información para selección de modelos"
+    "text": "Evaluando la Sobredispersión\n\n\nPaso 1: Calcular parámetro de dispersión\n\nφ = Devianza residual / Grados de libertad residuales\nφ ≈ 1: Poisson es adecuado\nφ &gt; 1: Sobredispersión presente\n\nPaso 2: Pruebas formales\n\nLRT: Comparar Poisson vs. Binomial Negativa\nAIC/BIC: Criterios de información para selección de modelos"
   },
   {
     "objectID": "2025/lessons/count_data/slides.html#ejemplo-peligro-de-ignorar-la-sobredispersión",
