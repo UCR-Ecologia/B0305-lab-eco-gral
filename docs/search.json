@@ -221,7 +221,7 @@
     "href": "2025/lessons/r_primer/slides.html#verificación-de-la-instalación",
     "title": " Introducción a R",
     "section": "Verificación de la instalación",
-    "text": "Verificación de la instalación\n\n\n\nAbrir RStudio (no R directamente)\nEn la consola (panel inferior izquierdo), escribir:\nSi aparecen los resultados, ¡la instalación fue exitosa! 🎉\n\n\n\n\n# Verificar versión de R\nR.version.string\n\n[1] \"R version 4.5.1 (2025-06-13 ucrt)\"\n\n# Hacer un cálculo simple\n2 + 2\n\n[1] 4\n\n# Crear un vector simple\nmi_vector &lt;- c(1, 2, 3, 4, 5)\nmi_vector\n\n[1] 1 2 3 4 5"
+    "text": "Verificación de la instalación\n\n\n\nAbrir RStudio (no R directamente)\nEn la consola (panel inferior izquierdo), escribir:\nSi aparecen los resultados, ¡la instalación fue exitosa! 🎉\n\n\n\n\n# Verificar versión de R\nR.version.string\n\n[1] \"R version 4.5.1 (2025-06-13)\"\n\n# Hacer un cálculo simple\n2 + 2\n\n[1] 4\n\n# Crear un vector simple\nmi_vector &lt;- c(1, 2, 3, 4, 5)\nmi_vector\n\n[1] 1 2 3 4 5"
   },
   {
     "objectID": "2025/lessons/r_primer/slides.html#recursos-adicionales",
@@ -410,7 +410,7 @@
     "href": "2025/lessons/model/slides.html#cuidado-con-los-residuos-transformados",
     "title": " Modelado en R",
     "section": "⚠️ Cuidado con los residuos transformados",
-    "text": "⚠️ Cuidado con los residuos transformados\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
+    "text": "⚠️ Cuidado con los residuos transformados\n\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
   },
   {
     "objectID": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual",
@@ -438,14 +438,14 @@
     "href": "2025/lessons/model/slides.html#tiempo-de-duplicación",
     "title": " Modelado en R",
     "section": "Tiempo de duplicación",
-    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\n# Tiempo para alcanzar 50% de la capacidad de carga\nK_estimado &lt;- params[\"K\"]\nN0_estimado &lt;- params[\"N0\"]\n# Calcular la constanta logistica\nA &lt;- log((K_estimado - N0_estimado) / N0_estimado)\nt_50_K &lt;- A / r_estimado\n\ncat(\n  \"Tiempo para alcanzar 50% de K:\", \n  round(t_50_K, 2), \"horas\\n\"\n)\n\nTiempo para alcanzar 50% de K: 16.2 horas\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\nEl punto de inflexión de la curva logística ocurre exactamente en \\(K/2\\). La fórmula \\(t_{50\\%} = \\frac{\\ln((K-N_0)/N_0)}{r}\\) se deriva resolviendo la ecuación logística para \\(N(t) = K/2\\).\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)\nNota importante: La logística nunca alcanza exactamente \\(K\\), solo se aproxima asintóticamente."
+    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\n# Tiempo para alcanzar 50% de la capacidad de carga\nK_estimado &lt;- params[\"K\"]\nN0_estimado &lt;- params[\"N0\"]\n# Calcular la constanta logistica\nA &lt;- log((K_estimado - N0_estimado) / N0_estimado)\nt_50_K &lt;- A / r_estimado\n\ncat(\n  \"Tiempo para alcanzar 50% de K:\", \n  round(t_50_K, 2), \"horas\\n\"\n)\n\nTiempo para alcanzar 50% de K: 16.2 horas\n\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\nEl punto de inflexión de la curva logística ocurre exactamente en \\(K/2\\). La fórmula \\(t_{50\\%} = \\frac{\\ln((K-N_0)/N_0)}{r}\\) se deriva resolviendo la ecuación logística para \\(N(t) = K/2\\).\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)\nNota importante: La logística nunca alcanza exactamente \\(K\\), solo se aproxima asintóticamente."
   },
   {
     "objectID": "2025/lessons/model/slides.html#lecciones-aprendidas",
     "href": "2025/lessons/model/slides.html#lecciones-aprendidas",
     "title": " Modelado en R",
     "section": "Lecciones aprendidas",
-    "text": "Lecciones aprendidas\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
+    "text": "Lecciones aprendidas\n\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
   },
   {
     "objectID": "2025/lessons/model/slides.html#próximos-pasos",
@@ -847,20 +847,6 @@
     "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(size = 5, alpha = 0.4, aes(color = island, shape = sex)) +\n    geom_smooth(method = \"lm\") +\n    facet_wrap(vars(species), ncol = 3)"
   },
   {
-    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---regression",
-    "href": "2025/lessons/eda/slides.html#numérica-numérica---regression",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - regression",
-    "text": "Numérica + Numérica - regression\n\n\n\nmodel &lt;- lm(\n    formula = flipper_len ~ body_mass + species, \n    data = penguins)\nsummary(model)\n\n\nCall:\nlm(formula = flipper_len ~ body_mass + species, data = penguins)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-14.5455  -3.1845   0.1307   3.3533  17.5313 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)      1.589e+02  2.387e+00  66.564  &lt; 2e-16 ***\nbody_mass        8.402e-03  6.339e-04  13.255  &lt; 2e-16 ***\nspeciesChinstrap 5.597e+00  7.882e-01   7.101 7.33e-12 ***\nspeciesGentoo    1.568e+01  1.091e+00  14.374  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.395 on 338 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.8541,    Adjusted R-squared:  0.8528 \nF-statistic: 659.4 on 3 and 338 DF,  p-value: &lt; 2.2e-16\n\n# install.packages(\"broom\")\n# library(broom)\n# tidy(model)\n\n\n\nAdelie: flipper_len = 158.9 + 0.008402 * body_mass\nChinstrap: flipper_len = (158.9 + 5.597) + 0.008402 * body_mass = 164.5 + 0.008402 * body_mass\nGentoo: flipper_len = (158.9 + 15.68) + 0.008402 * body_mass = 174.6 + 0.008402 * body_mass"
-  },
-  {
-    "objectID": "2025/lessons/eda/slides.html#numérica-numérica---correlation-heatmap",
-    "href": "2025/lessons/eda/slides.html#numérica-numérica---correlation-heatmap",
-    "title": "Análisis exploratorio de datos",
-    "section": "Numérica + Numérica - correlation heatmap",
-    "text": "Numérica + Numérica - correlation heatmap\n\n\n\n# Seleccionar solo variables numéricas\npenguins_numeric &lt;- penguins |&gt; \n    select(bill_len, bill_dep, flipper_len, body_mass) |&gt; \n    na.omit()\n\n# Calcular matriz de correlación\ncor_matrix &lt;- cor(penguins_numeric)\n\n# Convertir a formato largo para ggplot\ncor_data &lt;- expand.grid(\n    var1 = colnames(cor_matrix), \n    var2 = colnames(cor_matrix)\n) |&gt; \n    mutate(correlation = as.vector(cor_matrix))\n\nround(cor_matrix, 2)\n\n            bill_len bill_dep flipper_len body_mass\nbill_len        1.00    -0.24        0.66      0.60\nbill_dep       -0.24     1.00       -0.58     -0.47\nflipper_len     0.66    -0.58        1.00      0.87\nbody_mass       0.60    -0.47        0.87      1.00\n\n\n\n\nggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +\n    geom_tile(color = \"white\") +\n    geom_text(aes(label = round(correlation, 2)), color = \"white\", size = 5) +\n    scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\", \n                         midpoint = 0, limit = c(-1,1)) +\n    labs(x = \"Variable\", y = \"Variable\", fill = \"Correlación\")"
-  },
-  {
     "objectID": "2025/lessons/count_data/slides.html#qué-son-los-datos-de-conteo",
     "href": "2025/lessons/count_data/slides.html#qué-son-los-datos-de-conteo",
     "title": "Análisis de datos de conteo en ecología",
@@ -970,7 +956,7 @@
     "href": "2025/lessons/count_data/slides.html#selección-de-modelos",
     "title": "Análisis de datos de conteo en ecología",
     "section": "Selección de Modelos",
-    "text": "Selección de Modelos\n\n\nCriterios de información:\n\nAIC: Criterio de Información de Akaike (más tolerante a la complejidad del modelo)\nBIC: Criterio de Información Bayesiano (más conservador, tiende a favorecer modelos simples)\nValores menores indican mejor ajuste\n\n\nLRT:\n\nSolo para modelos anidados\nOK: Poisson vs. Binomial Negativa ✓, ZIP vs. ZINB ✓\nNOT OK: Poisson vs. ZIP ✗, Poisson vs. ZINB ✗, Binomial Negativa vs. ZINB ✗ (no anidados)\n\n\n\n\n\n\n\n\n\n\nLeer más\n\n\n\\(AIC = -2 × log-likelihood + 2 × k\\)\n\\(BIC = -2 × log-likelihood + ln(n) × k\\)\nDonde: k = número de parámetros, n = tamaño de muestra. Como ln(n) &gt; 2 cuando n &gt; 7, BIC penaliza parámetros adicionales más fuertemente que AIC.\nBurnham, K.P. & Anderson, D.R. (2002). Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach"
+    "text": "Selección de Modelos\n\n\nCriterios de información:\n\nAIC: Criterio de Información de Akaike (más tolerante a la complejidad del modelo)\nBIC: Criterio de Información Bayesiano (más conservador, tiende a favorecer modelos simples)\nValores menores indican mejor ajuste\n\n\nLRT:\n\nSolo para modelos anidados\nOK: Poisson vs. Binomial Negativa ✓, ZIP vs. ZINB ✓\nNOT OK: Poisson vs. ZIP ✗, Poisson vs. ZINB ✗, Binomial Negativa vs. ZINB ✗ (no anidados)\n\n\n\n\n\n\n\n\n\n\nLeer más sobre AIC\n\n\n\nBurnham, K.P. & Anderson, D.R. (2002). Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach"
   },
   {
     "objectID": "2025/lessons/count_data/slides.html#interpretación-de-resultados",
@@ -985,13 +971,6 @@
     "title": "Análisis de datos de conteo en ecología",
     "section": "Resumen",
     "text": "Resumen\nMensajes clave:\n\nLos datos de conteo requieren tratamiento estadístico especial\nVerificar sobredispersión e inflación de ceros\nEmpezar simple, agregar complejidad según sea necesario\nLa selección de modelos es crucial\nInterpretar resultados en contexto biológico\n\n\nRecordar:\n\nLos modelos son herramientas, no verdades\nLos supuestos importan\nEl entendimiento biológico guía las decisiones estadísticas"
-  },
-  {
-    "objectID": "2025/lessons/count_data/slides.html#próximos-pasos",
-    "href": "2025/lessons/count_data/slides.html#próximos-pasos",
-    "title": "Análisis de datos de conteo en ecología",
-    "section": "Próximos pasos",
-    "text": "Próximos pasos\n\nAnálisis práctico con datos ecológicos reales\nExperiencia práctica con ajuste de modelos\nGráficos de diagnóstico y verificación de modelos"
   },
   {
     "objectID": "2025/lessons/count_data/slides.html#bibliografía",
