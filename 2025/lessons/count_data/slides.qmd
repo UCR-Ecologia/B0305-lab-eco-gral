@@ -142,18 +142,63 @@ format:
 
 ## Evaluando la Sobredispersión {.smaller}
 
+::: {.columns}
+::: {.column}
 **Paso 1: Calcular parámetro de dispersión**
 
 - φ = Devianza residual / Grados de libertad residuales
 - φ ≈ 1: Poisson es adecuado
 - φ > 1: Sobredispersión presente
 
-. . .
-
 **Paso 2: Pruebas formales**
 
 - **LRT**: Comparar Poisson vs. Binomial Negativa
 - **AIC/BIC**: Criterios de información para selección de modelos
+:::
+::: {.column}
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 6
+
+library(MASS)
+
+set.seed(123)
+
+# Parameters
+n <- 10000
+mu <- 5
+thetas <- c(1, 100)
+phis <- c(5, 1)
+
+par(mfrow = c(2, 1))  # 3 plots side by side
+
+for (i in seq_along(thetas)) {
+  x <- rnegbin(n, mu = mu, theta = thetas[[i]])
+  
+  # Histogram
+  hist(x,
+       breaks = 30,
+       freq = FALSE,   # density instead of counts
+       main = paste("φ =", phis[[i]]),
+       xlab = "Counts",
+       col = "skyblue",
+       border = "white",
+       xlim = c(0, 20))
+  
+  # Overlay Poisson(λ = mu) distribution
+  xs <- 0:max(x)
+  lines(xs, dpois(xs, lambda = mu), col = "red", lwd = 2)
+}
+
+```
+:::
+
+:::
+::: 
+
+
 
 ---
 
@@ -544,11 +589,11 @@ ZINB permite separar **presencia/ausencia** vs. **abundancia dado presencia** - 
 **Para modelos no anidados:** Usar solo AIC/BIC
 ::: -->
 
-::: {.callout-tip title="Leer más"}
-$AIC = -2 × log-likelihood + 2 × k$  
-$BIC = -2 × log-likelihood + ln(n) × k$
+::: {.callout-tip title="Leer más sobre AIC"}
+<!-- $AIC = -2 × logLikelihood + 2 × k$  
+$BIC = -2 × logLikelihood + ln(n) × k$
 
-Donde: k = número de parámetros, n = tamaño de muestra. Como ln(n) > 2 cuando n > 7, BIC penaliza parámetros adicionales más fuertemente que AIC.
+Donde: k = número de parámetros, n = tamaño de muestra. Como ln(n) > 2 cuando n > 7, BIC penaliza parámetros adicionales más fuertemente que AIC. -->
 
 Burnham, K.P. & Anderson, D.R. (2002). *Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach*
 :::
@@ -598,13 +643,13 @@ Burnham, K.P. & Anderson, D.R. (2002). *Model Selection and Multimodel Inference
 
 ---
 
-## Próximos pasos {.smaller}
+<!-- ## Próximos pasos {.smaller}
 
 - Análisis práctico con datos ecológicos reales
 - Experiencia práctica con ajuste de modelos
 - Gráficos de diagnóstico y verificación de modelos
 
----
+--- -->
 
 ## Bibliografía {.smaller}
 

@@ -388,7 +388,7 @@ ggplot(penguins) +
     facet_wrap(vars(species), ncol = 3)
 ```
 :::
-
+<!-- 
 ## Numérica + Numérica - regression {.smaller}
 
 ::: {.columns}
@@ -447,7 +447,7 @@ ggplot(cor_data, aes(x = var1, y = var2, fill = correlation)) +
     labs(x = "Variable", y = "Variable", fill = "Correlación") 
 ```
 :::
-:::
+::: -->
 
 # Ejercicios {.smaller}
 
