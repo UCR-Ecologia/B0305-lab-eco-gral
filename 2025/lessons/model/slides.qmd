@@ -116,7 +116,7 @@ $$N(t) = N_0 \cdot e^{rt}$$
 
 ---
 
-## Aggregando capacidad de carga
+## Agregando capacidad de carga
 
 ::: {.fragment}
 **Problema del modelo exponencial:** ¡Crecimiento infinito es imposible!
@@ -150,10 +150,10 @@ $$N(t) = \frac{K}{1 + \left(\frac{K-N_0}{N_0}\right)e^{-rt}}$$
 
 ## Datos de crecimiento de levaduras
 
-Simulemos datos realistas de crecimiento de *Saccharomyces cerevisiae*:
+Datos de crecimiento de *Saccharomyces cerevisiae*:
 
 ```{r}
-#| echo: true
+#| echo: false
 # Crear datos de crecimiento de levaduras
 set.seed(123)
 tiempo <- seq(0, 24, by = 2)  # horas
@@ -168,7 +168,7 @@ densidad <- densidad_real * exp(rnorm(length(tiempo), 0, 0.1))
 
 # Crear data frame
 levaduras <- data.frame(tiempo = tiempo, densidad = densidad)
-head(levaduras, 8)
+levaduras
 ```
 
 ---
@@ -593,6 +593,15 @@ p7
 
 :::
 
+## Residuos - Comparación visual
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6
+p7
+```
+
 **¿Qué modelo tiene los residuos más aleatorios?** 🎯
 
 ---
@@ -719,13 +728,13 @@ print(conf_int)
 - **N₀** ≈ `r round(params["N0"], 1)` células/mL: Densidad inicial  
 :::
 
-::: {.fragment}
+<!-- ::: {.fragment}
 ### Parametros de simulacion:  
 
 - **K** = `1000` células/mL
 - **r** = `0.3` h⁻¹
 - **N₀** = `10` células/mL
-:::
+::: -->
 
 :::
 ::: 
@@ -751,7 +760,7 @@ cat(
 ```
 :::
 
-::: {.fragment}
+<!-- ::: {.fragment}
 ```{r}
 # Tiempo para alcanzar 50% de la capacidad de carga
 K_estimado <- params["K"]
@@ -765,7 +774,7 @@ cat(
   round(t_50_K, 2), "horas\n"
 )
 ```
-:::
+::: -->
 
 ::: {.fragment} 
 ::: {.incremental}
@@ -782,12 +791,12 @@ cat(
 ::: {.callout-note}
 ## 📚 Leer más:
 
-**El punto de inflexión** de la curva logística ocurre exactamente en $K/2$. La fórmula $t_{50\%} = \frac{\ln((K-N_0)/N_0)}{r}$ se deriva resolviendo la ecuación logística para $N(t) = K/2$.
+<!-- **El punto de inflexión** de la curva logística ocurre exactamente en $K/2$. La fórmula $t_{50\%} = \frac{\ln((K-N_0)/N_0)}{r}$ se deriva resolviendo la ecuación logística para $N(t) = K/2$. -->
 
 **Referencias recomendadas:**  
 - **Gotelli, N.J.** (2008). *A Primer of Ecology*, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)
 
-**Nota importante:** La logística nunca alcanza exactamente $K$, solo se aproxima asintóticamente.
+<!-- **Nota importante:** La logística nunca alcanza exactamente $K$, solo se aproxima asintóticamente. -->
 :::
 :::
 :::

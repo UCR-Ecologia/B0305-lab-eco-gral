@@ -308,18 +308,18 @@
     "text": "La ecuación de crecimiento exponencial\n\nDurante la fase exponencial, el crecimiento se describe con:\n\\[N(t) = N_0 \\cdot e^{rt}\\]\n\n\nDonde:\n- \\(N(t)\\) = densidad poblacional en el tiempo \\(t\\)\n- \\(N_0\\) = densidad poblacional inicial (en \\(t = 0\\))\n- \\(r\\) = tasa intrínseca de crecimiento (por unidad de tiempo)\n- \\(e\\) = base del logaritmo natural (≈ 2.718)\n- \\(t\\) = tiempo\n\n\nInterpretación biológica:\n- Si \\(r &gt; 0\\): población crece exponencialmente\n- Si \\(r = 0\\): población constante\n- Si \\(r &lt; 0\\): población decrece exponencialmente\n\n\nProblema: Que pasa cuando se agotan los recursos?"
   },
   {
-    "objectID": "2025/lessons/model/slides.html#aggregando-capacidad-de-carga",
-    "href": "2025/lessons/model/slides.html#aggregando-capacidad-de-carga",
+    "objectID": "2025/lessons/model/slides.html#agregando-capacidad-de-carga",
+    "href": "2025/lessons/model/slides.html#agregando-capacidad-de-carga",
     "title": " Modelado en R",
-    "section": "Aggregando capacidad de carga",
-    "text": "Aggregando capacidad de carga\n\nProblema del modelo exponencial: ¡Crecimiento infinito es imposible!\nEn la realidad, los recursos son limitados:\n- Espacio físico finito\n- Nutrientes se agotan\n- Acumulación de desechos tóxicos\n- Competencia entre individuos\n\n\nSolución: Introducir la capacidad de carga (\\(K\\))\n\\[N(t) = \\frac{K}{1 + \\left(\\frac{K-N_0}{N_0}\\right)e^{-rt}}\\]\n\n\nParámetros del modelo logístico:\n- \\(K\\) = capacidad de carga (densidad máxima sostenible)\n- \\(r\\) = tasa intrínseca de crecimiento (cuando N &lt;&lt; K)\n- \\(N_0\\) = densidad inicial\n\n\nComportamiento del modelo:\n- Cuando \\(N \\ll K\\): crecimiento ≈ exponencial\n- Cuando \\(N \\approx K/2\\): máxima tasa de crecimiento\n- Cuando \\(N \\to K\\): crecimiento se desacelera hacia cero"
+    "section": "Agregando capacidad de carga",
+    "text": "Agregando capacidad de carga\n\nProblema del modelo exponencial: ¡Crecimiento infinito es imposible!\nEn la realidad, los recursos son limitados:\n- Espacio físico finito\n- Nutrientes se agotan\n- Acumulación de desechos tóxicos\n- Competencia entre individuos\n\n\nSolución: Introducir la capacidad de carga (\\(K\\))\n\\[N(t) = \\frac{K}{1 + \\left(\\frac{K-N_0}{N_0}\\right)e^{-rt}}\\]\n\n\nParámetros del modelo logístico:\n- \\(K\\) = capacidad de carga (densidad máxima sostenible)\n- \\(r\\) = tasa intrínseca de crecimiento (cuando N &lt;&lt; K)\n- \\(N_0\\) = densidad inicial\n\n\nComportamiento del modelo:\n- Cuando \\(N \\ll K\\): crecimiento ≈ exponencial\n- Cuando \\(N \\approx K/2\\): máxima tasa de crecimiento\n- Cuando \\(N \\to K\\): crecimiento se desacelera hacia cero"
   },
   {
     "objectID": "2025/lessons/model/slides.html#datos-de-crecimiento-de-levaduras",
     "href": "2025/lessons/model/slides.html#datos-de-crecimiento-de-levaduras",
     "title": " Modelado en R",
     "section": "Datos de crecimiento de levaduras",
-    "text": "Datos de crecimiento de levaduras\nSimulemos datos realistas de crecimiento de Saccharomyces cerevisiae:\n\n# Crear datos de crecimiento de levaduras\nset.seed(123)\ntiempo &lt;- seq(0, 24, by = 2)  # horas\n# Crecimiento logístico con ruido\nK &lt;- 1000  # capacidad de carga\nr &lt;- 0.3   # tasa de crecimiento\nN0 &lt;- 10   # población inicial\n\ndensidad_real &lt;- K / (1 + ((K - N0) / N0) * exp(-r * tiempo))\n# Añadir ruido realista\ndensidad &lt;- densidad_real * exp(rnorm(length(tiempo), 0, 0.1))\n\n# Crear data frame\nlevaduras &lt;- data.frame(tiempo = tiempo, densidad = densidad)\nhead(levaduras, 8)\n\n  tiempo   densidad\n1      0   9.454942\n2      2  17.661370\n3      4  37.921560\n4      6  57.995942\n5      8 101.493323\n6     10 200.220597\n7     12 282.633370\n8     14 354.657568"
+    "text": "Datos de crecimiento de levaduras\nDatos de crecimiento de Saccharomyces cerevisiae:\n\n\n   tiempo   densidad\n1       0   9.454942\n2       2  17.661370\n3       4  37.921560\n4       6  57.995942\n5       8 101.493323\n6      10 200.220597\n7      12 282.633370\n8      14 354.657568\n9      16 514.463729\n10     18 660.897554\n11     20 907.514490\n12     22 913.596612\n13     24 969.251741"
   },
   {
     "objectID": "2025/lessons/model/slides.html#visualizar-los-datos",
@@ -403,7 +403,14 @@
     "href": "2025/lessons/model/slides.html#análisis-de-residuos",
     "title": " Modelado en R",
     "section": "Análisis de residuos",
-    "text": "Análisis de residuos\n\n\n\n# Crear data frame con residuos\nresiduos_df &lt;- data.frame(\n  tiempo = rep(levaduras$tiempo, 3),\n  residuos = c(residuals(modelo_lineal), \n               residuals(modelo_log), \n               residuals(modelo_logistico)),\n  modelo = rep(c(\"Lineal\", \"Log-lineal\", \"Logístico\"), \n               each = nrow(levaduras))\n)\n\np7 &lt;- ggplot(residuos_df) +\n  aes(x = tiempo, y = residuos, color = modelo) +\n  geom_point(size = 2) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  facet_wrap(~modelo, scales = \"free_y\") +\n  labs(\n    x = \"Tiempo (horas)\", \n    y = \"Residuos\",\n    title = \"Análisis de Residuos por Modelo\") +\n  theme(legend.position = \"bottom\")\n\n\n\np7\n\n\n\n\n\n\n\n\n\n¿Qué modelo tiene los residuos más aleatorios? 🎯"
+    "text": "Análisis de residuos\n\n\n\n# Crear data frame con residuos\nresiduos_df &lt;- data.frame(\n  tiempo = rep(levaduras$tiempo, 3),\n  residuos = c(residuals(modelo_lineal), \n               residuals(modelo_log), \n               residuals(modelo_logistico)),\n  modelo = rep(c(\"Lineal\", \"Log-lineal\", \"Logístico\"), \n               each = nrow(levaduras))\n)\n\np7 &lt;- ggplot(residuos_df) +\n  aes(x = tiempo, y = residuos, color = modelo) +\n  geom_point(size = 2) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  facet_wrap(~modelo, scales = \"free_y\") +\n  labs(\n    x = \"Tiempo (horas)\", \n    y = \"Residuos\",\n    title = \"Análisis de Residuos por Modelo\") +\n  theme(legend.position = \"bottom\")\n\n\n\np7"
+  },
+  {
+    "objectID": "2025/lessons/model/slides.html#residuos---comparación-visual",
+    "href": "2025/lessons/model/slides.html#residuos---comparación-visual",
+    "title": " Modelado en R",
+    "section": "Residuos - Comparación visual",
+    "text": "Residuos - Comparación visual\n\n¿Qué modelo tiene los residuos más aleatorios? 🎯"
   },
   {
     "objectID": "2025/lessons/model/slides.html#cuidado-con-los-residuos-transformados",
@@ -431,14 +438,14 @@
     "href": "2025/lessons/model/slides.html#parámetros-del-modelo-logístico",
     "title": " Modelado en R",
     "section": "Parámetros del modelo logístico",
-    "text": "Parámetros del modelo logístico\n\n\n\nTasa, Capacidad de carga, densidad \\(t0\\)\n\n# Extraer parámetros estimados\nparams &lt;- coef(modelo_logistico)\nprint(params)\n\n          K           r          N0 \n1107.075934    0.279384   11.853795 \n\n\n\n\nIntervalos de confianza\n\n# Calcular intervalos de confianza\nconf_int &lt;- confint(modelo_logistico)\nprint(conf_int)\n\n          2.5%        97.5%\nK  994.6076225 1283.0776710\nr    0.2264351    0.3434993\nN0   4.8573373   23.8982205\n\n\n\n\n\nInterpretación biológica:\n\nK ≈ 1107 células/mL: Capacidad de carga del medio\n\nr ≈ 0.279 h⁻¹: Tasa intrínseca de crecimiento\n\nN₀ ≈ 11.9 células/mL: Densidad inicial\n\n\n\n\nParametros de simulacion:\n\nK = 1000 células/mL\nr = 0.3 h⁻¹\nN₀ = 10 células/mL"
+    "text": "Parámetros del modelo logístico\n\n\n\nTasa, Capacidad de carga, densidad \\(t0\\)\n\n# Extraer parámetros estimados\nparams &lt;- coef(modelo_logistico)\nprint(params)\n\n          K           r          N0 \n1107.075934    0.279384   11.853795 \n\n\n\n\nIntervalos de confianza\n\n# Calcular intervalos de confianza\nconf_int &lt;- confint(modelo_logistico)\nprint(conf_int)\n\n          2.5%        97.5%\nK  994.6076225 1283.0776710\nr    0.2264351    0.3434993\nN0   4.8573373   23.8982205\n\n\n\n\n\nInterpretación biológica:\n\nK ≈ 1107 células/mL: Capacidad de carga del medio\n\nr ≈ 0.279 h⁻¹: Tasa intrínseca de crecimiento\n\nN₀ ≈ 11.9 células/mL: Densidad inicial"
   },
   {
     "objectID": "2025/lessons/model/slides.html#tiempo-de-duplicación",
     "href": "2025/lessons/model/slides.html#tiempo-de-duplicación",
     "title": " Modelado en R",
     "section": "Tiempo de duplicación",
-    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\n# Tiempo para alcanzar 50% de la capacidad de carga\nK_estimado &lt;- params[\"K\"]\nN0_estimado &lt;- params[\"N0\"]\n# Calcular la constanta logistica\nA &lt;- log((K_estimado - N0_estimado) / N0_estimado)\nt_50_K &lt;- A / r_estimado\n\ncat(\n  \"Tiempo para alcanzar 50% de K:\", \n  round(t_50_K, 2), \"horas\\n\"\n)\n\nTiempo para alcanzar 50% de K: 16.2 horas\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\nEl punto de inflexión de la curva logística ocurre exactamente en \\(K/2\\). La fórmula \\(t_{50\\%} = \\frac{\\ln((K-N_0)/N_0)}{r}\\) se deriva resolviendo la ecuación logística para \\(N(t) = K/2\\).\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)\nNota importante: La logística nunca alcanza exactamente \\(K\\), solo se aproxima asintóticamente."
+    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\n\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)"
   },
   {
     "objectID": "2025/lessons/model/slides.html#lecciones-aprendidas",

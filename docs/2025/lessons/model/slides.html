@@ -307,8 +307,8 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <p><strong>Problema:</strong> Que pasa cuando se agotan los recursos?</p>
 </div>
 </section>
-<section id="aggregando-capacidad-de-carga" class="slide level2">
-<h2>Aggregando capacidad de carga</h2>
+<section id="agregando-capacidad-de-carga" class="slide level2">
+<h2>Agregando capacidad de carga</h2>
 <div class="fragment">
 <p><strong>Problema del modelo exponencial:</strong> ¡Crecimiento infinito es imposible!</p>
 <p>En la realidad, los recursos son <strong>limitados</strong>:<br>
@@ -336,33 +336,23 @@ Prof.&nbsp;G. Avalos y T. Nakov
 </section>
 <section id="datos-de-crecimiento-de-levaduras" class="slide level2">
 <h2>Datos de crecimiento de levaduras</h2>
-<p>Simulemos datos realistas de crecimiento de <em>Saccharomyces cerevisiae</em>:</p>
+<p>Datos de crecimiento de <em>Saccharomyces cerevisiae</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Crear datos de crecimiento de levaduras</span></span>
-<span id="cb1-2"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-3"><a></a>tiempo <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="at">by =</span> <span class="dv">2</span>)  <span class="co"># horas</span></span>
-<span id="cb1-4"><a></a><span class="co"># Crecimiento logístico con ruido</span></span>
-<span id="cb1-5"><a></a>K <span class="ot">&lt;-</span> <span class="dv">1000</span>  <span class="co"># capacidad de carga</span></span>
-<span id="cb1-6"><a></a>r <span class="ot">&lt;-</span> <span class="fl">0.3</span>   <span class="co"># tasa de crecimiento</span></span>
-<span id="cb1-7"><a></a>N0 <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># población inicial</span></span>
-<span id="cb1-8"><a></a></span>
-<span id="cb1-9"><a></a>densidad_real <span class="ot">&lt;-</span> K <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> ((K <span class="sc">-</span> N0) <span class="sc">/</span> N0) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>r <span class="sc">*</span> tiempo))</span>
-<span id="cb1-10"><a></a><span class="co"># Añadir ruido realista</span></span>
-<span id="cb1-11"><a></a>densidad <span class="ot">&lt;-</span> densidad_real <span class="sc">*</span> <span class="fu">exp</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(tiempo), <span class="dv">0</span>, <span class="fl">0.1</span>))</span>
-<span id="cb1-12"><a></a></span>
-<span id="cb1-13"><a></a><span class="co"># Crear data frame</span></span>
-<span id="cb1-14"><a></a>levaduras <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">tiempo =</span> tiempo, <span class="at">densidad =</span> densidad)</span>
-<span id="cb1-15"><a></a><span class="fu">head</span>(levaduras, <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  tiempo   densidad
-1      0   9.454942
-2      2  17.661370
-3      4  37.921560
-4      6  57.995942
-5      8 101.493323
-6     10 200.220597
-7     12 282.633370
-8     14 354.657568</code></pre>
+<pre><code>   tiempo   densidad
+1       0   9.454942
+2       2  17.661370
+3       4  37.921560
+4       6  57.995942
+5       8 101.493323
+6      10 200.220597
+7      12 282.633370
+8      14 354.657568
+9      16 514.463729
+10     18 660.897554
+11     20 907.514490
+12     22 913.596612
+13     24 969.251741</code></pre>
 </div>
 </div>
 </section>
@@ -371,21 +361,21 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a><span class="co"># Configurar tema global para todos los gráficos</span></span>
-<span id="cb3-4"><a></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb3-9"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
-<span id="cb3-10"><a></a>       <span class="at">title =</span> <span class="st">"Crecimiento de Saccharomyces cerevisiae"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a><span class="co"># Configurar tema global para todos los gráficos</span></span>
+<span id="cb2-4"><a></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
+<span id="cb2-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb2-9"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
+<span id="cb2-10"><a></a>       <span class="at">title =</span> <span class="st">"Crecimiento de Saccharomyces cerevisiae"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Mostrar el gráfico</span></span>
-<span id="cb4-2"><a></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Mostrar el gráfico</span></span>
+<span id="cb3-2"><a></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -406,9 +396,9 @@ Prof.&nbsp;G. Avalos y T. Nakov
 <h2>Intentemos un modelo lineal</h2>
 <p><strong>Hipótesis ingenua:</strong> La densidad aumenta linealmente con el tiempo</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Ajustar modelo lineal</span></span>
-<span id="cb5-2"><a></a>modelo_lineal <span class="ot">&lt;-</span> <span class="fu">lm</span>(densidad <span class="sc">~</span> tiempo, <span class="at">data =</span> levaduras)</span>
-<span id="cb5-3"><a></a><span class="fu">summary</span>(modelo_lineal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Ajustar modelo lineal</span></span>
+<span id="cb4-2"><a></a>modelo_lineal <span class="ot">&lt;-</span> <span class="fu">lm</span>(densidad <span class="sc">~</span> tiempo, <span class="at">data =</span> levaduras)</span>
+<span id="cb4-3"><a></a><span class="fu">summary</span>(modelo_lineal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -436,16 +426,16 @@ F-statistic: 138.4 on 1 and 11 DF,  p-value: 1.425e-07</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb7-5"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
-<span id="cb7-6"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Lineal: ¿Buen ajuste?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb6-5"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
+<span id="cb6-6"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Lineal: ¿Buen ajuste?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -463,9 +453,9 @@ F-statistic: 138.4 on 1 and 11 DF,  p-value: 1.425e-07</code></pre>
 <div class="column">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Gráficos de diagnóstico</span></span>
-<span id="cb9-2"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb9-3"><a></a><span class="fu">plot</span>(modelo_lineal, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Gráficos de diagnóstico</span></span>
+<span id="cb8-2"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb8-3"><a></a><span class="fu">plot</span>(modelo_lineal, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -476,12 +466,12 @@ F-statistic: 138.4 on 1 and 11 DF,  p-value: 1.425e-07</code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>predicciones <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_lineal)</span>
-<span id="cb10-2"><a></a>tiempo_negativo <span class="ot">&lt;-</span> levaduras<span class="sc">$</span>tiempo[predicciones <span class="sc">&lt;</span> <span class="dv">0</span>]</span>
-<span id="cb10-3"><a></a><span class="fu">cat</span>(</span>
-<span id="cb10-4"><a></a>  <span class="st">"Tiempos con predicciones negativas:"</span>, </span>
-<span id="cb10-5"><a></a>  tiempo_negativo</span>
-<span id="cb10-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>predicciones <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_lineal)</span>
+<span id="cb9-2"><a></a>tiempo_negativo <span class="ot">&lt;-</span> levaduras<span class="sc">$</span>tiempo[predicciones <span class="sc">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb9-3"><a></a><span class="fu">cat</span>(</span>
+<span id="cb9-4"><a></a>  <span class="st">"Tiempos con predicciones negativas:"</span>, </span>
+<span id="cb9-5"><a></a>  tiempo_negativo</span>
+<span id="cb9-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tiempos con predicciones negativas: 0 2</code></pre>
 </div>
@@ -514,12 +504,12 @@ F-statistic: 138.4 on 1 and 11 DF,  p-value: 1.425e-07</code></pre>
 </div><div class="column">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Crear variable transformada</span></span>
-<span id="cb12-2"><a></a>levaduras<span class="sc">$</span>log_densidad <span class="ot">&lt;-</span> <span class="fu">log</span>(levaduras<span class="sc">$</span>densidad)</span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="co"># Ajustar modelo log-lineal</span></span>
-<span id="cb12-5"><a></a>modelo_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_densidad <span class="sc">~</span> tiempo, <span class="at">data =</span> levaduras)</span>
-<span id="cb12-6"><a></a><span class="fu">summary</span>(modelo_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Crear variable transformada</span></span>
+<span id="cb11-2"><a></a>levaduras<span class="sc">$</span>log_densidad <span class="ot">&lt;-</span> <span class="fu">log</span>(levaduras<span class="sc">$</span>densidad)</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="co"># Ajustar modelo log-lineal</span></span>
+<span id="cb11-5"><a></a>modelo_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_densidad <span class="sc">~</span> tiempo, <span class="at">data =</span> levaduras)</span>
+<span id="cb11-6"><a></a><span class="fu">summary</span>(modelo_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -549,16 +539,16 @@ F-statistic: 179.5 on 1 and 11 DF,  p-value: 3.716e-08</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> log_densidad)) <span class="sc">+</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb14-5"><a></a>       <span class="at">y =</span> <span class="st">"log(Densidad)"</span>,</span>
-<span id="cb14-6"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Log-Lineal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> log_densidad)) <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb13-5"><a></a>       <span class="at">y =</span> <span class="st">"log(Densidad)"</span>,</span>
+<span id="cb13-6"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Log-Lineal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -575,19 +565,19 @@ F-statistic: 179.5 on 1 and 11 DF,  p-value: 3.716e-08</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Predicciones del modelo log-lineal</span></span>
-<span id="cb16-2"><a></a>levaduras<span class="sc">$</span>pred_log <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(modelo_log))</span>
-<span id="cb16-3"><a></a></span>
-<span id="cb16-4"><a></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
-<span id="cb16-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_log), <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb16-8"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
-<span id="cb16-9"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Log-Lineal vs Datos Reales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Predicciones del modelo log-lineal</span></span>
+<span id="cb15-2"><a></a>levaduras<span class="sc">$</span>pred_log <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(modelo_log))</span>
+<span id="cb15-3"><a></a></span>
+<span id="cb15-4"><a></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_log), <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb15-8"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
+<span id="cb15-9"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Log-Lineal vs Datos Reales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>p4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>p4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -619,15 +609,15 @@ F-statistic: 179.5 on 1 and 11 DF,  p-value: 3.716e-08</code></pre>
 </div><div class="column">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Ajustar modelo logístico usando nls()</span></span>
-<span id="cb18-2"><a></a><span class="co"># Non-linear least squares </span></span>
-<span id="cb18-3"><a></a>modelo_logistico <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
-<span id="cb18-4"><a></a>  densidad <span class="sc">~</span> K <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> ((K <span class="sc">-</span> N0) <span class="sc">/</span> N0) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>r <span class="sc">*</span> tiempo)),</span>
-<span id="cb18-5"><a></a>  <span class="at">data =</span> levaduras,</span>
-<span id="cb18-6"><a></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">K =</span> <span class="dv">800</span>, <span class="at">r =</span> <span class="fl">0.2</span>, <span class="at">N0 =</span> <span class="dv">15</span>)  <span class="co"># valores iniciales</span></span>
-<span id="cb18-7"><a></a>)</span>
-<span id="cb18-8"><a></a></span>
-<span id="cb18-9"><a></a><span class="fu">summary</span>(modelo_logistico)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Ajustar modelo logístico usando nls()</span></span>
+<span id="cb17-2"><a></a><span class="co"># Non-linear least squares </span></span>
+<span id="cb17-3"><a></a>modelo_logistico <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb17-4"><a></a>  densidad <span class="sc">~</span> K <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> ((K <span class="sc">-</span> N0) <span class="sc">/</span> N0) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>r <span class="sc">*</span> tiempo)),</span>
+<span id="cb17-5"><a></a>  <span class="at">data =</span> levaduras,</span>
+<span id="cb17-6"><a></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">K =</span> <span class="dv">800</span>, <span class="at">r =</span> <span class="fl">0.2</span>, <span class="at">N0 =</span> <span class="dv">15</span>)  <span class="co"># valores iniciales</span></span>
+<span id="cb17-7"><a></a>)</span>
+<span id="cb17-8"><a></a></span>
+<span id="cb17-9"><a></a><span class="fu">summary</span>(modelo_logistico)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Formula: densidad ~ K/(1 + ((K - N0)/N0) * exp(-r * tiempo))
@@ -654,18 +644,18 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>levaduras<span class="sc">$</span>pred_logistico <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_logistico)</span>
-<span id="cb20-2"><a></a></span>
-<span id="cb20-3"><a></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
-<span id="cb20-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb20-5"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_logistico), <span class="at">color =</span> <span class="st">"purple"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb20-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb20-7"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
-<span id="cb20-8"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Logístico: ¡Ajuste Biológicamente Realista!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>levaduras<span class="sc">$</span>pred_logistico <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_logistico)</span>
+<span id="cb19-2"><a></a></span>
+<span id="cb19-3"><a></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_logistico), <span class="at">color =</span> <span class="st">"purple"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb19-7"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
+<span id="cb19-8"><a></a>       <span class="at">title =</span> <span class="st">"Modelo Logístico: ¡Ajuste Biológicamente Realista!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -681,29 +671,29 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Preparar datos para comparación</span></span>
-<span id="cb22-2"><a></a>levaduras<span class="sc">$</span>pred_lineal <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_lineal)</span>
-<span id="cb22-3"><a></a>levaduras<span class="sc">$</span>pred_logistico <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_logistico)</span>
-<span id="cb22-4"><a></a></span>
-<span id="cb22-5"><a></a>p6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
-<span id="cb22-6"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_lineal, <span class="at">color =</span> <span class="st">"Lineal"</span>), </span>
-<span id="cb22-8"><a></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb22-9"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_log, <span class="at">color =</span> <span class="st">"Log-lineal"</span>), </span>
-<span id="cb22-10"><a></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb22-11"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_logistico, <span class="at">color =</span> <span class="st">"Logístico"</span>), </span>
-<span id="cb22-12"><a></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb22-13"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Lineal"</span> <span class="ot">=</span> <span class="st">"red"</span>, </span>
-<span id="cb22-14"><a></a>                               <span class="st">"Log-lineal"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>, </span>
-<span id="cb22-15"><a></a>                               <span class="st">"Logístico"</span> <span class="ot">=</span> <span class="st">"purple"</span>)) <span class="sc">+</span></span>
-<span id="cb22-16"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb22-17"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
-<span id="cb22-18"><a></a>       <span class="at">title =</span> <span class="st">"Comparación de Modelos"</span>,</span>
-<span id="cb22-19"><a></a>       <span class="at">color =</span> <span class="st">"Modelo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># Preparar datos para comparación</span></span>
+<span id="cb21-2"><a></a>levaduras<span class="sc">$</span>pred_lineal <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_lineal)</span>
+<span id="cb21-3"><a></a>levaduras<span class="sc">$</span>pred_logistico <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_logistico)</span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a>p6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(levaduras, <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> densidad)) <span class="sc">+</span></span>
+<span id="cb21-6"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_lineal, <span class="at">color =</span> <span class="st">"Lineal"</span>), </span>
+<span id="cb21-8"><a></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_log, <span class="at">color =</span> <span class="st">"Log-lineal"</span>), </span>
+<span id="cb21-10"><a></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb21-11"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred_logistico, <span class="at">color =</span> <span class="st">"Logístico"</span>), </span>
+<span id="cb21-12"><a></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb21-13"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Lineal"</span> <span class="ot">=</span> <span class="st">"red"</span>, </span>
+<span id="cb21-14"><a></a>                               <span class="st">"Log-lineal"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>, </span>
+<span id="cb21-15"><a></a>                               <span class="st">"Logístico"</span> <span class="ot">=</span> <span class="st">"purple"</span>)) <span class="sc">+</span></span>
+<span id="cb21-16"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb21-17"><a></a>       <span class="at">y =</span> <span class="st">"Densidad (células/mL)"</span>,</span>
+<span id="cb21-18"><a></a>       <span class="at">title =</span> <span class="st">"Comparación de Modelos"</span>,</span>
+<span id="cb21-19"><a></a>       <span class="at">color =</span> <span class="st">"Modelo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>p6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>p6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -735,22 +725,22 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 </div><div class="column" style="width:60%;">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Calcular R² para cada modelo</span></span>
-<span id="cb24-2"><a></a>r2_lineal <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo_lineal)<span class="sc">$</span>r.squared</span>
-<span id="cb24-3"><a></a>r2_log <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo_log)<span class="sc">$</span>r.squared</span>
-<span id="cb24-4"><a></a></span>
-<span id="cb24-5"><a></a><span class="co"># Para modelo logístico, tenemos que calcular R2 manualmente</span></span>
-<span id="cb24-6"><a></a><span class="co"># ss_total = suma total de cuadrados (variación total en los datos)</span></span>
-<span id="cb24-7"><a></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>((levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">mean</span>(levaduras<span class="sc">$</span>densidad))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb24-8"><a></a><span class="co"># ss_residual = suma de cuadrados de residuos (variación no explicada)</span></span>
-<span id="cb24-9"><a></a>ss_residual <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_logistico)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb24-10"><a></a><span class="co"># R2 = 1 - (variación no explicada / variación total)</span></span>
-<span id="cb24-11"><a></a>r2_logistico <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (ss_residual <span class="sc">/</span> ss_total)</span>
-<span id="cb24-12"><a></a></span>
-<span id="cb24-13"><a></a><span class="fu">data.frame</span>(</span>
-<span id="cb24-14"><a></a>  <span class="at">Modelo =</span> <span class="fu">c</span>(<span class="st">"Lineal"</span>, <span class="st">"Log-lineal"</span>, <span class="st">"Logístico"</span>),</span>
-<span id="cb24-15"><a></a>  <span class="at">R_cuadrado =</span> <span class="fu">round</span>(<span class="fu">c</span>(r2_lineal, r2_log, r2_logistico), <span class="dv">3</span>)</span>
-<span id="cb24-16"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># Calcular R² para cada modelo</span></span>
+<span id="cb23-2"><a></a>r2_lineal <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo_lineal)<span class="sc">$</span>r.squared</span>
+<span id="cb23-3"><a></a>r2_log <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo_log)<span class="sc">$</span>r.squared</span>
+<span id="cb23-4"><a></a></span>
+<span id="cb23-5"><a></a><span class="co"># Para modelo logístico, tenemos que calcular R2 manualmente</span></span>
+<span id="cb23-6"><a></a><span class="co"># ss_total = suma total de cuadrados (variación total en los datos)</span></span>
+<span id="cb23-7"><a></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>((levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">mean</span>(levaduras<span class="sc">$</span>densidad))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb23-8"><a></a><span class="co"># ss_residual = suma de cuadrados de residuos (variación no explicada)</span></span>
+<span id="cb23-9"><a></a>ss_residual <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_logistico)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb23-10"><a></a><span class="co"># R2 = 1 - (variación no explicada / variación total)</span></span>
+<span id="cb23-11"><a></a>r2_logistico <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (ss_residual <span class="sc">/</span> ss_total)</span>
+<span id="cb23-12"><a></a></span>
+<span id="cb23-13"><a></a><span class="fu">data.frame</span>(</span>
+<span id="cb23-14"><a></a>  <span class="at">Modelo =</span> <span class="fu">c</span>(<span class="st">"Lineal"</span>, <span class="st">"Log-lineal"</span>, <span class="st">"Logístico"</span>),</span>
+<span id="cb23-15"><a></a>  <span class="at">R_cuadrado =</span> <span class="fu">round</span>(<span class="fu">c</span>(r2_lineal, r2_log, r2_logistico), <span class="dv">3</span>)</span>
+<span id="cb23-16"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Modelo R_cuadrado
 1     Lineal      0.926
@@ -766,30 +756,30 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="co"># Crear data frame con residuos</span></span>
-<span id="cb26-2"><a></a>residuos_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb26-3"><a></a>  <span class="at">tiempo =</span> <span class="fu">rep</span>(levaduras<span class="sc">$</span>tiempo, <span class="dv">3</span>),</span>
-<span id="cb26-4"><a></a>  <span class="at">residuos =</span> <span class="fu">c</span>(<span class="fu">residuals</span>(modelo_lineal), </span>
-<span id="cb26-5"><a></a>               <span class="fu">residuals</span>(modelo_log), </span>
-<span id="cb26-6"><a></a>               <span class="fu">residuals</span>(modelo_logistico)),</span>
-<span id="cb26-7"><a></a>  <span class="at">modelo =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Lineal"</span>, <span class="st">"Log-lineal"</span>, <span class="st">"Logístico"</span>), </span>
-<span id="cb26-8"><a></a>               <span class="at">each =</span> <span class="fu">nrow</span>(levaduras))</span>
-<span id="cb26-9"><a></a>)</span>
-<span id="cb26-10"><a></a></span>
-<span id="cb26-11"><a></a>p7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(residuos_df) <span class="sc">+</span></span>
-<span id="cb26-12"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> residuos, <span class="at">color =</span> modelo) <span class="sc">+</span></span>
-<span id="cb26-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb26-14"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb26-15"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>modelo, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb26-16"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb26-17"><a></a>    <span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb26-18"><a></a>    <span class="at">y =</span> <span class="st">"Residuos"</span>,</span>
-<span id="cb26-19"><a></a>    <span class="at">title =</span> <span class="st">"Análisis de Residuos por Modelo"</span>) <span class="sc">+</span></span>
-<span id="cb26-20"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Crear data frame con residuos</span></span>
+<span id="cb25-2"><a></a>residuos_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-3"><a></a>  <span class="at">tiempo =</span> <span class="fu">rep</span>(levaduras<span class="sc">$</span>tiempo, <span class="dv">3</span>),</span>
+<span id="cb25-4"><a></a>  <span class="at">residuos =</span> <span class="fu">c</span>(<span class="fu">residuals</span>(modelo_lineal), </span>
+<span id="cb25-5"><a></a>               <span class="fu">residuals</span>(modelo_log), </span>
+<span id="cb25-6"><a></a>               <span class="fu">residuals</span>(modelo_logistico)),</span>
+<span id="cb25-7"><a></a>  <span class="at">modelo =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Lineal"</span>, <span class="st">"Log-lineal"</span>, <span class="st">"Logístico"</span>), </span>
+<span id="cb25-8"><a></a>               <span class="at">each =</span> <span class="fu">nrow</span>(levaduras))</span>
+<span id="cb25-9"><a></a>)</span>
+<span id="cb25-10"><a></a></span>
+<span id="cb25-11"><a></a>p7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(residuos_df) <span class="sc">+</span></span>
+<span id="cb25-12"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> residuos, <span class="at">color =</span> modelo) <span class="sc">+</span></span>
+<span id="cb25-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb25-14"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-15"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>modelo, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb25-16"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-17"><a></a>    <span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb25-18"><a></a>    <span class="at">y =</span> <span class="st">"Residuos"</span>,</span>
+<span id="cb25-19"><a></a>    <span class="at">title =</span> <span class="st">"Análisis de Residuos por Modelo"</span>) <span class="sc">+</span></span>
+<span id="cb25-20"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>p7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>p7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -799,7 +789,11 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 </div>
 </div>
 </div></div>
-<p><strong>¿Qué modelo tiene los residuos más aleatorios?</strong> 🎯</p>
+</section>
+<section id="residuos---comparación-visual" class="slide level2">
+<h2>Residuos - Comparación visual</h2>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid r-stretch" width="960"><p><strong>¿Qué modelo tiene los residuos más aleatorios?</strong> 🎯</p>
 </section>
 <section id="cuidado-con-los-residuos-transformados" class="slide level2">
 <h2>⚠️ Cuidado con los residuos transformados</h2>
@@ -810,17 +804,17 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Residuos en escala original para todos los modelos</span></span>
-<span id="cb28-2"><a></a>residuos_originales <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb28-3"><a></a>  <span class="at">tiempo =</span> levaduras<span class="sc">$</span>tiempo,</span>
-<span id="cb28-4"><a></a>  <span class="at">lineal =</span> levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">predict</span>(modelo_lineal),</span>
-<span id="cb28-5"><a></a>  <span class="at">log_lineal =</span> levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(modelo_log)),  <span class="co"># ¡Transformar de vuelta!</span></span>
-<span id="cb28-6"><a></a>  <span class="at">logistico =</span> levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">predict</span>(modelo_logistico)</span>
-<span id="cb28-7"><a></a>)</span>
-<span id="cb28-8"><a></a></span>
-<span id="cb28-9"><a></a><span class="co"># Calcular suma de cuadrados de residuos en escala original</span></span>
-<span id="cb28-10"><a></a>rss_original <span class="ot">&lt;-</span> <span class="fu">sapply</span>(residuos_originales[,<span class="sc">-</span><span class="dv">1</span>], <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb28-11"><a></a><span class="fu">print</span>(<span class="fu">round</span>(rss_original, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Residuos en escala original para todos los modelos</span></span>
+<span id="cb27-2"><a></a>residuos_originales <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-3"><a></a>  <span class="at">tiempo =</span> levaduras<span class="sc">$</span>tiempo,</span>
+<span id="cb27-4"><a></a>  <span class="at">lineal =</span> levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">predict</span>(modelo_lineal),</span>
+<span id="cb27-5"><a></a>  <span class="at">log_lineal =</span> levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(modelo_log)),  <span class="co"># ¡Transformar de vuelta!</span></span>
+<span id="cb27-6"><a></a>  <span class="at">logistico =</span> levaduras<span class="sc">$</span>densidad <span class="sc">-</span> <span class="fu">predict</span>(modelo_logistico)</span>
+<span id="cb27-7"><a></a>)</span>
+<span id="cb27-8"><a></a></span>
+<span id="cb27-9"><a></a><span class="co"># Calcular suma de cuadrados de residuos en escala original</span></span>
+<span id="cb27-10"><a></a>rss_original <span class="ot">&lt;-</span> <span class="fu">sapply</span>(residuos_originales[,<span class="sc">-</span><span class="dv">1</span>], <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb27-11"><a></a><span class="fu">print</span>(<span class="fu">round</span>(rss_original, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    lineal log_lineal  logistico 
  118961.09 1022167.84   12133.29 </code></pre>
@@ -840,34 +834,34 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Crear data frame para visualización</span></span>
-<span id="cb30-2"><a></a>residuos_originales_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb30-3"><a></a>  <span class="at">tiempo =</span> <span class="fu">rep</span>(levaduras<span class="sc">$</span>tiempo, <span class="dv">3</span>),</span>
-<span id="cb30-4"><a></a>  <span class="at">residuos =</span> <span class="fu">c</span>(residuos_originales<span class="sc">$</span>lineal, </span>
-<span id="cb30-5"><a></a>               residuos_originales<span class="sc">$</span>log_lineal, </span>
-<span id="cb30-6"><a></a>               residuos_originales<span class="sc">$</span>logistico),</span>
-<span id="cb30-7"><a></a>  <span class="at">modelo =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Lineal"</span>, <span class="st">"Log-lineal"</span>, <span class="st">"Logístico"</span>), </span>
-<span id="cb30-8"><a></a>               <span class="at">each =</span> <span class="fu">nrow</span>(levaduras))</span>
-<span id="cb30-9"><a></a>)</span>
-<span id="cb30-10"><a></a></span>
-<span id="cb30-11"><a></a>p8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(residuos_originales_plot) <span class="sc">+</span></span>
-<span id="cb30-12"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> residuos, <span class="at">color =</span> modelo) <span class="sc">+</span></span>
-<span id="cb30-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb30-14"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb30-15"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>modelo) <span class="sc">+</span></span>
-<span id="cb30-16"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
-<span id="cb30-17"><a></a>       <span class="at">y =</span> <span class="st">"Residuos (escala original)"</span>,</span>
-<span id="cb30-18"><a></a>       <span class="at">title =</span> <span class="st">"Residuos en Escala Original - Comparación Justa"</span></span>
-<span id="cb30-19"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb30-20"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># Crear data frame para visualización</span></span>
+<span id="cb29-2"><a></a>residuos_originales_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-3"><a></a>  <span class="at">tiempo =</span> <span class="fu">rep</span>(levaduras<span class="sc">$</span>tiempo, <span class="dv">3</span>),</span>
+<span id="cb29-4"><a></a>  <span class="at">residuos =</span> <span class="fu">c</span>(residuos_originales<span class="sc">$</span>lineal, </span>
+<span id="cb29-5"><a></a>               residuos_originales<span class="sc">$</span>log_lineal, </span>
+<span id="cb29-6"><a></a>               residuos_originales<span class="sc">$</span>logistico),</span>
+<span id="cb29-7"><a></a>  <span class="at">modelo =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Lineal"</span>, <span class="st">"Log-lineal"</span>, <span class="st">"Logístico"</span>), </span>
+<span id="cb29-8"><a></a>               <span class="at">each =</span> <span class="fu">nrow</span>(levaduras))</span>
+<span id="cb29-9"><a></a>)</span>
+<span id="cb29-10"><a></a></span>
+<span id="cb29-11"><a></a>p8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(residuos_originales_plot) <span class="sc">+</span></span>
+<span id="cb29-12"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> residuos, <span class="at">color =</span> modelo) <span class="sc">+</span></span>
+<span id="cb29-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb29-14"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb29-15"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>modelo) <span class="sc">+</span></span>
+<span id="cb29-16"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tiempo (horas)"</span>, </span>
+<span id="cb29-17"><a></a>       <span class="at">y =</span> <span class="st">"Residuos (escala original)"</span>,</span>
+<span id="cb29-18"><a></a>       <span class="at">title =</span> <span class="st">"Residuos en Escala Original - Comparación Justa"</span></span>
+<span id="cb29-19"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb29-20"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>p8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>p8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="img-fluid" width="960"></p>
 </figure>
 </div>
 </div>
@@ -878,7 +872,7 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <section id="residuos-en-escala-original---comparación-visual-1" class="slide level2">
 <h2>Residuos en escala original - Comparación visual</h2>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="img-fluid r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid r-stretch" width="960"></section></section>
 <section>
 <section id="interpretación-biológica" class="title-slide slide level1">
 <h1>Interpretación Biológica</h1>
@@ -891,9 +885,9 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <div class="fragment">
 <h3 id="tasa-capacidad-de-carga-densidad-t0">Tasa, Capacidad de carga, densidad <span class="math inline">\(t0\)</span></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Extraer parámetros estimados</span></span>
-<span id="cb32-2"><a></a>params <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo_logistico)</span>
-<span id="cb32-3"><a></a><span class="fu">print</span>(params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Extraer parámetros estimados</span></span>
+<span id="cb31-2"><a></a>params <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo_logistico)</span>
+<span id="cb31-3"><a></a><span class="fu">print</span>(params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          K           r          N0 
 1107.075934    0.279384   11.853795 </code></pre>
@@ -903,9 +897,9 @@ Achieved convergence tolerance: 3.168e-06</code></pre>
 <div class="fragment">
 <h3 id="intervalos-de-confianza">Intervalos de confianza</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="co"># Calcular intervalos de confianza</span></span>
-<span id="cb34-2"><a></a>conf_int <span class="ot">&lt;-</span> <span class="fu">confint</span>(modelo_logistico)</span>
-<span id="cb34-3"><a></a><span class="fu">print</span>(conf_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="co"># Calcular intervalos de confianza</span></span>
+<span id="cb33-2"><a></a>conf_int <span class="ot">&lt;-</span> <span class="fu">confint</span>(modelo_logistico)</span>
+<span id="cb33-3"><a></a><span class="fu">print</span>(conf_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          2.5%        97.5%
 K  994.6076225 1283.0776710
@@ -926,14 +920,13 @@ N0   4.8573373   23.8982205</code></pre>
 </li>
 </ul>
 </div>
-<div class="fragment">
-<h3 id="parametros-de-simulacion">Parametros de simulacion:</h3>
-<ul>
-<li class="fragment"><strong>K</strong> = <code>1000</code> células/mL</li>
-<li class="fragment"><strong>r</strong> = <code>0.3</code> h⁻¹</li>
-<li class="fragment"><strong>N₀</strong> = <code>10</code> células/mL</li>
-</ul>
-</div>
+<!-- ::: {.fragment}
+### Parametros de simulacion:  
+
+- **K** = `1000` células/mL
+- **r** = `0.3` h⁻¹
+- **N₀** = `10` células/mL
+::: -->
 </div></div>
 </section>
 <section id="tiempo-de-duplicación" class="slide level2">
@@ -942,37 +935,48 @@ N0   4.8573373   23.8982205</code></pre>
 <div class="column">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># Calcular tiempo de duplicación</span></span>
-<span id="cb36-2"><a></a>r_estimado <span class="ot">&lt;-</span> params[<span class="st">"r"</span>]</span>
-<span id="cb36-3"><a></a>tiempo_duplicacion <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">2</span>) <span class="sc">/</span> r_estimado</span>
-<span id="cb36-4"><a></a></span>
-<span id="cb36-5"><a></a><span class="fu">cat</span>(</span>
-<span id="cb36-6"><a></a>  <span class="st">"Tiempo de duplicación:"</span>, </span>
-<span id="cb36-7"><a></a>  <span class="fu">round</span>(tiempo_duplicacion, <span class="dv">2</span>), <span class="st">"horas</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb36-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># Calcular tiempo de duplicación</span></span>
+<span id="cb35-2"><a></a>r_estimado <span class="ot">&lt;-</span> params[<span class="st">"r"</span>]</span>
+<span id="cb35-3"><a></a>tiempo_duplicacion <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">2</span>) <span class="sc">/</span> r_estimado</span>
+<span id="cb35-4"><a></a></span>
+<span id="cb35-5"><a></a><span class="fu">cat</span>(</span>
+<span id="cb35-6"><a></a>  <span class="st">"Tiempo de duplicación:"</span>, </span>
+<span id="cb35-7"><a></a>  <span class="fu">round</span>(tiempo_duplicacion, <span class="dv">2</span>), <span class="st">"horas</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb35-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tiempo de duplicación: 2.48 horas</code></pre>
 </div>
 </div>
 </div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="co"># Tiempo para alcanzar 50% de la capacidad de carga</span></span>
-<span id="cb38-2"><a></a>K_estimado <span class="ot">&lt;-</span> params[<span class="st">"K"</span>]</span>
-<span id="cb38-3"><a></a>N0_estimado <span class="ot">&lt;-</span> params[<span class="st">"N0"</span>]</span>
-<span id="cb38-4"><a></a><span class="co"># Calcular la constanta logistica</span></span>
-<span id="cb38-5"><a></a>A <span class="ot">&lt;-</span> <span class="fu">log</span>((K_estimado <span class="sc">-</span> N0_estimado) <span class="sc">/</span> N0_estimado)</span>
-<span id="cb38-6"><a></a>t_50_K <span class="ot">&lt;-</span> A <span class="sc">/</span> r_estimado</span>
-<span id="cb38-7"><a></a></span>
-<span id="cb38-8"><a></a><span class="fu">cat</span>(</span>
-<span id="cb38-9"><a></a>  <span class="st">"Tiempo para alcanzar 50% de K:"</span>, </span>
-<span id="cb38-10"><a></a>  <span class="fu">round</span>(t_50_K, <span class="dv">2</span>), <span class="st">"horas</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb38-11"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tiempo para alcanzar 50% de K: 16.2 horas</code></pre>
-</div>
-</div>
-</div>
+<!-- ::: {.fragment}
+
+::: {.cell}
+
+```{.r .cell-code}
+# Tiempo para alcanzar 50% de la capacidad de carga
+K_estimado <- params["K"]
+N0_estimado <- params["N0"]
+# Calcular la constanta logistica
+A <- log((K_estimado - N0_estimado) / N0_estimado)
+t_50_K <- A / r_estimado
+
+cat(
+  "Tiempo para alcanzar 50% de K:", 
+  round(t_50_K, 2), "horas\n"
+)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Tiempo para alcanzar 50% de K: 16.2 horas
+```
+
+
+:::
+:::
+
+::: -->
 <div class="fragment">
 <p><strong>Estas métricas son importantes para:</strong><br>
 - Optimización de cultivos<br>
@@ -990,10 +994,10 @@ N0   4.8573373   23.8982205</code></pre>
 <p><strong>📚 Leer más:</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>El punto de inflexión</strong> de la curva logística ocurre exactamente en <span class="math inline">\(K/2\)</span>. La fórmula <span class="math inline">\(t_{50\%} = \frac{\ln((K-N_0)/N_0)}{r}\)</span> se deriva resolviendo la ecuación logística para <span class="math inline">\(N(t) = K/2\)</span>.</p>
+<!-- **El punto de inflexión** de la curva logística ocurre exactamente en $K/2$. La fórmula $t_{50\%} = \frac{\ln((K-N_0)/N_0)}{r}$ se deriva resolviendo la ecuación logística para $N(t) = K/2$. -->
 <p><strong>Referencias recomendadas:</strong><br>
 - <strong>Gotelli, N.J.</strong> (2008). <em>A Primer of Ecology</em>, 4th ed.&nbsp;Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)</p>
-<p><strong>Nota importante:</strong> La logística nunca alcanza exactamente <span class="math inline">\(K\)</span>, solo se aproxima asintóticamente.</p>
+<!-- **Nota importante:** La logística nunca alcanza exactamente $K$, solo se aproxima asintóticamente. -->
 </div>
 </div>
 </div>
