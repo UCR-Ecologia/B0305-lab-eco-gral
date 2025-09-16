@@ -221,7 +221,7 @@
     "href": "2025/lessons/r_primer/slides.html#verificación-de-la-instalación",
     "title": " Introducción a R",
     "section": "Verificación de la instalación",
-    "text": "Verificación de la instalación\n\n\n\nAbrir RStudio (no R directamente)\nEn la consola (panel inferior izquierdo), escribir:\nSi aparecen los resultados, ¡la instalación fue exitosa! 🎉\n\n\n\n\n# Verificar versión de R\nR.version.string\n\n[1] \"R version 4.5.1 (2025-06-13)\"\n\n# Hacer un cálculo simple\n2 + 2\n\n[1] 4\n\n# Crear un vector simple\nmi_vector &lt;- c(1, 2, 3, 4, 5)\nmi_vector\n\n[1] 1 2 3 4 5"
+    "text": "Verificación de la instalación\n\n\n\nAbrir RStudio (no R directamente)\nEn la consola (panel inferior izquierdo), escribir:\nSi aparecen los resultados, ¡la instalación fue exitosa! 🎉\n\n\n\n\n# Verificar versión de R\nR.version.string\n\n[1] \"R version 4.5.1 (2025-06-13 ucrt)\"\n\n# Hacer un cálculo simple\n2 + 2\n\n[1] 4\n\n# Crear un vector simple\nmi_vector &lt;- c(1, 2, 3, 4, 5)\nmi_vector\n\n[1] 1 2 3 4 5"
   },
   {
     "objectID": "2025/lessons/r_primer/slides.html#recursos-adicionales",
@@ -417,7 +417,7 @@
     "href": "2025/lessons/model/slides.html#cuidado-con-los-residuos-transformados",
     "title": " Modelado en R",
     "section": "⚠️ Cuidado con los residuos transformados",
-    "text": "⚠️ Cuidado con los residuos transformados\n\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
+    "text": "⚠️ Cuidado con los residuos transformados\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
   },
   {
     "objectID": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual",
@@ -452,7 +452,7 @@
     "href": "2025/lessons/model/slides.html#lecciones-aprendidas",
     "title": " Modelado en R",
     "section": "Lecciones aprendidas",
-    "text": "Lecciones aprendidas\n\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
+    "text": "Lecciones aprendidas\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
   },
   {
     "objectID": "2025/lessons/model/slides.html#próximos-pasos",
