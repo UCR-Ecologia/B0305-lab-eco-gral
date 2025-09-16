@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/spatial/slides.html</loc>
+    <lastmod>2025-09-16T19:19:04.691Z</lastmod>
+  </url>
+  <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/report/slides.html</loc>
     <lastmod>2025-08-21T20:28:17.087Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/r_primer/slides.html</loc>
     <lastmod>2025-08-21T20:28:17.085Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/ordination/slides.html</loc>
+    <lastmod>2025-09-16T19:19:04.684Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/model/slides.html</loc>
@@ -19,6 +27,14 @@
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/eda/slides.html</loc>
     <lastmod>2025-09-11T17:15:04.274Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/diversity/slides.html</loc>
+    <lastmod>2025-09-16T19:19:04.683Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/design/slides.html</loc>
+    <lastmod>2025-09-16T21:18:49.122Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/count_data/slides.html</loc>
@@ -53,6 +69,14 @@
     <lastmod>2025-09-04T17:23:33.269Z</lastmod>
   </url>
   <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/design/page.html</loc>
+    <lastmod>2025-09-16T21:04:23.728Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/diversity/page.html</loc>
+    <lastmod>2025-09-16T19:19:04.683Z</lastmod>
+  </url>
+  <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/eda/page.html</loc>
     <lastmod>2025-08-21T20:28:17.070Z</lastmod>
   </url>
@@ -65,11 +89,19 @@
     <lastmod>2025-08-21T20:28:17.073Z</lastmod>
   </url>
   <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/ordination/page.html</loc>
+    <lastmod>2025-09-16T19:19:04.684Z</lastmod>
+  </url>
+  <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/r_primer/page.html</loc>
     <lastmod>2025-08-21T20:28:17.085Z</lastmod>
   </url>
   <url>
     <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/report/page.html</loc>
     <lastmod>2025-08-21T20:28:17.087Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ucr-ecologia.github.io/B0305-lab-eco-gral/2025/lessons/spatial/page.html</loc>
+    <lastmod>2025-09-16T19:19:04.690Z</lastmod>
   </url>
 </urlset>

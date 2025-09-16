@@ -54,6 +54,8 @@ website:
                 text: "5. Reportes con R y `{quarto}`"
               - href: 2025/lessons/count_data/page.qmd
                 text: "6. Análisis de datos de conteo"
+              - href: 2025/lessons/design/page.qmd
+                text: "7. Diseño experimental"
 
   navbar:
     background: primary

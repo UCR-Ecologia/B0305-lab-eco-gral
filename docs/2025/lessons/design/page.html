@@ -8,7 +8,7 @@
 
 <meta name="author" content="Drs Gerardo Avalos y Teofil Nakov">
 
-<title>Análisis de datos de conteo en ecología – B0305 Lab Eco Gral 2025</title>
+<title>Diseño experimental, (pseudo)replicación, poder estadístico – B0305 Lab Eco Gral 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../2025/lessons/design/page.html" rel="next">
-<link href="../../../2025/lessons/report/page.html" rel="prev">
+<link href="../../../2025/lessons/count_data/page.html" rel="prev">
 <link href="../../../figures/icons/course_favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -74,10 +73,10 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../../../css/custom_style.css">
 <link rel="stylesheet" href="../../../css/syllabus.css">
-<meta property="og:title" content="Análisis de datos de conteo en ecología – B0305 Lab Eco Gral 2025">
+<meta property="og:title" content="Diseño experimental, (pseudo)replicación, poder estadístico – B0305 Lab Eco Gral 2025">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="B0305 Lab Eco Gral 2025">
-<meta name="twitter:title" content="Análisis de datos de conteo en ecología – B0305 Lab Eco Gral 2025">
+<meta name="twitter:title" content="Diseño experimental, (pseudo)replicación, poder estadístico – B0305 Lab Eco Gral 2025">
 <meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@<twitter-handle>">
 <meta name="twitter:site" content="\@<twitter-handle>">
@@ -110,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../2025/index.html">2025</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/intro_and_methods/page.html">📚 Lecciones</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/count_data/page.html">6. Análisis de datos de conteo</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../2025/index.html">2025</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/intro_and_methods/page.html">📚 Lecciones</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/design/page.html">7. Diseño experimental</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -208,13 +207,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../2025/lessons/count_data/page.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../2025/lessons/count_data/page.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Análisis de datos de conteo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../2025/lessons/design/page.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../2025/lessons/design/page.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">7. Diseño experimental</span></a>
   </div>
 </li>
@@ -242,9 +241,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../2025/index.html">2025</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/intro_and_methods/page.html">📚 Lecciones</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/count_data/page.html">6. Análisis de datos de conteo</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../2025/index.html">2025</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/intro_and_methods/page.html">📚 Lecciones</a></li><li class="breadcrumb-item"><a href="../../../2025/lessons/design/page.html">7. Diseño experimental</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Análisis de datos de conteo en ecología</h1>
+<h1 class="title">Diseño experimental, (pseudo)replicación, poder estadístico</h1>
 </div>
 
 
@@ -267,10 +266,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>En algún momento de tu carrera en biología y ecología, tendrás que trabajar con datos. Cuando llegue ese momento, deberías tener cierta familiaridad con las diversas herramientas y métodos utilizados para abordar correctamente el análisis de datos. En estas clases comenzaremos a explorar estos temas.</p>
 <section id="diapositivas-de-la-clase" class="level2">
 <h2 class="anchored" data-anchor-id="diapositivas-de-la-clase">👨‍🏫 Diapositivas de la Clase</h2>
-<p>Haz clic en el área de las diapositivas a continuación o haz clic <a href="../../../2025/lessons/count_data/slides.html">aquí</a> para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.</p>
+<p>Haz clic en el área de las diapositivas a continuación o haz clic <a href="../../../2025/lessons/design/slides.html">aquí</a> para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.</p>
 <div class="container" style="position: relative;overflow: hidden;width: 100%;min-height:600px;">
 <iframe src="slides.html" style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;min-height:600px;">
 </iframe>
@@ -694,14 +692,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../2025/lessons/report/page.html" class="pagination-link" aria-label="5. Reportes con R y `{quarto}`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5. Reportes con R y <code>{quarto}</code></span>
+      <a href="../../../2025/lessons/count_data/page.html" class="pagination-link" aria-label="6. Análisis de datos de conteo">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">6. Análisis de datos de conteo</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../2025/lessons/design/page.html" class="pagination-link" aria-label="7. Diseño experimental">
-        <span class="nav-page-text">7. Diseño experimental</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

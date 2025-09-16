@@ -154,3 +154,20 @@ details {
     margin-bottom: 1em;
     font-size: 0.5em;
 }
+
+.dark-slide {
+  background-color: #2d3142 !important;
+  color: #ffffff !important;
+}
+
+.dark-slide h2 {
+  color: #ffffff !important;
+}
+
+.dark-slide li {
+  color: #ffffff !important;
+}
+
+.dark-slide strong {
+  color: #ffd700 !important;
+}

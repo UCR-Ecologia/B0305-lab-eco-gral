@@ -1,5 +1,75 @@
 [
   {
+    "objectID": "2025/lessons/spatial/slides.html#slide-title",
+    "href": "2025/lessons/spatial/slides.html#slide-title",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Title",
+    "text": "Slide: Title\nSpatial analysis of quadrat species abundance\n\nShort items: Moran’s I, autocorrelation, patchiness, variograms"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-motivation",
+    "href": "2025/lessons/spatial/slides.html#slide-motivation",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Motivation",
+    "text": "Slide: Motivation\n\nForest and trees: why spatial structure matters\nSmall text on screen — keep slides minimal"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-experimental-setup",
+    "href": "2025/lessons/spatial/slides.html#slide-experimental-setup",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Experimental setup",
+    "text": "Slide: Experimental setup\n\nQuadrat survey with georeferenced quadrats\nSimulate 10 species × 10 quadrats\nTwo scenarios: random vs clumped (patchy / invasive)"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-simulate-data-r",
+    "href": "2025/lessons/spatial/slides.html#slide-simulate-data-r",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Simulate data (R)",
+    "text": "Slide: Simulate data (R)\n\nset.seed(42)\n\nn_quads   &lt;- 40\nn_species &lt;- 10\n\n# Quadrats in a 100x100 area\nenv &lt;- data.frame(\n  id = 1:n_quads,\n  x  = runif(n_quads, 0, 100),\n  y  = runif(n_quads, 0, 100)\n)\n\n# Baseline random counts (Poisson)\nspec &lt;- replicate(n_species, rpois(n_quads, lambda = 2))\ncolnames(spec) &lt;- paste0(\"sp\", 1:n_species)\nmode(spec) &lt;- \"integer\"\n\n# --- Patchiness: add clumps to sp8..sp10 using distance-decay around patch centers\npatch_spp &lt;- paste0(\"sp\", 8:10)\n\n# choose 2 patch centers\ncenters &lt;- data.frame(cx = runif(2, 20, 80), cy = runif(2, 20, 80))\n\n# distance-decay kernel (larger boost near centers)\nboost_from_centers &lt;- function(x, y, centers, sigma = 15, scale = 6) {\n  # sum of Gaussian bumps from each center, rescaled to a mean ~ scale\n  d2 &lt;- sapply(1:nrow(centers), function(i) (x - centers$cx[i])^2 + (y - centers$cy[i])^2)\n  kernel &lt;- rowSums(exp(-d2 / (2 * sigma^2)))\n  # convert continuous intensity to extra Poisson counts\n  rpois(length(kernel), lambda = scale * kernel / max(kernel))\n}\n\nfor (s in patch_spp) {\n  extra &lt;- boost_from_centers(env$x, env$y, centers, sigma = 15, scale = 6)\n  spec[, s] &lt;- spec[, s] + extra\n}\nspec &lt;- as.data.frame(spec)\n\n# Final dataset\ndf &lt;- cbind(env, spec)\n\n\noptions(scipen = 999)\nvmr_id &lt;- function(x) {\n  m &lt;- mean(x); v &lt;- var(x); n &lt;- length(x)\n  vmr &lt;- v / ifelse(m == 0, 1e-9, m)\n  ID  &lt;- (n - 1) * vmr\n  p   &lt;- pchisq(ID, df = n - 1, lower.tail = FALSE)  \n  data.frame(mean = m, var = v, VMR = vmr, ID = ID, p_gt_random = p)\n}\n\ndiag_tbl &lt;- do.call(rbind, lapply(as.data.frame(spec), vmr_id)) |&gt; round(4)\ndiag_tbl\n\n      mean    var    VMR      ID p_gt_random\nsp1  1.925 1.5071 0.7829 30.5325      0.8318\nsp2  2.175 1.5327 0.7047 27.4828      0.9166\nsp3  1.875 1.5994 0.8530 33.2667      0.7282\nsp4  2.000 2.2564 1.1282 44.0000      0.2682\nsp5  1.725 1.5891 0.9212 35.9275      0.6108\nsp6  1.775 2.5891 1.4586 56.8873      0.0320\nsp7  1.975 1.7686 0.8955 34.9241      0.6563\nsp8  3.150 3.7205 1.1811 46.0635      0.2031\nsp9  2.900 6.9641 2.4014 93.6552      0.0000\nsp10 3.400 6.4000 1.8824 73.4118      0.0007"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-map-examples",
+    "href": "2025/lessons/spatial/slides.html#slide-map-examples",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Map examples",
+    "text": "Slide: Map examples\n\nPlot two species: one random, one patchy\n\n\nlibrary(ggplot2)\ndf |&gt; tidyr::pivot_longer(cols = starts_with(\"sp\"), names_to = \"species\", values_to = \"abundance\") |&gt;\n  dplyr::mutate(species = factor(species, levels = paste0(\"sp\", 1:10))) |&gt;\n  dplyr::filter(species %in% c(\"sp1\", \"sp2\", \"sp9\", \"sp10\")) |&gt;\n  ggplot(aes(x = x, y = y)) +\n  geom_point(aes(size = abundance, color = species), alpha = 0.7) +\n  facet_wrap(~species) +\n  scale_size_continuous(range = c(1, 6)) +\n  theme_minimal() +\n  labs(title = \"Species Abundance in Quadrats\", x = \"X Coordinate\", y = \"Y Coordinate\")"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-dispersion-indices",
+    "href": "2025/lessons/spatial/slides.html#slide-dispersion-indices",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Dispersion indices",
+    "text": "Slide: Dispersion indices\n\nVariance-to-mean ratio (VMR)\nIndex of dispersion: (n_plots - 1) * VMR\n\n\n# Calculate for a species\nvmr &lt;- function(x) var(x) / mean(x)\nn &lt;- nrow(df)\nvmr(df$sp1)\n\n[1] 0.7828838\n\nindex_dispersion &lt;- (n - 1) * vmr(df$sp1)\nindex_dispersion\n\n[1] 30.53247\n\npval &lt;- pchisq(index_dispersion, df = n-1, lower.tail = FALSE)\n\n\n# Calculate for a species\n## same calculation for patchy species (sp8)\nn &lt;- nrow(df)\nvmr(df$sp8)\n\n[1] 1.181115\n\nindex_dispersion &lt;- (n - 1) * vmr(df$sp8)\nindex_dispersion\n\n[1] 46.06349\n\npval &lt;- pchisq(index_dispersion, df = n-1, lower.tail = FALSE)\npval\n\n[1] 0.2031177"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-morans-i",
+    "href": "2025/lessons/spatial/slides.html#slide-morans-i",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Moran’s I",
+    "text": "Slide: Moran’s I\n\nBrief description and purpose\nCalculation outline\n\n\nlibrary(spdep)\n# create neighbours by distance\ncoords &lt;- as.matrix(df[, c('x', 'y')])\nnb &lt;- knn2nb(knearneigh(coords, k = 4))\nlw &lt;- nb2listw(nb, style = 'W')\n# test Moran's I for random (sp1) and patchy (sp8)\nmoran.test(df$sp1, lw)\n\n\n    Moran I test under randomisation\n\ndata:  df$sp1  \nweights: lw    \n\nMoran I statistic standard deviate = 1.5373, p-value = 0.06211\nalternative hypothesis: greater\nsample estimates:\nMoran I statistic       Expectation          Variance \n      0.125903871      -0.025641026       0.009717909 \n\nmoran.test(df$sp8, lw)\n\n\n    Moran I test under randomisation\n\ndata:  df$sp8  \nweights: lw    \n\nMoran I statistic standard deviate = 1.1484, p-value = 0.1254\nalternative hypothesis: greater\nsample estimates:\nMoran I statistic       Expectation          Variance \n      0.088387319      -0.025641026       0.009859574"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-variograms",
+    "href": "2025/lessons/spatial/slides.html#slide-variograms",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Variograms",
+    "text": "Slide: Variograms\n\nEmpirical variogram to explore spatial dependence\n\n\nlibrary(gstat)\nlibrary(sp)\nspdf &lt;- SpatialPointsDataFrame(env[, c(\"x\", \"y\")], df)\nv1 &lt;- variogram(sp1 ~ 1, spdf) |&gt; \n    dplyr::mutate(species = 'sp1 (random)')\nv8 &lt;- variogram(sp8 ~ 1, spdf) |&gt; \n    dplyr::mutate(species = 'sp8 (patchy)')\n\nv &lt;- dplyr::bind_rows(v1,v8)\n\nggplot(v, aes(x = dist, y = gamma, color = species)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Empirical Variograms\", x = \"Distance\", y = \"Semivariance\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-wrap-up",
+    "href": "2025/lessons/spatial/slides.html#slide-wrap-up",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: Wrap-up",
+    "text": "Slide: Wrap-up\n\nWhat we learned: detecting patchiness, measuring autocorrelation\nNext: hands-on lab and reproducible script"
+  },
+  {
+    "objectID": "2025/lessons/spatial/slides.html#slide-references-resources",
+    "href": "2025/lessons/spatial/slides.html#slide-references-resources",
+    "title": "Análisis espacial, agrupamiento, parcheo",
+    "section": "Slide: References & resources",
+    "text": "Slide: References & resources\n\nR packages: spdep, gstat, ggplot2\nData and scripts in lesson folder"
+  },
+  {
     "objectID": "2025/lessons/report/slides.html#problemas-con-word-tradicional",
     "href": "2025/lessons/report/slides.html#problemas-con-word-tradicional",
     "title": "Escribiendo Reportes Científicos con Quarto",
@@ -854,6 +924,125 @@
     "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(size = 5, alpha = 0.4, aes(color = island, shape = sex)) +\n    geom_smooth(method = \"lm\") +\n    facet_wrap(vars(species), ncol = 3)"
   },
   {
+    "objectID": "2025/lessons/design/slides.html#por-qué-importa-el-diseño-experimental",
+    "href": "2025/lessons/design/slides.html#por-qué-importa-el-diseño-experimental",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Por Qué Importa el Diseño Experimental",
+    "text": "Por Qué Importa el Diseño Experimental\n\nEcología = sistemas complejos y variables\n\nMal diseño → conclusiones inválidas, esfuerzo desperdiciado\n\nBuen diseño → inferencia más sólida, capacidad de generalizar"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#conceptos-fundamentales",
+    "href": "2025/lessons/design/slides.html#conceptos-fundamentales",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Conceptos Fundamentales",
+    "text": "Conceptos Fundamentales\n\n\nTratamiento: Lo que se manipula\n\nUnidad Experimental: La unidad más pequeña que puede recibir independientemente un tratamiento\n\nReplicación: Múltiples unidades experimentales independientes por tratamiento\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nReplicación = unidades experimentales, no muestras."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#replicación",
+    "href": "2025/lessons/design/slides.html#replicación",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Replicación",
+    "text": "Replicación\n\nPropósito: estimar variabilidad, probar hipótesis confiablemente\n\nTipos:\n\nReplicación verdadera: unidades independientes (20 plantas)\n\nReplicación técnica: medidas repetidas de la misma unidad (20 hojas de 1 planta)\n\n\nRegla práctica: Replicación = número de unidades independientes"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#ejemplos",
+    "href": "2025/lessons/design/slides.html#ejemplos",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Ejemplos",
+    "text": "Ejemplos\n\nMedir 20 hojas de 1 planta → n = ?\n\nMedir 1 hoja de cada una de 20 plantas → n = ?\nMedir crecimiento de algas después de adición de nutrientes 5 días seguidos → n = ?\nContar líquenes en 4 lados de 1 árbol → n = ?"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#tipos-de-pseudoreplicación",
+    "href": "2025/lessons/design/slides.html#tipos-de-pseudoreplicación",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Tipos de Pseudoreplicación",
+    "text": "Tipos de Pseudoreplicación\n\nSimple: 1 unidad experimental por tratamiento medida múltiples veces\nTemporal: medidas repetidas en el tiempo usadas como réplicas"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#evitando-la-pseudoreplicación",
+    "href": "2025/lessons/design/slides.html#evitando-la-pseudoreplicación",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Evitando la Pseudoreplicación",
+    "text": "Evitando la Pseudoreplicación\n\nMúltiples unidades independientes por tratamiento\n\nAsignación aleatoria de tratamientos\n\nBloques para controlar la variación\n\nModelos jerárquicos / mixtos para datos anidados"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#mensajes-clave",
+    "href": "2025/lessons/design/slides.html#mensajes-clave",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Mensajes Clave",
+    "text": "Mensajes Clave\n\nReplicación = unidades independientes, no medidas repetidas\n\nLa pseudoreplicación es común pero evitable\n\nReconocer cuando la replicación completa es imposible"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#poder-estadístico-introducción",
+    "href": "2025/lessons/design/slides.html#poder-estadístico-introducción",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Poder Estadístico: Introducción",
+    "text": "Poder Estadístico: Introducción\n\n\nPoder estadístico = probabilidad de detectar un efecto si verdaderamente existe\n\nPoder = 1 – β\n\nβ (Error Tipo II): fallar en rechazar una hipótesis nula falsa\n\n\nMeta común: 80% de poder\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nAlto poder = buena oportunidad de detectar efectos biológicamente significativos."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#por-qué-importa-el-análisis-de-poder",
+    "href": "2025/lessons/design/slides.html#por-qué-importa-el-análisis-de-poder",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Por Qué Importa el Análisis de Poder",
+    "text": "Por Qué Importa el Análisis de Poder\n\nLa ecología a menudo trata con alta variabilidad\n\nMuy pocas réplicas → falsos negativos (perder efectos reales)\n\nDemasiadas réplicas → tiempo, esfuerzo y recursos desperdiciados\n\nEl análisis de poder ayuda a equilibrar factibilidad y rigor científico"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#componentes-del-poder",
+    "href": "2025/lessons/design/slides.html#componentes-del-poder",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Componentes del Poder",
+    "text": "Componentes del Poder\nEl poder depende de:\n\nTamaño del efecto: qué tan grande es la diferencia verdadera\n\nTamaño de muestra (n): número de unidades independientes\n\nVarianza (σ²): variabilidad natural en el sistema\n\nNivel de significancia (α): usualmente 0.05"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#poder-y-varianza-cómo-se-conectan",
+    "href": "2025/lessons/design/slides.html#poder-y-varianza-cómo-se-conectan",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Poder y Varianza: Cómo se Conectan",
+    "text": "Poder y Varianza: Cómo se Conectan\n\nRecordar: El poder depende del tamaño del efecto, tamaño de muestra, varianza, y α\n\nEn la práctica, la varianza (σ²) está incorporada en el tamaño del efecto\n\nPara una prueba t de dos muestras:\n\\[\nd = \\frac{\\text{diferencia de medias}}{\\text{desviación estándar}}\n\\]"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#ejemplo-trabajado-de-varianza-a-poder",
+    "href": "2025/lessons/design/slides.html#ejemplo-trabajado-de-varianza-a-poder",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Ejemplo Trabajado: De Varianza a Poder",
+    "text": "Ejemplo Trabajado: De Varianza a Poder\nSupongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:\n\nDiferencia de medias esperada = 20 unidades\n\nDatos piloto: desviación estándar = 25\n\nNivel de significancia α = 0.05\n\nPoder objetivo = 0.80\n\n\\[\nd = \\frac{20}{25} = 0.8\n\\]"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#pregunta-cuántos-arroyos-réplica-por-tratamiento-se-necesitan",
+    "href": "2025/lessons/design/slides.html#pregunta-cuántos-arroyos-réplica-por-tratamiento-se-necesitan",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Pregunta: ¿Cuántos arroyos réplica por tratamiento se necesitan?",
+    "text": "Pregunta: ¿Cuántos arroyos réplica por tratamiento se necesitan?"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#cálculo-en-r",
+    "href": "2025/lessons/design/slides.html#cálculo-en-r",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Cálculo en R",
+    "text": "Cálculo en R\n\nlibrary(pwr)\n\n# Tamaño del efecto a partir de diferencia de medias y DE\nd &lt;- 20 / 25   # = 0.8\n\n# Análisis de poder para prueba t de dos muestras\npwr.t.test(d = d, power = 0.8, sig.level = 0.05,\n           type = \"two.sample\")\n\n\n     Two-sample t test power calculation \n\n              n = 25.52458\n              d = 0.8\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\nResultado: ~26 réplicas por grupo necesarias"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#interpretación",
+    "href": "2025/lessons/design/slides.html#interpretación",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Interpretación",
+    "text": "Interpretación\n\nCon σ = 25, detectar una diferencia de 20 unidades necesita ~26 réplicas por tratamiento.\nSi la variabilidad fuera menor (σ = 10): d = 20/10 = 2 → muchas menos réplicas necesarias\nSi la variabilidad fuera mayor (σ = 40): d = 20/40 = 0.5 → mucha más replicación necesaria"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#mensajes-clave-1",
+    "href": "2025/lessons/design/slides.html#mensajes-clave-1",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Mensajes Clave",
+    "text": "Mensajes Clave\n\nPlanificar el tamaño de muestra antes del experimento\n\n¡La varianza importa! Dicta qué tan grande se ve el efecto relativo al ruido.\n\nSiempre tratar de estimar la varianza de estudios piloto o la literatura."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#bibliografia",
+    "href": "2025/lessons/design/slides.html#bibliografia",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Bibliografia",
+    "text": "Bibliografia\nStatistics done wrong: https://www.statisticsdonewrong.com/pseudoreplication.html\nMarshall, D.J., 2024. Principles of experimental design for ecology and evolution. Ecology Letters, 27(4), p.e14400. 📄 PDF\nGotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 4. Sunderland: Sinauer Associates. 📄 PDF\nGotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 6. Sunderland: Sinauer Associates. 📄 PDF"
+  },
+  {
     "objectID": "2025/lessons/count_data/slides.html#qué-son-los-datos-de-conteo",
     "href": "2025/lessons/count_data/slides.html#qué-son-los-datos-de-conteo",
     "title": "Análisis de datos de conteo en ecología",
@@ -1233,6 +1422,42 @@
       "2025",
       "📚 Lecciones",
       "6. Análisis de datos de conteo"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/design/page.html",
+    "href": "2025/lessons/design/page.html",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "",
+    "text": "Haz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "7. Diseño experimental"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/design/page.html#diapositivas-de-la-clase",
+    "href": "2025/lessons/design/page.html#diapositivas-de-la-clase",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "",
+    "text": "Haz clic en el área de las diapositivas a continuación o haz clic aquí para verlas en pantalla completa. Usa el teclado para navegar por las diapositivas.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "7. Diseño experimental"
+    ]
+  },
+  {
+    "objectID": "2025/lessons/design/page.html#lecturas-recomendadas",
+    "href": "2025/lessons/design/page.html#lecturas-recomendadas",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "📚 Lecturas Recomendadas",
+    "text": "📚 Lecturas Recomendadas\n\nConsulta el final de las diapositivas para ver la lista de referencias citadas en la clase.",
+    "crumbs": [
+      "2025",
+      "📚 Lecciones",
+      "7. Diseño experimental"
     ]
   },
   {

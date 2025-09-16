@@ -1,0 +1,237 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://ucr-ecologia.github.io/B0305-lab-eco-gral/' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'>Diseño experimental, (pseudo)replicación, poder estadístico</font>"
+author: Prof. T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: false
+    logo: /figures/icons/course_favicon.png
+    css: /css/styles_slides.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+  cache: false
+---
+
+## Por Qué Importa el Diseño Experimental
+
+- Ecología = sistemas complejos y variables  
+- Mal diseño → conclusiones inválidas, esfuerzo desperdiciado  
+- Buen diseño → inferencia más sólida, capacidad de generalizar  
+
+---
+
+::: {.fragment}
+- **Diseño experimental**  
+  - El investigador manipula tratamientos (ej. sombreado vs sin sombreado).  
+  - Inferencia más fuerte sobre causa-efecto. Requiere control de factores confusores.  
+:::
+
+::: {.fragment}
+- **Diseño natural (observacional)**  
+  - El investigador aprovecha la variación natural (ej. arroyos soleados vs sombreados).  
+  - No hay asignación verdadera de tratamientos → posible confusión.   
+:::
+
+::: {.fragment}
+::: {.callout-note title="¡Ojo!"}
+Incluso sin manipulación, es necesaria una definición clara de *unidades experimentales* y *replicación*.
+:::
+:::
+
+---
+
+## Conceptos Fundamentales
+
+::: {.fragment}
+- **Tratamiento**: Lo que se manipula  
+- **Unidad Experimental**: La unidad más pequeña que puede recibir independientemente un tratamiento  
+- **Replicación**: Múltiples unidades experimentales independientes por tratamiento  
+:::
+
+::: {.fragment}
+::: {.callout-note title="¡Ojo!"}
+Replicación = unidades experimentales, *no* muestras.
+:::
+:::
+
+---
+
+## Replicación
+
+- Propósito: estimar variabilidad, probar hipótesis confiablemente  
+- Tipos:  
+  - *Replicación verdadera*: unidades independientes (20 plantas)  
+  - *Replicación técnica*: medidas repetidas de la misma unidad (20 hojas de 1 planta)  
+- Regla práctica: Replicación = número de unidades independientes
+
+---
+
+![Replicación verdadera vs pseudo replicación](figures/replication.png)
+
+---
+
+![Replicación verdadera vs pseudo replicación](figures/replication2.jpeg)
+
+---
+
+## Ejemplos
+
+- Medir 20 hojas de 1 planta → **n = ?**  
+- Medir 1 hoja de cada una de 20 plantas → **n = ?**
+- Medir crecimiento de algas después de adición de nutrientes 5 días seguidos → **n = ?**
+- Contar líquenes en 4 lados de 1 árbol → **n = ?**
+
+
+---
+
+## Tipos de Pseudoreplicación
+
+- **Simple**: 1 unidad experimental por tratamiento medida múltiples veces 
+- **Temporal**: medidas repetidas en el tiempo usadas como réplicas  
+
+---
+
+## Evitando la Pseudoreplicación
+
+- Múltiples unidades independientes por tratamiento  
+- Asignación aleatoria de tratamientos  
+- Bloques para controlar la variación  
+- Modelos jerárquicos / mixtos para datos anidados  
+
+---
+
+## Mensajes Clave {.dark-slide}
+
+- Replicación = unidades independientes, **no** medidas repetidas  
+- La pseudoreplicación es común pero evitable  
+- Reconocer cuando la replicación completa es imposible  
+
+---
+
+## Poder Estadístico: Introducción
+
+::: {.fragment}
+- **Poder estadístico** = probabilidad de detectar un efecto si verdaderamente existe  
+- Poder = 1 – β  
+  - β (Error Tipo II): fallar en rechazar una hipótesis nula falsa  
+- Meta común: **80% de poder**  
+:::
+
+::: {.fragment}
+::: {.callout-note title="¡Ojo!"}
+Alto poder = buena oportunidad de detectar efectos biológicamente significativos.
+:::
+:::
+
+---
+
+## Por Qué Importa el Análisis de Poder
+
+- La ecología a menudo trata con alta variabilidad  
+- Muy pocas réplicas → falsos negativos (perder efectos reales)  
+- Demasiadas réplicas → tiempo, esfuerzo y recursos desperdiciados  
+- El análisis de poder ayuda a equilibrar factibilidad y rigor científico  
+
+---
+
+## Componentes del Poder
+
+El poder depende de: 
+
+- **Tamaño del efecto**: qué tan grande es la diferencia verdadera  
+- **Tamaño de muestra (n)**: número de unidades independientes  
+- **Varianza (σ²)**: variabilidad natural en el sistema  
+- **Nivel de significancia (α)**: usualmente 0.05  
+
+---
+
+## Poder y Varianza: Cómo se Conectan
+
+- Recordar: El poder depende del tamaño del efecto, tamaño de muestra, varianza, y α  
+- En la práctica, **la varianza (σ²)** está incorporada en el *tamaño del efecto*  
+
+Para una prueba t de dos muestras:  
+
+$$
+d = \frac{\text{diferencia de medias}}{\text{desviación estándar}}
+$$
+
+---
+
+## Ejemplo Trabajado: De Varianza a Poder
+
+Supongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:  
+
+- Diferencia de medias esperada = **20 unidades**  
+- Datos piloto: desviación estándar = **25**  
+- Nivel de significancia α = 0.05  
+- Poder objetivo = 0.80  
+
+$$
+d = \frac{20}{25} = 0.8
+$$
+
+Pregunta: ¿Cuántos arroyos réplica por tratamiento se necesitan?
+---
+
+## Cálculo en R
+
+```{r}
+library(pwr)
+
+# Tamaño del efecto a partir de diferencia de medias y DE
+d <- 20 / 25   # = 0.8
+
+# Análisis de poder para prueba t de dos muestras
+pwr.t.test(d = d, power = 0.8, sig.level = 0.05,
+           type = "two.sample")
+```
+
+Resultado: ~26 réplicas por grupo necesarias
+
+--- 
+
+## Interpretación
+
+- Con σ = 25, detectar una diferencia de 20 unidades necesita ~26 réplicas por tratamiento.
+
+- Si la variabilidad fuera menor (σ = 10):
+    d = 20/10 = 2 → muchas menos réplicas necesarias
+
+- Si la variabilidad fuera mayor (σ = 40):
+    d = 20/40 = 0.5 → mucha más replicación necesaria
+
+---
+
+## Mensajes Clave {.dark-slide}
+
+- Planificar el tamaño de muestra antes del experimento  
+- ¡La varianza importa! Dicta qué tan grande se ve el efecto relativo al ruido.  
+- Siempre tratar de estimar la varianza de estudios piloto o la literatura.  
+
+---
+
+## Bibliografia
+
+Statistics done wrong: https://www.statisticsdonewrong.com/pseudoreplication.html
+
+Marshall, D.J., 2024. Principles of experimental design for ecology and evolution. Ecology Letters, 27(4), p.e14400. [📄 PDF](../../refs/Marshall-2024.pdf)
+
+Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 4. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-4.pdf)
+
+Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 6. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-6.pdf)
