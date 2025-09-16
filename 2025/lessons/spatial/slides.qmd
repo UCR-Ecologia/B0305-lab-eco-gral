@@ -1,0 +1,217 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://<https://ucr-ecologia.github.io/B0305-lab-eco-gral/>' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'>Análisis espacial, agrupamiento, parcheo</font>"
+author: Prof. G. Avalos y T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: true
+    logo: /figures/icons/course_favicon.png
+    css: /css/styles_slides.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+  cache: false
+---
+
+## Slide: Title
+
+Spatial analysis of quadrat species abundance
+
+- Short items: Moran's I, autocorrelation, patchiness, variograms
+
+---
+
+## Slide: Motivation
+
+- Forest and trees: why spatial structure matters
+- Small text on screen — keep slides minimal
+
+---
+
+## Slide: Experimental setup
+
+- Quadrat survey with georeferenced quadrats
+- Simulate 10 species × 10 quadrats
+- Two scenarios: random vs clumped (patchy / invasive)
+
+---
+
+## Slide: Simulate data (R)
+
+```{r}
+set.seed(42)
+
+n_quads   <- 40
+n_species <- 10
+
+# Quadrats in a 100x100 area
+env <- data.frame(
+  id = 1:n_quads,
+  x  = runif(n_quads, 0, 100),
+  y  = runif(n_quads, 0, 100)
+)
+
+# Baseline random counts (Poisson)
+spec <- replicate(n_species, rpois(n_quads, lambda = 2))
+colnames(spec) <- paste0("sp", 1:n_species)
+mode(spec) <- "integer"
+
+# --- Patchiness: add clumps to sp8..sp10 using distance-decay around patch centers
+patch_spp <- paste0("sp", 8:10)
+
+# choose 2 patch centers
+centers <- data.frame(cx = runif(2, 20, 80), cy = runif(2, 20, 80))
+
+# distance-decay kernel (larger boost near centers)
+boost_from_centers <- function(x, y, centers, sigma = 15, scale = 6) {
+  # sum of Gaussian bumps from each center, rescaled to a mean ~ scale
+  d2 <- sapply(1:nrow(centers), function(i) (x - centers$cx[i])^2 + (y - centers$cy[i])^2)
+  kernel <- rowSums(exp(-d2 / (2 * sigma^2)))
+  # convert continuous intensity to extra Poisson counts
+  rpois(length(kernel), lambda = scale * kernel / max(kernel))
+}
+
+for (s in patch_spp) {
+  extra <- boost_from_centers(env$x, env$y, centers, sigma = 15, scale = 6)
+  spec[, s] <- spec[, s] + extra
+}
+spec <- as.data.frame(spec)
+
+# Final dataset
+df <- cbind(env, spec)
+
+```
+
+```{r}
+options(scipen = 999)
+vmr_id <- function(x) {
+  m <- mean(x); v <- var(x); n <- length(x)
+  vmr <- v / ifelse(m == 0, 1e-9, m)
+  ID  <- (n - 1) * vmr
+  p   <- pchisq(ID, df = n - 1, lower.tail = FALSE)  
+  data.frame(mean = m, var = v, VMR = vmr, ID = ID, p_gt_random = p)
+}
+
+diag_tbl <- do.call(rbind, lapply(as.data.frame(spec), vmr_id)) |> round(4)
+diag_tbl
+
+```
+
+---
+
+## Slide: Map examples
+
+- Plot two species: one random, one patchy
+
+```{r}
+library(ggplot2)
+df |> tidyr::pivot_longer(cols = starts_with("sp"), names_to = "species", values_to = "abundance") |>
+  dplyr::mutate(species = factor(species, levels = paste0("sp", 1:10))) |>
+  dplyr::filter(species %in% c("sp1", "sp2", "sp9", "sp10")) |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point(aes(size = abundance, color = species), alpha = 0.7) +
+  facet_wrap(~species) +
+  scale_size_continuous(range = c(1, 6)) +
+  theme_minimal() +
+  labs(title = "Species Abundance in Quadrats", x = "X Coordinate", y = "Y Coordinate")
+```
+
+---
+
+## Slide: Dispersion indices
+
+- Variance-to-mean ratio (VMR)
+- Index of dispersion: (n_plots - 1) * VMR
+
+```{r}
+# Calculate for a species
+vmr <- function(x) var(x) / mean(x)
+n <- nrow(df)
+vmr(df$sp1)
+index_dispersion <- (n - 1) * vmr(df$sp1)
+index_dispersion
+pval <- pchisq(index_dispersion, df = n-1, lower.tail = FALSE)
+```
+
+```{r}
+# Calculate for a species
+## same calculation for patchy species (sp8)
+n <- nrow(df)
+vmr(df$sp8)
+index_dispersion <- (n - 1) * vmr(df$sp8)
+index_dispersion
+pval <- pchisq(index_dispersion, df = n-1, lower.tail = FALSE)
+pval
+```
+
+
+---
+
+## Slide: Moran's I
+
+- Brief description and purpose
+- Calculation outline
+
+```{r}
+library(spdep)
+# create neighbours by distance
+coords <- as.matrix(df[, c('x', 'y')])
+nb <- knn2nb(knearneigh(coords, k = 4))
+lw <- nb2listw(nb, style = 'W')
+# test Moran's I for random (sp1) and patchy (sp8)
+moran.test(df$sp1, lw)
+moran.test(df$sp8, lw)
+```
+
+---
+
+## Slide: Variograms
+
+- Empirical variogram to explore spatial dependence
+
+```{r}
+library(gstat)
+library(sp)
+spdf <- SpatialPointsDataFrame(env[, c("x", "y")], df)
+v1 <- variogram(sp1 ~ 1, spdf) |> 
+    dplyr::mutate(species = 'sp1 (random)')
+v8 <- variogram(sp8 ~ 1, spdf) |> 
+    dplyr::mutate(species = 'sp8 (patchy)')
+
+v <- dplyr::bind_rows(v1,v8)
+
+ggplot(v, aes(x = dist, y = gamma, color = species)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Empirical Variograms", x = "Distance", y = "Semivariance") +
+  theme_minimal()
+
+```
+
+---
+
+## Slide: Wrap-up
+
+- What we learned: detecting patchiness, measuring autocorrelation
+- Next: hands-on lab and reproducible script
+
+---
+
+## Slide: References & resources
+
+- R packages: `spdep`, `gstat`, `ggplot2`
+- Data and scripts in lesson folder

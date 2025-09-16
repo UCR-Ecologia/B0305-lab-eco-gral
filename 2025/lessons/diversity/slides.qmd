@@ -1,0 +1,28 @@
+---
+subtitle: "B0305 -- Lab Eco Gral<br><a href='https://<https://ucr-ecologia.github.io/B0305-lab-eco-gral/>' target='_blank'>https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a>"
+title: "<font style='font-size:1em;'>Análisis espacial, agrupamiento, parcheo </font>"
+author: Prof. G. Avalos y T. Nakov
+institute: 'Escuela de Biologia, Universidad de Costa Rica'
+date: 01 August 2025
+date-meta: 01 August 2025
+date-format: "DD MMM YYYY"
+toc: true
+toc-depth: 1
+toc-title: "Que vamos a ver:"
+center-title-slide: false
+from: markdown+emoji
+format:
+  revealjs: 
+    fig-responsive: true
+    theme: simple
+    slide-number: true
+    mouse-wheel: false
+    preview-links: auto
+    incremental: true
+    logo: /figures/icons/course_favicon.png
+    css: /css/styles_slides.css
+    footer: 'B0305 -- Lab Eco Gral'
+execute:
+  echo: true
+  cache: false
+---
