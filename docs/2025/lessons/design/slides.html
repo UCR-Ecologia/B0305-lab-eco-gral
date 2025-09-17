@@ -191,10 +191,10 @@
     }
   </style>
 <meta property="og:title" content="Diseño experimental, (pseudo)replicación, poder estadístico – B0305 Lab Eco Gral 2025">
-<meta property="og:description" content="B0305 – Lab Eco Gralhttps://ucr-ecologia.github.io/B0305-lab-eco-gral/">
+<meta property="og:description" content="B0305 – Lab Eco Gral">
 <meta property="og:site_name" content="B0305 Lab Eco Gral 2025">
 <meta name="twitter:title" content="Diseño experimental, (pseudo)replicación, poder estadístico – B0305 Lab Eco Gral 2025">
-<meta name="twitter:description" content="B0305 – Lab Eco Gralhttps://ucr-ecologia.github.io/B0305-lab-eco-gral/">
+<meta name="twitter:description" content="B0305 – Lab Eco Gral">
 <meta name="twitter:creator" content="@<twitter-handle>">
 <meta name="twitter:site" content="\@<twitter-handle>">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
 
 <section id="title-slide" class="quarto-title-block">
   <h1 class="title"><font style="font-size:1em;">Diseño experimental, (pseudo)replicación, poder estadístico</font></h1>
-  <p class="subtitle">B0305 – Lab Eco Gral<br><a href="https://ucr-ecologia.github.io/B0305-lab-eco-gral/" target="_blank">https://ucr-ecologia.github.io/B0305-lab-eco-gral/</a></p>
+  <p class="subtitle">B0305 – Lab Eco Gral</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -271,6 +271,76 @@ Prof.&nbsp;T. Nakov
 </div>
 </div>
 </div>
+</section>
+<section id="diseño-factorial" class="slide level2">
+<h2>Diseño Factorial</h2>
+<ul>
+<li><strong>Definición:</strong> Se prueban todas las combinaciones de factores.<br>
+</li>
+<li>Ejemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)
+<ul>
+<li>Tratamientos = 2 × 2 = 4 combinaciones<br>
+</li>
+</ul></li>
+<li>Ventaja: puede detectar <strong>efectos de interacción</strong> (cómo se combinan los factores).<br>
+</li>
+<li>Limitación: crece rápidamente con el número de factores.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="slides_files/figure-revealjs/fig-factorial-1.png" class="img-fluid r-stretch quarto-figure-center" width="960" id="fig-factorial"><p class="caption">
+Figure&nbsp;1: 2×2 factorial design schematic: Light × Nutrients.
+</p></section>
+<section id="bloques" class="slide level2">
+<h2>Bloques</h2>
+<ul>
+<li><strong>Definición:</strong> Agrupar unidades experimentales en bloques que comparten condiciones similares.<br>
+</li>
+<li>Ejemplo: La fertilidad del suelo varía a través de un campo → cada bloque contiene todos los tratamientos.<br>
+</li>
+<li>Propósito: controlar fuentes conocidas de variación.<br>
+</li>
+<li>Análisis: el bloque se incluye como factor en el modelo (aleatorio o fijo).</li>
+</ul>
+<p><strong>Idea clave:</strong> Los bloques reducen el <em>ruido</em> de la heterogeneidad.</p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="slides_files/figure-revealjs/fig-blocking-1.png" class="img-fluid r-stretch quarto-figure-center" width="960" id="fig-blocking"><p class="caption">
+Figure&nbsp;2: Randomized complete block design: each block contains all treatments.
+</p></section>
+<section id="randomization" class="slide level2">
+<h2>Randomization</h2>
+<ul>
+<li><strong>Definition:</strong> Random assignment of treatments to experimental units.<br>
+</li>
+<li>Purpose: avoids systematic bias.<br>
+</li>
+<li>Ensures treatment effects are not confounded with hidden variables.<br>
+</li>
+<li>Can be complete or restricted (within blocks).</li>
+</ul>
+<p><strong>Example:</strong> Randomly assign shading vs control to ponds, not just “first half shaded, second half control.”</p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="slides_files/figure-revealjs/fig-randomization-1.png" class="img-fluid r-stretch quarto-figure-center" width="960" id="fig-randomization"><p class="caption">
+Figure&nbsp;3: Randomized assignment of treatments on a field grid (within blocks).
+</p></section>
+<section id="integrando" class="slide level2">
+<h2>Integrando</h2>
+<ul>
+<li><strong>Diseño factorial</strong>: probar múltiples factores y sus interacciones.<br>
+</li>
+<li><strong>Bloques</strong>: controlar variación agrupando unidades similares.<br>
+</li>
+<li><strong>Aleatorización</strong>: protegerse contra sesgo.</li>
+</ul>
+<p><strong>Mejor práctica:</strong> combinar los tres cuando sea posible → experimentos robustos e interpretables.</p>
 </section>
 <section id="conceptos-fundamentales" class="slide level2">
 <h2>Conceptos Fundamentales</h2>

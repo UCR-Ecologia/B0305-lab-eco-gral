@@ -1651,5 +1651,33 @@
       "📚 Lecciones",
       "5. Reportes con R y `{quarto}`"
     ]
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#diseño-factorial",
+    "href": "2025/lessons/design/slides.html#diseño-factorial",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Diseño Factorial",
+    "text": "Diseño Factorial\n\nDefinición: Se prueban todas las combinaciones de factores.\n\nEjemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)\n\nTratamientos = 2 × 2 = 4 combinaciones\n\n\nVentaja: puede detectar efectos de interacción (cómo se combinan los factores).\n\nLimitación: crece rápidamente con el número de factores."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#bloques",
+    "href": "2025/lessons/design/slides.html#bloques",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Bloques",
+    "text": "Bloques\n\nDefinición: Agrupar unidades experimentales en bloques que comparten condiciones similares.\n\nEjemplo: La fertilidad del suelo varía a través de un campo → cada bloque contiene todos los tratamientos.\n\nPropósito: controlar fuentes conocidas de variación.\n\nAnálisis: el bloque se incluye como factor en el modelo (aleatorio o fijo).\n\nIdea clave: Los bloques reducen el ruido de la heterogeneidad."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#randomization",
+    "href": "2025/lessons/design/slides.html#randomization",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Randomization",
+    "text": "Randomization\n\nDefinition: Random assignment of treatments to experimental units.\n\nPurpose: avoids systematic bias.\n\nEnsures treatment effects are not confounded with hidden variables.\n\nCan be complete or restricted (within blocks).\n\nExample: Randomly assign shading vs control to ponds, not just “first half shaded, second half control.”"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#integrando",
+    "href": "2025/lessons/design/slides.html#integrando",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Integrando",
+    "text": "Integrando\n\nDiseño factorial: probar múltiples factores y sus interacciones.\n\nBloques: controlar variación agrupando unidades similares.\n\nAleatorización: protegerse contra sesgo.\n\nMejor práctica: combinar los tres cuando sea posible → experimentos robustos e interpretables."
   }
 ]
