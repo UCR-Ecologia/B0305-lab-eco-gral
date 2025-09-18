@@ -10,7 +10,7 @@
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
-  <meta name="author" content="Prof.&nbsp;T. Nakov">
+  <meta name="author" content="Prof.&nbsp;T Nakov">
   <meta name="dcterms.date" content="01 August 2025">
   <title>B0305 Lab Eco Gral 2025 – Diseño experimental, (pseudo)replicación, poder estadístico</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -210,7 +210,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Prof.&nbsp;T. Nakov 
+Prof.&nbsp;T Nakov 
 </div>
         <p class="quarto-title-affiliation">
             Escuela de Biologia, Universidad de Costa Rica
@@ -220,8 +220,11 @@ Prof.&nbsp;T. Nakov
 
   <p class="date">01 Aug 2025</p>
 </section>
+<section id="diseño-experimental" class="slide level2">
+<h2>Diseño experimental</h2>
+</section>
 <section id="por-qué-importa-el-diseño-experimental" class="slide level2">
-<h2>Por Qué Importa el Diseño Experimental</h2>
+<h2>Por qué importa el diseño experimental</h2>
 <ul>
 <li>Ecología = sistemas complejos y variables<br>
 </li>
@@ -232,6 +235,8 @@ Prof.&nbsp;T. Nakov
 </section>
 <section class="slide level2">
 
+<div class="columns">
+<div class="column">
 <div class="fragment">
 <ul>
 <li><strong>Diseño experimental</strong>
@@ -243,17 +248,19 @@ Prof.&nbsp;T. Nakov
 </ul></li>
 </ul>
 </div>
+</div><div class="column">
 <div class="fragment">
 <ul>
-<li><strong>Diseño natural (observacional)</strong>
+<li><strong>Diseño natural</strong>
 <ul>
 <li>El investigador aprovecha la variación natural (ej. arroyos soleados vs sombreados).<br>
 </li>
-<li>No hay asignación verdadera de tratamientos → posible confusión.<br>
+<li>No hay asignación verdadera de tratamientos<br>
 </li>
 </ul></li>
 </ul>
 </div>
+</div></div>
 <div class="fragment">
 <div title="¡Ojo!">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -312,18 +319,18 @@ Figure&nbsp;1: 2×2 factorial design schematic: Light × Nutrients.
 <img data-src="slides_files/figure-revealjs/fig-blocking-1.png" class="img-fluid r-stretch quarto-figure-center" width="960" id="fig-blocking"><p class="caption">
 Figure&nbsp;2: Randomized complete block design: each block contains all treatments.
 </p></section>
-<section id="randomization" class="slide level2">
-<h2>Randomization</h2>
+<section id="aleatorización" class="slide level2">
+<h2>Aleatorización</h2>
 <ul>
-<li><strong>Definition:</strong> Random assignment of treatments to experimental units.<br>
+<li><strong>Definición:</strong> Asignación aleatoria de tratamientos a unidades experimentales.<br>
 </li>
-<li>Purpose: avoids systematic bias.<br>
+<li>Propósito: evita sesgo sistemático.<br>
 </li>
-<li>Ensures treatment effects are not confounded with hidden variables.<br>
+<li>Asegura que los efectos del tratamiento no se confundan con variables ocultas.<br>
 </li>
-<li>Can be complete or restricted (within blocks).</li>
+<li>Puede ser completa o restringida (dentro de bloques).</li>
 </ul>
-<p><strong>Example:</strong> Randomly assign shading vs control to ponds, not just “first half shaded, second half control.”</p>
+<p><strong>Ejemplo:</strong> Asignar aleatoriamente sombreado vs control a estanques, no solo “primera mitad sombreada, segunda mitad control.”</p>
 </section>
 <section class="slide level2">
 
@@ -331,8 +338,8 @@ Figure&nbsp;2: Randomized complete block design: each block contains all treatme
 <img data-src="slides_files/figure-revealjs/fig-randomization-1.png" class="img-fluid r-stretch quarto-figure-center" width="960" id="fig-randomization"><p class="caption">
 Figure&nbsp;3: Randomized assignment of treatments on a field grid (within blocks).
 </p></section>
-<section id="integrando" class="slide level2">
-<h2>Integrando</h2>
+<section id="mensajes-claves" class="slide level2 dark-slide">
+<h2>Mensajes claves</h2>
 <ul>
 <li><strong>Diseño factorial</strong>: probar múltiples factores y sus interacciones.<br>
 </li>
@@ -342,8 +349,11 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 </ul>
 <p><strong>Mejor práctica:</strong> combinar los tres cuando sea posible → experimentos robustos e interpretables.</p>
 </section>
+<section id="replicación-y-pseudoeplicación" class="slide level2">
+<h2>Replicación y pseudoeplicación</h2>
+</section>
 <section id="conceptos-fundamentales" class="slide level2">
-<h2>Conceptos Fundamentales</h2>
+<h2>Conceptos fundamentales</h2>
 <div class="fragment">
 <ul>
 <li><strong>Tratamiento</strong>: Lo que se manipula<br>
@@ -405,15 +415,17 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 <li>Contar líquenes en 4 lados de 1 árbol → <strong>n = ?</strong></li>
 </ul>
 </section>
-<section id="tipos-de-pseudoreplicación" class="slide level2">
-<h2>Tipos de Pseudoreplicación</h2>
-<ul>
-<li><strong>Simple</strong>: 1 unidad experimental por tratamiento medida múltiples veces</li>
-<li><strong>Temporal</strong>: medidas repetidas en el tiempo usadas como réplicas</li>
-</ul>
+<section class="slide level2">
+
+<!-- ## Tipos de Pseudoreplicación
+
+- **Simple**: 1 unidad experimental por tratamiento medida múltiples veces 
+- **Temporal**: medidas repetidas en el tiempo usadas como réplicas  
+
+--- -->
 </section>
 <section id="evitando-la-pseudoreplicación" class="slide level2">
-<h2>Evitando la Pseudoreplicación</h2>
+<h2>Evitando la pseudoreplicación</h2>
 <ul>
 <li>Múltiples unidades independientes por tratamiento<br>
 </li>
@@ -425,7 +437,7 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 </ul>
 </section>
 <section id="mensajes-clave" class="slide level2 dark-slide">
-<h2>Mensajes Clave</h2>
+<h2>Mensajes clave</h2>
 <ul>
 <li>Replicación = unidades independientes, <strong>no</strong> medidas repetidas<br>
 </li>
@@ -442,7 +454,7 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 </li>
 <li>Poder = 1 – β
 <ul>
-<li>β (Error Tipo II): fallar en rechazar una hipótesis nula falsa<br>
+<li>β (Error Tipo II): fallar en rechazar una hipótesis nula cuando esta falsa<br>
 </li>
 </ul></li>
 <li>Meta común: <strong>80% de poder</strong><br>
@@ -468,7 +480,7 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 </div>
 </section>
 <section id="por-qué-importa-el-análisis-de-poder" class="slide level2">
-<h2>Por Qué Importa el Análisis de Poder</h2>
+<h2>Por qué importa el análisis de poder</h2>
 <ul>
 <li>La ecología a menudo trata con alta variabilidad<br>
 </li>
@@ -480,7 +492,7 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 </ul>
 </section>
 <section id="componentes-del-poder" class="slide level2">
-<h2>Componentes del Poder</h2>
+<h2>Componentes del poder</h2>
 <p>El poder depende de:</p>
 <ul>
 <li><strong>Tamaño del efecto</strong>: qué tan grande es la diferencia verdadera<br>
@@ -493,7 +505,7 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 </ul>
 </section>
 <section id="poder-y-varianza-cómo-se-conectan" class="slide level2">
-<h2>Poder y Varianza: Cómo se Conectan</h2>
+<h2>Poder y varianza: Cómo se conectan</h2>
 <ul>
 <li>Recordar: El poder depende del tamaño del efecto, tamaño de muestra, varianza, y α<br>
 </li>
@@ -504,8 +516,8 @@ Figure&nbsp;3: Randomized assignment of treatments on a field grid (within block
 d = \frac{\text{diferencia de medias}}{\text{desviación estándar}}
 \]</span></p>
 </section>
-<section id="ejemplo-trabajado-de-varianza-a-poder" class="slide level2">
-<h2>Ejemplo Trabajado: De Varianza a Poder</h2>
+<section id="ejemplo-de-varianza-a-poder" class="slide level2">
+<h2>Ejemplo: De varianza a poder</h2>
 <p>Supongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:</p>
 <ul>
 <li>Diferencia de medias esperada = <strong>20 unidades</strong><br>

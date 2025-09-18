@@ -1,7 +1,7 @@
 ---
 subtitle: "B0305 -- Lab Eco Gral"
 title: "<font style='font-size:1em;'>Diseño experimental, (pseudo)replicación, poder estadístico</font>"
-author: Prof. T. Nakov
+author: Prof. T Nakov
 institute: 'Escuela de Biologia, Universidad de Costa Rica'
 date: 01 August 2025
 date-meta: 01 August 2025
@@ -27,7 +27,11 @@ execute:
   cache: false
 ---
 
-## Por Qué Importa el Diseño Experimental
+## Diseño experimental
+
+---
+
+## Por qué importa el diseño experimental
 
 - Ecología = sistemas complejos y variables  
 - Mal diseño → conclusiones inválidas, esfuerzo desperdiciado  
@@ -35,17 +39,23 @@ execute:
 
 ---
 
+::: {.columns}
+::: {.column}
 ::: {.fragment}
 - **Diseño experimental**  
   - El investigador manipula tratamientos (ej. sombreado vs sin sombreado).  
   - Inferencia más fuerte sobre causa-efecto. Requiere control de factores confusores.  
 :::
-
-::: {.fragment}
-- **Diseño natural (observacional)**  
-  - El investigador aprovecha la variación natural (ej. arroyos soleados vs sombreados).  
-  - No hay asignación verdadera de tratamientos → posible confusión.   
 :::
+::: {.column}
+::: {.fragment}
+- **Diseño natural**  
+  - El investigador aprovecha la variación natural (ej. arroyos soleados vs sombreados).  
+  - No hay asignación verdadera de tratamientos   
+:::
+
+:::
+::: 
 
 ::: {.fragment}
 ::: {.callout-note title="¡Ojo!"}
@@ -142,14 +152,14 @@ ggplot(df_block, aes(x = PlotPos, y = Block, fill = Treatment, label = Treatment
 
 ---
 
-## Randomization
+## Aleatorización
 
-- **Definition:** Random assignment of treatments to experimental units.  
-- Purpose: avoids systematic bias.  
-- Ensures treatment effects are not confounded with hidden variables.  
-- Can be complete or restricted (within blocks).  
+- **Definición:** Asignación aleatoria de tratamientos a unidades experimentales.  
+- Propósito: evita sesgo sistemático.  
+- Asegura que los efectos del tratamiento no se confundan con variables ocultas.  
+- Puede ser completa o restringida (dentro de bloques).  
 
-**Example:** Randomly assign shading vs control to ponds, not just “first half shaded, second half control.”  
+**Ejemplo:** Asignar aleatoriamente sombreado vs control a estanques, no solo "primera mitad sombreada, segunda mitad control."
 
 ---
 
@@ -197,7 +207,7 @@ ggplot(df_rand, aes(x = col, y = row, fill = Treatment, label = substr(Treatment
 
 ---
 
-## Integrando
+## Mensajes claves {.dark-slide}
 
 - **Diseño factorial**: probar múltiples factores y sus interacciones.  
 - **Bloques**: controlar variación agrupando unidades similares.  
@@ -207,8 +217,12 @@ ggplot(df_rand, aes(x = col, y = row, fill = Treatment, label = substr(Treatment
 
 ---
 
+## Replicación y pseudoeplicación
 
-## Conceptos Fundamentales
+---
+
+
+## Conceptos fundamentales
 
 ::: {.fragment}
 - **Tratamiento**: Lo que se manipula  
@@ -252,14 +266,14 @@ Replicación = unidades experimentales, *no* muestras.
 
 ---
 
-## Tipos de Pseudoreplicación
+<!-- ## Tipos de Pseudoreplicación
 
 - **Simple**: 1 unidad experimental por tratamiento medida múltiples veces 
 - **Temporal**: medidas repetidas en el tiempo usadas como réplicas  
 
----
+--- -->
 
-## Evitando la Pseudoreplicación
+## Evitando la pseudoreplicación
 
 - Múltiples unidades independientes por tratamiento  
 - Asignación aleatoria de tratamientos  
@@ -268,7 +282,7 @@ Replicación = unidades experimentales, *no* muestras.
 
 ---
 
-## Mensajes Clave {.dark-slide}
+## Mensajes clave {.dark-slide}
 
 - Replicación = unidades independientes, **no** medidas repetidas  
 - La pseudoreplicación es común pero evitable  
@@ -281,7 +295,7 @@ Replicación = unidades experimentales, *no* muestras.
 ::: {.fragment}
 - **Poder estadístico** = probabilidad de detectar un efecto si verdaderamente existe  
 - Poder = 1 – β  
-  - β (Error Tipo II): fallar en rechazar una hipótesis nula falsa  
+  - β (Error Tipo II): fallar en rechazar una hipótesis nula cuando esta falsa  
 - Meta común: **80% de poder**  
 :::
 
@@ -293,7 +307,7 @@ Alto poder = buena oportunidad de detectar efectos biológicamente significativo
 
 ---
 
-## Por Qué Importa el Análisis de Poder
+## Por qué importa el análisis de poder
 
 - La ecología a menudo trata con alta variabilidad  
 - Muy pocas réplicas → falsos negativos (perder efectos reales)  
@@ -302,7 +316,7 @@ Alto poder = buena oportunidad de detectar efectos biológicamente significativo
 
 ---
 
-## Componentes del Poder
+## Componentes del poder
 
 El poder depende de: 
 
@@ -313,7 +327,7 @@ El poder depende de:
 
 ---
 
-## Poder y Varianza: Cómo se Conectan
+## Poder y varianza: Cómo se conectan
 
 - Recordar: El poder depende del tamaño del efecto, tamaño de muestra, varianza, y α  
 - En la práctica, **la varianza (σ²)** está incorporada en el *tamaño del efecto*  
@@ -326,7 +340,7 @@ $$
 
 ---
 
-## Ejemplo Trabajado: De Varianza a Poder
+## Ejemplo: De varianza a poder
 
 Supongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:  
 
@@ -388,3 +402,21 @@ Marshall, D.J., 2024. Principles of experimental design for ecology and evolutio
 Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 4. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-4.pdf)
 
 Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 6. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-6.pdf)
+
+---
+
+## Extra
+
+**Practica1: Lichenes y Musgos**:
+Cual era nuestro poder estadistico?
+
+```{r}
+# Tamaño del efecto a partir de diferencia de medias y DE
+d <- 20 / 25   # = 0.8
+
+# Análisis de poder para prueba t de dos muestras
+pwr.t.test(d = d, power = 0.8, sig.level = 0.05,
+           type = "two.sample")
+
+
+```

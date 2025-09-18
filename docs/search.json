@@ -924,18 +924,60 @@
     "text": "Numérica + Numérica - scatterplots con regression\n\n\nggplot(penguins) +\n    aes(x = body_mass, y = flipper_len) +\n    geom_point(size = 5, alpha = 0.4, aes(color = island, shape = sex)) +\n    geom_smooth(method = \"lm\") +\n    facet_wrap(vars(species), ncol = 3)"
   },
   {
+    "objectID": "2025/lessons/design/slides.html#diseño-experimental",
+    "href": "2025/lessons/design/slides.html#diseño-experimental",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Diseño experimental",
+    "text": "Diseño experimental"
+  },
+  {
     "objectID": "2025/lessons/design/slides.html#por-qué-importa-el-diseño-experimental",
     "href": "2025/lessons/design/slides.html#por-qué-importa-el-diseño-experimental",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Por Qué Importa el Diseño Experimental",
-    "text": "Por Qué Importa el Diseño Experimental\n\nEcología = sistemas complejos y variables\n\nMal diseño → conclusiones inválidas, esfuerzo desperdiciado\n\nBuen diseño → inferencia más sólida, capacidad de generalizar"
+    "section": "Por qué importa el diseño experimental",
+    "text": "Por qué importa el diseño experimental\n\nEcología = sistemas complejos y variables\n\nMal diseño → conclusiones inválidas, esfuerzo desperdiciado\n\nBuen diseño → inferencia más sólida, capacidad de generalizar"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#diseño-factorial",
+    "href": "2025/lessons/design/slides.html#diseño-factorial",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Diseño Factorial",
+    "text": "Diseño Factorial\n\nDefinición: Se prueban todas las combinaciones de factores.\n\nEjemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)\n\nTratamientos = 2 × 2 = 4 combinaciones\n\n\nVentaja: puede detectar efectos de interacción (cómo se combinan los factores).\n\nLimitación: crece rápidamente con el número de factores."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#bloques",
+    "href": "2025/lessons/design/slides.html#bloques",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Bloques",
+    "text": "Bloques\n\nDefinición: Agrupar unidades experimentales en bloques que comparten condiciones similares.\n\nEjemplo: La fertilidad del suelo varía a través de un campo → cada bloque contiene todos los tratamientos.\n\nPropósito: controlar fuentes conocidas de variación.\n\nAnálisis: el bloque se incluye como factor en el modelo (aleatorio o fijo).\n\nIdea clave: Los bloques reducen el ruido de la heterogeneidad."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#aleatorización",
+    "href": "2025/lessons/design/slides.html#aleatorización",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Aleatorización",
+    "text": "Aleatorización\n\nDefinición: Asignación aleatoria de tratamientos a unidades experimentales.\n\nPropósito: evita sesgo sistemático.\n\nAsegura que los efectos del tratamiento no se confundan con variables ocultas.\n\nPuede ser completa o restringida (dentro de bloques).\n\nEjemplo: Asignar aleatoriamente sombreado vs control a estanques, no solo “primera mitad sombreada, segunda mitad control.”"
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#mensajes-claves",
+    "href": "2025/lessons/design/slides.html#mensajes-claves",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Mensajes claves",
+    "text": "Mensajes claves\n\nDiseño factorial: probar múltiples factores y sus interacciones.\n\nBloques: controlar variación agrupando unidades similares.\n\nAleatorización: protegerse contra sesgo.\n\nMejor práctica: combinar los tres cuando sea posible → experimentos robustos e interpretables."
+  },
+  {
+    "objectID": "2025/lessons/design/slides.html#replicación-y-pseudoeplicación",
+    "href": "2025/lessons/design/slides.html#replicación-y-pseudoeplicación",
+    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
+    "section": "Replicación y pseudoeplicación",
+    "text": "Replicación y pseudoeplicación"
   },
   {
     "objectID": "2025/lessons/design/slides.html#conceptos-fundamentales",
     "href": "2025/lessons/design/slides.html#conceptos-fundamentales",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Conceptos Fundamentales",
-    "text": "Conceptos Fundamentales\n\n\nTratamiento: Lo que se manipula\n\nUnidad Experimental: La unidad más pequeña que puede recibir independientemente un tratamiento\n\nReplicación: Múltiples unidades experimentales independientes por tratamiento\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nReplicación = unidades experimentales, no muestras."
+    "section": "Conceptos fundamentales",
+    "text": "Conceptos fundamentales\n\n\nTratamiento: Lo que se manipula\n\nUnidad Experimental: La unidad más pequeña que puede recibir independientemente un tratamiento\n\nReplicación: Múltiples unidades experimentales independientes por tratamiento\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nReplicación = unidades experimentales, no muestras."
   },
   {
     "objectID": "2025/lessons/design/slides.html#replicación",
@@ -952,60 +994,53 @@
     "text": "Ejemplos\n\nMedir 20 hojas de 1 planta → n = ?\n\nMedir 1 hoja de cada una de 20 plantas → n = ?\nMedir crecimiento de algas después de adición de nutrientes 5 días seguidos → n = ?\nContar líquenes en 4 lados de 1 árbol → n = ?"
   },
   {
-    "objectID": "2025/lessons/design/slides.html#tipos-de-pseudoreplicación",
-    "href": "2025/lessons/design/slides.html#tipos-de-pseudoreplicación",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Tipos de Pseudoreplicación",
-    "text": "Tipos de Pseudoreplicación\n\nSimple: 1 unidad experimental por tratamiento medida múltiples veces\nTemporal: medidas repetidas en el tiempo usadas como réplicas"
-  },
-  {
     "objectID": "2025/lessons/design/slides.html#evitando-la-pseudoreplicación",
     "href": "2025/lessons/design/slides.html#evitando-la-pseudoreplicación",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Evitando la Pseudoreplicación",
-    "text": "Evitando la Pseudoreplicación\n\nMúltiples unidades independientes por tratamiento\n\nAsignación aleatoria de tratamientos\n\nBloques para controlar la variación\n\nModelos jerárquicos / mixtos para datos anidados"
+    "section": "Evitando la pseudoreplicación",
+    "text": "Evitando la pseudoreplicación\n\nMúltiples unidades independientes por tratamiento\n\nAsignación aleatoria de tratamientos\n\nBloques para controlar la variación\n\nModelos jerárquicos / mixtos para datos anidados"
   },
   {
     "objectID": "2025/lessons/design/slides.html#mensajes-clave",
     "href": "2025/lessons/design/slides.html#mensajes-clave",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Mensajes Clave",
-    "text": "Mensajes Clave\n\nReplicación = unidades independientes, no medidas repetidas\n\nLa pseudoreplicación es común pero evitable\n\nReconocer cuando la replicación completa es imposible"
+    "section": "Mensajes clave",
+    "text": "Mensajes clave\n\nReplicación = unidades independientes, no medidas repetidas\n\nLa pseudoreplicación es común pero evitable\n\nReconocer cuando la replicación completa es imposible"
   },
   {
     "objectID": "2025/lessons/design/slides.html#poder-estadístico-introducción",
     "href": "2025/lessons/design/slides.html#poder-estadístico-introducción",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
     "section": "Poder Estadístico: Introducción",
-    "text": "Poder Estadístico: Introducción\n\n\nPoder estadístico = probabilidad de detectar un efecto si verdaderamente existe\n\nPoder = 1 – β\n\nβ (Error Tipo II): fallar en rechazar una hipótesis nula falsa\n\n\nMeta común: 80% de poder\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nAlto poder = buena oportunidad de detectar efectos biológicamente significativos."
+    "text": "Poder Estadístico: Introducción\n\n\nPoder estadístico = probabilidad de detectar un efecto si verdaderamente existe\n\nPoder = 1 – β\n\nβ (Error Tipo II): fallar en rechazar una hipótesis nula cuando esta falsa\n\n\nMeta común: 80% de poder\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nAlto poder = buena oportunidad de detectar efectos biológicamente significativos."
   },
   {
     "objectID": "2025/lessons/design/slides.html#por-qué-importa-el-análisis-de-poder",
     "href": "2025/lessons/design/slides.html#por-qué-importa-el-análisis-de-poder",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Por Qué Importa el Análisis de Poder",
-    "text": "Por Qué Importa el Análisis de Poder\n\nLa ecología a menudo trata con alta variabilidad\n\nMuy pocas réplicas → falsos negativos (perder efectos reales)\n\nDemasiadas réplicas → tiempo, esfuerzo y recursos desperdiciados\n\nEl análisis de poder ayuda a equilibrar factibilidad y rigor científico"
+    "section": "Por qué importa el análisis de poder",
+    "text": "Por qué importa el análisis de poder\n\nLa ecología a menudo trata con alta variabilidad\n\nMuy pocas réplicas → falsos negativos (perder efectos reales)\n\nDemasiadas réplicas → tiempo, esfuerzo y recursos desperdiciados\n\nEl análisis de poder ayuda a equilibrar factibilidad y rigor científico"
   },
   {
     "objectID": "2025/lessons/design/slides.html#componentes-del-poder",
     "href": "2025/lessons/design/slides.html#componentes-del-poder",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Componentes del Poder",
-    "text": "Componentes del Poder\nEl poder depende de:\n\nTamaño del efecto: qué tan grande es la diferencia verdadera\n\nTamaño de muestra (n): número de unidades independientes\n\nVarianza (σ²): variabilidad natural en el sistema\n\nNivel de significancia (α): usualmente 0.05"
+    "section": "Componentes del poder",
+    "text": "Componentes del poder\nEl poder depende de:\n\nTamaño del efecto: qué tan grande es la diferencia verdadera\n\nTamaño de muestra (n): número de unidades independientes\n\nVarianza (σ²): variabilidad natural en el sistema\n\nNivel de significancia (α): usualmente 0.05"
   },
   {
     "objectID": "2025/lessons/design/slides.html#poder-y-varianza-cómo-se-conectan",
     "href": "2025/lessons/design/slides.html#poder-y-varianza-cómo-se-conectan",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Poder y Varianza: Cómo se Conectan",
-    "text": "Poder y Varianza: Cómo se Conectan\n\nRecordar: El poder depende del tamaño del efecto, tamaño de muestra, varianza, y α\n\nEn la práctica, la varianza (σ²) está incorporada en el tamaño del efecto\n\nPara una prueba t de dos muestras:\n\\[\nd = \\frac{\\text{diferencia de medias}}{\\text{desviación estándar}}\n\\]"
+    "section": "Poder y varianza: Cómo se conectan",
+    "text": "Poder y varianza: Cómo se conectan\n\nRecordar: El poder depende del tamaño del efecto, tamaño de muestra, varianza, y α\n\nEn la práctica, la varianza (σ²) está incorporada en el tamaño del efecto\n\nPara una prueba t de dos muestras:\n\\[\nd = \\frac{\\text{diferencia de medias}}{\\text{desviación estándar}}\n\\]"
   },
   {
-    "objectID": "2025/lessons/design/slides.html#ejemplo-trabajado-de-varianza-a-poder",
-    "href": "2025/lessons/design/slides.html#ejemplo-trabajado-de-varianza-a-poder",
+    "objectID": "2025/lessons/design/slides.html#ejemplo-de-varianza-a-poder",
+    "href": "2025/lessons/design/slides.html#ejemplo-de-varianza-a-poder",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Ejemplo Trabajado: De Varianza a Poder",
-    "text": "Ejemplo Trabajado: De Varianza a Poder\nSupongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:\n\nDiferencia de medias esperada = 20 unidades\n\nDatos piloto: desviación estándar = 25\n\nNivel de significancia α = 0.05\n\nPoder objetivo = 0.80\n\n\\[\nd = \\frac{20}{25} = 0.8\n\\]"
+    "section": "Ejemplo: De varianza a poder",
+    "text": "Ejemplo: De varianza a poder\nSupongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:\n\nDiferencia de medias esperada = 20 unidades\n\nDatos piloto: desviación estándar = 25\n\nNivel de significancia α = 0.05\n\nPoder objetivo = 0.80\n\n\\[\nd = \\frac{20}{25} = 0.8\n\\]"
   },
   {
     "objectID": "2025/lessons/design/slides.html#pregunta-cuántos-arroyos-réplica-por-tratamiento-se-necesitan",
@@ -1651,33 +1686,5 @@
       "📚 Lecciones",
       "5. Reportes con R y `{quarto}`"
     ]
-  },
-  {
-    "objectID": "2025/lessons/design/slides.html#diseño-factorial",
-    "href": "2025/lessons/design/slides.html#diseño-factorial",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Diseño Factorial",
-    "text": "Diseño Factorial\n\nDefinición: Se prueban todas las combinaciones de factores.\n\nEjemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)\n\nTratamientos = 2 × 2 = 4 combinaciones\n\n\nVentaja: puede detectar efectos de interacción (cómo se combinan los factores).\n\nLimitación: crece rápidamente con el número de factores."
-  },
-  {
-    "objectID": "2025/lessons/design/slides.html#bloques",
-    "href": "2025/lessons/design/slides.html#bloques",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Bloques",
-    "text": "Bloques\n\nDefinición: Agrupar unidades experimentales en bloques que comparten condiciones similares.\n\nEjemplo: La fertilidad del suelo varía a través de un campo → cada bloque contiene todos los tratamientos.\n\nPropósito: controlar fuentes conocidas de variación.\n\nAnálisis: el bloque se incluye como factor en el modelo (aleatorio o fijo).\n\nIdea clave: Los bloques reducen el ruido de la heterogeneidad."
-  },
-  {
-    "objectID": "2025/lessons/design/slides.html#randomization",
-    "href": "2025/lessons/design/slides.html#randomization",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Randomization",
-    "text": "Randomization\n\nDefinition: Random assignment of treatments to experimental units.\n\nPurpose: avoids systematic bias.\n\nEnsures treatment effects are not confounded with hidden variables.\n\nCan be complete or restricted (within blocks).\n\nExample: Randomly assign shading vs control to ponds, not just “first half shaded, second half control.”"
-  },
-  {
-    "objectID": "2025/lessons/design/slides.html#integrando",
-    "href": "2025/lessons/design/slides.html#integrando",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Integrando",
-    "text": "Integrando\n\nDiseño factorial: probar múltiples factores y sus interacciones.\n\nBloques: controlar variación agrupando unidades similares.\n\nAleatorización: protegerse contra sesgo.\n\nMejor práctica: combinar los tres cuando sea posible → experimentos robustos e interpretables."
   }
 ]
