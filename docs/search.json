@@ -291,7 +291,7 @@
     "href": "2025/lessons/r_primer/slides.html#verificación-de-la-instalación",
     "title": " Introducción a R",
     "section": "Verificación de la instalación",
-    "text": "Verificación de la instalación\n\n\n\nAbrir RStudio (no R directamente)\nEn la consola (panel inferior izquierdo), escribir:\nSi aparecen los resultados, ¡la instalación fue exitosa! 🎉\n\n\n\n\n# Verificar versión de R\nR.version.string\n\n[1] \"R version 4.5.1 (2025-06-13 ucrt)\"\n\n# Hacer un cálculo simple\n2 + 2\n\n[1] 4\n\n# Crear un vector simple\nmi_vector &lt;- c(1, 2, 3, 4, 5)\nmi_vector\n\n[1] 1 2 3 4 5"
+    "text": "Verificación de la instalación\n\n\n\nAbrir RStudio (no R directamente)\nEn la consola (panel inferior izquierdo), escribir:\nSi aparecen los resultados, ¡la instalación fue exitosa! 🎉\n\n\n\n\n# Verificar versión de R\nR.version.string\n\n[1] \"R version 4.5.1 (2025-06-13)\"\n\n# Hacer un cálculo simple\n2 + 2\n\n[1] 4\n\n# Crear un vector simple\nmi_vector &lt;- c(1, 2, 3, 4, 5)\nmi_vector\n\n[1] 1 2 3 4 5"
   },
   {
     "objectID": "2025/lessons/r_primer/slides.html#recursos-adicionales",
@@ -487,7 +487,7 @@
     "href": "2025/lessons/model/slides.html#cuidado-con-los-residuos-transformados",
     "title": " Modelado en R",
     "section": "⚠️ Cuidado con los residuos transformados",
-    "text": "⚠️ Cuidado con los residuos transformados\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
+    "text": "⚠️ Cuidado con los residuos transformados\n\n\nLos residuos del modelo log-lineal están en escala logarítmica\nNo son directamente comparables con residuos en escala original\nPara comparar correctamente, necesitamos calcular residuos en la misma escala\n\n\n\n\n# Residuos en escala original para todos los modelos\nresiduos_originales &lt;- data.frame(\n  tiempo = levaduras$tiempo,\n  lineal = levaduras$densidad - predict(modelo_lineal),\n  log_lineal = levaduras$densidad - exp(predict(modelo_log)),  # ¡Transformar de vuelta!\n  logistico = levaduras$densidad - predict(modelo_logistico)\n)\n\n# Calcular suma de cuadrados de residuos en escala original\nrss_original &lt;- sapply(residuos_originales[,-1], function(x) sum(x^2))\nprint(round(rss_original, 2))\n\n    lineal log_lineal  logistico \n 118961.09 1022167.84   12133.29 \n\n\n\n\nAhora sí podemos comparar correctamente ✅"
   },
   {
     "objectID": "2025/lessons/model/slides.html#residuos-en-escala-original---comparación-visual",
@@ -515,14 +515,14 @@
     "href": "2025/lessons/model/slides.html#tiempo-de-duplicación",
     "title": " Modelado en R",
     "section": "Tiempo de duplicación",
-    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\n\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)"
+    "text": "Tiempo de duplicación\n\n\n\n\n# Calcular tiempo de duplicación\nr_estimado &lt;- params[\"r\"]\ntiempo_duplicacion &lt;- log(2) / r_estimado\n\ncat(\n  \"Tiempo de duplicación:\", \n  round(tiempo_duplicacion, 2), \"horas\\n\"\n)\n\nTiempo de duplicación: 2.48 horas\n\n\n\n\n\n\nEstas métricas son importantes para:\n- Optimización de cultivos\n- Predicción de rendimientos\n- Comparación entre cepas\n\n\n\n\n\n\n\n\n\n\n📚 Leer más:\n\n\n\nReferencias recomendadas:\n- Gotelli, N.J. (2008). A Primer of Ecology, 4th ed. Sinauer Associates. (Capítulo 2: Exponential and Logistic Population Growth)"
   },
   {
     "objectID": "2025/lessons/model/slides.html#lecciones-aprendidas",
     "href": "2025/lessons/model/slides.html#lecciones-aprendidas",
     "title": " Modelado en R",
     "section": "Lecciones aprendidas",
-    "text": "Lecciones aprendidas\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
+    "text": "Lecciones aprendidas\n\n\nLos modelos simples (lineal) pueden ser inadecuados para procesos biológicos complejos\nLas transformaciones (log-lineal) pueden mejorar el ajuste pero no capturan toda la biología\nLos modelos mecanísticos (logístico) incorporan conocimiento biológico y proporcionan parámetros interpretables\nLa evaluación de modelos requiere múltiples criterios, no solo R²\nEl contexto biológico es crucial para la selección del modelo apropiado"
   },
   {
     "objectID": "2025/lessons/model/slides.html#próximos-pasos",
@@ -942,7 +942,7 @@
     "href": "2025/lessons/design/slides.html#diseño-factorial",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
     "section": "Diseño Factorial",
-    "text": "Diseño Factorial\n\nDefinición: Se prueban todas las combinaciones de factores.\n\nEjemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)\n\nTratamientos = 2 × 2 = 4 combinaciones\n\n\nVentaja: puede detectar efectos de interacción (cómo se combinan los factores).\n\nLimitación: crece rápidamente con el número de factores."
+    "text": "Diseño Factorial\n\nDefinición: Se prueban todas las combinaciones de factores.\n\nEjemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)\n\nTratamientos = 2 × 2 = 4 combinaciones\n\n\nVentaja: puede detectar efectos de interacción (cómo se combinan los factores)."
   },
   {
     "objectID": "2025/lessons/design/slides.html#bloques",
@@ -956,14 +956,14 @@
     "href": "2025/lessons/design/slides.html#aleatorización",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
     "section": "Aleatorización",
-    "text": "Aleatorización\n\nDefinición: Asignación aleatoria de tratamientos a unidades experimentales.\n\nPropósito: evita sesgo sistemático.\n\nAsegura que los efectos del tratamiento no se confundan con variables ocultas.\n\nPuede ser completa o restringida (dentro de bloques).\n\nEjemplo: Asignar aleatoriamente sombreado vs control a estanques, no solo “primera mitad sombreada, segunda mitad control.”"
+    "text": "Aleatorización\n\nDefinición: Asignación aleatoria de tratamientos a unidades experimentales.\n\nPropósito: evita sesgo sistemático.\n\nPuede ser completa o restringida (dentro de bloques).\n\nEjemplo: Asignar aleatoriamente sombreado vs control a estanques, no solo “primera mitad sombreada, segunda mitad control.”"
   },
   {
     "objectID": "2025/lessons/design/slides.html#mensajes-claves",
     "href": "2025/lessons/design/slides.html#mensajes-claves",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
     "section": "Mensajes claves",
-    "text": "Mensajes claves\n\nDiseño factorial: probar múltiples factores y sus interacciones.\n\nBloques: controlar variación agrupando unidades similares.\n\nAleatorización: protegerse contra sesgo.\n\nMejor práctica: combinar los tres cuando sea posible → experimentos robustos e interpretables."
+    "text": "Mensajes claves\n\nDiseño factorial: probar múltiples factores y sus interacciones.\n\nBloques: controlar variación agrupando unidades similares.\n\nAleatorización: protegerse contra sesgo."
   },
   {
     "objectID": "2025/lessons/design/slides.html#replicación-y-pseudoeplicación",
@@ -987,13 +987,6 @@
     "text": "Replicación\n\nPropósito: estimar variabilidad, probar hipótesis confiablemente\n\nTipos:\n\nReplicación verdadera: unidades independientes (20 plantas)\n\nReplicación técnica: medidas repetidas de la misma unidad (20 hojas de 1 planta)\n\n\nRegla práctica: Replicación = número de unidades independientes"
   },
   {
-    "objectID": "2025/lessons/design/slides.html#ejemplos",
-    "href": "2025/lessons/design/slides.html#ejemplos",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Ejemplos",
-    "text": "Ejemplos\n\nMedir 20 hojas de 1 planta → n = ?\n\nMedir 1 hoja de cada una de 20 plantas → n = ?\nMedir crecimiento de algas después de adición de nutrientes 5 días seguidos → n = ?\nContar líquenes en 4 lados de 1 árbol → n = ?"
-  },
-  {
     "objectID": "2025/lessons/design/slides.html#evitando-la-pseudoreplicación",
     "href": "2025/lessons/design/slides.html#evitando-la-pseudoreplicación",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
@@ -1015,13 +1008,6 @@
     "text": "Poder Estadístico: Introducción\n\n\nPoder estadístico = probabilidad de detectar un efecto si verdaderamente existe\n\nPoder = 1 – β\n\nβ (Error Tipo II): fallar en rechazar una hipótesis nula cuando esta falsa\n\n\nMeta común: 80% de poder\n\n\n\n\n\n\n\n\n\n\n\n¡Ojo!\n\n\nAlto poder = buena oportunidad de detectar efectos biológicamente significativos."
   },
   {
-    "objectID": "2025/lessons/design/slides.html#por-qué-importa-el-análisis-de-poder",
-    "href": "2025/lessons/design/slides.html#por-qué-importa-el-análisis-de-poder",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Por qué importa el análisis de poder",
-    "text": "Por qué importa el análisis de poder\n\nLa ecología a menudo trata con alta variabilidad\n\nMuy pocas réplicas → falsos negativos (perder efectos reales)\n\nDemasiadas réplicas → tiempo, esfuerzo y recursos desperdiciados\n\nEl análisis de poder ayuda a equilibrar factibilidad y rigor científico"
-  },
-  {
     "objectID": "2025/lessons/design/slides.html#componentes-del-poder",
     "href": "2025/lessons/design/slides.html#componentes-del-poder",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
@@ -1040,14 +1026,7 @@
     "href": "2025/lessons/design/slides.html#ejemplo-de-varianza-a-poder",
     "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
     "section": "Ejemplo: De varianza a poder",
-    "text": "Ejemplo: De varianza a poder\nSupongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:\n\nDiferencia de medias esperada = 20 unidades\n\nDatos piloto: desviación estándar = 25\n\nNivel de significancia α = 0.05\n\nPoder objetivo = 0.80\n\n\\[\nd = \\frac{20}{25} = 0.8\n\\]"
-  },
-  {
-    "objectID": "2025/lessons/design/slides.html#pregunta-cuántos-arroyos-réplica-por-tratamiento-se-necesitan",
-    "href": "2025/lessons/design/slides.html#pregunta-cuántos-arroyos-réplica-por-tratamiento-se-necesitan",
-    "title": "Diseño experimental, (pseudo)replicación, poder estadístico",
-    "section": "Pregunta: ¿Cuántos arroyos réplica por tratamiento se necesitan?",
-    "text": "Pregunta: ¿Cuántos arroyos réplica por tratamiento se necesitan?"
+    "text": "Ejemplo: De varianza a poder\nSupongamos que probamos sombreado vs sin sombreado en el crecimiento de algas:\n\nDiferencia de medias esperada = 20 unidades\n\nDatos piloto: desviación estándar = 25\n\nNivel de significancia α = 0.05\n\nPoder objetivo = 0.80\n\n\\[\nd = \\frac{20}{25} = 0.8\n\\]\nPregunta: ¿Cuántos arroyos réplica por tratamiento se necesitan?"
   },
   {
     "objectID": "2025/lessons/design/slides.html#cálculo-en-r",

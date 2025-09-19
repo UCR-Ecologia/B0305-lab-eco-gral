@@ -71,7 +71,7 @@ Incluso sin manipulación, es necesaria una definición clara de *unidades exper
 - Ejemplo: Dos factores → luz (alta/baja) × nutrientes (altos/bajos)  
   - Tratamientos = 2 × 2 = 4 combinaciones  
 - Ventaja: puede detectar **efectos de interacción** (cómo se combinan los factores).  
-- Limitación: crece rápidamente con el número de factores. 
+<!-- - Limitación: crece rápidamente con el número de factores.  -->
 
 ---
 
@@ -156,7 +156,7 @@ ggplot(df_block, aes(x = PlotPos, y = Block, fill = Treatment, label = Treatment
 
 - **Definición:** Asignación aleatoria de tratamientos a unidades experimentales.  
 - Propósito: evita sesgo sistemático.  
-- Asegura que los efectos del tratamiento no se confundan con variables ocultas.  
+<!-- - Asegura que los efectos del tratamiento no se confundan con variables ocultas.   -->
 - Puede ser completa o restringida (dentro de bloques).  
 
 **Ejemplo:** Asignar aleatoriamente sombreado vs control a estanques, no solo "primera mitad sombreada, segunda mitad control."
@@ -213,7 +213,7 @@ ggplot(df_rand, aes(x = col, y = row, fill = Treatment, label = substr(Treatment
 - **Bloques**: controlar variación agrupando unidades similares.  
 - **Aleatorización**: protegerse contra sesgo.  
 
-**Mejor práctica:** combinar los tres cuando sea posible → experimentos robustos e interpretables.  
+<!-- **Mejor práctica:** combinar los tres cuando sea posible → experimentos robustos e interpretables.   -->
 
 ---
 
@@ -254,14 +254,14 @@ Replicación = unidades experimentales, *no* muestras.
 
 ![Replicación verdadera vs pseudo replicación](figures/replication2.jpeg)
 
----
+<!-- ---
 
 ## Ejemplos
 
 - Medir 20 hojas de 1 planta → **n = ?**  
 - Medir 1 hoja de cada una de 20 plantas → **n = ?**
 - Medir crecimiento de algas después de adición de nutrientes 5 días seguidos → **n = ?**
-- Contar líquenes en 4 lados de 1 árbol → **n = ?**
+- Contar líquenes en 4 lados de 1 árbol → **n = ?** -->
 
 
 ---
@@ -307,12 +307,12 @@ Alto poder = buena oportunidad de detectar efectos biológicamente significativo
 
 ---
 
-## Por qué importa el análisis de poder
+<!-- ## Por qué importa el análisis de poder
 
 - La ecología a menudo trata con alta variabilidad  
 - Muy pocas réplicas → falsos negativos (perder efectos reales)  
 - Demasiadas réplicas → tiempo, esfuerzo y recursos desperdiciados  
-- El análisis de poder ayuda a equilibrar factibilidad y rigor científico  
+- El análisis de poder ayuda a equilibrar factibilidad y rigor científico   -->
 
 ---
 
@@ -404,19 +404,3 @@ Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol.
 Gotelli, N. J., & Ellison, A. M. (2004). A primer of ecological statistics (Vol. 1), Capitulo 6. Sunderland: Sinauer Associates. [📄 PDF](../../refs/Gotelli-2004-cap-6.pdf)
 
 ---
-
-## Extra
-
-**Practica1: Lichenes y Musgos**:
-Cual era nuestro poder estadistico?
-
-```{r}
-# Tamaño del efecto a partir de diferencia de medias y DE
-d <- 20 / 25   # = 0.8
-
-# Análisis de poder para prueba t de dos muestras
-pwr.t.test(d = d, power = 0.8, sig.level = 0.05,
-           type = "two.sample")
-
-
-```
